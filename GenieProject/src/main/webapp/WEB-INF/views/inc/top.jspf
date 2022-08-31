@@ -22,8 +22,8 @@
 		<nav>
 			<h2 class="logo">GE<span>NIE</span></h2>
 			<ul>
-				<li><a href="/board/boardList">게시판</a></li>
-				<li><a href="/data/dataList">자료실</a></li>
+				<li><a href="/board/boardList">Genie AI 추천</a></li>
+				<li><a href="/data/dataList">전체보기</a></li>
 				<li><a href="/member/login">로그인</a></li>
 				<li><a href="/member/memberForm">회원가입</a></li>
 			</ul>
