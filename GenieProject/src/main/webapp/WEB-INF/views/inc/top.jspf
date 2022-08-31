@@ -24,6 +24,8 @@
 			<ul>
 				<li><a href="/board/boardList">Genie AI 추천</a></li>
 				<li><a href="/data/dataList">전체보기</a></li>
+				<li><a href="/data/dataList">마이페이지</a></li>
+				<li><a href="/data/dataList">장바구니</a></li>
 				<li><a href="/member/login">로그인</a></li>
 				<li><a href="/member/memberForm">회원가입</a></li>
 			</ul>
