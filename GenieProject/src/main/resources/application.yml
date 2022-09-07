@@ -10,8 +10,8 @@ spring:
   datasource: # jdbc
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://127.0.0.1/genie?characterEncoding=utf-8
-      username: 
-      password: 
+      username: root
+      password: root1234
   
   servlet: #fileupload
     multipart:
@@ -21,4 +21,4 @@ spring:
 mybatis:
   type-aliases-package: com.genie.myapp.vo
   mapper-locations: mapper/*Mapper.xml
-    
+

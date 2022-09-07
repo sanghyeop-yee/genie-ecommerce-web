@@ -1,58 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ include file="./inc/top.jspf"%>
 <style>
 
-section{
-	padding: 80px 18%;
-}
-.home{
+.home {
 	position: relative;
 	width: 100%;
 	height: 100vh;
+	margin: 0;
+	padding: 6% 15%;
+
 	/*background: url(../img/background.jpg);*/
-	background: linear-gradient(to top, #56D8FF, #48FFD5);
+	background: #d3f1ee;
 	background-size: cover;
 	background-position: center;
-	display: grid;
-	grid-template-columns: repeat(1, 1fr);
-	align-items: center;
 }
-.home-text h1{
-	font-size: 40px;
-	line-height: 1.2;
-	color: white;
-	font-family: 'Paytone One', sans-serif;
-	letter-spacing: 4px;
-	margin-bottom: 20px;
+h1 {
+	position: relative;
+	margin: 0 0 .7em 0;
+	color: #96aee0;
+	font-size: 3.8em;
 }
 .home-text p{
-	color: #ffffffbf;
-	font-size: 20px;
-	font-weight: 400;
-	line-height: 38px;
-	margin-bottom: 50px;
+	color: #91ddd6;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-top: -.5em;
 }
 .home-btn{
-	display: inline-block;
-	font-size: 16px;
-	padding: 15px 30px;
-	background: #ffffffbf;
-	color: var(--main-color);
-	border-radius: 4px;
+	display: relative;
+	font-size: .7em;
+	padding: 2% 1.7%;
+	background: #96aee0;
+	color: #fff;
+	border-radius: 50%;
 	transition: ease .40s;
+	margin-left: 36vw;
+	margin-bottom: 10vh;
+	
 }
-.home-btn:hover{w
-	background: var(--bg-color);
+.home-btn:hover{
+	background: #fff;
 	transform: scale(1.1);
+	box-shadow: 0 0 7px #278178;
+	color: #96aee0;
 }
-
 </style>
+
+<script src="https://kit.fontawesome.com/8d73d915f1.js" crossorigin="anonymous"></script>
 
 	<!--Genie 메인화면--->
 	<section class="home" id="home">
+		<h1>NOW IS THE PRESENT 2022</h1>
 		<div class="home-text">
-			<h1>NOW IS THE PRESENT 2022</h1>
-			<p>어떤 선물을 찾고 있나요?<br> Genie가 여러분과 함께 찾아드리겠습니다.</p>
-			<a href="#" class="home-btn">Genie로 찾기</a>
+			<p>어떤 선물을 찾고 있나요?</p>
+			<a href="/genie/genie_01" class="home-btn"><i class="fa-solid fa-gift fa-2xl"></i></a>
+			<p>고민이 되신다면 AI추천서비스를 이용해보세요</p>
 		</div>
 	</section>
