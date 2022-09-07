@@ -42,4 +42,12 @@ public class SellerController {
 		return mav;
 	}
 	
+	// Seller 대시보드
+	@GetMapping("sellerDashboard")
+	public ModelAndView sellerDashboard() {
+		mav = new ModelAndView();
+		mav.setViewName("seller/sellerDashboard");
+		return mav;
+	}
+	
 }
