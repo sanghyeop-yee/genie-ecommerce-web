@@ -45,12 +45,12 @@ public class AdminController {
 			return mav;
 		}
 		
-		@GetMapping("adminCategoryTag")
-		public ModelAndView adminCategoryTag() {
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("admin/adminCategoryTag");
-			return mav;
-		}
+//		@GetMapping("adminCategoryTag")
+//		public ModelAndView adminCategoryTag() {
+//			ModelAndView mav = new ModelAndView();
+//			mav.setViewName("admin/adminCategoryTag");
+//			return mav;
+//		}
 		
 		//카테고리 
 		@GetMapping("adminCategoryTag")
