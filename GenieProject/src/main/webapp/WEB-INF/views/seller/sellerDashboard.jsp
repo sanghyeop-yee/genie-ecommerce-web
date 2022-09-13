@@ -253,9 +253,10 @@
                 <!-- end of customer report -->
             </div>
             <!-- end of monthly report-->
-
+            
+            
             <div class="fast-payment">
-                <h2>재고 수량</h2>
+                <h2>재고 추가</h2><br/>
                 <div class="badges">
                     <div class="badge">
                         <span class="material-symbols-sharp">add</span>

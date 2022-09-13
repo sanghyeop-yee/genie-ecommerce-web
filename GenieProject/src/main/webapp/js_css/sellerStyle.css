@@ -449,8 +449,7 @@ main .monthly-report h1{
 
 /* ============== 카테고리별 매출 (fast-payment) ================ */
 main .fast-payment{
-    margin-top: 2rem;
-    display: flex;
+    margin-top: 3rem;
     align-self: center;
     gap: 2rem;
 }
