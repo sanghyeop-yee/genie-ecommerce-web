@@ -23,4 +23,12 @@
 		values(#{seller_id}, #{seller_pwd}, #{company_name}, #{ceo_name}, #{seller_tel}, #{seller_email}, #{seller_website}, #{seller_reg_no}, #{seller_address}, "N")
 	</insert>
 
+	
+	<insert id="productWrite">
+		insert into product(product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_quantity, product_image1, product_image2, product_image3) 
+		values(#{product_id}, #{genie_id}, #{product_category}, #{product_tag}, #{product_name}, #{product_price}, #{product_info}, #{product_quantity}, #{product_image1}, #{product_image2}, #{product_image3})
+	</insert>
+
+
+
 </mapper>

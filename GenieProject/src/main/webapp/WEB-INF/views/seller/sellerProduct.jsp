@@ -153,6 +153,7 @@ td, th {
 							<th>상품번호</th>
 							<th>상품명</th>
 							<th>가격</th>
+							<th>재고</th>
 							<th>카테고리</th>
 							<th>태그</th>
 							<th>수정</th>
@@ -162,6 +163,7 @@ td, th {
 							<td>1234</td>
 							<td>무드등</td>
 							<td>19800</td>
+							<td>23</td>
 							<td>생일</td>
 							<td>친구/지인,생일,집들이,10-20대,남여공용</td>
 							<td><input type="button" value="수정"></td>
@@ -171,6 +173,7 @@ td, th {
 							<td>1255</td>
 							<td>스피커</td>
 							<td>34800</td>
+							<td>13</td>
 							<td>생일</td>
 							<td>친구/지인,생일,집들이,10-20대,20-30대,남여공용</td>
 							<td><input type="button" value="수정"></td>
