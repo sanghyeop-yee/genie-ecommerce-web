@@ -4,7 +4,7 @@
 
 <style>
 .responsive-wrapper {
-  background-color: #effaf9;
+  background-color: #f5f5f7;
   background-size: cover;
   width: 100%;
   height: 100vh;
@@ -22,8 +22,8 @@
   width: 25%;
   margin-right: 1em;
   background-color: #fff;
-  color: #1f635c;
-  box-shadow: 0 0 15px #278178;
+  color: #1d1d1f;
+  box-shadow: 0 0 1px #dfdfdf;
   font-weight: bold;
   border-radius: 10px;
 }
@@ -50,56 +50,72 @@
   flex-direction: column;
   width: 75%;
   background-color: #fff;
-  color: #1f635c;
-  box-shadow: 0 0 15px #278178;
+  color: #1d1d1f;
+  box-shadow: 0 0 1px #dfdfdf;
   font-weight: bold;
   border-radius: 10px;
   padding: 3em;
 }
-.content-main>ul{
-  margin: 0;
-  padding: 0;
-}
 .content-main h1{
   margin-bottom: 1em;
 }
+.order>ul>li:nth-child(2n+2){
+  margin-bottom: 1em;
+  font-size: .8em;
+}
+.order-title>ul>li{
+  float: left;
+  width: 20%;
+  margin-bottom: 2em;
+
+}
+.order-title>ul>li:nth-child(3n+1){
+  width: 60%;
+}
+.order-detail>ul>li{
+  float:left;
+  width: 25%;
+  margin-bottom: 10em;
+}
+.order-detail>ul>li:nth-child(3n+1){
+  width: 50%;
+}
 /* -----------------------여기는 오른쪽박스----------------------------- */
 </style>
-<!-- -----------------------------------------스크립트부분---------------------------------- -->
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-	window.onload = function(){
-		document.getElementById("address_kakao").addEventListener("click", function(){ 
-			//카카오 지도 발생
-			new daum.Postcode({
-				oncomplete: function(data) { //선택시 입력값 세팅
-					document.getElementById("user_zipcode").value = data.zonecode; 
-					document.getElementById("user_addr").value = data.address; 
-				}
-			}).open();
-		});
-	}
-</script>
-<!-- ------------------------------------스크립트부분 끝---------------------------------------- -->
+
 <div class="responsive-wrapper">
   <div class="content">
     <div class="content-panel">
       <h3>${vo.user_name}님</h3>
         <ul class="fa-ul">
-          <li><i class="fa-solid fa-circle-user"></i><a href="/user/MyPage">회원정보 확인/수정</a></li>
-          <li><i class="fa-brands fa-shopify"></i><a href="/user/MyOrderList">주문목록/배송조회</a></li>
-          <li><i class="fa-solid fa-clipboard"></i><a href="/user/MyInquiryList">나의 문의사항</a></li>
+					<li><i class="fa-solid fa-circle-user"></i><a href="/user/MyPage">회원정보 확인/수정</a></li>
+					<li><i class="fa-brands fa-shopify"></i><a href="/user/MyOrderList">주문목록/배송조회</a></li>
+					<li><i class="fa-sharp fa-solid fa-truck"></i><a href="/user/MyDeliveryList">배송지 관리</a></li>
+					<li><i class="fa-solid fa-clipboard"></i><a href="/user/MyInquiryList">나의 문의사항</a></li>
         </ul>
     </div>
     <div class="content-main">
-		<h1>주문한 내역</h1>
-		<ul>
-			<li></li>
-		</ul>
-		<h2>배송조회</h2>
-		<ul>
-			<li></li>
-		</ul>
+    <h1>주문목록</h1>
+      <div class="order">
+        <ul>
+          <li>주문번호 : ${pVo.product_id}</li>
+          <%-- <li>주문일 : ${vo.order_writedate}</li> --%>
+        </ul>
+      </div>
+      <div class="order-title">
+        <ul>
+          <li>상품명</li>
+          <li>수량</li>
+          <li>가격</li>
+        </ul>
+      </div>
+      <div class="order-detail">
+        <ul>
+          <li>${pVo.product_name}</li>
+          <li>${pVo.product_quantity}</li>
+          <li>${pVo.product_price}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

@@ -2,22 +2,25 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.genie.myapp.dao.SellerDAO">
-	<select id="adminCategoryTag" resultType="AdminVO">
-		select category_id, product_category from category
-	</select>
-	<select id="adminTag" resultType="AdminVO">
-		select product_tag_id, product_tag from tag
-	</select>
-	<select id="adminProduct" resultType="AdminProductVO">
-		select product_id, seller_id, product_category, product_tag, product_name, product_price, product_info, product_stock, product_quantity, product_hit, product_writedate, product_image1, product_image2, product_image3 from product
-	</select>
-	
-	<select id="newOrderList"> // 주문 상품 목록 표시
+<mapper namespace="com.genie.myapp.dao.SellerDAO">
 
+  <!-- <select id="sellerOrder" resultType="OrderVO">
+    select order_num, genie_id, product_id, recipient_name, recipient_phone, recipient_address, recipient_request, recipient_delivery_status, order_price, order_qty, order_writedate from myorder
+  </select> -->
+  <select id="sellerOrder" resultType="OrderVO">
+    select m.order_num, m.genie_id, p.product_name product_name, m.recipient_name, m.recipient_phone, m.recipient_address, m.recipient_request, m.recipient_delivery_status, m.order_price, m.order_qty, m.order_writedate 
+    from myorder m join product p 
+    on m.product_id = p.product_id;
+  </select>
+
+
+	<select id="idCheck" resultType="int">
+		select count(seller_id) cnt from seller where seller_id=#{seller_id};
 	</select>
-	<update id="updateDeliveryState"> // 주문 상품의 배송상태 수정
 	
-	</update>
-	
+	<insert id="sellerWrite">
+		insert into seller(seller_id, seller_pwd, company_name, ceo_name, seller_tel, seller_email, seller_website, seller_reg_no, seller_address, seller_status) 
+		values(#{seller_id}, #{seller_pwd}, #{company_name}, #{ceo_name}, #{seller_tel}, #{seller_email}, #{seller_website}, #{seller_reg_no}, #{seller_address}, "N")
+	</insert>
+
 </mapper>

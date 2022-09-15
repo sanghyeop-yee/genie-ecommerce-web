@@ -30,13 +30,6 @@ public class AdminController {
 			mav.setViewName("admin/adminMain");
 			return mav;
 		}
-		
-		@GetMapping("adminProduct")
-		public ModelAndView adminProduct() {
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("admin/adminProduct");
-			return mav;
-		}
 
 		@GetMapping("adminPro")
 		public ModelAndView adminPro() {
@@ -45,12 +38,12 @@ public class AdminController {
 			return mav;
 		}
 		
-//		@GetMapping("adminCategoryTag")
-//		public ModelAndView adminCategoryTag() {
-//			ModelAndView mav = new ModelAndView();
-//			mav.setViewName("admin/adminCategoryTag");
-//			return mav;
-//		}
+		//@GetMapping("adminCategoryTag")
+		//public ModelAndView adminCategoryTag() {
+		//	ModelAndView mav = new ModelAndView();
+		//	mav.setViewName("admin/adminCategoryTag");
+		//	return mav;
+		//}
 		
 		//카테고리 
 		@GetMapping("adminCategoryTag")
@@ -73,5 +66,12 @@ public class AdminController {
 			mav.setViewName("admin/adminTag");
 			return mav;
 		}
-		
+
+		//adminIndex
+		@GetMapping("adminIndex")
+		public ModelAndView adminIndex() {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("admin/adminIndex");
+			return mav;
+		}
 }

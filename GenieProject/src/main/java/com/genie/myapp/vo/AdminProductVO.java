@@ -6,6 +6,7 @@ public class AdminProductVO {
 	private String seller_id;
 	private String product_category;
 	private String product_tag; 
+	private String product_tag_id; 
 	private String product_name; 
 	private String product_price;
 	private String product_info; 
@@ -20,13 +21,12 @@ public class AdminProductVO {
 	@Override
 	public String toString() {
 		return "AdminProductVO [product_id=" + product_id + ", seller_id=" + seller_id + ", product_category="
-				+ product_category + ", product_tag=" + product_tag + ", product_name=" + product_name
-				+ ", product_price=" + product_price + ", product_info=" + product_info + ", product_stock="
-				+ product_stock + ", product_quantity=" + product_quantity + ", product_hit=" + product_hit
-				+ ", product_writedate=" + product_writedate + ", product_image1=" + product_image1
-				+ ", product_image2=" + product_image2 + ", product_image3=" + product_image3 + "]";
+				+ product_category + ", product_tag=" + product_tag + ", product_tag_id=" + product_tag_id
+				+ ", product_name=" + product_name + ", product_price=" + product_price + ", product_info="
+				+ product_info + ", product_stock=" + product_stock + ", product_quantity=" + product_quantity
+				+ ", product_hit=" + product_hit + ", product_writedate=" + product_writedate + ", product_image1="
+				+ product_image1 + ", product_image2=" + product_image2 + ", product_image3=" + product_image3 + "]";
 	}
-	
 	public String getProduct_id() {
 		return product_id;
 	}
@@ -111,7 +111,13 @@ public class AdminProductVO {
 	public void setProduct_image3(String product_image3) {
 		this.product_image3 = product_image3;
 	}
-	
-	
+
+	public String getProduct_tag_id() {
+		return product_tag_id;
+	}
+
+	public void setProduct_tag_id(String product_tag_id) {
+		this.product_tag_id = product_tag_id;
+	}
 	
 }

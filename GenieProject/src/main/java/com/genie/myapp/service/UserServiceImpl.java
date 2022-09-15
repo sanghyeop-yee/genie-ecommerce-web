@@ -1,5 +1,6 @@
 package com.genie.myapp.service;
 
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -14,8 +15,8 @@ public class UserServiceImpl implements UserService{
     UserDAO dao;
 
     @Override
-    public int idCheck(String user_id) {
-        return dao.idCheck(user_id);
+    public int idCheck(String genie_id) {
+        return dao.idCheck(genie_id);
     }
 
     @Override
@@ -29,13 +30,18 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserVO getUser(String user_id) {
-        return dao.getUser(user_id);
+    public UserVO getUser(String genie_id) {
+        return dao.getUser(genie_id);
     }
 
     @Override
     public int UserEditOk(UserVO vo) {
         return dao.UserEditOk(vo);
     }
+
+    @Override
+    public int PwdEditOk(UserVO vo) {
+        return dao.PwdEditOk(vo);
+    }    
 }
  
