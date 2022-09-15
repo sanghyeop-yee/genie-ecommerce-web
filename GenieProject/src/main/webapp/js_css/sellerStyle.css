@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 /* ROOT CSS VARIABLES */
 :root{
     --color-white: #ffffff;
@@ -7,7 +5,7 @@
     --color-gray-light: #86848c;
     --color-gray-dark: #56555e;
     --color-dark: #27282f;
-    --color-primary: rgb(71, 7, 234);
+    --color-primary: rgb(138, 220, 222);
     --color-success: rgb(34,202, 75);
     --color-danger: rgb(255, 67, 54);
     --color-warning: rgb(234, 181, 7);
@@ -153,8 +151,7 @@ small{
 .bg-success-light{
     background: var(--color-success-light);
 }
-
-/* ===================== Nav Bar ===================== */
+/* ====== Nav Bar ======== */
 nav {
     width: 100%;
     background: var(--color-white);
@@ -172,6 +169,7 @@ nav .container{
 
 nav img.logo{
     width: 7rem;
+    margin-left: 7px;
 }
 
 nav .search-bar{
@@ -370,7 +368,7 @@ main section.middle .cards .card{
     justify-content: space-between;
     box-shadow: 0 2rem 3rem var(--color-danger-light);
     transition: all 300ms ease;
-    /* min-width: 21rem; 카드 최소 넓이 */
+    /* min-width: 22rem; 카드 최소 넓이 */
 }
 
 main section.middle .cards .card:nth-child(2){

@@ -2,25 +2,27 @@
 <%@ include file="./inc/top.jspf"%>
 
 <style>
+/* --------------------회색부분설정-------------------- */
 .wrapper{
-    background-color: #f5fcfb;
+    background-color: #f5f5f7;
     width: 100%;
     height: 100vh;
     margin:0;
     padding: 3em 13em;
 }
+/* -------------------------------------그리드스타일 <hr>위에 부분------------------------------------- */
 .cart{
     background-color: #fff;
     width: auto;
     height: 100%;
     margin: 0;
-    box-shadow: 0 0 15px #278178;
+    box-shadow: 0 0 5px #b4b4b4;
     font-weight: bold;
     border-radius: 10px;
 }
 .cart h1{
     padding: 1em 1em 1.5em 1em;
-    color: #278178;
+    color: #1d1d1f;
 
 }
 .cart>h1>i{
@@ -29,51 +31,50 @@
 .line{
     width : 90%;
     height: .2vh;
-    background-color: #278178;
+    background-color: #6e6e73;
     margin: 0 5%;
 }
 .cart-product{
     display: grid;
-    grid-template-columns: 10vw 38vw 6vw 5vw;
+    grid-template-columns: 12vw 25vw 12vw 8vw;
     padding: 1em;
     align-items: center;
     justify-content: center;
 }
-/* -------------------------------------그리드스타일------------------------------------- */
-.cart-content>ul{
-    margin: 2% 5%;
+/* -----------------db연동 실제 데이터가 들어갈 곳------------------ */
+.cart-list>ul{
+    margin: 1em 5em;
     padding: 0;
     list-style-type: none;
 }
-.cart-content>ul>li{
-    background-color: #fff;
-    padding: 3.2%;
+.cart-list>ul>li{
+    margin-bottom: 1em;
     float: left;
-    border : 1px solid #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 1px #278178;
+    padding: 1em;
+    border-radius: 10px;
+    width: 20%;
+    box-shadow: 0 0 5px #b4b4b4;
 }
-.cart-content>ul>li:nth-child(4n+2){
-    width: 62%;
-}
-/* -----------------------------------리스트스타일----------------------------------------- */
-.buy a{
-    margin: 30% 1% 1% 80%;
-    background-color: #96aee0;
-    color: #2b4b91;
-    padding: 1%;
-    width: 10%;
-    display: flex;
-    justify-content: center;
-    border-radius: 15px
-}
-.buy a:hover{
-    background-color: #2b4b91;
-    color: #dbe3f4;
-	transition: .4s;
+.cart-list>ul>li:nth-child(4n+2){
+    width: 40%;
 }
 /* --------------------------------구매하기버튼---------------------- */
-
+#buy{
+    margin-left: 65em;
+    margin-top: 10em;
+    background-color: #0071e3;
+    color: #fff;
+    padding: 1%;
+    width: 10em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#buy:hover{
+    background-color: #0077ed;
+    color: #fff;
+	transition: .4s;
+}
 </style>
 
 <div class="wrapper">
@@ -87,32 +88,30 @@
             <div>상품가격</div>
         </div>
         <div class="line"></div>
-        <div class="cart-content">
+        <div class="cart-list">
             <ul>
-                <li>상품이미지</li>
-                <li>상품정보(리스트 스타일)</li>
-                <li>수량</li>
-                <li>상품가격</li>
+                <li>{vo.product_image1}</li>
+                <li>{vo.product_name}</li>
+                <li>{vo.product_quantity}</li>
+                <li>{vo.product_price}</li>
             </ul>
         </div>
-        <div class="cart-content">
+        <div class="cart-list">
             <ul>
-                <li>상품이미지</li>
-                <li>상품정보(리스트 스타일)</li>
-                <li>수량</li>
-                <li>상품가격</li>
+                <li>{vo.product_image1}</li>
+                <li>{vo.product_name}</li>
+                <li>{vo.product_quantity}</li>
+                <li>{vo.product_price}</li>
             </ul>
         </div>
-        <div class="cart-content">
+        <div class="cart-list">
             <ul>
-                <li>상품이미지</li>
-                <li>상품정보(리스트 스타일)</li>
-                <li>수량</li>
-                <li>상품가격</li>
+                <li>{vo.product_image1}</li>
+                <li>{vo.product_name}</li>
+                <li>{vo.product_quantity}</li>
+                <li>{vo.product_price}</li>
             </ul>
         </div>
-        <div class="buy">
-            <a href="/">구매하기</a>
-        </div>
+        <input type = "submit" id="buy" value = "구매하기"/>
     </div>
 </div>

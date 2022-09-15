@@ -9,7 +9,7 @@
     padding:6% 23%;
 
 	/*background: url(../img/background.jpg);*/
-	background: #d3f1ee;
+	background: #f5f5f7;
 	background-size: cover;
 	background-position: center;
 }
@@ -19,7 +19,7 @@
 }
 .genie_02 h2{
 	margin-bottom: 2em;
-	color: #1a534e;
+	color: #1d1d1f;
 	width: 35ch;
 	animation: typing 2s steps(35), blink .5s step-end infinite alternate;
   	white-space: nowrap;
@@ -39,16 +39,20 @@
 .button a{
 	float: left;
 	background-color: #fff;
-	color: #1a534e;
+	color: #1d1d1f;
 	margin: 1%;
 	padding: .8em 1.8em;
 	font-size: 1.7em;
 	font-weight: bold;
 	border-radius: 25px;
+	transition: ease .5s;
+	box-shadow: 0 0 1px #dfdfdf;
 }
 .button a:hover{
-	background-color: #f3e7b1;
-} 
+	background-color: #fff;
+	transform: scale(1.05);
+	box-shadow: 0 0 5px #b4b4b4;
+}  
 </style>
 
 <section class="home">

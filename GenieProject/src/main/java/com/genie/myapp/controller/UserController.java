@@ -17,18 +17,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.UserService;
+import com.genie.myapp.vo.ProductVO;
 import com.genie.myapp.vo.UserVO;
 
 
 @Controller
 @RequestMapping("/user/*")
 public class UserController {
+
 	@Inject
 	UserService service;
 
+	ModelAndView mav;
+
 	@GetMapping("login")
 	public ModelAndView adminLogin() {
-		ModelAndView mav = new ModelAndView();
+		mav = new ModelAndView();
 		mav.setViewName("user/login");
 		return mav;
 	}
@@ -36,25 +40,31 @@ public class UserController {
 	@PostMapping("loginOK")
 	public ModelAndView loginOk(UserVO vo, HttpSession session) {
 		
-		ModelAndView mav = new ModelAndView();
+		mav = new ModelAndView();
 		UserVO logVO = service.loginOk(vo);
 	
 		if(logVO != null) {//로그인 성공
-			session.setAttribute("logId", logVO.getUser_id());
+
+			session.setAttribute("logId", logVO.getGenie_id());
 			session.setAttribute("logName", logVO.getUser_name());
 			session.setAttribute("logStatus","Y");
 			mav.setViewName("redirect:/");
 			
-		}else {//로그인 실패
+			return mav;
 			
-			mav.setViewName("redirect:/login");
+		}else{//로그인 실패
+
+			session.setAttribute("msg","아이디 또는 비밀번호 오류입니다.");
+			mav.setViewName("redirect:/user/login");
+
+			return mav;
+			
 		}
-		return mav;
 	}
 
 	@GetMapping("logout")
 	public ModelAndView logout(HttpSession session) {
-		ModelAndView mav = new ModelAndView();
+		mav = new ModelAndView();
 		session.invalidate();
 		mav.setViewName("redirect:/");
 		
@@ -62,23 +72,26 @@ public class UserController {
 	}
 
 	//회원가입 폼으로 이동
-	@GetMapping("Registragion")
+	@GetMapping("Registration")
 	public ModelAndView RegistragionForm() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/user/Registragion");
+
+		mav = new ModelAndView();
+		mav.setViewName("/user/Registration");
+
 		return mav;
 	}
 
 	 //아이디 중복검사
 	@GetMapping("idCheck")
-	public ModelAndView idCheck(String user_id) {
-		ModelAndView mav = new ModelAndView();
-		
+	public ModelAndView idCheck(String genie_id) {
+
 		//DB조회  : 아이디가 존재하는지 확인
-		int cnt = service.idCheck(user_id);
-		 
+		int cnt = service.idCheck(genie_id);
+
+		mav = new ModelAndView();
+
 		mav.addObject("idCnt",cnt);
-		mav.addObject("user_id",user_id);
+		mav.addObject("genie_id",genie_id);
 		mav.setViewName("user/idCheck");
 
 		return mav;
@@ -94,15 +107,17 @@ public class UserController {
 		headers.add("Content-Type","text/html; charset=utf-8");
 		
 		try {//회원가입 성공
+
 			int result = service.UserWrite(vo);
 
 			String msg = "<script>";
-			msg += "alert('회원가입이 성공하였습니다.');";
+			msg += "alert('회원가입을 성공하였습니다.');";
 			msg += "location.href='/user/login'";
 			msg += "</script>";
 			entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
 
-		}catch(Exception e) {//회원등록 실패 
+		}catch(Exception e) {//회원등록 실패
+
 			String msg = "<script>";
 			msg += "alert('회원가입이 실패하였습니다.');";
 			msg += "history.back()";
@@ -114,22 +129,25 @@ public class UserController {
 		return entity;
 	}
 
+//////////////////////////////////////////////////////////
+
 	//마이페이지
 	@GetMapping("MyPage")
 	public ModelAndView MyPage(HttpSession session) {
-		String user_id = (String)session.getAttribute("logId");
 
-		UserVO vo = service.getUser(user_id);
-		ModelAndView mav = new ModelAndView();
+		String genie_id = (String)session.getAttribute("logId"); 
+		UserVO vo = service.getUser(genie_id);
+
+		mav = new ModelAndView();
 		mav.addObject("vo",vo);
 		mav.setViewName("/user/MyPage");
 	
 		return mav;
 	}
-
+  
 	//회원정보 수정 DB
 	@PostMapping("UserEditOk")
-	public ResponseEntity<String> memberEditOk(UserVO vo) {
+	public ResponseEntity<String> UserEditOk(UserVO vo) {
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -151,28 +169,66 @@ public class UserController {
 		return entity;
 	}
 
+	//주문목록/배송조회
+	@GetMapping("MyOrderList")
+	public ModelAndView MyOrderList(HttpSession session, ProductVO pVo) {
 
-
-
-//////////////////////////////////////////////////////////
-	//비밀번호 변경 창
-	@GetMapping("ModifyPassword")
-	public ModelAndView ModifyPassword(String user_id, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
+		String genie_id = (String)session.getAttribute("logId");
+		UserVO vo = service.getUser(genie_id);
 		
-		//DB조회  : 아이디가 존재하는지 확인
-		int cnt = service.idCheck(user_id);
-		 
-		mav.addObject("idCnt",cnt);
-		mav.addObject("user_id",user_id);
-		mav.setViewName("/user/ModifyPassword");
-
+		mav = new ModelAndView();
+		mav.addObject("pVo",pVo);
+		mav.addObject("vo",vo);
+		mav.setViewName("/user/MyOrderList");
+	
 		return mav;
 	}
+
+	//배송지 관리
+	@GetMapping("MyDeliveryList") 
+	public ModelAndView MyDeliveryLIst(HttpSession session) {
+		
+		String genie_id = (String)session.getAttribute("logId");
+		UserVO vo = service.getUser(genie_id);
+
+		new ModelAndView();
+		mav.addObject("vo",vo);
+		mav.setViewName("/user/MyDeliveryList");
 	
-	//비밀번호 변경
-	@GetMapping("ModifyPasswordOk")
-	public ResponseEntity<String> ModifyPassword(UserVO vo) {
+		return mav;
+	}
+  
+	//나의 문의사항 
+	@GetMapping("MyInquiryList") 
+	public ModelAndView MyInquiryList(HttpSession session) {
+		
+		String genie_id = (String)session.getAttribute("logId");
+		UserVO vo = service.getUser(genie_id);
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("vo",vo);
+		mav.setViewName("/user/MyInquiryList");
+	
+		return mav;
+	}
+  
+	////////////////////////////////////////////////////////////////////
+
+	@GetMapping("PwdEdit")
+	public ModelAndView PwdChange(HttpSession session) {
+		
+		String genie_id = (String)session.getAttribute("logId"); 
+		UserVO vo = service.getUser(genie_id);
+		
+		mav = new ModelAndView();
+		mav.addObject("vo",vo);
+		mav.setViewName("/user/PwdEdit");
+		
+		return mav;
+	}
+
+	@PostMapping("PwdEditOk")
+	public ResponseEntity<String> PwdEditOk(UserVO vo) {
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -180,45 +236,20 @@ public class UserController {
 		headers.add("Content-Type","text/html; charset=UTF-8");
 		
 		String msg = "<script>";
-		int cnt = service.UserEditOk(vo);
-			
+		int cnt = service.PwdEditOk(vo);
+		
 		if(cnt>0) {//수정됨
 			msg+="alert('비밀번호가 수정되었습니다.');";
 		}else {//수정못함
 			msg+="alert('비밀번호 수정이 실패하였습니다.');";	
 		}
-		msg+="location.href='/user/MyPage';</script>";
+		msg+="window.close();</script>";
 		
 		entity = new ResponseEntity<String>(msg,headers, HttpStatus.OK);
 
 		return entity;
 	}
+////////////////////////////////////////////////////////////////
 
-	//주문목록/배송조회
-	@GetMapping("MyOrderList")
-	public ModelAndView MyOrderList(HttpSession session) {
-		String user_id = (String)session.getAttribute("logId");
 
-		UserVO vo = service.getUser(user_id);
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("vo",vo);
-		mav.setViewName("/user/MyOrderList");
-	
-		return mav;
-	}
-
-	//나의 문의사항 
-	@GetMapping("MyInquiryList") 
-	public ModelAndView MyInquiryList(HttpSession session) {
-		String user_id = (String)session.getAttribute("logId");
-
-		UserVO vo = service.getUser(user_id);
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("vo",vo);
-		mav.setViewName("/user/MyInquiryList");
-	
-		return mav;
-	}
 }
-
-

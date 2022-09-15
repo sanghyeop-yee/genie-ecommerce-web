@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -19,11 +18,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- stylesheet -->
-    <link rel="stylesheet" href="../js_css/sellerStyle.css">
+    <link rel="stylesheet" href="../js_css/sellerstyle.css">
 </head>
 <body>
-
-    <!--============== nav 시작 ==============-->
+    <!-- start of nav bar -->
     <nav>
         <div class="container">
             <img src="../images/seller/logo.png" class="logo">
@@ -38,7 +36,7 @@
                 </div>
                 <div class="profile">
                     <div class="profile-photo">
-                        <img src="../images/seller/profile-01.png">
+                        <img src="../images/seller/profile-1.png">
                     </div>
                     <h5>Minjin Kim</h5>
                     <span class="material-symbols-sharp">expand_more</span>
@@ -49,18 +47,15 @@
             </div>
         </div>
     </nav>
-    <!--============== nav 끝 ==============-->
+    <!-- end of nav bar -->
 
-
-    <!--============== main 시작 ==============-->
     <main>
-        <!--============== main aside 시작 ==============-->
+        <!-- aside start -->
         <aside>
             <button id="close-btn">
                 <span class="material-symbols-sharp">close</span>
             </button>
-
-            <!-- main aside .sidebar 시작-->
+            <!-- sidebar start -->
             <div class="sidebar">
                 <a href="#" class="active">
                     <span class="material-symbols-sharp">dashboard</span>
@@ -87,7 +82,7 @@
                     <h4>문의관리</h4>
                 </a>
             </div>
-            <!-- main aside .sidebar 끝-->
+            <!-- end of sidebar -->
 
             <div class="updates">
                 <span class="material-symbols-sharp">update</span>
@@ -97,9 +92,9 @@
                 <a href="#">실시간 업데이트</a>
             </div>
         </aside>
-        <!--============== main aside 끝 ==============-->
+        <!-- end of aside -->
 
-        <!--============== main section.middle 시작 ==============-->
+        <!-- 가운데 섹션 시작 -->
         <section class="middle">
             <div class="header">
                 <h1>한눈에 보기</h1>
@@ -114,95 +109,53 @@
                             <h2>주문/배송</h2>
                         </div>
                         <div class="right">
-                            <span class="material-symbols-sharp">attach_money</span>
+                           <!--카드에 오른쪽 상단에 추가하고싶은 내용이나, 아이콘 넣을 공간-->
                         </div>
                     </div>
                     <div class="middle">
-                        <h1>$1,000,000</h1>
+                        <h1>3 건의 주문이 있습니다.</h1>
                     </div>
                     <div class="bottom">
-                        <div class="left">
-                            <small>Card Holder</small>
-                            <h5>Minjin Kim</h5>
-                        </div>
-                        <div class="right">
-                            <div class="expiry">
-                                <small>Expiry</small>
-                                <h5>04/20</h5>
-                            </div>
-                            <div class="cvv">
-                                <small>CVV</small>
-                                <h5>123</h5>
-                            </div>
-                        </div>
+                        <!--카드 아래에 추가내용--> 
                     </div>
                 </div>
                 <!-- end of card 1 -->
-
                 <div class="card">
                     <div class="top">
                         <div class="left">
-                            <span class="material-symbols-sharp">local_shipping</span>
-                            <h2>상품</h2>
+                            <span class="material-symbols-sharp">inventory_2</span>
+                            <h2>이달의 상품</h2>
                         </div>
                         <div class="right">
-                            <span class="material-symbols-sharp">attach_money</span>
+                             <!--카드에 오른쪽 추가하고싶은 내용이나, 아이콘 넣을 공간-->
                         </div>
                     </div>
                     <div class="middle">
-                        <h1>$1,000,000</h1>
+                        <h1>토이스토리 우디</h1>
                     </div>
                     <div class="bottom">
-                        <div class="left">
-                            <small>Card Holder</small>
-                            <h5>Minjin Kim</h5>
-                        </div>
-                        <div class="right">
-                            <div class="expiry">
-                                <small>Expiry</small>
-                                <h5>04/20</h5>
-                            </div>
-                            <div class="cvv">
-                                <small>CVV</small>
-                                <h5>123</h5>
-                            </div>
-                        </div>
+                       <!--카드 아레에 추가내용-->
                     </div>
                 </div>
                 <!-- end of card 2 -->
-
                 <div class="card">
                     <div class="top">
                         <div class="left">
-                            <span class="material-symbols-sharp">local_shipping</span>
+                            <span class="material-symbols-sharp">support_agent</span>
                             <h2>미답변 문의</h2>
                         </div>
                         <div class="right">
-                            <span class="material-symbols-sharp">attach_money</span>
+                            <!--카드 오른쪽 상단에 추가하고싶은 내용이나, 아이콘 넣을 공간-->
                         </div>
                     </div>
                     <div class="middle">
-                        <h1>$1,000,000</h1>
+                        <h1>10 건의 미답변 문의가 있습니다.</h1>
                     </div>
                     <div class="bottom">
-                        <div class="left">
-                            <small>Card Holder</small>
-                            <h5>Minjin Kim</h5>
-                        </div>
-                        <div class="right">
-                            <div class="expiry">
-                                <small>Expiry</small>
-                                <h5>04/20</h5>
-                            </div>
-                            <div class="cvv">
-                                <small>CVV</small>
-                                <h5>123</h5>
-                            </div>
-                        </div>
+                        <!--카드 아레에 추가내용-->
                     </div>
                 </div>
                 <!-- end of card 3 -->
-
             </div>
             <!-- end of cards -->
 
@@ -253,8 +206,7 @@
                 <!-- end of customer report -->
             </div>
             <!-- end of monthly report-->
-            
-            
+
             <div class="fast-payment">
                 <h2>재고 추가</h2><br/>
                 <div class="badges">
@@ -265,35 +217,35 @@
                         <span class="bg-primary"></span>
                         <div>
                             <h5>키덜트</h5>
-                            <h4>$500</h4>
+                            <h4>100개</h4>
                         </div>
                     </div>
                     <div class="badge">
                         <span class="bg-primary"></span>
                         <div>
                             <h5>가벼운선물</h5>
-                            <h4>$50</h4>
+                            <h4>50개</h4>
                         </div>
                     </div>
                     <div class="badge">
                         <span class="bg-primary"></span>
                         <div>
                             <h5>생일</h5>
-                            <h4>$100</h4>
+                            <h4>30개</h4>
                         </div>
                     </div>
                     <div class="badge">
                         <span class="bg-primary"></span>
                         <div>
                             <h5>추석</h5>
-                            <h4>$500</h4>
+                            <h4>50개</h4>
                         </div>
                     </div>
                     <div class="badge">
                         <span class="bg-primary"></span>
                         <div>
                             <h5>건강/회복</h5>
-                            <h4>$15</h4>
+                            <h4>10개</h4>
                         </div>
                     </div>
                 </div>
@@ -303,9 +255,9 @@
             <canvas id="chart"></canvas>
 
         </section>
-        <!--============== main section.middle 끝 ==============-->
+        <!-- 가운데 섹션 끝 -->
 
-        <!--============== main section.right 시작 ==============-->
+        <!-- 오른쪽 섹션 시작-->
         <section class="right">
             <div class="investments">
                 <div class="header">
@@ -414,14 +366,14 @@
             </div>
             <!------------------- end of recent transactions ------------------------>
         </section>
-        <!--============== Main Section Right 끝 ==============-->
+        <!-- 오른쪽 섹션 끝 -->
     </main>
-    <!--============== Main 끝 ==============-->
+    <!-- ============== end of aside ==================== -->
 
     <!-- 차트 (chart js)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="../js_css/sellerMain.js"></script>
+    <script src="../js_css/sellerhome.js"></script>
 
     
 </body>
