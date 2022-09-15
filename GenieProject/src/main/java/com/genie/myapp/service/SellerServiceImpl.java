@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.SellerDAO;
 
+import com.genie.myapp.vo.SellerProductVO;
+
+
 import com.genie.myapp.vo.OrderVO;
+
 
 import com.genie.myapp.vo.SellerVO;
 
@@ -34,5 +38,10 @@ public class SellerServiceImpl implements SellerService {
 	public int sellerWrite(SellerVO vo) {
 		return dao.sellerWrite(vo);
 
+	}
+
+	@Override
+	public int productWrite(SellerProductVO vo) {
+		return dao.productWrite(vo);
 	}
 }

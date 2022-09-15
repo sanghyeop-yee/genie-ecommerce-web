@@ -3,6 +3,7 @@ package com.genie.myapp.controller;
 import java.nio.charset.Charset;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.SellerService;
 
+import com.genie.myapp.vo.SellerProductVO;
+
+
 import com.genie.myapp.vo.OrderVO;
+
 
 import com.genie.myapp.vo.SellerVO;
 
@@ -122,6 +127,38 @@ public class SellerController {
 			
 			String msg = "<script>";
 			msg += "alert('회원가입에 실패하였습니다.');";
+			msg += "history.back();";
+			msg += "</script>";
+			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);
+			
+			e.printStackTrace();
+		}
+		return entity;
+	}
+	
+	//seller 상품등록
+	@PostMapping("productWrite")
+	public ResponseEntity<String> productWrite(SellerProductVO vo, HttpServletRequest request){
+		vo.setGenie_id((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
+		
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		
+		try {//상품등록 성공
+			int result = service.productWrite(vo);
+			
+			String msg = "<script>";
+			msg += "alert('상품이 등록되었습니다.');";
+			msg += "location.href='/seller/sellerProduct';";
+			msg += "</script>";
+			entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
+			
+		}catch(Exception e) {//상품등록 실패
+			
+			String msg = "<script>";
+			msg += "alert('상품등록이 실패하였습니다.');";
 			msg += "history.back();";
 			msg += "</script>";
 			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);

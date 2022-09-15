@@ -239,7 +239,7 @@ body {
 				return false;
 			}
 			//상품수량
-			if($("#product_stock").val()==""){
+			if($("#product_quantity").val()==""){
 				alert("상품수량을 입력하세요.");
 				return false;
 			}
@@ -259,13 +259,45 @@ body {
 				return false;
 			}
 			//카테고리
-			
+			if($("input:checkbox[name=product_category]:checked").length<1){
+				alert("카테고리를 선택하세요.")
+				return false;
+			}
+			if($("input:checkbox[name=product_category]:checked").length>2 ){
+				alert("카테고리를 2개 이하로 선택하세요.")
+				return false;
+			}
 			//태그
-			
+			if($("input:checkbox[name=product_tag]:checked").length<4){
+				alert("태그를 선택하세요.")
+				return false;
+			}
+			if($("input:checkbox[name=product_tag]:checked").length>7){
+				alert("태그를 2개 이하로 선택하세요.")
+				return false;
+			}
 			
 			return true;
 		});
+		
+		//카테고리 체크된 값 배열에 저장
+		function categoryArr(){
+			var checkArr[]; //배열초기화
+			$("input[name=product_category]:checked").each(function(){
+				checkArr.push($(this).val()); //체크된 것들만 값을 뽑아서 배열에 넣는다
+			})
+		}
+		
+		//태그 체크 값 배열에 저장
+		function tagArr(){
+			var checkArr[]; //배열초기화
+			$("input[name=product_tag]:checked").each(function(){
+				checkArr.push($(this).val()); //체크된 것들만 값을 뽑아서 배열에 넣는다
+			})
+		}
 	});
+	
+	
 </script>
 
 <main class="main">
@@ -305,7 +337,7 @@ body {
 							</div>
 							<div id="countDiv">
 								<p>상품수량</p>
-								<input type="text" id="product_stock" name="product_stock" placeholder="상품수량을 입력하세요"/>
+								<input type="text" id="product_quantity" name="product_quantity" placeholder="상품수량을 입력하세요"/>
 							</div>
 							<div>
 								<p>상품이미지</p>
