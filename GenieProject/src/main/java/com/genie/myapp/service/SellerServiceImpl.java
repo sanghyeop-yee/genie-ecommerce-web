@@ -55,6 +55,11 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
+	public List<SellerProductVO> productList(SellerProductVO pvo) {
+		return dao.productList(pvo);
+	}
+	
+	@Override
 	public SellerVO getSeller(String genie_id) {
 		return dao.getSeller(genie_id);
 	}

@@ -21,10 +21,12 @@ public interface SellerService {
 	//seller 상품등록
 	public int productWrite(SellerProductVO vo);
 
-  // 주문목록 
-  public List<OrderVO> sellerOrder(OrderVO vo);
-  //판매자 로그인
+	// 주문목록 
+	public List<OrderVO> sellerOrder(OrderVO vo);
+  	//판매자 로그인
 	public SellerVO loginOk(SellerVO svo);
+	//상품관리 - 상품목록
+	public List<SellerProductVO> productList(SellerProductVO pvo);
 	//회원 선택: 로그인 한 회원
 	public SellerVO getSeller(String genie_id);	
 

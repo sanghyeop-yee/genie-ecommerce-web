@@ -42,6 +42,12 @@
 		where a.genie_id=#{genie_id} and a.genie_pwd=sha2(#{genie_pwd},256) and a.withdrawal=1;
 
 	</select>
+	
+	<select id="productList" resultType="SellerProductVO">
+		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_quantity 
+		from product 
+		where genie_id=#{genie_id}
+	</select>
 
     <select id = "getSeller" resultType = "SellerVO">
 

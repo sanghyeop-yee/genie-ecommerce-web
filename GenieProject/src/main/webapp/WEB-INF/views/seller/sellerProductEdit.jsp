@@ -308,29 +308,29 @@ body {
 			<div class="content-main">
 				<div class="container">
 					<p>상품등록</p>
-					<form method="post" action="/seller/productWrite" id="productFrm">
+					<form method="post" action="/seller/productEditOk" id="productFrm">
 						<ul class="proFrm">
 							<div id="nameDiv">
 								<p>상품명</p>
-								<input type="text" id="product_name" name="product_name" placeholder="상품명을 입력하세요"/>
+								<input type="text" id="product_name" name="product_name" value="${pvo.product_name}"/>
 							</div>
 							<div id="priceDiv">
 								<p>판매금액</p>
-								<input type="text" id="product_price" name="product_price" placeholder="판매금액을 입력하세요"/>
+								<input type="text" id="product_price" name="product_price" value="${pvo.product_price}"/>
 							</div>
 							<div id="infoDiv">
 								<p>상품설명</p>
-								<textarea rows="4" id="product_info" name="product_info"></textarea>
+								<textarea rows="4" id="product_info" name="product_info" value="${pvo.product_info}"></textarea>
 							</div>
 							<div id="countDiv">
 								<p>상품수량</p>
-								<input type="text" id="product_quantity" name="product_quantity" placeholder="상품수량을 입력하세요"/>
+								<input type="text" id="product_quantity" name="product_quantity" value="${pvo.product_quantity}"/>
 							</div>
 							<div>
 								<p>상품이미지</p>
-								<input type="file" name="product_image1" id="product_image1"/>
-								<input type="file" name="product_image2" id="product_image2"/>
-								<input type="file" name="product_image3" id="product_image3"/>
+								<input type="file" name="product_image1" id="product_image1" value="${pvo.product_image1}"/>
+								<input type="file" name="product_image2" id="product_image2" value="${pvo.product_image2}"/>
+								<input type="file" name="product_image3" id="product_image3" value="${pvo.product_image3}"/>
 							</div>
 							<div>
 								<p>카테고리</p>
@@ -384,7 +384,7 @@ body {
 								<label><input type="checkbox" name="tagList" value="여성"/>여성</label>
 								<label><input type="checkbox" name="tagList" value="남여공용"/>남여공용</label>
 							</div>
-							<li><input type="submit" id="formSubmit" value="상품등록"/></li>
+							<li><input type="submit" id="formSubmit" value="상품수정"/></li>
 						</ul>
 					</form>
 				</div>

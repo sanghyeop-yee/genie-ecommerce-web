@@ -1,5 +1,8 @@
 package com.genie.myapp.vo;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class SellerProductVO {
 	private int product_id;
     private String genie_id;
@@ -16,6 +19,11 @@ public class SellerProductVO {
 	private String product_image1; 
 	private String product_image2;
 	private String product_image3;
+	
+	//여러개의 카테고리를 저장할 컬렉션
+	private List<String> categoryList;
+	//여러개의 태그를 저장할 컬렉션
+	private List<String> tagList;
 	
 	@Override
 	public String toString() {
@@ -39,18 +47,27 @@ public class SellerProductVO {
 	public void setGenie_id(String genie_id) {
 		this.genie_id = genie_id;
 	}
+
 	public String getProduct_category() {
-		return product_category;
+		String strCategory = String.join(",", categoryList);
+		return strCategory;
 	}
+
 	public void setProduct_category(String product_category) {
 		this.product_category = product_category;
+		//String categorySplit[] = product_category.split(",");
+		//categoryList = Arrays.asList(categorySplit);
 	}
+
 	public String getProduct_tag() {
-		return product_tag;
+		String strTag = String.join(",", tagList);
+		return strTag;
 	}
+
 	public void setProduct_tag(String product_tag) {
 		this.product_tag = product_tag;
 	}
+
 	public String getProduct_name() {
 		return product_name;
 	}
@@ -70,7 +87,7 @@ public class SellerProductVO {
 		this.product_info = product_info;
 	}
 	public int getProduct_stock() {
-		return product_stock;
+		return product_quantity;
 	}
 	public void setProduct_stock(int product_stock) {
 		this.product_stock = product_stock;
@@ -116,6 +133,22 @@ public class SellerProductVO {
 	}
 	public void setProduct_image3(String product_image3) {
 		this.product_image3 = product_image3;
+	}
+
+	public List<String> getCategoryList() {
+		return categoryList;
+	}
+
+	public void setCategoryList(List<String> categoryList) {
+		this.categoryList = categoryList;
+	}
+
+	public List<String> getTagList() {
+		return tagList;
+	}
+
+	public void setTagList(List<String> tagList) {
+		this.tagList = tagList;
 	}
 	
 	
