@@ -221,8 +221,10 @@ body {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 	$(function(){
-		//유효성 검사
+		
+		
 		$("#productFrm").submit(function(){
+			//유효성검사
 			//상품명
 			if($("#product_name").val()==""){
 				alert("상품명을 입력하세요.");
@@ -276,16 +278,19 @@ body {
 				alert("태그를 2개 이하로 선택하세요.")
 				return false;
 			}
-			
+			//---유효성검사 끝------------------------
 			return true;
 		});
-		
+		/*
 		//카테고리 체크된 값 배열에 저장
 		function categoryArr(){
 			var checkArr[]; //배열초기화
 			$("input[name=product_category]:checked").each(function(){
 				checkArr.push($(this).val()); //체크된 것들만 값을 뽑아서 배열에 넣는다
 			})
+			$('#hiddenValue').val(checkArr);                
+			alert($('#hiddenValue').val());
+
 		}
 		
 		//태그 체크 값 배열에 저장
@@ -294,7 +299,7 @@ body {
 			$("input[name=product_tag]:checked").each(function(){
 				checkArr.push($(this).val()); //체크된 것들만 값을 뽑아서 배열에 넣는다
 			})
-		}
+		}*/
 	});
 	
 	
@@ -347,53 +352,55 @@ body {
 							</div>
 							<div>
 								<p>카테고리</p>
-								<label><input type="checkbox" name="product_category" value="1"/>생일</label>
-								<label><input type="checkbox" name="product_category" value="2"/>기념일</label>
-								<label><input type="checkbox" name="product_category" value="3"/>명절</label>
-								<label><input type="checkbox" name="product_category" value="4"/>집들이</label>
-								<label><input type="checkbox" name="product_category" value="5"/>서프라이즈</label>
-								<label><input type="checkbox" name="product_category" value="6"/>응원</label>
-								<label><input type="checkbox" name="product_category" value="7"/>감사</label>
-								<label><input type="checkbox" name="product_category" value="8"/>결혼</label>
-								<label><input type="checkbox" name="product_category" value="9"/>출산</label>
-								<label><input type="checkbox" name="product_category" value="10"/>임신</label>
-								<label><input type="checkbox" name="product_category" value="11"/>개업</label>
-								<label><input type="checkbox" name="product_category" value="12"/>위로</label>
+								<label><input type="checkbox" name="product_category" value="생일"/>생일</label>
+								<label><input type="checkbox" name="product_category" value="기념일"/>기념일</label>
+								<label><input type="checkbox" name="product_category" value="명절"/>명절</label>
+								<label><input type="checkbox" name="product_category" value="집들이"/>집들이</label>
+								<label><input type="checkbox" name="product_category" value="서프라이즈"/>서프라이즈</label>
+								<label><input type="checkbox" name="product_category" value="응원"/>응원</label>
+								<label><input type="checkbox" name="product_category" value="캠핑"/>캠핑</label>
+								<label><input type="checkbox" name="product_category" value="반려동물"/>반려동물</label>
+								<label><input type="checkbox" name="product_category" value="운동"/>운동</label>
+								<label><input type="checkbox" name="product_category" value="키덜트"/>키덜트</label>
+								<label><input type="checkbox" name="product_category" value="요리"/>요리</label>
+								<label><input type="checkbox" name="product_category" value="홈파티"/>홈파티</label>
+								
 							</div>
 							<div>
 								<p>태그</p>
 								<p class="subTag">대상</p>
-								<label><input type="checkbox" name="product_tag" value="1"/>부모님</label>
-								<label><input type="checkbox" name="product_tag" value="2"/>배우자</label>
-								<label><input type="checkbox" name="product_tag" value="3"/>연인</label>
-								<label><input type="checkbox" name="product_tag" value="4"/>가족/친척</label>
-								<label><input type="checkbox" name="product_tag" value="5"/>친구/지인</label>
-								<label><input type="checkbox" name="product_tag" value="6"/>스승/멘토</label>
-								<label><input type="checkbox" name="product_tag" value="7"/>회사</label>
+								<label><input type="checkbox" name="product_tag" value="부모님"/>부모님</label>
+								<label><input type="checkbox" name="product_tag" value="배우자"/>배우자</label>
+								<label><input type="checkbox" name="product_tag" value="연인"/>연인</label>
+								<label><input type="checkbox" name="product_tag" value="가족/친척"/>가족/친척</label>
+								<label><input type="checkbox" name="product_tag" value="친구/지인"/>친구/지인</label>
+								<label><input type="checkbox" name="product_tag" value="회사"/>회사</label>
+								<label><input type="checkbox" name="product_tag" value="스승/멘토"/>스승/멘토</label>
 								<p class="subTag">특정기념일</p>
-								<label><input type="checkbox" name="product_tag" value="8"/>생일</label>
-								<label><input type="checkbox" name="product_tag" value="9"/>기념일</label>
-								<label><input type="checkbox" name="product_tag" value="10"/>백일</label>
-								<label><input type="checkbox" name="product_tag" value="11"/>집들이</label>
-								<label><input type="checkbox" name="product_tag" value="12"/>서프라이즈</label>
-								<label><input type="checkbox" name="product_tag" value="13"/>응원</label>
-								<label><input type="checkbox" name="product_tag" value="14"/>감사</label>
-								<label><input type="checkbox" name="product_tag" value="15"/>결혼</label>
-								<label><input type="checkbox" name="product_tag" value="16"/>출산</label>
-								<label><input type="checkbox" name="product_tag" value="17"/>임신</label>
-								<label><input type="checkbox" name="product_tag" value="18"/>개업</label>
-								<label><input type="checkbox" name="product_tag" value="19"/>위로</label>
+								<label><input type="checkbox" name="product_tag" value="생일"/>생일</label>
+								<label><input type="checkbox" name="product_tag" value="기념일"/>기념일</label>
+								<label><input type="checkbox" name="product_tag" value="백일"/>백일</label>
+								<label><input type="checkbox" name="product_tag" value="집들이"/>집들이</label>
+								<label><input type="checkbox" name="product_tag" value="서프라이즈"/>서프라이즈</label>
+								<label><input type="checkbox" name="product_tag" value="응원"/>응원</label>
+								<label><input type="checkbox" name="product_tag" value="감사"/>감사</label>
+								<label><input type="checkbox" name="product_tag" value="결혼"/>결혼</label>
+								<label><input type="checkbox" name="product_tag" value="출산"/>출산</label>
+								<label><input type="checkbox" name="product_tag" value="임신"/>임신</label>
+								<label><input type="checkbox" name="product_tag" value="개업"/>개업</label>
+								<label><input type="checkbox" name="product_tag" value="위로"/>위로</label>
 								<p class="subTag">나이</p>
-								<label><input type="checkbox" name="product_tag" value="20"/>0-10대</label>
-								<label><input type="checkbox" name="product_tag" value="21"/>10-20대</label>
-								<label><input type="checkbox" name="product_tag" value="22"/>20-30대</label>
-								<label><input type="checkbox" name="product_tag" value="23"/>30-40대</label>
-								<label><input type="checkbox" name="product_tag" value="24"/>50-60대</label>
-								<label><input type="checkbox" name="product_tag" value="25"/>70대 이상</label>
+								<label><input type="checkbox" name="product_tag" value="10대이하"/>10대이하</label>
+								<label><input type="checkbox" name="product_tag" value="20대"/>20대</label>
+								<label><input type="checkbox" name="product_tag" value="30대"/>30대</label>
+								<label><input type="checkbox" name="product_tag" value="40대"/>40대</label>
+								<label><input type="checkbox" name="product_tag" value="50대"/>50대</label>
+								<label><input type="checkbox" name="product_tag" value="60대"/>60대</label>
+								<label><input type="checkbox" name="product_tag" value="70대이상"/>70대이상</label>
 								<p class="subTag">성별</p>
-								<label><input type="checkbox" name="product_tag" value="26"/>남성</label>
-								<label><input type="checkbox" name="product_tag" value="27"/>여성</label>
-								<label><input type="checkbox" name="product_tag" value="28"/>남여공용</label>
+								<label><input type="checkbox" name="product_tag" value="남성"/>남성</label>
+								<label><input type="checkbox" name="product_tag" value="여성"/>여성</label>
+								<label><input type="checkbox" name="product_tag" value="남여공용"/>남여공용</label>
 							</div>
 							<li><input type="submit" id="formSubmit" value="상품등록"/></li>
 						</ul>

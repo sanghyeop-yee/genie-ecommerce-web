@@ -72,7 +72,7 @@
 	font-size: 1em;
 }
 /* 비밀번호찾기 글자설정 */
-#Find_pwd{
+#PwdEdit{
 	margin-left: 2vw;
 	border: none;
 	border-radius: 10px;
@@ -128,7 +128,7 @@ input[type=text], input[type=email]{
 <!-- -----------------------------------------스크립트 부분 시작---------------------------------- -->
 <script>
 	$(function(){
-		$("#Find_pwd").click(function(){
+		$("#PwdEdit").click(function(){
 			window.open("/user/PwdEdit","PwdEdit","width=400,height=300");
 		});
 		
@@ -171,7 +171,7 @@ input[type=text], input[type=email]{
 <div class="responsive-wrapper">
  	<div class="content">
 		<div class="content-panel">
-			<h3>${vo.user_name}님</h3>
+			<h3>${vo.user_name} ${svo.ceo_name}님</h3>
 				<ul class="fa-ul">
 					<li><i class="fa-solid fa-circle-user"></i><a href="/user/MyPage">회원정보 확인/수정</a></li>
 					<li><i class="fa-brands fa-shopify"></i><a href="/user/MyOrderList">주문목록/배송조회</a></li>
@@ -185,16 +185,16 @@ input[type=text], input[type=email]{
 					<form method="post" action="/user/UserEditOk" id="logFrm">
 						<ul id="idForm">
 							<li>아이디</li>
-							<input type="text" id="genie_id" name="genie_id" value= "${vo.genie_id}" readonly>
+							<input type="text" id="genie_id" name="genie_id" value= "${vo.genie_id} ${svo.genie_id}" readonly>
 							<input type ="hidden" id = "idCheckState" value = "Y"/>
 						</ul>
 						<ul id="name">
 							<li>이름</li>
-							<input type="text" id="user_name" name="user_name" value= "${vo.user_name}" readonly>
+							<input type="text" id="user_name" name="user_name" value= "${vo.user_name} ${svo.ceo_name}" readonly>
 						</ul>
 						<ul id="passwordForm">
 							<li>비밀번호</li>
-							<li><input type="button" id="Find_pwd" value="비밀번호를 변경하려면 클릭하세요"/></li>
+							<li><input type="button" id="PwdEdit" value="비밀번호를 변경하려면 클릭하세요"/></li>
 						</ul>
 						<ul id="phoneForm">
 							<li>휴대폰 번호</li>
@@ -211,7 +211,7 @@ input[type=text], input[type=email]{
 						</ul>
 						<ul id="emailForm">
 							<li>이메일</li>
-							<input type="email" id="user_email" name="user_email" value ="${vo.user_email}" placeholder="이메일을 입력하세요">
+							<input type="email" id="user_email" name="user_email" value ="${vo.user_email} ${svo.seller_email}" placeholder="이메일을 입력하세요">
 						</ul>
 						<input type = "submit" id="formSubmit" value = "회원정보 수정"/>
 					</form>

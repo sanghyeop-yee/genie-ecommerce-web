@@ -37,62 +37,63 @@ public class CertController {
 	}
 
 	// 메일로 아이디 보내기
-	@PostMapping("/cert/sendUserId")
+	@PostMapping("sendUserId")
 	public ResponseEntity<Object> sendEmail(String user_email){
-		List<String> user_name =CertService.FindId(user_email);
+		List<String> genie_id =CertService.FindId(user_email);
 	
-		if(user_name.size() != 0) {
-			CertService.sendUserId(user_email, user_name);
+		if(genie_id.size() != 0) {
+			CertService.sendUserId(user_email, genie_id);
 		}
 		return new ResponseEntity<Object>(HttpStatus.OK);
 	}
+
+	///////////////////////////////////////////////////////
 
 	@GetMapping("FindPwd")
 	public ModelAndView FindPwd() {
 		mav = new ModelAndView();
 		mav.setViewName("/cert/FindPwd");
-
+		
 		return mav;
 	}
+	
+	//비밀번호와 연결될 아이디 구분  (보류)
+	@GetMapping("FindEmail")
+	public ResponseEntity<Object> FindEmail(String genie_id){
+		List<String> user_email =CertService.FindEmail(genie_id);
+		
+		if(user_email.size() != 0) {
+			CertService.emailCheck(genie_id, user_email);
+		}
+		return new ResponseEntity<Object>(HttpStatus.OK);
+	}	
+	
+	@GetMapping("emailCheck")
+	public ResponseEntity<Boolean> emailCheck(String genie_id, List<String> user_email){
+	boolean emailCheck = CertService.emailCheck(genie_id, user_email);
 
-
-	@PostMapping("/cert/FindPwd_auth")
-	public ResponseEntity<Object> authenticateUser(String user_name, HttpSession session) {
+		return new ResponseEntity<Boolean>(emailCheck, HttpStatus.OK);
+	}
+	
+	@PostMapping("FindPwd_auth")
+	public ResponseEntity<Object> authenticateUser(String genie_id, HttpSession session) {
 
     	Map<String, Object> authStatus = new HashMap<>();
-		authStatus.put("user_name", user_name);
+		authStatus.put("genie_id", genie_id);
 
 		authStatus.put("status", false);
 		
 		session.setMaxInactiveInterval(300);
 		session.setAttribute("authStatus", authStatus);
 
-		return new ResponseEntity<Object>(user_name, HttpStatus.OK);
-	}
-
-	//인증번호 보내기 페이지
-	@GetMapping("/cert/FindPwd_authOk")
-
-	public String auth(String user_name, HttpSession session) {
-		Map<String, Object> authStatus = (Map<String, Object>) session.getAttribute("authStatus");
-		if(authStatus == null || !user_name.equals(authStatus.get("user_name"))) {
-			return "redirect:/cert/FindPwd";
-		}
-		
-		return "cert/FindPwd_auth";
+		return new ResponseEntity<Object>(genie_id, HttpStatus.OK);
 	}
 
 
-	@GetMapping("/cert/pwd_emailCheck")
-	public ResponseEntity<Boolean> emailCheck(String user_name, String user_email){
-    boolean emailCheck = CertService.emailCheck(user_name, user_email);
-
-    	return new ResponseEntity<Boolean>(emailCheck, HttpStatus.OK);
-	}
 
 	// 인증번호 보내기
-	@PostMapping("/cert/authNum")
-	private ResponseEntity<String> authNum(String email, HttpSession session){
+	@PostMapping("authNum")
+	private ResponseEntity<String> authNum(String user_email, HttpSession session){
 		String authNum = "";
 		for(int i=0;i<6;i++) {
 			authNum += (int)(Math.random() * 10);
@@ -100,9 +101,9 @@ public class CertController {
 		
 		System.out.println("인증번호 : " + authNum);
 		
-		if(email != null) {
+		if(user_email != null) {
 			//System.out.println("이메일로 인증번호 보내기");
-			CertService.sendAuthNum(email, authNum);
+			CertService.sendAuthNum(user_email, authNum);
 		}
 		
 		
@@ -122,9 +123,23 @@ public class CertController {
 		return new ResponseEntity<String>("인증번호가 전송되었습니다", HttpStatus.OK);
 	}
 
+
+	//인증번호 보내기 페이지
+	@GetMapping("FindPwd_authOk")
+
+	public String auth(String user_name, HttpSession session) {
+		Map<String, Object> authStatus = (Map<String, Object>) session.getAttribute("authStatus");
+		if(authStatus == null || !user_name.equals(authStatus.get("user_name"))) {
+			return "redirect:/cert/FindPwd";
+		}
+		
+		return "cert/FindPwd_auth";
+	}
+
+
 	// 인증 완료 후
 
-	@PostMapping("/cert/expiration")
+	@PostMapping("authCOM")
 	public ResponseEntity<String> authCompletion(HttpSession session) {
 		Map<String, Object> authStatus = (Map<String, Object>) session.getAttribute("authStatus");
 		if(authStatus == null) {

@@ -4,49 +4,75 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "com.genie.myapp.dao.UserDAO">
 
+	<insert id="AccountWrite">
 
-    <insert id = "UserWrite">	
 		insert into account(member_type, genie_id, genie_pwd) 
 		values(#{member_type},#{genie_id}, sha2(#{genie_pwd},256));
 
-		<!-- START TRANSACTION;
-			insert into user(genie_id, user_name, user_tel, user_email, user_zipcode, user_addr, user_detailaddr, user_gender) 
-			values(#{genie_id}, #{user_name}, #{user_tel}, #{user_email}, #{user_zipcode}, #{user_addr}, #{user_detailaddr}, #{user_gender});
-			insert into account(genie_id,genie_pwd) 
-			values(#{genie_id},sha2(#{genie_pwd},256));
-		COMMIT; -->
 	</insert>
 
+    <insert id = "UserWrite">	
+
+		insert into user(genie_id, user_name, user_tel, user_email, user_zipcode, user_addr, user_detailaddr, user_gender) 
+		values(#{genie_id}, #{user_name}, #{user_tel}, #{user_email}, #{user_zipcode}, #{user_addr}, #{user_detailaddr}, #{user_gender})
+
+	</insert>
+
+	<insert id = "Delivery">
+
+		insert into address(genie_id)
+		values(#{genie_id});
+
+	</insert>
+
+	<insert id="MyDeliveryEditOk">	
+
+		insert into address(receiver_name, receiver_tel, receiver_zipcode, receiver_addr, receiver_detailaddr) 
+		select (#{user_name}, #{user_tel}, #{user_zipcode}, #{user_addr}, #{user_detailaddr})
+		from dual
+		where genie_id=#{genie_id}
+
+	</insert>
+	
 	<select id = "loginOk" resultType = "UserVO">
 
 		select u.genie_id, u.user_name 
 		from user u 
 		join account a 
 		on a.genie_id=u.genie_id 
-		where a.member_type=#{member_type} and a.genie_id=#{genie_id} and a.genie_pwd=sha2(#{genie_pwd},256)
+		where a.genie_id=#{genie_id} and genie_pwd=sha2(#{genie_pwd},256) and a.withdrawal=1;
 
 	</select>
 
 	<select id = "idCheck" resultType="int">
-		select count(genie_id) cnt from account where genie_id=#{genie_id}; 
+
+		select count(genie_id) cnt from account where genie_id=#{genie_id}
+
 	</select>
 
 	<update id ="PwdEditOk">
+
 		update account 
 		set genie_pwd=sha2(#{genie_pwd2},256)
 		where genie_id=#{genie_id} and genie_pwd=sha2(#{genie_pwd},256)
+
 	</update>
 	
     <update id ="UserEditOk">
+
 		update user 
 		set user_tel=#{user_tel}, user_email=#{user_email} 
 		where genie_id=#{genie_id}
+
 	</update>
 
+
     <select id = "getUser" resultType = "UserVO">
+
 		select genie_id, user_name, user_tel, user_email, user_zipcode, user_addr, user_detailaddr
 		from user
 		where genie_id=#{genie_id}
+
 	</select>
 
 </mapper>

@@ -26,63 +26,54 @@ $(document).ready(function(){
 	
 	function usernameCheck() {
 		let submit = false;
-		const username = $("input[name=username]").val().replaceAll(" ", "");
-		if(!username) {
+		const genie_id = $("input[name=genie_id]").val().replaceAll(" ", "");
+		if(!genie_id) {
 			return false;
 		}
 		
 		$.ajax({
-			url: "/overlapCheck",
+			url: "/cert/FindEmail",
 			type: "GET",
 			async: false,
-			data: {
-				value : username,
-				valueType : "username"
-			}
-		})
-		.done(function(result){
+			data: {genie_id : genie_id},
+		}).done(function(result){
 			if(result == 1) {
 				submit = true;
 			} 
-		})
-		.fail(function(){
-			alert("에러");
 		})
 		return submit;
 	}
 	
 	
-	$(".next_page").click(function(){
+	$(".find_btn").click(function(){
 		if(!usernameCheck()) {
-			swal("아이디를 정확히 입력해주세요");
+			alert("아이디를 정확히 입력해주세요");
 			return;
 		}
 		const data = {
-			username : $(".username").val(),	
+			genie_id : $(".genie_id").val(),	
 		}
 		
 		$.ajax({
-			url: "/find/password/auth",
+			url: "/cert/FindPwd_auth",
 			type: "POST",
 			data: data
 		})
 		.then(function(result){
-			location.href= "/find/password/auth?username=" + result;
+			location.href= "/cert/FindPwd_auth?genie_id="+result;
 		})
 		.fail(function(){
 			alert('에러');
 		})
 	})
-	
-		
-	})
+})
 
 
 </script>
 <section class="home">
     <div class="find_info">
 		<h3>가입하신 아이디를 입력해주세요</h3>
-		<input type="text" name="user_name" class="user_name">
-		<button class="find_btn">찾기</button>
+		<input type="text" name="genie_id" class="genie_id">
+		<input type="button" class="find_btn" value="찾기"></button>
 	</div>
 <section>

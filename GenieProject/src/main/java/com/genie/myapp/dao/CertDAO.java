@@ -10,12 +10,20 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CertDAO {
 
-    //입력한 이메일이 맞는지 확인
-	public boolean emailCheck(String user_name, String user_email);
-	//입력한 메일 가져오기
-    public String emailCheck(Map<String, Object> map);
     //아이디 찾기
 	public List<String> FindId(String user_email);
+
+    /// 비밀번호 찾기 ///
+
+    //아이디 확인  
+    public List<String> FindEmail(String genie_id);
+
+    //입력한 이메일이 맞는지 확인
+	public boolean emailCheck(String genie_id, String user_email);
+
+	//입력한 메일 가져오기
+    public String emailCheck(Map<String, Object> map);
+
  
     
 }

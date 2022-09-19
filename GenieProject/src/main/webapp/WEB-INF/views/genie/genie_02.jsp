@@ -16,6 +16,7 @@
 .grid-container{
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
+	gap: 1ch;
 }
 .genie_02 h2{
 	margin-bottom: 2em;
@@ -37,6 +38,8 @@
   }
 }
 .button a{
+	width: 100%;
+	text-align: center;
 	float: left;
 	background-color: #fff;
 	color: #1d1d1f;
@@ -59,7 +62,7 @@
 	<div class="genie_02">
 		<h2>선물 예산은 어느정도로 생각하고 계신가요?</h2>
 	</div>
-		<div class="gird-container">
+		<div class="grid-container">
 			<div class="button">
 				<a href="/genie/genie_03">1만원</a>
 			</div>

@@ -16,8 +16,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.genie.myapp.service.AdministerService;
+import com.genie.myapp.service.SellerService;
 import com.genie.myapp.service.UserService;
+
+import com.genie.myapp.vo.AccountVO;
+import com.genie.myapp.vo.AdministerVO;
 import com.genie.myapp.vo.ProductVO;
+import com.genie.myapp.vo.SellerVO;
 import com.genie.myapp.vo.UserVO;
 
 
@@ -27,6 +33,12 @@ public class UserController {
 
 	@Inject
 	UserService service;
+
+	@Inject
+	SellerService service_s;
+
+	@Inject
+	AdministerService service_a;
 
 	ModelAndView mav;
 
@@ -38,10 +50,13 @@ public class UserController {
 	}
 
 	@PostMapping("loginOK")
-	public ModelAndView loginOk(UserVO vo, HttpSession session) {
+	public ModelAndView loginOk(UserVO vo, SellerVO svo, AdministerVO avo, HttpSession session ) {
 		
 		mav = new ModelAndView();
+
 		UserVO logVO = service.loginOk(vo);
+		SellerVO slogVO =service_s.loginOk(svo);
+		AdministerVO alogVO = service_a.loginOk(avo);
 	
 		if(logVO != null) {//로그인 성공
 
@@ -51,7 +66,25 @@ public class UserController {
 			mav.setViewName("redirect:/");
 			
 			return mav;
-			
+
+		}else if(slogVO !=null){
+
+			session.setAttribute("logId", slogVO.getGenie_id());
+			session.setAttribute("logName", slogVO.getCompany_name());
+			session.setAttribute("logStatus","Y");
+			mav.setViewName("redirect:/seller/sellerMain");
+
+			return mav;
+
+		}else if(alogVO != null){
+
+			//session.setAttribute("logId", );
+			//session.setAttribute("logName", );
+			session.setAttribute("logStatus","Y");
+			mav.setViewName("redirect:/admin/adminTag");
+
+			return mav;
+
 		}else{//로그인 실패
 
 			session.setAttribute("msg","아이디 또는 비밀번호 오류입니다.");
@@ -99,20 +132,24 @@ public class UserController {
 
 	//회원 가입하기
 	@PostMapping("UserWrite") 
-	public ResponseEntity<String> UserWrite(UserVO vo) {
+	public ResponseEntity<String> UserWrite(UserVO vo, AccountVO avo) {
 
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		headers.add("Content-Type","text/html; charset=utf-8");
 		
-		try {//회원가입 성공
+			
 
-			int result = service.UserWrite(vo);
+		try {//회원가입 성공
+			
+			int account = service.AccountWrite(avo);
+			int user = service.UserWrite(vo);
+			//int Delivery = service.Delivery(vo);
 
 			String msg = "<script>";
 			msg += "alert('회원가입을 성공하였습니다.');";
-			msg += "location.href='/user/login'";
+			msg += "location.href='/user/login';";
 			msg += "</script>";
 			entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
 
@@ -126,6 +163,7 @@ public class UserController {
 			
 			e.printStackTrace();
 		}
+
 		return entity;
 	}
 
@@ -138,7 +176,12 @@ public class UserController {
 		String genie_id = (String)session.getAttribute("logId"); 
 		UserVO vo = service.getUser(genie_id);
 
+		String seller_id = (String)session.getAttribute("logId"); 
+		SellerVO svo = service_s.getSeller(seller_id);
+
 		mav = new ModelAndView();
+
+		mav.addObject("svo",svo);
 		mav.addObject("vo",vo);
 		mav.setViewName("/user/MyPage");
 	
@@ -191,11 +234,41 @@ public class UserController {
 		String genie_id = (String)session.getAttribute("logId");
 		UserVO vo = service.getUser(genie_id);
 
+
 		new ModelAndView();
+
+		
+		mav = new ModelAndView();
+
 		mav.addObject("vo",vo);
 		mav.setViewName("/user/MyDeliveryList");
 	
 		return mav;
+	}
+
+	//회원정보 수정 DB
+	@PostMapping("MyDeliveryEditOk")
+	public ResponseEntity<String> MyDeliveryEditOk(UserVO vo) {
+		
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.add("Content-Type","text/html; charset=UTF-8");
+	
+
+		String msg = "<script>";
+		int cnt = service.MyDeliveryEditOk(vo);
+
+		if(cnt>0) {//수정됨
+			msg+="alert('배송지가 등록되었습니다.');";
+		}else {//수정못함
+			msg+="alert('배송지 등록에 실패하였습니다.');";	
+		}
+		msg+="location.href='/user/MyPage';</script>";
+		
+		entity = new ResponseEntity<String>(msg,headers, HttpStatus.OK);
+
+		return entity;
 	}
   
 	//나의 문의사항 
@@ -250,6 +323,4 @@ public class UserController {
 		return entity;
 	}
 ////////////////////////////////////////////////////////////////
-
-
 }

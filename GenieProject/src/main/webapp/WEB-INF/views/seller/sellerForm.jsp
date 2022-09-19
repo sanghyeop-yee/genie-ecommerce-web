@@ -83,7 +83,7 @@
 		width:29%;
 		
 	}
-	#seller_id{
+	#genie_id{
 		width:55%;
 	}
 	#sel_zipcode{
@@ -133,16 +133,16 @@
 		
 		//아이디 중복검사
 		$("#idCheck").click(function(){
-			window.open("/seller/sellerIdCheck?seller_id="+$("#seller_id").val(),"sellerIdCheck","width=400, height=200");
+			window.open("/seller/sellerIdCheck?genie_id="+$("#genie_id").val(),"sellerIdCheck","width=400, height=200");
 		});
-		$("#seller_id").change(function(){
+		$("#genie_id").change(function(){
 			$("#idCheckState").val("N");
 		});
 		
 		//유효성 검사
 		$("#sellerFrm").submit(function(){
 			//아이디
-			if($("#seller_id").val()==""){
+			if($("#genie_id").val()==""){
 				alert("아이디를 입력하세요.");
 				return false;
 			}
@@ -152,12 +152,12 @@
 				return false;
 			}
 			//비밀번호
-			if($("#seller_pwd").val()==""){
+			if($("#genie_pwd").val()==""){
 				alert("비밀번호를 입력하세요.");
 				return false;
 			}
 			//비밀번호 일치
-			if($("#seller_pwd").val() != $("#seller_pwd2").val()){
+			if($("#genie_pwd").val() != $("#genie_pwd2").val()){
 				alert("비밀번호가 일치하지 않습니다.");
 				return false;
 			}
@@ -210,18 +210,20 @@
 	<div class="container">
 		<h1>기업회원 회원가입</h1>
 		<form method="post" action="/seller/sellerWrite" id="sellerFrm">
+			<input type="hidden" value="2" name="member_type"/>
+			<input type="hidden" value="N" name="seller_status"/>
 			<ul class="selForm">
 				<div id="idForm">
 					<p>아이디</p>
-					<input type="text" id="seller_id" name="seller_id" placeholder="아이디를 입력하세요">
+					<input type="text" id="genie_id" name="genie_id" placeholder="아이디를 입력하세요">
 					<input type="button" value="아이디 중복검사" id="idCheck"/>
 					<input type="hidden" id="idCheckState" value="N"/>
 				</div>
 				<div id="pwdForm">
 					<p>비밀번호</p>
-					<input type="password" id="seller_pwd" name="seller_pwd" placeholder="비밀번호를 입력하세요">
+					<input type="password" id="genie_pwd" name="genie_pwd" placeholder="비밀번호를 입력하세요">
 					<p>비밀번호 확인</p>
-					<input type="password" id="seller_pwd2" name="seller_pwd2" placeholder="비밀번호를 입력하세요">
+					<input type="password" id="genie_pwd2" name="genie_pwd2" placeholder="비밀번호를 입력하세요">
 				</div>
 				<div>
 					<p>회사명</p>

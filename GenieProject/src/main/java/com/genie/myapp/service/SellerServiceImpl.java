@@ -9,8 +9,7 @@ import org.springframework.stereotype.Service;
 import com.genie.myapp.dao.SellerDAO;
 
 import com.genie.myapp.vo.SellerProductVO;
-
-
+import com.genie.myapp.vo.AccountVO;
 import com.genie.myapp.vo.OrderVO;
 
 
@@ -30,8 +29,8 @@ public class SellerServiceImpl implements SellerService {
 	}
 
   @Override
-	public int idCheck(String seller_id) {
-		return dao.idCheck(seller_id);
+	public int idCheck(String genie_id) {
+		return dao.idCheck(genie_id);
 	}
 
 	@Override
@@ -43,5 +42,20 @@ public class SellerServiceImpl implements SellerService {
 	@Override
 	public int productWrite(SellerProductVO vo) {
 		return dao.productWrite(vo);
+	}
+
+	@Override
+	public int AccountWrite(AccountVO avo) {
+		return dao.AccountWrite(avo);
+	}
+
+	@Override
+	public SellerVO loginOk(SellerVO svo) {
+		return dao.loginOk(svo);
+	}
+
+	@Override
+	public SellerVO getSeller(String genie_id) {
+		return dao.getSeller(genie_id);
 	}
 }

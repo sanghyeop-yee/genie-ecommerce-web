@@ -146,7 +146,7 @@ setInterval(function(){
                 </div>
             </article>
             <ul>
-                <li>${jp.seller_id}</li>
+                <li>${jp.genie_id}</li>
                 <li>${jp.product_name}</li>
                 <li>${jp.product_price}</li>
             </ul>

@@ -133,13 +133,13 @@ $(function(){
 			</ul>
 			<ul id="passwordForm">
 				<li>비밀번호</li>
-				<input type="password" id="genie_pwd" name="genie_pwd" placeholder="비밀번호를 입력하세요">
+				<input type="password" id="genie_pwd" name="genie_pwd" value="123" placeholder="비밀번호를 입력하세요">
 				<li>비밀번호 확인</li>
-				<input type="password" id="genie_pwd2" name="genie_pwd2" placeholder="비밀번호를 입력하세요">
+				<input type="password" id="genie_pwd2" name="genie_pwd2" value="123" placeholder="비밀번호를 입력하세요">
 			</ul>
 			<ul id="idForm">
 				<li>이름</li>
-				<input type="text" name="user_name" id="user_name" placeholder="이름을 입력하세요">
+				<input type="text" name="user_name" id="user_name" value="김유저" placeholder="이름을 입력하세요">
 			</ul>
 			<ul id="phoneForm">
 				<li>휴대폰 번호</li>
@@ -152,28 +152,28 @@ $(function(){
 					<option value="018">018</option>
 					<option value="019">019</option>
 				</select>
-				<input type ="text" name = "user_phone_num2" id ="user_phone_num2" maxlength = "4"/>
-				<input type ="text" name = "user_phone_num3" id ="user_phone_num3" maxlength = "4"/>
+				<input type ="text" name = "user_phone_num2" id ="user_phone_num2" value="1234" maxlength = "4"/>
+				<input type ="text" name = "user_phone_num3" id ="user_phone_num3" value="1234" maxlength = "4"/>
 			</ul>
 			<ul id="emailForm">
 				<li>이메일</li>
-				<input type="email" id="user_email" name="user_email" placeholder="이메일을 입력하세요">
+				<input type="email" id="user_email" name="user_email" value="ghdtpgh8913@naver.com" placeholder="이메일을 입력하세요">
 			</ul>
 			<ul id="addrForm">
 				<li>우편번호</li>
 				<li>
-					<input type ="text" name = "user_zipcode" id ="user_zipcode" readonly/>
+					<input type ="text" name = "user_zipcode" id ="user_zipcode" value="123" readonly/>
 					<input type = "button" value = "우편번호찾기" id = "address_kakao"/>
 				</li>
 				<li>주소</li>
-				<li><input type = "text" name = "user_addr" id ="user_addr" readonly/></li>
+				<li><input type = "text" name = "user_addr" id ="user_addr" value="123" readonly/></li>
 				<li>상세주소</li>
-				<li><input type ="text" name = "user_detailaddr" id ="user_detailaddr"/></li>	
+				<li><input type ="text" name = "user_detailaddr" id ="user_detailaddr" value="123" /></li>	
 			</ul>
 			<ul id="user_gender">
 				<li>성별</li>
-				<input type="radio" name="radio_gender" id="radio_male"><label for="radio_male">남성</label>
-				<input type="radio" name="radio_gender" id="radio_female"><label for="radio_female">여성</label>
+				<input type="radio" name="user_gender" value="1"><label for="radio_male">남성</label>
+				<input type="radio" name="user_gender" value="0"><label for="radio_female">여성</label>
 			</ul>
 				<input type = "submit" id="formSubmit" value = "회원가입하기"/>
 		</form>

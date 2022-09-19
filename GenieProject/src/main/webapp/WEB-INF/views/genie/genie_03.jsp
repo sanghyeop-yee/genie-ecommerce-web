@@ -15,7 +15,7 @@
 }
 .grid-container{
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(3, 1fr);
 }
 .genie_03 h2{
 	margin-bottom: 2em;
@@ -59,7 +59,7 @@
 	<div class="genie_03">
 		<h2>선물 받는 분의 성별이 어떻게 되시나요?</h2>
 	</div>
-		<div class="gird-container">
+		<div class="grid-container">
 			<div class="button">
 				<a href="/genie/genie_04">남자</a>
 			</div>

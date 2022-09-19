@@ -4,10 +4,13 @@ import java.util.List;
 
 public interface CertService {
 
+    public List<String> FindId(String user_email);
     void sendUserId(String user_email, List<String> user_names);
-    public boolean emailCheck(String user_name, String user_email);
-    void sendAuthNum(String email, String authNum);
-	public List<String> FindId(String email);
+
+    public List<String> FindEmail(String genie_id);
+    public boolean emailCheck(String genid_id, List<String> user_email);
+    void sendAuthNum(String user_email, String authNum);
+	
     
 
 }
