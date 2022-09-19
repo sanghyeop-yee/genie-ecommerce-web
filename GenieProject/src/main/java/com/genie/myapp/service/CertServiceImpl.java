@@ -22,6 +22,10 @@ public class CertServiceImpl implements CertService {
 	@Inject
 	CertDAO cdao;
 
+	@Override
+	public List<String> FindId(String user_email) {
+		return cdao.FindId(user_email);
+	}
 	
 	@Override
 	public void sendUserId(String user_email, List<String> user_name) {
@@ -46,13 +50,24 @@ public class CertServiceImpl implements CertService {
 			public void run() {
 				mailSender.send(simpleMailMessage);
 			}
+
 		}).start();
 	}
 
+
+
+//////////////////////////////////////////////////////////////////////
+
 	@Override
-    public boolean emailCheck(String user_name, String user_email) {
+	public List<String> FindEmail(String genie_id) {	
+		return cdao.FindEmail(genie_id);
+	}
+
+
+	@Override
+    public boolean emailCheck(String genie_id, List<String> user_email) {
         Map<String, Object> map = new HashMap<>();
-        map.put("user_name", user_name);
+        map.put("genie_id", genie_id);
         map.put("user_email", user_email);
         String result = cdao.emailCheck(map);
         if("1".equals(result)) {
@@ -76,11 +91,6 @@ public class CertServiceImpl implements CertService {
 			}
 		}).start();
 		
-	}
-
-	@Override
-	public List<String> FindId(String user_email) {
-		return cdao.FindId(user_email);
 	}
 
 }

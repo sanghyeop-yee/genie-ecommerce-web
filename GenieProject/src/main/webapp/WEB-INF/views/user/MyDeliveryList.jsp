@@ -100,17 +100,39 @@
     <div class="content-main">
       <h2>새로운 배송지</h2>
         <div class="inquiry">
+        <form method="post" action="/user/MyDeliveryEditOk">
+        <input type="hidden" value="${vo.genie_id}" name="genie_id"/>
           <ul id="addrForm">
+            <li>이름</li>
+            <li><input type="text" name="receiver_name" id ="user_name"/></li>
+
+            <ul id="phoneForm">
+              <li>휴대폰 번호</li>
+              <select id = "user_phone_num1" name = "user_phone_num1" size = "1">
+                <option value="">선택하세요</option>
+                <option value="010">010</option>
+                <option value="011">011</option>
+                <option value="016">016</option>
+                <option value="017">017</option>
+                <option value="018">018</option>
+                <option value="019">019</option>
+              </select>
+              <input type ="text" name = "user_phone_num2" id ="user_phone_num2" maxlength = "4"/>
+              <input type ="text" name = "user_phone_num3" id ="user_phone_num3" maxlength = "4"/>
+            </ul>
+
             <li>우편번호</li>
             <li>
-              <input type ="text" name = "user_zipcode" id ="user_zipcode" readonly/>
-              <input type = "button" value = "우편번호찾기" id = "address_kakao"/>
+              <input type="text" name="receiver_zipcode" id ="user_zipcode" readonly/>
+              <input type= "button" value = "우편번호찾기" id = "address_kakao"/>
             </li>
             <li>주소</li>
-            <li><input type = "text" name = "user_addr" id ="user_addr" readonly/></li>
+            <li><input type="text" name="receiver_addr" id ="user_addr" readonly/></li>
             <li>상세주소</li>
-            <li><input type ="text" name = "user_detailaddr" id ="user_detailaddr" /></li>	
+            <li><input type="text" name="receiver_detailaddr" id ="user_detailaddr" /></li>	
+            <li><input type="submit" value = "배송지 등록"/></li>
           </ul>
+        </form>   
         </div>
     </div>
     <div class="my-delivery">
@@ -123,7 +145,7 @@
            <li>주소</li>
           <li><input type = "text" name = "user_addr" id ="user_addr" value="${vo.user_addr}" readonly/></li>
           <li>상세주소</li>
-          <li><input type ="text" name = "user_detailaddr" id ="user_detailaddr" value="${vo.user_detailaddr}" /></li><br>
+          <li><input type ="text" name = "user_detailaddr" id ="user_detailaddr" value="${vo.user_detailaddr}" readonly/></li><br>
         </ul>
         <ul id="delivery_2">
           <h3>배송지2</h3>
@@ -133,16 +155,16 @@
            <li>주소</li>
           <li><input type = "text" name = "user_addr" id ="user_addr" readonly/></li>
           <li>상세주소</li>
-          <li><input type ="text" name = "user_detailaddr" id ="user_detailaddr"/></li><br>
+          <li><input type ="text" name = "user_detailaddr" id ="user_detailaddr" readonly/></li><br>
         <ul id="delivery_3">
           <h3>배송지3</h3>
 
           <li>우편번호</li>
-          <input type ="text" name = "user_zipcode" id ="user_zipcode" value="${vo.user_zipcode}" readonly/>
+          <input type ="text" name = "user_zipcode" id ="user_zipcode" readonly/>
           <li>주소</li>
           <li><input type = "text" name = "user_addr" id ="user_addr" readonly/></li>
           <li>상세주소</li>
-          <li><input type ="text" name = "user_detailaddr" id ="user_detailaddr"/></li>
+          <li><input type ="text" name = "user_detailaddr" id ="user_detailaddr" readonly/></li>
         </ul>
     </div>
   </div>

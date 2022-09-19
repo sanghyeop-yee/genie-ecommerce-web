@@ -18,8 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.genie.myapp.service.SellerService;
 
 import com.genie.myapp.vo.SellerProductVO;
-
-
+import com.genie.myapp.vo.AccountVO;
 import com.genie.myapp.vo.OrderVO;
 
 
@@ -93,21 +92,21 @@ public class SellerController {
 	
 	//아이디 중복검사
 	@GetMapping("sellerIdCheck")
-	public ModelAndView sellerIdCheck(String seller_id) {
+	public ModelAndView sellerIdCheck(String genie_id) {
 		
 		//DB조회 : 아이디 중복 확인
-		int cnt = service.idCheck(seller_id);
+		int cnt = service.idCheck(genie_id);
 		
 		mav = new ModelAndView();
 		mav.addObject("idCnt",cnt);
-		mav.addObject("seller_id",seller_id);
+		mav.addObject("genie_id",genie_id);
 		mav.setViewName("seller/sellerIdCheck");
 		return mav;
 	}
 	
 	//seller 회원가입하기
 	@PostMapping("sellerWrite")
-	public ResponseEntity<String> sellerWrite(SellerVO vo){
+	public ResponseEntity<String> sellerWrite(SellerVO vo, AccountVO avo){
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -115,7 +114,9 @@ public class SellerController {
 		headers.add("Content-Type", "text/html; charset=utf-8");
 		
 		try {//회원가입성공
-			int result = service.sellerWrite(vo);
+			int account = service.AccountWrite(avo);
+			int seller = service.sellerWrite(vo);
+			
 			
 			String msg = "<script>";
 			msg += "alert('회원가입을 성공하였습니다.');";

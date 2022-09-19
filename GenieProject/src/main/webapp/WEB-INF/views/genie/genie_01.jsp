@@ -1,89 +1,104 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jspf"%>
 <style>
-.home {
-	position: relative;
+.genie_ai {
 	width: 100%;
 	height: 100vh;
 	margin: 0;
-    padding:6% 23%;
+    padding: 6% 16%;
 
-	/*background: url(../img/background.jpg);*/
-	background: #f5f5f7;
+	/*background: url(/image/gift1.png);*/
+	background: url(/image/gift1.png);
 	background-size: cover;
 	background-position: center;
 }
+.genie_01 h2{
+	margin-bottom: 3rem;
+	font-size: 2rem;
+	color: #1d1d1f;
+	width: 25ch;
+	animation: typing 2s steps(25), blink .5s step-end infinite alternate;
+	white-space: nowrap;
+	overflow: hidden;
+	border-right: .1rem solid;
+}
+@keyframes typing {
+	from {
+		width: 0
+	}
+}
+@keyframes blink {
+	50% {
+		border-color: transparent
+	}
+}
+/* --------------------------------라디오버튼 css------------------------ */
 .grid-container{
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
 }
-.genie_01 h2{
-	margin-bottom: 2em;
-	color: #1d1d1f;
-	width: 28ch;
-	animation: typing 2s steps(28), blink .5s step-end infinite alternate;
-  	white-space: nowrap;
-	overflow: hidden;
-	border-right: .09em solid;
+.tag_name{
+	padding: 1rem;
 }
-@keyframes typing {
-  from {
-    width: 0
-  }
+.tag_name input[type=radio]{
+    display: none;
 }
-@keyframes blink {
-  50% {
-    border-color: transparent
-  }
-}
-.button a{
-	float: left;
-	background-color: #fff;
-	color: #1d1d1f;
-	margin: 1%;
-	padding: .8em 1.8em;
-	font-size: 1.7em;
-	font-weight: bold;
+.tag_name input[type=radio]+label{
+	width: 30vw;
+    cursor: pointer;
+	padding: 1rem 1.8rem;
+    text-align: center;
+    font-size: 3ch;
+    font-weight: bold;
 	border-radius: 25px;
 	transition: ease .5s;
-	box-shadow: 0 0 1px #dfdfdf;
+	box-shadow: 0 0 100px #dfdfdf;
 }
-.button a:hover{
-	background-color: #fff;
-	transform: scale(1.05);
-	box-shadow: 0 0 5px #b4b4b4;
-} 
+.tag_name input[type=radio]+label{
+    background-color: #fff;
+    color: #333;
+}
+.tag_name input[type=radio]:checked+label{
+    background-color: #333;
+    color: #fff;
+}
+
 </style>
 
-<section class="home">
+<section class="genie_ai">
 	<div class="genie_01">
 		<h2>어느 분에게 선물할 계획이신가요?</h2>
 	</div>
-		<div class="gird-container">
-			<div class="button">
-				<a href="/genie/genie_02">부모님</a>
+	<form class="grid-container">
+			<div class="tag_name">
+				<input type="radio" name="parent" id="1" value="1">
+				<label for="1">부모님</label>
 			</div>
-			<div class="button">
-				<a href="/genie/genie_02">배우자</a>
+			<div class="tag_name">
+				<input type="radio" name="partner" id="2" value="2">
+				<label for="2">배우자</label>
+			</div>			
+			<div class="tag_name">
+				<input type="radio" name="couple" id="3" value="3">
+				<label for="3">연인</label>
+			</div>			
+			<div class="tag_name">
+				<input type="radio" name="kin" id="4" value="4">
+				<label for="4">친척/가족</label>
+			</div>			
+			<div class="tag_name">
+				<input type="radio" name="friend" id="5" value="5">
+				<label for="5">친구/지인</label>
+			</div>			
+			<div class="tag_name">
+				<input type="radio" name="colleague" id="6" value="6">
+				<label for="6">회사동료</label>
+			</div>			
+			<div class="tag_name">
+				<input type="radio" name="mentor" id="7" value="7">
+				<label for="7">스승/멘토</label>
 			</div>
-			<div class="button">
-				<a href="/genie/genie_02">연인</a>
-			</div>
-			<div class="button">
-				<a href="/genie/genie_02">친구</a>
-			</div>
-			<div class="button">
-				<a href="/genie/genie_02">동료</a>
-			</div>
-			<div class="button">
-				<a href="/genie/genie_02">친척</a>
-			</div>
-			<div class="button">
-				<a href="/genie/genie_02">스승</a>
-			</div>
-			<div class="button">
-				<a href="/genie/genie_02">가족</a>
-			</div>
-		</div>
+		</form>
 	</div>
 </section>

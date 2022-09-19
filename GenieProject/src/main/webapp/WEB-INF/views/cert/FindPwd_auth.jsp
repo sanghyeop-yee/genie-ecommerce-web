@@ -52,13 +52,13 @@
         
         
         // 이메일로 인증번호 보내기
-        $(".auth_num_send_eemail").click(function(){
+        $(".send_email").click(function(){
             const data = {
-                email : $(".email").val(),
+                user_email : $(".email").val(),
                 user_name : user_name
             }
-            if(!emailCheck(data.email)) {
-                swal("이메일을 정확히 입력해주세요");
+            if(!emailCheck(data.user_email)) {
+                alert("이메일을 정확히 입력해주세요");
                 return;
             }
             
@@ -69,20 +69,20 @@
             
             const inputBox = $(this).siblings(".auth_num");
             
-            // username의 이메일이 맞는지 확인 
+            // user_name의 이메일이 맞는지 확인 
             $.ajax({
-                url: "/find/password/emailCheck",
+                url: "/cert/emailCheck",
                 type: "GET",
                 data : data
             })
             .then(function(result){
                 if(result) {
-                    sendAuthNum({email : data.email}, function(){
+                    sendAuthNum({user_email : data.user_email}, function(){
                         sendAuthNumFnc(inputBox);
                     });
                     
                 } else {
-                    swal("가입하신 이메일과 일치하지 않습니다");
+                    alert("가입하신 이메일과 일치하지 않습니다");
                 }
             })
             .fail(function(){
@@ -95,11 +95,11 @@
         // 인증완료 후 함수
         function authCompletion(){
             $.ajax({
-                url: "/auth/completion",
+                url: "/cert/authCOM",
                 type: "POST",
             })
             .then(function(){
-                location.href = "/modify/password?user_name=" + user_name;
+                location.href = "/cert/FindPwd?user_name=" + user_name;
             })
             .fail(function(result){
                 swal(result.responseText);
@@ -110,9 +110,9 @@
     
     
         // 인증번호 입력 후 다음 버튼
-        $(".move_modify").click(function(){
+        $(".next").click(function(){
             if(!authNum.isSend()) {
-                swal("인증번호를 발송해주세요");
+                alert("인증번호를 발송해주세요");
                 return;
             }
             let authNumber = "";
@@ -134,7 +134,7 @@
                 authCompletion();
             })
             .fail(function(result){
-                swal(result.responseText);
+                alert(result.responseText);
             })
         })
     })
@@ -148,12 +148,12 @@
 				
 				<div class="auth">
 					<input type="email" class="email" placeholder="이메일을 입력해주세요" maxlength="50">
-					<button type="button" class="auth_num_send_eemail">인증번호받기</button>
-					<input type="text" class="auth_num" name="authNum" readonly maxlength="6"  placeholder="인증번호6자리입력">
+					<button type="button" class="end_email">인증번호받기</button>
+					<input type="text" class="auth_num" name="authNum" readonly maxlength="6"  placeholder="인증번호 6자리입력">
 					<span class="timer"></span>
 				</div>
 			</div>
         </div>
 				
-		<button class="move_modify">다음</button>
+		<button class="next">다음</button>
 	</section>

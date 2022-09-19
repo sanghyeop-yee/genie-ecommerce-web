@@ -1,5 +1,10 @@
 package com.genie.myapp.vo;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class UserVO {
 
     private String genie_num;
@@ -37,7 +42,177 @@ public class UserVO {
                 + user_phone_num2 + ", user_phone_num3=" + user_phone_num3 + ", user_tel=" + user_tel
                 + ", user_zipcode=" + user_zipcode + "]";
     }
+
     
+    
+    public String getGenie_num() {
+        return genie_num;
+    }
+
+
+
+    public void setGenie_num(String genie_num) {
+        this.genie_num = genie_num;
+    }
+
+
+
+    public String getGenie_id() {
+        return genie_id;
+    }
+
+
+
+    public void setGenie_id(String genie_id) {
+        this.genie_id = genie_id;
+    }
+
+
+
+    public String getGenie_pwd() {
+        return genie_pwd;
+    }
+
+
+
+    public void setGenie_pwd(String genie_pwd) {
+        this.genie_pwd = genie_pwd;
+    }
+
+
+
+    public String getGenie_pwd2() {
+        return genie_pwd2;
+    }
+
+
+
+    public void setGenie_pwd2(String genie_pwd2) {
+        this.genie_pwd2 = genie_pwd2;
+    }
+
+
+
+    public String getMember_type() {
+        return member_type;
+    }
+
+
+
+    public void setMember_type(String member_type) {
+        this.member_type = member_type;
+    }
+
+
+
+    public String getUser_num() {
+        return user_num;
+    }
+
+
+
+    public void setUser_num(String user_num) {
+        this.user_num = user_num;
+    }
+
+
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+
+
+    public String getUser_email() {
+        return user_email;
+    }
+
+
+
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
+    }
+
+
+
+    public String getUser_zipcode() {
+        return user_zipcode;
+    }
+
+
+
+    public void setUser_zipcode(String user_zipcode) {
+        this.user_zipcode = user_zipcode;
+    }
+
+
+
+    public String getUser_addr() {
+        return user_addr;
+    }
+
+
+
+    public void setUser_addr(String user_addr) {
+        this.user_addr = user_addr;
+    }
+
+
+
+    public String getUser_detailaddr() {
+        return user_detailaddr;
+    }
+
+
+
+    public void setUser_detailaddr(String user_detailaddr) {
+        this.user_detailaddr = user_detailaddr;
+    }
+
+
+
+    public char getUser_gender() {
+        return user_gender;
+    }
+
+
+
+    public void setUser_gender(char user_gender) {
+        this.user_gender = user_gender;
+    }
+
+
+
+    public String getSign_in_date() {
+        return sign_in_date;
+    }
+
+
+
+    public void setSign_in_date(String sign_in_date) {
+        this.sign_in_date = sign_in_date;
+    }
+
+
+
+    public String getPayment_method() {
+        return payment_method;
+    }
+
+
+
+    public void setPayment_method(String payment_method) {
+        this.payment_method = payment_method;
+    }
+
+
+
     public String getUser_tel() {
         return user_phone_num1 + "-"+user_phone_num2+"-"+user_phone_num3;
     }
@@ -66,92 +241,5 @@ public class UserVO {
     public void setUser_phone_num3(String user_phone_num3) {
         this.user_phone_num3 = user_phone_num3;
     }
-    public String getGenie_num() {
-        return genie_num;
-    }
-    public void setGenie_num(String genie_num) {
-        this.genie_num = genie_num;
-    }
-    public String getGenie_id() {
-        return genie_id;
-    }
-    public void setGenie_id(String genie_id) {
-        this.genie_id = genie_id;
-    }
-    public String getGenie_pwd() {
-        return genie_pwd;
-    }
-    public void setGenie_pwd(String genie_pwd) {
-        this.genie_pwd = genie_pwd;
-    }
-    public String getGenie_pwd2() {
-        return genie_pwd2;
-    }
-    public void setGenie_pwd2(String genie_pwd2) {
-        this.genie_pwd2 = genie_pwd2;
-    }
-    public String getMember_type() {
-        return member_type;
-    }
-    public void setMember_type(String member_type) {
-        this.member_type = member_type;
-    }
-    public String getUser_num() {
-        return user_num;
-    }
-    public void setUser_num(String user_num) {
-        this.user_num = user_num;
-    }
-    public String getUser_name() {
-        return user_name;
-    }
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
-    }
-    public String getUser_email() {
-        return user_email;
-    }
-    public void setUser_email(String user_email) {
-        this.user_email = user_email;
-    }
-    public String getUser_zipcode() {
-        return user_zipcode;
-    }
-    public void setUser_zipcode(String user_zipcode) {
-        this.user_zipcode = user_zipcode;
-    }
-    public String getUser_addr() {
-        return user_addr;
-    }
-    public void setUser_addr(String user_addr) {
-        this.user_addr = user_addr;
-    }
-    public String getUser_detailaddr() {
-        return user_detailaddr;
-    }
-    public void setUser_detailaddr(String user_detailaddr) {
-        this.user_detailaddr = user_detailaddr;
-    }
-    public char getUser_gender() {
-        return user_gender;
-    }
-    public void setUser_gender(char user_gender) {
-        this.user_gender = user_gender;
-    }
-    public String getSign_in_date() {
-        return sign_in_date;
-    }
-    public void setSign_in_date(String sign_in_date) {
-        this.sign_in_date = sign_in_date;
-    }
-    public String getPayment_method() {
-        return payment_method;
-    }
-    public void setPayment_method(String payment_method) {
-        this.payment_method = payment_method;
-    }
-
-    
-
 }
 

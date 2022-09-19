@@ -1,37 +1,36 @@
 @charset "UTF-8";
+/* 사용할 수 있는 폰트
+font-family: 'East Sea Dokdo', cursive;
+font-family: 'Stylish', sans-serif;
+font-family: 'Sunflower', sans-serif;
+font-family: 'Yeon Sung', cursive; */
 
 *{
 	padding: 0;
 	margin: 0;
-	font-family: 'Josefin Sans', sans-serif;
+	font-family: 'Sunflower', sans-serif;
 	box-sizing: border-box;
 	list-style-type: none;
 	text-decoration-line: none;
 	color: inherit;
 }
 .genie{
-	height: 4%;
 	width: 100%;
+	height: 4%;
 }
 nav{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 1% 13% .5% 13%;
+	padding: 1% 3%;
+	margin: 0;
 	background: #fff;
 }
-.logo{
-	color: #96aee0;
-	font-size: 2em;
-	letter-spacing: .05em;
-	cursor: pointer;
-}
-.logo span{
-	color:#9ce0da
-}
+
 nav ul li{
-	display:inline-block;
+	display: inline-block;
 	padding-left: 2.5vw;
+	font-size: 1.6rem;
 }
 nav ul li a{
 	color: black;
@@ -39,6 +38,6 @@ nav ul li a{
 	text-transform: capitalize;
 }
 nav ul li a:hover{
-	color:#81d8d0;
+	color:#2EC9FD;
 	transition: .4s;
 }

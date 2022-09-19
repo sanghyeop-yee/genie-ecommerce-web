@@ -22,7 +22,7 @@
 <script>
 	$(document).ready(function() {
 		$(".find_btn").click(function() {
-			const user_email = $(".email").val();
+			const user_email = $("#user_email").val();
 			if($("#user_email").val()==""){
           		alert("이메일을 입력하세요..");
           		return false;
@@ -31,7 +31,7 @@
 			$.ajax({
 				url: "/cert/sendUserId",
 				type: "POST",
-				data: { user_email: user_email }
+				data: { user_email : user_email }
 			}).done(function() {
 			const html =`<div class="send_email">
 							<div>
@@ -50,7 +50,7 @@
 <section class="home">
     <div class="find_info">
 		<h3>가입하신 이메일을 입력해주세요</h3>
-		<input type="email" name="email" class="email">
+		<input type="email" name="user_email" id="user_email">
 		<button class="find_btn">찾기</button>
 	</div>
 <section>

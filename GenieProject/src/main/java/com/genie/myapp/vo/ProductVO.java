@@ -2,7 +2,7 @@ package com.genie.myapp.vo;
 
 public class ProductVO {
     private int product_id;
-    private String seller_id;
+    private String genie_id;
     private String product_category;
 	private String product_tag; 
 	private String product_name; 
@@ -25,7 +25,7 @@ public class ProductVO {
 				+ ", product_image3=" + product_image3 + ", product_info=" + product_info + ", product_like="
 				+ product_like + ", product_name=" + product_name + ", product_price=" + product_price
 				+ ", product_quantity=" + product_quantity + ", product_stock=" + product_stock + ", product_tag="
-				+ product_tag + ", product_writedate=" + product_writedate + ", seller_id=" + seller_id + "]";
+				+ product_tag + ", product_writedate=" + product_writedate + ", genie_id=" + genie_id + "]";
 	}
 
 	public int getProduct_id() {
@@ -34,11 +34,11 @@ public class ProductVO {
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
 	}
-	public String getSeller_id() {
-		return seller_id;
+	public String getgenie_id() {
+		return genie_id;
 	}
-	public void setSeller_id(String seller_id) {
-		this.seller_id = seller_id;
+	public void setgenie_id(String genie_id) {
+		this.genie_id = genie_id;
 	}
 	public String getProduct_category() {
 		return product_category;

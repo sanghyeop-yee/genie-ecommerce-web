@@ -13,22 +13,43 @@
     on m.product_id = p.product_id;
   </select>
 
-
 	<select id="idCheck" resultType="int">
-		select count(seller_id) cnt from seller where seller_id=#{seller_id};
+		select count(genie_id) cnt from account where genie_id=#{genie_id}
 	</select>
 	
+	<insert id="AccountWrite">
+		insert into account(member_type, genie_id, genie_pwd) 
+		values(#{member_type},#{genie_id}, sha2(#{genie_pwd},256));
+	</insert>
+	
 	<insert id="sellerWrite">
-		insert into seller(seller_id, seller_pwd, company_name, ceo_name, seller_tel, seller_email, seller_website, seller_reg_no, seller_address, seller_status) 
-		values(#{seller_id}, #{seller_pwd}, #{company_name}, #{ceo_name}, #{seller_tel}, #{seller_email}, #{seller_website}, #{seller_reg_no}, #{seller_address}, "N")
+		insert into seller(genie_id, company_name, ceo_name, seller_tel, seller_email, seller_website, seller_reg_no, seller_address, seller_status) 
+		values(#{genie_id}, #{company_name}, #{ceo_name}, #{seller_tel}, #{seller_email}, #{seller_website}, #{seller_reg_no}, #{seller_address}, #{seller_status});
+	</insert>
+
+	<insert id="productWrite">
+		insert into product(genie_id, product_category, product_tag, product_name, product_price, product_info, product_quantity, product_image1, product_image2, product_image3) 
+		values(#{genie_id}, #{product_category}, #{product_tag}, #{product_name}, #{product_price}, #{product_info}, #{product_quantity}, #{product_image1}, #{product_image2}, #{product_image3})
 	</insert>
 
 	
-	<insert id="productWrite">
-		insert into product(product_id, genie_id, product_category, product_tag, product_name, product_price, product_info, product_quantity, product_image1, product_image2, product_image3) 
-		values(#{product_id}, #{genie_id}, #{product_category}, #{product_tag}, #{product_name}, #{product_price}, #{product_info}, #{product_quantity}, #{product_image1}, #{product_image2}, #{product_image3})
-	</insert>
+	<select id="loginOk" resultType = "SellerVO">
 
+		select s.genie_id, s.company_name 
+		from account a 
+		join seller s 
+		on a.genie_id=s.genie_id 
+		where a.genie_id=#{genie_id} and a.genie_pwd=sha2(#{genie_pwd},256) and a.withdrawal=1;
+
+	</select>
+
+    <select id = "getSeller" resultType = "SellerVO">
+
+		select genie_id, seller_tel, seller_email, seller_reg_no, company_name, ceo_name, seller_website
+		from seller 
+		where genie_id=#{genie_id}
+
+	</select>
 
 
 </mapper>
