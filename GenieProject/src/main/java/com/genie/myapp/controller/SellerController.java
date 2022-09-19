@@ -4,12 +4,14 @@ import java.nio.charset.Charset;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -84,8 +86,14 @@ public class SellerController {
 	
 	//seller 상품관리 페이지
 	@GetMapping("sellerProduct")
-	public ModelAndView sellerProduct() {
+	public ModelAndView sellerProduct(SellerProductVO pvo, HttpServletRequest request) {
+		
+		pvo.setGenie_id((String)request.getSession().getAttribute("logId"));
+		
 		mav = new ModelAndView();
+		mav.addObject("plist", service.productList(pvo));
+		mav.addObject("pvo", pvo);
+		
 		mav.setViewName("seller/sellerProduct");
 		return mav;
 	}
@@ -168,4 +176,17 @@ public class SellerController {
 		}
 		return entity;
 	}
+	
+	//seller 상품수정 페이지로 이동
+	@GetMapping("/sellerProductEdit/{product_id}")
+	public ModelAndView sellerProductEdit(@PathVariable("product_id") int pid, SellerProductVO pvo) {
+		mav = new ModelAndView();
+		
+		mav.addObject("pvo", pvo);
+		mav.setViewName("seller/sellerProductEdit");
+		
+		return mav;
+	}
+	
+	//seller 상품수정 : DB 업데이트 
 }

@@ -157,28 +157,18 @@ td, th {
 							<th>카테고리</th>
 							<th>태그</th>
 							<th>수정</th>
-							<th>삭제</th>
 						</tr>
+						<c:forEach var="pvo" items="${plist }">
 						<tr>
-							<td>1234</td>
-							<td>무드등</td>
-							<td>19800</td>
-							<td>23</td>
-							<td>생일</td>
-							<td>친구/지인,생일,집들이,10-20대,남여공용</td>
-							<td><input type="button" value="수정"></td>
-							<td><input type="button" value="삭제"></td>
+							<td>${pvo.product_id }</td>
+							<td>${pvo.product_name}</td>
+							<td>${pvo.product_price}</td>
+							<td>${pvo.product_stock}</td>
+							<td>{pvo.product_category}</td>
+							<td>{pvo.product_tag}</td>
+							<td><a href="/seller/sellerProductEdit/${pvo.product_id }">수정하기</a></td>
 						</tr>
-						<tr>
-							<td>1255</td>
-							<td>스피커</td>
-							<td>34800</td>
-							<td>13</td>
-							<td>생일</td>
-							<td>친구/지인,생일,집들이,10-20대,20-30대,남여공용</td>
-							<td><input type="button" value="수정"></td>
-							<td><input type="button" value="삭제"></td>
-						</tr>
+						</c:forEach>
 					</table>
 				</div>
 			</div>
