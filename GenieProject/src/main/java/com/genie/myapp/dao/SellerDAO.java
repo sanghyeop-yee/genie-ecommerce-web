@@ -1,6 +1,7 @@
 package com.genie.myapp.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -14,13 +15,15 @@ import com.genie.myapp.vo.OrderVO;
 import com.genie.myapp.vo.SellerVO;
 
 
-@Mapper
+@Mapper // 실행시 인터페이스에서 매퍼 파일을 읽어 들이도록 지정합니다
 @Repository
 public interface SellerDAO {
 
 
-  // 주문목록
-  List<OrderVO> sellerOrder(OrderVO vo);
+	// 주문목록
+	List<OrderVO> sellerOrder(OrderVO vo);
+  	//주문목록 배송상태 수정 
+	public void updateDeliveryStatus(Map deliveryMap); // 매퍼파일의 id가 updateDeliveryStatus 인 SQL문을 호출합니다 
 	//아이디 중복검사
 	public int idCheck(String genie_id);
 	//seller 회원가입

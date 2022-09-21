@@ -1,6 +1,7 @@
 package com.genie.myapp.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -22,13 +23,19 @@ public class SellerServiceImpl implements SellerService {
 	@Inject
 	SellerDAO dao;
   
-// 주문목록
-  @Override
+	// 주문목록
+	@Override
 	public List<OrderVO> sellerOrder(OrderVO vo) {
 		return dao.sellerOrder(vo);
 	}
+	
+  	//주문목록 배송상태 수정 
+	@Override
+	public void updateDeliveryStatus(Map deliveryMap) {
+		dao.updateDeliveryStatus(deliveryMap);
+	}
 
-  @Override
+ 	@Override
 	public int idCheck(String genie_id) {
 		return dao.idCheck(genie_id);
 	}
@@ -63,4 +70,8 @@ public class SellerServiceImpl implements SellerService {
 	public SellerVO getSeller(String genie_id) {
 		return dao.getSeller(genie_id);
 	}
+
+
+
+	
 }
