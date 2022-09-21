@@ -1,5 +1,7 @@
 package com.genie.myapp.vo;
 
+import java.util.Map;
+
 public class OrderVO {
     
     private int order_num;
@@ -16,15 +18,17 @@ public class OrderVO {
     private String payment_mehtod;
     private String product_name;
     
+    public Map<String, String> deliveryMap;
+    
     @Override
-    public String toString() {
-        return "OrderVO [genie_id=" + genie_id + ", order_num=" + order_num + ", order_price=" + order_price
-                + ", order_qty=" + order_qty + ", order_writedate=" + order_writedate + ", payment_mehtod="
-                + payment_mehtod + ", product_id=" + product_id + ", product_name=" + product_name
-                + ", recipient_address=" + recipient_address + ", recipient_delivery_status="
-                + recipient_delivery_status + ", recipient_name=" + recipient_name + ", recipient_phone="
-                + recipient_phone + ", recipient_request=" + recipient_request + "]";
-    }
+	public String toString() {
+		return "OrderVO [order_num=" + order_num + ", genie_id=" + genie_id + ", product_id=" + product_id
+				+ ", recipient_name=" + recipient_name + ", recipient_phone=" + recipient_phone + ", recipient_address="
+				+ recipient_address + ", recipient_request=" + recipient_request + ", recipient_delivery_status="
+				+ recipient_delivery_status + ", order_price=" + order_price + ", order_qty=" + order_qty
+				+ ", order_writedate=" + order_writedate + ", payment_mehtod=" + payment_mehtod + ", product_name="
+				+ product_name + ", deliveryMap=" + deliveryMap + "]";
+	}
 
     public int getOrder_num() {
         return order_num;
@@ -130,5 +134,14 @@ public class OrderVO {
         this.product_name = product_name;
     }
 
+	public Map<String, String> getDeliveryMap() {
+		return deliveryMap;
+	}
+
+	public void setDeliveryMap(Map<String, String> deliveryMap) {
+		this.deliveryMap = deliveryMap;
+	}
+
+    
     
 }

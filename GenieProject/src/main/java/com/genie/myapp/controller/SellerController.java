@@ -1,9 +1,11 @@
 package com.genie.myapp.controller;
 
 import java.nio.charset.Charset;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpHeaders;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -61,12 +64,26 @@ public class SellerController {
 	@GetMapping("sellerOrder")
 	public ModelAndView sellerOrder(OrderVO vo) {
 		mav = new ModelAndView();
-		System.out.println(vo.toString());
 		mav.addObject("list", service.sellerOrder(vo));
 		mav.addObject("vo",vo);
 		mav.setViewName("seller/sellerOrder");
 		return mav;
 	}
+	
+	// 주문목록 배송상태 수정
+	@PostMapping("updateDeliveryStatus") // @RequestParam 을 이용해 Map에 전송된 매개변수 이름을 key, 값을 value 로 저장
+	public ResponseEntity<String> updateDeliveryStatus(@RequestParam Map<String, String> deliveryMap, // Ajax로 전달받은 배송상태를 Map에 저장합니다.
+												HttpServletRequest request,
+												HttpServletResponse response) throws Exception{
+		service.updateDeliveryStatus(deliveryMap); // 배송상태를 변경 
+		String msg = null;
+		ResponseEntity<String> resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		msg = "mod_success";
+		resEntity = new ResponseEntity<String>(msg, responseHeaders, HttpStatus.OK);
+		return resEntity;
+	}
+	
 	
 	// Seller 매출관리
 	@GetMapping("sellerSales")
