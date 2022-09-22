@@ -3,29 +3,19 @@ package com.genie.myapp.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/genie/*")
-public class GenieController {
+@RequestMapping("/")
+public class GenieController{
+	ModelAndView mav;
 
-    @GetMapping("genie_01")
-	public String genie_01() {
-		return null;
+	@GetMapping("genie")
+	public ModelAndView genie() {
+		mav = new ModelAndView();
+		mav.setViewName("/genie");
+		return mav;
 	}
-	@GetMapping("genie_02")
-	public String genie_02() {
-		return null;
-	}
-	@GetMapping("genie_03")
-	public String genie_03() {
-		return null;
-	}
-	@GetMapping("genie_04")
-	public String genie_04() {
-		return null;
-	}
-	@GetMapping("genie_05")
-	public String genie_05() {
-		return null;
-	}
+
+	
 }

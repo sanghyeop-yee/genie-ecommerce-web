@@ -24,26 +24,32 @@
 
 $(document).ready(function(){
 	
-	function usernameCheck() {
-		let submit = false;
-		const genie_id = $("input[name=genie_id]").val().replaceAll(" ", "");
-		if(!genie_id) {
-			return false;
-		}
-		
+		function usernameCheck() {
+			let submit = false;
+			const genie_id = $("input[name=genie_id]").val().replaceAll(" ", "");
+			if(!genie_id) {
+				return false;
+			}
+			
 		$.ajax({
-			url: "/cert/FindEmail",
+			url: "/cert/overlapCheck",
 			type: "GET",
 			async: false,
-			data: {genie_id : genie_id},
-		}).done(function(result){
+			data: {
+				value : genie_id,
+				valueType : "genie_id"
+			}
+		})
+		.done(function(result){
 			if(result == 1) {
 				submit = true;
 			} 
 		})
+		.fail(function(){
+			alert("에러");
+		})
 		return submit;
 	}
-	
 	
 	$(".find_btn").click(function(){
 		if(!usernameCheck()) {
@@ -57,7 +63,7 @@ $(document).ready(function(){
 		$.ajax({
 			url: "/cert/FindPwd_auth",
 			type: "POST",
-			data: data
+			data: data,
 		})
 		.then(function(result){
 			location.href= "/cert/FindPwd_auth?genie_id="+result;

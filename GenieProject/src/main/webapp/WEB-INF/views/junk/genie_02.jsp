@@ -16,7 +16,7 @@
 .grid-container{
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 1ch;
+	gap: 2rem;
 }
 .genie_02 h2{
 	margin-bottom: 2em;
@@ -38,9 +38,9 @@
   }
 }
 .button a{
-	width: 100%;
-	text-align: center;
-	float: left;
+	display: flex;
+	align-content: stretch;
+	justify-content: center;
 	background-color: #fff;
 	color: #1d1d1f;
 	margin: 1%;

@@ -16,6 +16,7 @@
 .grid-container{
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
+	gap: 2rem;
 }
 .genie_02 h2{
 	margin-bottom: 2em;
@@ -37,7 +38,9 @@
   }
 }
 .button a{
-	float: left;
+	display: flex;
+	align-content: stretch;
+	justify-content: center;
 	background-color: #fff;
 	color: #1d1d1f;
 	margin: 1%;
@@ -56,10 +59,10 @@
 </style>
 
 <section class="home">
-	<div class="genie_02">
+	<div class="genie_05">
 		<h2>어떤 특별한 날에 드릴 선물인가요?</h2>
 	</div>
-		<div class="gird-container">
+		<div class="grid-container">
 			<div class="button">
 				<a href="/">생일</a>
 			</div>

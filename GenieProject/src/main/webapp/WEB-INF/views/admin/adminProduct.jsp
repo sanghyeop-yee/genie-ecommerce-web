@@ -109,11 +109,20 @@ body {
 }
 
 .card-grid {
-  display: grid;
   grid-template-columns: repeat(1, 1fr);
   -moz-column-gap: 1.5rem;
        column-gap: 1.5rem;
   row-gap: 1.5rem;
+}
+@media (min-width: 600px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1200px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .card {
@@ -154,7 +163,12 @@ body {
   padding: 1rem 1.25rem;
   font-size: 0.875rem;
 }
-
+#cart tbody td img.thumb {
+  vertical-align: bottom;
+  margin-bottom: 4px;
+  border-radius: 10px;
+  width: 130px;
+}
 .card-footer {
   margin-top: auto;
   padding: 1rem 1.25rem;
@@ -169,174 +183,6 @@ body {
   font-weight: 500;
   font-size: 0.875rem;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-table { border-collapse: collapse; border-spacing: 0; }
-img { border: 0; max-width: 100%; }
-
-h1 {
-  font-family: 'Fredoka One', Helvetica, Tahoma, sans-serif;
-  color: #fff;
-  text-shadow: 1px 2px 0 #7184d8;
-  font-size: 3.5em;
-  line-height: 1.1em;
-  padding: 6px 0;
-  font-weight: normal;
-  text-align: center;
-}
-
-
-/* page structure */
-#w {
- padding: 2rem 1rem 2rem 1rem;
-}
-
-#title {
-  display: block;
-  width: 100%;
-  background: #95a6d6;
-  padding: 10px 0;
-  -webkit-border-top-right-radius: 6px;
-  -webkit-border-top-left-radius: 6px;
-  -moz-border-radius-topright: 6px;
-  -moz-border-radius-topleft: 6px;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
-}
-
-#page {
-  display: block;
-  background: #fff;
-  padding: 15px 0;
-}
-
-/** cart table **/
-#cart {
-  display: block;
-  border-collapse: collapse;
-  margin: 0;
-  width: 100%;
-  color: #444;
-}
-#cart thead th {
-  padding: 8px 0;
-}
-
-#cart thead th.first {
-  width: 175px;
-  text-align:left;
-}
-#cart thead th.third {
-  width: 130px;
-  text-align:left;
-}
-#cart thead th.fourth {
-  width: 230px;
-   text-align:left;
-}
-#cart tbody td {
-  text-align: left;
-  margin-top: 4px;
-}
-
-tr.productitm {
-  height: 65px;
-  line-height: 65px;
-  border-bottom: 1px solid #f2f2f2;
-}
-
-
-#cart tbody td img.thumb {
-  vertical-align: bottom;
-  margin-bottom: 4px;
-  border-radius: 10px;
-}
-
-.qtyinput {
-  width: 33px;
-  height: 22px;
-  border: 1px solid #a3b8d3;
-  background: #dae4eb;
-  color: #616161;
-  text-align: center;
-}
-
-tr.totalprice, tr.extracosts {
-  height: 35px;
-  line-height: 35px;
-}
-
-.remove {
-  /* http://findicons.com/icon/261449/trash_can?id=397422 */
-  cursor: pointer;
-  position: relative;
-  right: 12px;
-  top: 5px;
-}
-
-
-.light {
-  color: #888b8d;
-  text-shadow: 1px 1px 0 rgba(255,255,255,0.45);
-  font-size: 1.1em;
-  font-weight: normal;
-}
-.thick {
-  color: #272727;
-  font-size: 1.7em;
-}
-
-
-/* https://codepen.io/guvootes/pen/eyDAb */
-#submitbtn {
-  width: 150px;
-  height: 35px;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  margin: 0 0 10px 0;
-  font-size: 1.3em;
-  letter-spacing: 0.05em;
-  font-family: Arial, Tahoma, sans-serif;
-  color: #fff;
-  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
-  cursor: pointer;
-  overflow: hidden;
-  border-bottom: 1px solid #0071ff;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #66aaff), color-stop(100%, #4d9cff));
-  background-image: -webkit-linear-gradient(#66aaff, #4d9cff);
-  background-image: -moz-linear-gradient(#66aaff, #4d9cff);
-  background-image: -o-linear-gradient(#66aaff, #4d9cff);
-  background-image: linear-gradient(#66aaff, #4d9cff);
-}
-#submitbtn:hover {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d9cff), color-stop(100%, #338eff));
-  background-image: -webkit-linear-gradient(#4d9cff, #338eff);
-  background-image: -moz-linear-gradient(#4d9cff, #338eff);
-  background-image: -o-linear-gradient(#4d9cff, #338eff);
-  background-image: linear-gradient(#4d9cff, #338eff);
-}
-#submitbtn:active {
-  border-bottom: 0;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #338eff), color-stop(100%, #4d9cff));
-  background-image: -webkit-linear-gradient(#338eff, #4d9cff);
-  background-image: -moz-linear-gradient(#338eff, #4d9cff);
-  background-image: -o-linear-gradient(#338eff, #4d9cff);
-  background-image: linear-gradient(#338eff, #4d9cff);
-  -webkit-box-shadow: inset 0 1px 3px 1px rgba(0,0,0,0.25);
-  -moz-box-shadow: inset 0 1px 3px 1px rgba(0,0,0,0.25);
-  box-shadow: inset 0 1px 3px 1px rgba(0,0,0,0.25);
-}
 </style>
 
 <script>
@@ -344,9 +190,7 @@ tr.totalprice, tr.extracosts {
 </script>
 
 <main class="main">
-
 	<div class="responsive-wrapper">
-
 		<div class="content">
 			<div class="content-panel">
 				<div class="vertical-tabs">
@@ -354,11 +198,13 @@ tr.totalprice, tr.extracosts {
 						<span><img src="https://pngimg.com/uploads/circle/circle_PNG23.png" /></span>
 						<h3>회원정보</h3>
 					</div>
-					<a href="#"><ul class="fa-ul"><li><i class="fa-li fa fa-envelope"></i>Inbox</li></ul></a>
-					<a href="#"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>상품관리</li></ul></a>
-					<a href="#"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>주문관리</li></ul></a>
-					<a href="#"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>고객관리</li></ul></a>
-					<a href="#"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>More</li></ul></a>				
+					<a href="/admin/adminMain"><ul class="fa-ul"><li><i class="fa-li fa fa-envelope"></i>Inbox</li></ul></a>
+          <a href="/admin/adminProduct"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>상품관리</li></ul></a>
+					<a href="/admin/adminTag"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>태그관리</li></ul></a>
+          <a href="/admin/adminCategory"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>카테고리관리</li></ul></a>
+					<a href="/admin/admember"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>고객관리</li></ul></a>
+					<a href="/admin/adcompany"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>업체관리</li></ul></a>
+					<a href="/admin/adminMain"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>More</li></ul></a>							
 				</div>
 			</div>
 			<div class="content-main">
@@ -374,11 +220,11 @@ tr.totalprice, tr.extracosts {
 							</div>
 						</div>
 
-						  <div id="w">
+            <div class="card-body">
 						    <div id="page">
 						      <table id="cart">
 						        <thead>
-						          <tr>
+						          <tr class="productitm">
 						            <th class="first">이미지</th>
 						            <th class="third">상품명</th>
 						            <th class="fourth">기업명</th>

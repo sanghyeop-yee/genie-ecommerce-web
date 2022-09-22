@@ -28,7 +28,7 @@ public class CertServiceImpl implements CertService {
 	}
 	
 	@Override
-	public void sendUserId(String user_email, List<String> user_name) {
+	public void sendUserId(String user_email, List<String> genie_id) {
 		SimpleMailMessage simpleMailMessage = new  SimpleMailMessage();
 		simpleMailMessage.setTo(user_email);
 		simpleMailMessage.setSubject("아이디 찾기");
@@ -37,11 +37,11 @@ public class CertServiceImpl implements CertService {
 		sb.append("가입하신 아이디는");
 		sb.append(System.lineSeparator());
 		
-		for(int i=0;i<user_name.size()-1;i++) {
-			sb.append(user_name.get(i));
+		for(int i=0;i<genie_id.size()-1;i++) {
+			sb.append(genie_id.get(i));
 			sb.append(System.lineSeparator());
 		}
-		sb.append(user_name.get(user_name.size()-1)).append("입니다");
+		sb.append(genie_id.get(genie_id.size()-1)).append("입니다");
 		
 		simpleMailMessage.setText(sb.toString());
 		
@@ -59,13 +59,18 @@ public class CertServiceImpl implements CertService {
 //////////////////////////////////////////////////////////////////////
 
 	@Override
-	public List<String> FindEmail(String genie_id) {	
-		return cdao.FindEmail(genie_id);
+	public int overlapCheck(String value, String valueType) {
+
+		Map<String, String> map = new HashMap<>();
+		map.put("value", value);
+		map.put("valueType", valueType);
+		
+		return cdao.overlapCheck(value, valueType);
 	}
 
 
 	@Override
-    public boolean emailCheck(String genie_id, List<String> user_email) {
+    public boolean emailCheck(String genie_id, String user_email) {
         Map<String, Object> map = new HashMap<>();
         map.put("genie_id", genie_id);
         map.put("user_email", user_email);
@@ -89,8 +94,15 @@ public class CertServiceImpl implements CertService {
 			public void run() {
 				mailSender.send(simpleMailMessage);
 			}
-		}).start();
-		
+		}).start();	
 	}
+
+	@Override
+	public int PwdEditOk(String genie_id, String user_pwd) {
+		return cdao.PwdEditOk(genie_id, user_pwd);
+	}
+
+
+
 
 }

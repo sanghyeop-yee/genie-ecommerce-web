@@ -25,7 +25,7 @@
 	}
 	.container{
 		padding:30px;
-		width:600px;
+		width:620px;
 		height:1600px;
 		background-color:white;
 		margin:0 auto;
@@ -52,7 +52,7 @@
 	    height: 1000px;
 	    margin: 0px auto;
 	    margin-top: 0;
-	    padding: 10px;
+	    /*padding: 10px;*/
 	    padding-bottom: 30px;
 	}
 	.selForm p{
