@@ -190,6 +190,18 @@ body {
 		margin:10px;
 		margin-right:15px;
 	}
+	#imageDiv{
+		overflow:auto;
+	}
+	#imageDiv input{
+		width:98%;
+		padding:10px;
+		display:inline-block;
+		transition: ease .40s;
+		float:right;
+		margin:10px;
+		margin-right:15px;
+	}
 	#infoDiv{
 		overflow:auto;
 	}
@@ -198,13 +210,16 @@ body {
 	}
 	label{
 		display: inline-block;
-    	width: 140px;
+    	width: 190px;
     	line-height: 50px;
     	font-size:20px;
 	}
 	.subTag{
 		font-size:20px;
 		margin:0
+	}
+	#cateDiv, #tagDiv, #mbtiDiv{
+		margin-bottom:6vh;
 	}
 	#formSubmit{
 		padding:10px 100px 10px 100px;
@@ -247,17 +262,17 @@ body {
 			}
 			//이미지1
 			if($("#product_image1").val()==""){
-				alert("상품이미지(1)를 첨부하세요.");
+				alert("상품이미지(1)의 링크를 입력하세요.");
 				return false;
 			}
 			//이미지2
 			if($("#product_image2").val()==""){
-				alert("상품이미지(2)를 첨부하세요.");
+				alert("상품이미지(2)의 링크를 입력하세요.");
 				return false;
 			}
 			//이미지3
 			if($("#product_image3").val()==""){
-				alert("상품이미지(3)를 첨부하세요.");
+				alert("상품이미지(3)의 링크를 입력하세요.");
 				return false;
 			}
 			//카테고리
@@ -276,6 +291,15 @@ body {
 			}
 			if($("input:checkbox[name=tagList]:checked").length>7){
 				alert("태그를 2개 이하로 선택하세요.")
+				return false;
+			}
+			//mbti
+			if($("input:checkbox[name=mbtiList]:checked").length<1){
+				alert("MBTI를 선택하세요.")
+				return false;
+			}
+			if($("input:checkbox[name=mbtiList]:checked").length>4){
+				alert("MBTI를 4개 이하로 선택하세요.")
 				return false;
 			}
 			//---유효성검사 끝------------------------
@@ -326,13 +350,13 @@ body {
 								<p>상품수량</p>
 								<input type="text" id="product_quantity" name="product_quantity" placeholder="상품수량을 입력하세요"/>
 							</div>
-							<div>
+							<div id="imageDiv">
 								<p>상품이미지</p>
-								<input type="file" name="product_image1" id="product_image1"/>
-								<input type="file" name="product_image2" id="product_image2"/>
-								<input type="file" name="product_image3" id="product_image3"/>
+								<input type="text" name="product_image1" id="product_image1" placeholder="이미지링크를 입력하세요"/>
+								<input type="text" name="product_image2" id="product_image2" placeholder="이미지링크를 입력하세요"/>
+								<input type="text" name="product_image3" id="product_image3" placeholder="이미지링크를 입력하세요"/>
 							</div>
-							<div>
+							<div id="cateDiv">
 								<p>카테고리</p>
 								<label><input type="checkbox" name="categoryList" value="생일"/>생일</label>
 								<label><input type="checkbox" name="categoryList" value="기념일"/>기념일</label>
@@ -348,7 +372,7 @@ body {
 								<label><input type="checkbox" name="categoryList" value="홈파티"/>홈파티</label>
 								
 							</div>
-							<div>
+							<div id="tagDiv">
 								<p>태그</p>
 								<p class="subTag">대상</p>
 								<label><input type="checkbox" name="tagList" value="부모님"/>부모님</label>
@@ -377,12 +401,26 @@ body {
 								<label><input type="checkbox" name="tagList" value="30대"/>30대</label>
 								<label><input type="checkbox" name="tagList" value="40대"/>40대</label>
 								<label><input type="checkbox" name="tagList" value="50대"/>50대</label>
-								<label><input type="checkbox" name="tagList" value="60대"/>60대</label>
-								<label><input type="checkbox" name="tagList" value="70대이상"/>70대이상</label>
+								<label><input type="checkbox" name="tagList" value="60대"/>60대이상</label>
 								<p class="subTag">성별</p>
 								<label><input type="checkbox" name="tagList" value="남성"/>남성</label>
 								<label><input type="checkbox" name="tagList" value="여성"/>여성</label>
 								<label><input type="checkbox" name="tagList" value="남여공용"/>남여공용</label>
+							</div>
+							<div id="mbtiDiv">
+								<p>MBTI</p>
+								<p class="subTag">E : 외향형 (사교적,활동적) / I : 내향형 (정적,신중함)</p>
+								<label><input type="checkbox" name="mbtiList" value="E"/>E</label>
+								<label><input type="checkbox" name="mbtiList" value="I"/>I</label>
+								<p class="subTag">S : 감각형 (실용적,현실적) / N : 직관형 (이상적,비약적)</p>
+								<label><input type="checkbox" name="mbtiList" value="S"/>S</label>
+								<label><input type="checkbox" name="mbtiList" value="N"/>N</label>
+								<p class="subTag">T : 사고형 (객관적,합리적) / F : 감정형 (상황적,공감성)</p>
+								<label><input type="checkbox" name="mbtiList" value="T"/>T</label>
+								<label><input type="checkbox" name="mbtiList" value="F"/>F</label>
+								<p class="subTag">J : 판단형 (계획적,체계적) / P : 인식형 (즉흥적,융통성)</p>
+								<label><input type="checkbox" name="mbtiList" value="J"/>J</label>
+								<label><input type="checkbox" name="mbtiList" value="P"/>P</label>
 							</div>
 							<li><input type="submit" id="formSubmit" value="상품등록"/></li>
 						</ul>

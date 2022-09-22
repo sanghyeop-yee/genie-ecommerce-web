@@ -1,6 +1,8 @@
 package com.genie.myapp.controller;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -65,14 +67,14 @@ public class SellerController {
 	public ModelAndView sellerOrder(OrderVO vo) {
 		mav = new ModelAndView();
 		mav.addObject("list", service.sellerOrder(vo));
-		mav.addObject("vo",vo);
+		//mav.addObject("vo",vo);
 		mav.setViewName("seller/sellerOrder");
 		return mav;
 	}
-	
+
 	// 주문목록 배송상태 수정
 	@PostMapping("updateDeliveryStatus") // @RequestParam 을 이용해 Map에 전송된 매개변수 이름을 key, 값을 value 로 저장
-	public ResponseEntity<String> updateDeliveryStatus(@RequestParam Map<String, String> deliveryMap, // Ajax로 전달받은 배송상태를 Map에 저장합니다.
+	public ResponseEntity<String> updateDeliveryStatus(@RequestParam Map<String, String> deliveryMap, // Ajax로 전달받은 배송상태를 Map에 저장
 												HttpServletRequest request,
 												HttpServletResponse response) throws Exception{
 		service.updateDeliveryStatus(deliveryMap); // 배송상태를 변경 
@@ -84,14 +86,37 @@ public class SellerController {
 		return resEntity;
 	}
 	
-	
-	// Seller 매출관리
+	// Seller 매출관리 페이지
 	@GetMapping("sellerSales")
-	public ModelAndView sellerSales() {
+	public ModelAndView sellerSales(OrderVO vo) {
 		mav = new ModelAndView();
+		
+		int osum = service.orderSum();
+		
+		mav.addObject("orderSum", osum);
 		mav.setViewName("seller/sellerSales");
 		return mav;
 	}
+	
+//	
+//	// Seller 매출관리 페이지
+//	@GetMapping("sellerSales")
+//	public ModelAndView sellerSales() {
+//		mav = new ModelAndView();
+//		
+//		List<OrderVO> olist = new ArrayList<OrderVO>();
+//		olist = service.sellerOrder();
+//		
+//		int osum = service.orderSum();
+//		
+//		// mav.addObject("list", service.sellerOrders(vo));
+//		mav.addObject("olist", olist);
+//		mav.addObject("osum", osum);
+//		mav.setViewName("seller/sellerSales");
+//		return mav;
+//	}
+
+
 	
 	//업체 상품등록 폼 보기
 	@GetMapping("productForm")
@@ -195,15 +220,59 @@ public class SellerController {
 	}
 	
 	//seller 상품수정 페이지로 이동
-	@GetMapping("/sellerProductEdit/{product_id}")
-	public ModelAndView sellerProductEdit(@PathVariable("product_id") int pid, SellerProductVO pvo) {
+	@GetMapping("sellerProductEdit/{product_id}")
+	public ModelAndView sellerProductEdit(@PathVariable("product_id") int pid) {
 		mav = new ModelAndView();
 		
-		mav.addObject("pvo", pvo);
+		mav.addObject("pvo", service.getProduct(pid));
 		mav.setViewName("seller/sellerProductEdit");
 		
 		return mav;
 	}
 	
-	//seller 상품수정 : DB 업데이트 
+	//seller 상품수정 : DB 업데이트
+	@PostMapping("productEditOk")
+	public ResponseEntity<String> productEditOk(SellerProductVO pvo, HttpSession session){
+		System.out.println(pvo.toString());
+		pvo.setGenie_id((String)session.getAttribute("logId"));
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text","html", Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=UTF-8");
+		String msg = "<script>";
+		
+		try {//수정성공 - 상품관리로 이동
+			int cnt = service.productEditOk(pvo);
+			
+			msg += "alert('상품이 수정되었습니다. 상품관리 페이지로 이동합니다. ');";
+			msg += "location.href='/seller/sellerProduct';";
+			
+		}catch(Exception e){//수정실패 - 수정폼으로 이동
+			e.printStackTrace();
+			
+			msg += "alert('상품수정이 실패하였습니다.');";
+			msg += "history.go(-1);";
+		}
+		msg += "</script>";
+		
+		ResponseEntity<String> entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+		
+		return entity;
+	}
+	
+	//seller 상품삭제 : DB
+	@GetMapping("productDel/{product_id}")
+	public ModelAndView productDel(@PathVariable("product_id") int pid) {
+		//System.out.println(pid);
+		int result = service.productDel(pid);
+		
+		mav = new ModelAndView();
+		if(result>0) {//삭제
+			mav.setViewName("redirect:/seller/sellerProduct");
+		}else {//삭제실패
+			mav.setViewName("redirect:/seller/sellerProduct");
+		}
+		return mav;
+	}
+	
 }

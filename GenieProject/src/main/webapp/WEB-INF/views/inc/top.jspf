@@ -20,7 +20,6 @@
 	<nav>
 		<a href="/"><img src="/image/logo_western.png" style="width:11vw; height:auto; display:block;"></a>
 		<ul>
-			<li><a href="/genie/genie_01"><i class="fa-solid fa-robot"></i></a></li>
 			<li><a href="/product"><i class="fa-solid fa-store"></i></a></li>
 			<li><a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
 			<c:if test ="${logStatus !='Y'}">

@@ -107,7 +107,15 @@ body {
   padding-bottom: 6rem;
   flex-grow: 1;
 }
-
+.content-main a{
+	text-decoration: none;
+	color: #3e3e3e;
+}
+#product_title{
+	font-size:20px;
+	font-family: arial, sans-serif;
+	font-weight:bold;
+}
 table {
   font-family: arial, sans-serif;
   font-size: 15px;
@@ -124,7 +132,11 @@ td, th {
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-
+	function productDel(product_id ){
+		if(confirm("상품을 삭제하시겠습니까?")){
+			location.href="/seller/productDel/"+product_id;
+		}
+	}
 </script>
 
 <main class="main">
@@ -136,18 +148,19 @@ td, th {
 				<div class="vertical-tabs">
 					<div>
 						<span><img src="../images/seller/profile-1.png" /></span>
-						<h3>업체이름</h3>
+						<h3>${logName }님</h3>
 					</div>
-					<a href="/seller/productForm"><ul class="fa-ul"><li><i class="fa fa-plus-circle" aria-hidden="true"></i> 상품등록</li></ul></a>
-					<a href="/seller/sellerProduct"><ul class="fa-ul"><li><i class="fa fa-gift" aria-hidden="true"></i> 상품관리</li></ul></a>
-					<a href="/seller/sellerOrder"><ul class="fa-ul"><li><i class="fa fa-shopping-cart" aria-hidden="true"></i> 주문관리</li></ul></a>
-					<a href="/seller/sellerSales"><ul class="fa-ul"><li><i class="fa fa-area-chart" aria-hidden="true"></i> 매출관리</li></ul></a>
-					<a href="#"><ul class="fa-ul"><li><i class="fa fa-question-circle" aria-hidden="true"></i> 문의관리</li></ul></a>				
+          <a href="sellerMain"><ul class="fa-ul"><li><i class="fa fa-pie-chart" aria-hidden="true"></i> 대시보드</li></ul></a>
+					<a href="productForm"><ul class="fa-ul"><li><i class="fa fa-plus-circle" aria-hidden="true"></i> 상품등록</li></ul></a>
+					<a href="sellerProduct"><ul class="fa-ul"><li><i class="fa fa-gift" aria-hidden="true"></i> 상품관리</li></ul></a>
+					<a href="sellerOrder"><ul class="fa-ul"><li><i class="fa fa-shopping-cart" aria-hidden="true"></i> 주문관리</li></ul></a>
+					<a href="sellerSales"><ul class="fa-ul"><li><i class="fa fa-area-chart" aria-hidden="true"></i> 매출관리</li></ul></a>
+					<a href="sellerQna"><ul class="fa-ul"><li><i class="fa fa-question-circle" aria-hidden="true"></i> 문의관리</li></ul></a>	
 				</div>
 			</div>
 			<div class="content-main">
 				<div class="content-main-top">
-					<p>상품관리</p>
+					<p id="product_title">상품관리</p>
 					<table id="table">
 						<tr>
 							<th>상품번호</th>
@@ -157,16 +170,18 @@ td, th {
 							<th>카테고리</th>
 							<th>태그</th>
 							<th>수정</th>
+							<th>삭제</th>
 						</tr>
 						<c:forEach var="pvo" items="${plist }">
 						<tr>
 							<td>${pvo.product_id }</td>
 							<td>${pvo.product_name}</td>
 							<td>${pvo.product_price}</td>
-							<td>${pvo.product_stock}</td>
-							<td>{pvo.product_category}</td>
-							<td>{pvo.product_tag}</td>
-							<td><a href="/seller/sellerProductEdit/${pvo.product_id }">수정하기</a></td>
+							<td>${pvo.product_quantity}</td>
+							<td>${pvo.product_category}</td>
+							<td>${pvo.product_tag}</td>
+							<td><a href="/seller/sellerProductEdit/${pvo.product_id }">edit</a></td>
+							<td><a href="javascript:productDel(${pvo.product_id });">del</a></td>
 						</tr>
 						</c:forEach>
 					</table>

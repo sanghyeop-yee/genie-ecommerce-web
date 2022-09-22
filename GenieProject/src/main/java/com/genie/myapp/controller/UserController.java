@@ -78,10 +78,10 @@ public class UserController {
 
 		}else if(alogVO != null){
 
-			//session.setAttribute("logId", );
-			//session.setAttribute("logName", );
+			session.setAttribute("logId", alogVO.getGenie_id());
+			session.setAttribute("logName", alogVO.getAdminister_name());
 			session.setAttribute("logStatus","Y");
-			mav.setViewName("redirect:/admin/adminTag");
+			mav.setViewName("redirect:/admin/adminMain");
 
 			return mav;
 

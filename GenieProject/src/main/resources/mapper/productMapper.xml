@@ -3,12 +3,35 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.genie.myapp.dao.ProductDAO">
-    <insert id="setProduct">
-        insert into product (genie_id, product_name, product_price)
-        values(#{genie_id},#{product_name},#{product_price})
-    </insert>
-    <select id="getProduct">
-        select (genie_id, product_name, product_price)
-        from product
+    <select id="Product" resultType="ProductVO">
+        select 
+            product_id, 
+            genie_id,
+            product_category,
+            product_tag,
+            product_name,
+            product_price,
+            product_info,
+            product_stock,
+            product_quantity,
+            product_hit,
+            product_like,
+            product_writedate,
+            product_image1,
+            product_image2,
+            product_image3,
+            product_mbti
+        from product 
+        order by product_id desc
+    </select>
+    <select id="Cart" resultType="CartVO">
+        select 
+            cart_num,
+            genie_id,
+            product_id,
+            cart_price,
+            cart_qty,
+            cart_writedate
+        from cart;
     </select>
 </mapper>

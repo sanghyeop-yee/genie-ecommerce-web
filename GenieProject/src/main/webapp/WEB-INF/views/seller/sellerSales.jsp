@@ -134,19 +134,40 @@ body {
 				<div class="vertical-tabs">
 					<div>
 						<span><img src="../images/seller/profile-1.png" /></span>
-						<h3>업체이름</h3>
+						<h3>${logName}님</h3>
 					</div>
-					<a href="#"><ul class="fa-ul"><li><i class="fa fa-plus-circle" aria-hidden="true"></i> 상품등록</li></ul></a>
-					<a href="#"><ul class="fa-ul"><li><i class="fa fa-gift" aria-hidden="true"></i> 상품관리</li></ul></a>
-					<a href="#"><ul class="fa-ul"><li><i class="fa fa-shopping-cart" aria-hidden="true"></i> 주문관리</li></ul></a>
-					<a href="#"><ul class="fa-ul"><li><i class="fa fa-area-chart" aria-hidden="true"></i> 매출관리</li></ul></a>
-					<a href="#"><ul class="fa-ul"><li><i class="fa fa-question-circle" aria-hidden="true"></i> 문의관리</li></ul></a>				
+					<a href="sellerMain"><ul class="fa-ul"><li><i class="fa fa-pie-chart" aria-hidden="true"></i> 대시보드</li></ul></a>
+					<a href="productForm"><ul class="fa-ul"><li><i class="fa fa-plus-circle" aria-hidden="true"></i> 상품등록</li></ul></a>
+					<a href="sellerProduct"><ul class="fa-ul"><li><i class="fa fa-gift" aria-hidden="true"></i> 상품관리</li></ul></a>
+					<a href="sellerOrder"><ul class="fa-ul"><li><i class="fa fa-shopping-cart" aria-hidden="true"></i> 주문관리</li></ul></a>
+					<a href="sellerSales"><ul class="fa-ul"><li><i class="fa fa-area-chart" aria-hidden="true"></i> 매출관리</li></ul></a>
+					<a href="sellerQna"><ul class="fa-ul"><li><i class="fa fa-question-circle" aria-hidden="true"></i> 문의관리</li></ul></a>					
 				</div>
 			</div>
 			<div class="content-main">
 				<div class="content-main-top">
-					<p>Disney님 매출관리 Dashboard</p>
+					<p>${logName }님 매출관리 Dashboard</p>
+					<div>
+						총 매출 ${orderSum }
+					</div>
+					<div>
+						이번달 매출 ${orderSumByMonth }
+					</div>
+					<div>
+						결제건수 
+					</div>
+					<div>
+						이달의 상품 
+					</div>
 					
+					
+					
+		          <!-- 차트 (chart js)-->
+		          <canvas id="chart"></canvas>
+		          
+		          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		        
+		          <script src="../js_css/sellerhome.js"></script>
 				</div>
 			</div>
 		</div>

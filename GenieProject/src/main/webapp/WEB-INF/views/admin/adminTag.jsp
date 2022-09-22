@@ -109,11 +109,20 @@ body {
 }
 
 .card-grid {
-  display: grid;
   grid-template-columns: repeat(1, 1fr);
   -moz-column-gap: 1.5rem;
        column-gap: 1.5rem;
   row-gap: 1.5rem;
+}
+@media (min-width: 600px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1200px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .card {
@@ -186,11 +195,13 @@ body {
 						<span><img src="https://pngimg.com/uploads/circle/circle_PNG23.png" /></span>
 						<h3>회원정보</h3>
 					</div>
-					<a href="#"><ul class="fa-ul"><li><i class="fa-li fa fa-envelope"></i>Inbox</li></ul></a>
-					<a href="#"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>상품관리</li></ul></a>
-					<a href="#"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>주문관리</li></ul></a>
-					<a href="#"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>고객관리</li></ul></a>
-					<a href="#"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>More</li></ul></a>				
+					<a href="/admin/adminMain"><ul class="fa-ul"><li><i class="fa-li fa fa-envelope"></i>Inbox</li></ul></a>
+          <a href="/admin/adminProduct"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>상품관리</li></ul></a>
+					<a href="/admin/adminTag"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>태그관리</li></ul></a>
+          <a href="/admin/adminCategory"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>카테고리관리</li></ul></a>
+					<a href="/admin/admember"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>고객관리</li></ul></a>
+					<a href="/admin/adcompany"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>업체관리</li></ul></a>
+					<a href="/admin/adminMain"><ul class="fa-ul"><li><i class="fa-li fa fa-square"></i>More</li></ul></a>					
 				</div>
 			</div>
 			<div class="content-main">
@@ -205,12 +216,26 @@ body {
 								<h3>태그</h3>
 							</div>
 						</div>
-						<div class="card-body">
-							<c:forEach var="vo" items="${list }">
-								<h3>${vo.product_tag_id}</h3>
-								<p>${vo.product_tag}</p>
-							</c:forEach>
-						</div>
+
+            <div class="card-body">
+              <div id="page">
+                <table id="cart">
+                  <tbody>
+                    <!-- 제품 반복 -->
+                    <c:forEach var="vo" items="${adminTag }">
+                    <tr class="productitm">
+                      <td><img src="" class="thumb"></td>
+                      <td>${vo.product_tag_id}</td>
+                      <td>${vo.product_tag}</td>
+                      <td><a href="/admin/adminTagPop?product_tag_id=${vo.product_tag_id}"><input type="button" value="관리"></a></td>
+                      <td><span class="remove"><img src="https://i.imgur.com/h1ldGRr.png" alt="X"></span></td>
+                    </tr>
+                     </c:forEach>      
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
 						<div class="card-footer">
 							<a href="#">더 보기</a>
 						</div>
@@ -220,3 +245,29 @@ body {
 		</div>
 	</div>
 </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

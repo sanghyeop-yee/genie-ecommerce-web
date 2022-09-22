@@ -1,7 +1,5 @@
 package com.genie.myapp.vo;
 
-import java.util.Map;
-
 public class OrderVO {
     
     private int order_num;
@@ -17,9 +15,11 @@ public class OrderVO {
     private String order_writedate;
     private String payment_mehtod;
     private String product_name;
-    
-    public Map<String, String> deliveryMap;
-    
+
+    private String month_day;
+    private int total_sales;
+
+
     @Override
 	public String toString() {
 		return "OrderVO [order_num=" + order_num + ", genie_id=" + genie_id + ", product_id=" + product_id
@@ -27,7 +27,7 @@ public class OrderVO {
 				+ recipient_address + ", recipient_request=" + recipient_request + ", recipient_delivery_status="
 				+ recipient_delivery_status + ", order_price=" + order_price + ", order_qty=" + order_qty
 				+ ", order_writedate=" + order_writedate + ", payment_mehtod=" + payment_mehtod + ", product_name="
-				+ product_name + ", deliveryMap=" + deliveryMap + "]";
+				+ product_name + ", month_day=" + month_day + ", total_sales=" + total_sales + "]";
 	}
 
     public int getOrder_num() {
@@ -134,14 +134,22 @@ public class OrderVO {
         this.product_name = product_name;
     }
 
-	public Map<String, String> getDeliveryMap() {
-		return deliveryMap;
-	}
+    public String getMonth_day() {
+        return month_day;
+    }
 
-	public void setDeliveryMap(Map<String, String> deliveryMap) {
-		this.deliveryMap = deliveryMap;
-	}
-
+    public void setMonth_day(String month_day) {
+        this.month_day = month_day;
+    }
     
+    public int getTotal_sales() {
+        return total_sales;
+    }
+
+    public void setTotal_sales(int total_sales) {
+        this.total_sales = total_sales;
+    }
+
+
     
 }

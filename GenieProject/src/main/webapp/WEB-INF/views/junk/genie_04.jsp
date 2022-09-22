@@ -16,6 +16,7 @@
 .grid-container{
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
+	gap: 2rem;
 }
 .genie_04 h2{
 	margin-bottom: 2em;
@@ -37,7 +38,9 @@
   }
 }
 .button a{
-	float: left;
+	display: flex;
+	align-content: stretch;
+	justify-content: center;
 	background-color: #fff;
 	color: #1d1d1f;
 	margin: 1%;
@@ -59,7 +62,7 @@
 	<div class="genie_04">
 		<h2>선물 받는 분의 나이대가 어떻게 되시나요?</h2>
 	</div>
-		<div class="gird-container">
+		<div class="grid-container">
 			<div class="button">
 				<a href="/genie/genie_05">10대</a>
 			</div>
