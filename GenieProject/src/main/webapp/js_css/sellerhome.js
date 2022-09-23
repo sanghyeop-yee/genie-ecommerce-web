@@ -1,3 +1,4 @@
+/*
 const chart = document.querySelector("#chart").getContext('2d');
 
 // 새로운 차트 객체 생성
@@ -19,7 +20,7 @@ new Chart(chart, {
         responsive: true
     }
 })
-
+*/
 // show or hide sidebar
 const menuBtn = document.querySelector('#menu-btn');
 const closeBtn = document.querySelector('#close-btn');

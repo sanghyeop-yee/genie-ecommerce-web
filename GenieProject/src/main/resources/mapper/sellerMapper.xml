@@ -9,7 +9,7 @@
     select m.order_num, m.genie_id, p.product_name, m.recipient_name, m.recipient_phone, m.recipient_address, m.recipient_request, m.recipient_delivery_status, m.order_price, m.order_qty, m.order_writedate 
     from myorder m join product p 
     on m.product_id = p.product_id
-    <!-- where genie_id=#{genie_id} -->
+    <!-- where m.genie_id=#{genie_id} -->
   </select>
 
 	<select id="idCheck" resultType="int">
@@ -83,7 +83,36 @@
 	 	where order_num = #{order_num}
 	</update>
 	
+	<!--  총매출 -->
 	<select id="orderSum" resultType="int">
 		select sum(order_price) from myorder
+		<!-- where m.genie_id=#{genie_id} -->
+	</select>
+	
+	<!--  일별 매출 -->
+	<select id="orderSumByDay" resultType="OrderVO">
+		select date_format(order_writedate, '%m-%d') as month_day, sum(order_price) as total_sales
+		from myorder
+		group by month_day
+		<!-- where m.genie_id=#{genie_id} -->
+	</select>
+	
+	<!--  총 결제건수 -->
+	<select id="orderCount" resultType="int">
+		select count(order_num) order_cnt from myorder
+		<!-- where m.genie_id=#{genie_id} -->
+	</select>
+	
+	<!--  이달의 상품 -->
+	<select id="bestSeller" resultType="string">
+		select p.product_name
+		from product p join
+			(select product_id, count(product_id) sold_count
+			from myorder
+			group by product_id
+			order by sold_count desc
+			limit 1) m
+		on p.product_id = m.product_id
+		<!-- where m.genie_id=#{genie_id} -->
 	</select>
 </mapper>

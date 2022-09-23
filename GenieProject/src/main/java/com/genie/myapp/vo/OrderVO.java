@@ -13,7 +13,7 @@ public class OrderVO {
     private int order_price;
     private int order_qty;
     private String order_writedate;
-    private String payment_mehtod;
+    private String payment_method;
     private String product_name;
 
     private String month_day;
@@ -26,7 +26,7 @@ public class OrderVO {
 				+ ", recipient_name=" + recipient_name + ", recipient_phone=" + recipient_phone + ", recipient_address="
 				+ recipient_address + ", recipient_request=" + recipient_request + ", recipient_delivery_status="
 				+ recipient_delivery_status + ", order_price=" + order_price + ", order_qty=" + order_qty
-				+ ", order_writedate=" + order_writedate + ", payment_mehtod=" + payment_mehtod + ", product_name="
+				+ ", order_writedate=" + order_writedate + ", payment_method=" + payment_method + ", product_name="
 				+ product_name + ", month_day=" + month_day + ", total_sales=" + total_sales + "]";
 	}
 
@@ -118,12 +118,12 @@ public class OrderVO {
         this.order_writedate = order_writedate;
     }
 
-    public String getPayment_mehtod() {
-        return payment_mehtod;
+    public String getPayment_method() {
+        return payment_method;
     }
 
-    public void setPayment_mehtod(String payment_mehtod) {
-        this.payment_mehtod = payment_mehtod;
+    public void setPayment_method(String payment_method) {
+        this.payment_method = payment_method;
     }
 
     public String getProduct_name() {

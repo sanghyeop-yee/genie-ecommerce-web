@@ -27,6 +27,12 @@ public interface SellerService {
 	public void updateDeliveryStatus(Map deliveryMap);
 	// 매출관리 (결제금액)
 	public int orderSum();
+	// 일별 매출관리
+	public List<OrderVO> orderSumByDay();
+	// 결제건수
+	public int orderCount();
+	// 베스트셀러
+	public String bestSeller();
   	//판매자 로그인
 	public SellerVO loginOk(SellerVO svo);
 	//상품관리 - 상품목록
