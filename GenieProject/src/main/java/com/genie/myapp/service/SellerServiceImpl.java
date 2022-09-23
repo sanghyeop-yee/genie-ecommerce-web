@@ -89,4 +89,19 @@ public class SellerServiceImpl implements SellerService {
 	public int orderSum() {
 		return dao.orderSum();
 	}
+
+	@Override
+	public List<OrderVO> orderSumByDay() {
+		return dao.orderSumByDay();
+	}
+
+	@Override
+	public int orderCount() {
+		return dao.orderCount();
+	}
+
+	@Override
+	public String bestSeller() {
+		return dao.bestSeller();
+	}
 }
