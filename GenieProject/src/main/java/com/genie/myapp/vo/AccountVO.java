@@ -5,7 +5,6 @@ public class AccountVO {
 	private String genie_pwd;
     private int member_type;
 
-
     @Override
     public String toString() {
         return "AccountVO [genie_id=" + genie_id + ", genie_pwd=" + genie_pwd + ", member_type=" + member_type + "]";
@@ -29,7 +28,5 @@ public class AccountVO {
     public void setMember_type(int member_type) {
         this.member_type = member_type;
     }
-    
-    
     
 }

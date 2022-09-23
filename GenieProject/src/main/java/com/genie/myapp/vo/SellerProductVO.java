@@ -20,6 +20,7 @@ public class SellerProductVO {
 	private String product_image2;
 	private String product_image3;
 	private String product_mbti;
+	private String company_name;
 	
 	//여러개의 카테고리를 저장할 컬렉션
 	private List<String> categoryList;
@@ -198,6 +199,14 @@ public class SellerProductVO {
 
 	public void setMbtiList(List<String> mbtiList) {
 		this.mbtiList = mbtiList;
+	}
+
+	public String getCompany_name() {
+		return company_name;
+	}
+
+	public void setCompany_name(String company_name) {
+		this.company_name = company_name;
 	}
 	
 	

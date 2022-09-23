@@ -39,8 +39,6 @@ img{
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
     grid-gap: 2em;
-    justify-content: center;
-    align-items: center;
 }
 .product-list{
     position:relative;
@@ -68,8 +66,8 @@ img{
     left: 0;
     opacity: 0;
     transition: opacity .5s;
-    background: #b4b4b466;
-    color: #6e6e73;
+    background: #e0dfdf66;
+    color: #0f0f0f;
 
     /* position the text in t’ middle*/
     display: flex;

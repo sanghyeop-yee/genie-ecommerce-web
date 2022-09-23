@@ -9,25 +9,27 @@
 					
 					<div class="auth">
 						<input type="email" class="email" placeholder="이메일을 입력해주세요" maxlength="50">
-						<button type="button" class="send_email">인증번호받기</button>
-						<input type="text" class="auth_num" name="authNum" maxlength="6"  placeholder="인증번호6자리입력">
+						<button type="button" id="send_email">인증번호받기</button>
+						<input type="text" class="auth_num" name="authNum" maxlength="6" readonly placeholder="인증번호6자리입력">
 						<span class="timer"></span>
 					</div>
 				</div>			
 			</div>
 				
-			<button class="move_modify">다음</button>
+			<button id="next" disabled >다음</button>
 		</div>
 	</main>
     
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>   
 <script>
+
   $(document).ready(function(){
 	
     const URLSearch = new URLSearchParams(location.search);
     const genie_id = URLSearch.get("genie_id"); 
-
-   // 인증번호 발송했는지 여부
+    const inputBox = $("input[name=authNum]");
+    const nextBox = $("#next");
+   /* 인증번호 발송했는지 여부
     const authNum = (function(){
         let send = false;
         const isSend = function(set){
@@ -37,11 +39,20 @@
                 send = set;
             }
         }
-        return {isSend : isSend}
+        return {isSend :send}
     })();
+    */
+    let send = false;
+    const isSend = function(set){
+            if(!set) {
+                return send;
+            } else {
+                send = set;
+            }
+    }
 
-    // 이메일로 인증번호 보내기
-    $(".send_email").click(function(){
+         // 이메일로 인증번호 보내기
+    $("#send_email").click(function(){
         const data = {
             user_email : $(".email").val(),
             genie_id : genie_id
@@ -51,7 +62,7 @@
             return;
         }
         
-        const inputBox = $(this).siblings(".auth_num");
+       
         
         $.ajax({
             url: "/cert/emailCheck",
@@ -61,7 +72,7 @@
         .then(function(result){
             if(result) {
                 sendAuthNum({user_email : data.user_email}, function(){
-                    sendAuthNumFnc(inputBox);
+                    sendAuthNumFnc();
                 });
                 
             } else {
@@ -69,7 +80,7 @@
             }
         })
             .fail(function(){
-                alert("에러");
+                alert("이메일 에러");
             })
         })	
 
@@ -81,33 +92,33 @@
                 data: data 
             })
             .then(function(result){
-                alert({
-                    text: result
-                })
-                .then(function(){
-                    func();
-                })
+                alert(result); 
+                sendAuthNumFnc();
             })
             .fail(function(){
-                alert("에러");
+                alert("인증번호 보내기 에러");
             })
         }
    
 	
     // 인증번호 보낸 뒤 함수
-    function sendAuthNumFnc(inputBox){
+    function sendAuthNumFnc(){
         inputBox.prop("readonly", false);
+        nextBox.prop("disabled",false);
         inputBox.focus();
-        timer.start();
-        authNum.isSend(true);
+        // timer.start();
+        //console.log(authNum);
+        isSend(true);
+        //console.log(send);
     }
     
  
   
  
     // 인증번호 입력 후 다음 버튼
-    $(".move_modify").click(function(){
-        if(!authNum.isSend()) {
+    $("#next").click(function(){
+        console.log("authNum.isSend->"+send);
+        if(send == false) {
             alert("인증번호를 발송해주세요");
             return;
         }
@@ -117,16 +128,18 @@
             authNumber = $(this).siblings(".auth").find(".auth_num").val(); 
         })
         
-        if(!authNumber) {
+        if(authNumber=="") {
+            alert("인증번호 입력하세요...");
             return;
         }
-        
+        console.log(authNumber);
         $.ajax({
             url: "/cert/authNumCheck",
             type: "POST",
             data: {authNum : authNumber}
         })
-        .then(function(){
+        .then(function(ffff){
+
             authCompletion();
         })
         .fail(function(result){

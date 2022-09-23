@@ -9,12 +9,12 @@
 	</select>
 	<!-- 태그 -->
 	<select id="adminTag" resultType="AdminVO">
-		select product_tag_id, product_tag from tag
+		select product_tag_id, product_tag from tag 
 	</select>
 
 	<!-- 태그 셀렉트 All -->
 	<select resultType="AdminVO" id="tagAllSelect">
-		select product_tag_id, product_tag from tag
+		select product_tag_id, product_tag from tag order by product_tag_id asc
 	</select>
 	<select resultType="AdminVO" id="getadminTag" parameterType="String">
 		select product_tag_id, product_tag from tag where product_tag_id='${param1}'
@@ -49,7 +49,11 @@
 
 	<select resultType="UserVO" id="userAllSelect">
 		select genie_id, user_name, user_tel, user_email, user_zipcode, user_addr, user_detailaddr, user_gender, 
-		date_format(sign_in_date, '%y-%m-%d') sign_in_date, payment_method from user order by genie_id desc 
+		date_format(sign_in_date, '%y-%m-%d') sign_in_date, payment_method from user 
+		<if test="searchWord!=null">
+			where ${searchKey} like '%${searchWord}%' 
+		</if> 
+		order by sign_in_date desc limit ${onePageRecord} offset ${offsetPoint} 
 	</select>
 
 	<select resultType="UserVO" id="getadmember" parameterType="String">
@@ -67,4 +71,12 @@
 	<delete id="admemberDel">
 		delete from user where genie_id='${param1}'
 	</delete>
+	
+	<select resultType="int" id="totalRecord">
+		select count(genie_id) cnt from user 
+	<if test="searchWord!=null">
+		where ${searchKey} like '%${searchWord}%'
+	</if>
+	</select>
+	
 </mapper>

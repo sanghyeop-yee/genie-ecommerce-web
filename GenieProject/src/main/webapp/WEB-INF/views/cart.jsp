@@ -12,14 +12,16 @@
             <div>수량</div>
             <div>상품가격</div>
         </div>
+
         <div class="line"></div>
+
         <c:forEach var="cvo" items="${clist}">
             <div class="cart-list">
                 <ul>
                     <li>${cvo.product_image1}</li>
                     <li>${cvo.product_name}</li>
                     <li>${cvo.product_quantity}</li>
-                    <li>${cvo.product_price}</li>
+                    <li><fmt:formatNumber value="${pvo.product_price}" pattern="#,###원" /></li>
                 </ul>
             </div>
         </c:forEach>

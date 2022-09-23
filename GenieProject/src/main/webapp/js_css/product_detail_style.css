@@ -1,0 +1,582 @@
+/* ---------------------------상품상세정보------------------------ */
+ .product_detail h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    margin-top: 5vh;
+ }
+ .box-wrapper1 {
+    margin: 10vh 0;
+    padding: 0 15vw;
+    display: grid;
+    width: 100%;
+    height: auto;
+    gap: 1rem;
+    grid-template-columns: 19% 19% 19% 19% 19%;
+    grid-template-rows: 10vh 10vh 10vh 10vh 10vh 10vh 10vh 10vh;
+    grid-template-areas:
+    "box1 box1 box1 box5 box5"
+    "box1 box1 box1 box6 box6"
+    "box1 box1 box1 box7 box7"
+    "box1 box1 box1 box8 box8"
+    "box1 box1 box1 box9 box9"
+    "box1 box1 box1 box10 box10"
+    "box2 box3 box4 box11 box11"
+    "box2 box3 box4 box12 box13";
+}
+.box-wrapper2 {
+    margin: 10vh 0;
+    padding: 0 15vw;
+    display: grid;
+    width: 100%;
+    height: auto;
+    gap: 1rem;
+    grid-template-columns: 19% 19% 19% 19% 19%;
+    grid-template-rows: 10vh 10vh 10vh 10vh 10vh 10vh 10vh 10vh;
+    grid-template-areas:
+    "box1 box1 box1 box5 box5"
+    "box1 box1 box1 box6 box6"
+    "box1 box1 box1 box7 box7"
+    "box1 box1 box1 box8 box8"
+    "box1 box1 box1 box9 box9"
+    "box1 box1 box1 box10 box10"
+    "box2 box3 box4 box11 box11"
+    "box2 box3 box4 box12 box13";
+}
+.box-wrapper3 {
+    margin: 10vh 0;
+    padding: 0 15vw;
+    display: grid;
+    width: 100%;
+    height: auto;
+    gap: 1rem;
+    grid-template-columns: 19% 19% 19% 19% 19%;
+    grid-template-rows: 10vh 10vh 10vh 10vh 10vh 10vh 10vh 10vh;
+    grid-template-areas:
+    "box1 box1 box1 box5 box5"
+    "box1 box1 box1 box6 box6"
+    "box1 box1 box1 box7 box7"
+    "box1 box1 box1 box8 box8"
+    "box1 box1 box1 box9 box9"
+    "box1 box1 box1 box10 box10"
+    "box2 box3 box4 box11 box11"
+    "box2 box3 box4 box12 box13";
+}  
+ .box1 {
+    grid-area: box1;
+    background-size: cover;
+    background-position: center;
+ }
+ .box2 {
+    grid-area: box2;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    border: none;
+ }
+ .box3 {
+    grid-area: box3;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    border: none;
+ }
+ .box4 {
+    grid-area: box4;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    border: none;
+ }
+ .box5 {
+    grid-area: box5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+ }
+ .box6 {
+    grid-area: box6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ .box7 {
+    grid-area: box7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ .box8 {
+    grid-area: box8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ .box9 {
+    grid-area: box9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ .box10 {
+    grid-area: box10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ .box11 {
+    grid-area: box11;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ .box12 {
+    grid-area: box12;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+ }
+ .box13 {
+    grid-area: box13;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+ }
+/* ---------------------------------리뷰박스-------------------------------- */
+.review-wrapper {
+   margin: 10vh 0;
+   padding: 0 15vw;
+   display: grid;
+   width: 100%;
+   height: auto;
+   gap: .5rem;
+   grid-template-columns: 33% 33% 33%;
+   grid-template-rows: 10vh 10vh 10vh 10vh 20vh;
+   grid-template-areas:
+   "box1 box2 box3"
+   "box4 box4 box4"
+   "box5 box5 box8"
+   "box6 box6 box8"
+   "box7 box7 box8";
+}
+.review-wrapper h1{
+   font-size: 1.5rem;
+   margin: 0;
+}
+.box_1 {
+   grid-area: box1;
+   background-color: #ddd;
+   cursor: pointer;
+   border: none;
+}
+.box_2 {
+   grid-area: box2;
+   background-color: #ddd;
+   cursor: pointer;
+   border: none;
+}
+.box_3 {
+   grid-area: box3;
+   background-color: #ddd;
+   cursor: pointer;
+   border: none;
+}
+.box_4 {
+   grid-area: box4;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+.box_5 {
+   grid-area: box5;
+   display: flex;
+   align-items: center;
+   border: 1px solid #ddd;
+}
+.box_6 {
+   grid-area: box6;
+   display: flex;
+   align-items: center;
+   border: 1px solid #ddd;
+}
+.box_7 {
+   grid-area: box7;
+   display: flex;
+   align-items: center;
+   border: 1px solid #ddd;
+}
+.box_8 {
+   grid-area: box8;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: stretch;
+   border: 1px solid #ddd;
+}
+/* ------------------------qna-wrapper----------------------- */
+.qna-wrapper{
+   margin: 10vh 0;
+   padding: 0 15vw;
+}
+/* ---------------------------qna----------------------- */
+.qna {
+   display: grid;
+   width: 100%;
+   height: auto;
+   gap: .5rem;
+   grid-template-columns: 33% 33% 33%;
+   grid-template-rows: 10vh 15vh;
+   grid-template-areas:
+   "box1 box2 box3"
+   "box4 box4 box4";
+}
+.qna h1{
+   font-size: 1.5rem;
+   margin: 0;
+}
+.box_01{
+   grid-area: box1;
+   background-color: #ddd;
+   cursor: pointer;
+   border: none;
+}
+.box_02{
+   grid-area: box2;
+   background-color: #ddd;
+   cursor: pointer;
+   border: none;
+}
+.box_03{
+   grid-area: box3;
+   background-color: #ddd;
+   cursor: pointer;
+   border: none;
+}
+.box_04{
+   grid-area: box4;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+}
+/* --------------------------------qna-content----------------------- */
+.qna-content{
+   display: grid;
+   width: 100%;
+   height: auto;
+   gap: .5rem;
+   grid-template-columns: 10% 68% 10% 10%;
+   grid-template-rows: 10vh 20vh;
+   grid-template-areas:
+   "box5 box6 box7 box8"
+   "box9 box10 box11 box12";
+}
+.box_05{
+   grid-area: box5;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 1px solid #ddd;
+}
+.box_06{
+   grid-area: box6;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 1px solid #ddd;
+}
+.box_07{
+   grid-area: box7;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 1px solid #ddd;
+}
+.box_08{
+   grid-area: box8;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 1px solid #ddd;
+}
+.box_09{
+   grid-area: box9;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 1px solid #ddd;
+}
+.box_10{
+   grid-area: box10;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 1px solid #ddd;
+}
+.box_11{
+   grid-area: box11;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 1px solid #ddd;
+}
+.box_12{
+   grid-area: box12;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 1px solid #ddd;
+}
+/* --------------------------------exchange-wrapper----------------------- */
+.exchange-wrapper{
+   margin: 10vh 0;
+   padding: 0 15vw;
+}
+.exchange {
+   display: grid;
+   width: 100%;
+   height: auto;
+   gap: .5rem;
+   grid-template-columns: 33% 33% 33%;
+   grid-template-rows: 10vh ;
+   grid-template-areas:
+   "box1 box2 box3";
+}
+.exchange h1{
+   font-size: 1.5rem;
+   margin: 0;
+}
+.box_001{
+   grid-area: box1;
+   background-color: #ddd;
+   cursor: pointer;
+   border: none;
+}
+.box_002{
+   grid-area: box2;
+   background-color: #ddd;
+   cursor: pointer;
+   border: none;
+}
+.box_003{
+   grid-area: box3;
+   background-color: #ddd;
+   cursor: pointer;
+   border: none;
+}
+/* -----------------------------exchange-content--------------------- */
+.exchange-content {
+   display: grid;
+   width: 100%;
+   height: auto;
+   gap: .5rem;
+   grid-template-columns: 15% 84%;
+   grid-template-rows: 10vh 10vh 10vh 10vh 10vh 10vh 10vh 25vh 10vh 10vh 10vh 10vh 10vh 10vh 10vh ;
+   grid-template-areas:
+   "box4 box4"
+   "box5 box6"
+   "box7 box8"
+   "box9 box10"
+   "box11 box11"
+   "box12 box13"
+   "box14 box15"
+   "box16 box16"
+   "box17 box18"
+   "box19 box20"
+   "box21 box22"
+   "box23 box24"
+   "box25 box26"
+   "box27 box27"
+   "box28 box29";
+
+}
+.exchange-content h1{
+   font-size: 1.5rem;
+   margin: 0;
+}
+.box_004{
+   grid-area: box4;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+}
+.box_005{
+   grid-area: box5;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   background-color: #ddd;
+}
+.box_006{
+   grid-area: box6;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   border: 1px solid #ddd;
+}
+.box_007{
+   grid-area: box7;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   background-color: #ddd;
+}
+.box_008{
+   grid-area: box8;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   border: 1px solid #ddd;
+}
+.box_009{
+   grid-area: box9;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   background-color: #ddd;
+}
+.box_010{
+   grid-area: box10;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   justify-content: center;
+   border: 1px solid #ddd;
+}
+.box_011{
+   grid-area: box11;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   justify-content: center;
+}
+.box_012{
+   grid-area: box12;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   background-color: #ddd;
+}
+.box_013{
+   grid-area: box13;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   border: 1px solid #ddd;
+}
+.box_014{
+   grid-area: box14;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   background-color: #ddd;
+}
+.box_015{
+   grid-area: box15;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   border: 1px solid #ddd;
+}
+.box_016{
+   grid-area: box16;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   justify-content: center;
+}
+.box_017{
+   grid-area: box17;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   background-color: #ddd;
+}
+.box_018{
+   grid-area: box18;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   border: 1px solid #ddd;
+}
+.box_019{
+   grid-area: box19;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   background-color: #ddd;
+}
+.box_020{
+   grid-area: box20;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   justify-content: center;
+   border: 1px solid #ddd;
+}
+.box_021{
+   grid-area: box21;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   background-color: #ddd;
+}
+.box_022{
+   grid-area: box22;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   justify-content: center;
+   border: 1px solid #ddd;
+}
+.box_023{
+   grid-area: box23;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   background-color: #ddd;
+}
+.box_024{
+   grid-area: box24;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   border: 1px solid #ddd;
+}
+.box_025{
+   grid-area: box25;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   background-color: #ddd;
+}
+.box_026{
+   grid-area: box26;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   border: 1px solid #ddd;
+}
+.box_027{
+   grid-area: box27;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+}
+.box_028{
+   grid-area: box28;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   background-color: #ddd;
+}
+.box_029{
+   grid-area: box29;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   border: 1px solid #ddd;
+}
+

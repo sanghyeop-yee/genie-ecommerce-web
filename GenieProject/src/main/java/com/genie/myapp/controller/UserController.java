@@ -9,11 +9,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.AdministerService;
@@ -27,7 +27,7 @@ import com.genie.myapp.vo.SellerVO;
 import com.genie.myapp.vo.UserVO;
 
 
-@Controller
+@RestController
 @RequestMapping("/user/*")
 public class UserController {
 
@@ -233,13 +233,8 @@ public class UserController {
 		
 		String genie_id = (String)session.getAttribute("logId");
 		UserVO vo = service.getUser(genie_id);
-
-
-		new ModelAndView();
-
 		
 		mav = new ModelAndView();
-
 		mav.addObject("vo",vo);
 		mav.setViewName("/user/MyDeliveryList");
 	
@@ -262,7 +257,7 @@ public class UserController {
 		if(cnt>0) {//수정됨
 			msg+="alert('배송지가 등록되었습니다.');";
 		}else {//수정못함
-			msg+="alert('배송지 등록에 실패하였습니다.');";	
+			msg+="alert('배송지 등록에 실패하였습니다.');";
 		}
 		msg+="location.href='/user/MyPage';</script>";
 		

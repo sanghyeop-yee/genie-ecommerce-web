@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.genie.myapp.service.AdminService;
 import com.genie.myapp.vo.AccountVO;
 import com.genie.myapp.vo.AdminVO;
+import com.genie.myapp.vo.PagingVO;
 import com.genie.myapp.vo.UserVO;
 
 @Controller
@@ -82,6 +83,14 @@ public class AdminController {
 		public ModelAndView adminDetail() {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("admin/adminDetail");
+			return mav;
+		}
+
+		//adminDetail
+		@GetMapping("test")
+		public ModelAndView test() {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("admin/test");
 			return mav;
 		}
 
@@ -199,18 +208,23 @@ public class AdminController {
 		
 		// admember 페이지 이동
 		@GetMapping("admember")
-		public ModelAndView admember() {
+		public ModelAndView admember(PagingVO pVO) {
 			mav = new ModelAndView();
-			mav.addObject("admember", service.userAllSelect());
+			
+			pVO.setTotalRecord(service.totalRecord(pVO));
+			mav.addObject("admember", service.userAllSelect(pVO));
+			mav.addObject("pVO", pVO);
+			
 			mav.setViewName("admin/admember");
 			return mav;
 		}	
 		
 		// 선택된 유저의 정보 수정 폼
 		@GetMapping("admemberPop")
-		public ModelAndView admemberPop(@RequestParam("genie_id") String genie_id) {
+		public ModelAndView admemberPop(@RequestParam("genie_id") String genie_id, PagingVO pVO) {
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("vo", service.getadmember(genie_id));
+			mav.addObject("pVO", pVO);
 			mav.setViewName("admin/admemberPop");
 			return mav;
 		}

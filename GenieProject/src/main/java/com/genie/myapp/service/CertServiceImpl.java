@@ -12,6 +12,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.CertDAO;
+import com.genie.myapp.vo.UserVO;
 
 @Service
 public class CertServiceImpl implements CertService {
@@ -98,8 +99,8 @@ public class CertServiceImpl implements CertService {
 	}
 
 	@Override
-	public int PwdEditOk(String genie_id, String user_pwd) {
-		return cdao.PwdEditOk(genie_id, user_pwd);
+	public int PwdEditOk(UserVO vo) {
+		return cdao.PwdEditOk(vo);
 	}
 
 

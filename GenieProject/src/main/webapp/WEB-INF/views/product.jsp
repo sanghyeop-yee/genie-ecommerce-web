@@ -5,27 +5,24 @@
 
 <section class="product ">
     <div class="bubbles">
-        <h1>상품리스트</h1>
+        <h1>${pvo.product_category}</h1>
     </div>
 
     <div class="grid-container">
+        <c:forEach var="pvo" items="${plist}">
         <div class="wrapper">
-            <c:forEach var="pvo" items="${plist}">
-            <article class="product-list">
-                <a class="product-title" href="/product_detail"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <div class="product-list">
+                <a class="product-title" href="/product_detail?product_id=${pvo.product_id}"><i class="fa-solid fa-magnifying-glass"></i></a>
                 <div class="item">
-                    <a href="/product_detail">
-                        <img src="${pvo.product_image1}">
-                    </a>
+                    <img src="${pvo.product_image1}">
                 </div>
-            </article>
-                <ul>
-                    <li>${pvo.genie_id}</li>
-                    <li>${pvo.product_name}</li>
-                    <li>${pvo.product_price}원</li>
-                </ul>
-            </c:forEach>
+            </div>
+            <ul>
+                <li>${pvo.genie_id}</li>
+                <li>${pvo.product_name}</li>
+                <li><fmt:formatNumber value="${pvo.product_price}" pattern="#,###원"/></li>
+            </ul>
         </div>
+        </c:forEach>
     </div>
 </section>
-
