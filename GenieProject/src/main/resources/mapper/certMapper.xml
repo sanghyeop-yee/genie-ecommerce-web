@@ -31,9 +31,9 @@
 
 	<update id ="PwdEditOk">
 
-		update account 
-		set genie_pwd=sha2(#{genie_pwd2},256)
-		where genie_id=#{genie_id} and genie_pwd=sha2(#{genie_pwd},256)
+		update account  
+		set genie_pwd=sha2(#{genie_pwd},256) 
+		where genie_id=#{genie_id}
 
 	</update>
 

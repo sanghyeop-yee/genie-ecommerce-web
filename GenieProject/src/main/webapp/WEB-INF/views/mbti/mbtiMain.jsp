@@ -10,9 +10,9 @@
 	background: #f5f5f7;
 }
 /*--------mbti-------------*/
-#title{
+#title h1{
 	text-align:center;
-	font-size:2.5em;
+	font-size:3.5em;
 	margin:12vh 0;
 }
 .mbti_list{
@@ -38,13 +38,13 @@
 		<h1>MBTI별 선물 추천</h1>
 	</div>
 	<div class="mbti_list">
-		<span><a href=""><img src="/image/mbtiE.png"/></a></span>
-		<span><a href=""><img src="/image/mbtiS.png"/></a></span>
-		<span><a href=""><img src="/image/mbtiT.png"/></a></span>
-		<span><a href=""><img src="/image/mbtiJ.png"/></a></span>
-		<span><a href=""><img src="/image/mbtiI.png"/></a></span>
-		<span><a href=""><img src="/image/mbtiN.png"/></a></span>
-		<span><a href=""><img src="/image/mbtiF.png"/></a></span>
-		<span><a href=""><img src="/image/mbtiP.png"/></a></span>
+		<span><a href="/mbti/E"><img src="/image/mbtiE.png"/></a></span>
+		<span><a href="/mbti/S"><img src="/image/mbtiS.png"/></a></span>
+		<span><a href="/mbti/T"><img src="/image/mbtiT.png"/></a></span>
+		<span><a href="/mbti/J"><img src="/image/mbtiJ.png"/></a></span>
+		<span><a href="/mbti/I"><img src="/image/mbtiI.png"/></a></span>
+		<span><a href="/mbti/N"><img src="/image/mbtiN.png"/></a></span>
+		<span><a href="/mbti/F"><img src="/image/mbtiF.png"/></a></span>
+		<span><a href="/mbti/P"><img src="/image/mbtiP.png"/></a></span>
 	</div>
 </section>

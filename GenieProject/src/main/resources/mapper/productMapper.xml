@@ -22,9 +22,12 @@
             product_image3,
             product_mbti
         from product 
+        
+        where product_category like '%${product_category}%'  <!--     where procuct_category like '%생일%'  -->
+        
         order by product_id desc
     </select>
-    <select id="Cart" resultType="CartVO">
+    <select id="getCart" resultType="CartVO">
         select 
             cart_num,
             genie_id,
@@ -32,6 +35,37 @@
             cart_price,
             cart_qty,
             cart_writedate
-        from cart;
+        from cart
+        where genie_id=#{genie_id}
     </select>
+    <insert id="addCart" parameterType="CartVO">
+
+        insert into Cart(cart_num, genie_id, product_id, cart_price, cart_qty) 
+        values(#{cart_num}, #{genie_id}, #{product_id}, #{cart_price}, #{cart_qty})
+
+    </insert>
+     <select id = "getProduct" resultType = "ProductVO" parameterType = "int">
+
+        select
+	  		product_id, 
+            genie_id,
+            product_category,
+            product_tag,
+            product_name,
+            product_price,
+            product_info,
+            product_stock,
+            product_quantity,
+            product_hit,
+            product_like,
+            product_writedate,
+            product_image1,
+            product_image2,
+            product_image3,
+            product_mbti 
+        from product 
+        where product_id=#{product_id} 
+
+	  </select>
+
 </mapper>

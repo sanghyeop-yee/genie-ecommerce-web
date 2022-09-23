@@ -2,7 +2,7 @@ package com.genie.myapp.vo;
 
 public class PagingVO {
 	private int nowPage = 1; 
-	private int onePageRecord=10; 
+	private int onePageRecord=5; 
 	private int totalRecord; 
 	private int totalPage;
 	private int offsetPoint;

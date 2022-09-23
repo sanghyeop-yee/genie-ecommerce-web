@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import com.genie.myapp.vo.AdminVO;
+import com.genie.myapp.vo.PagingVO;
 import com.genie.myapp.vo.UserVO;
 //추상클래스 
 @Mapper
@@ -43,7 +44,7 @@ public interface AdminDAO {
 	///////////카테고리//////////////
 
 	// admember 내 유저정보 리스트
-	public List<UserVO> userAllSelect();
+	public List<UserVO> userAllSelect(PagingVO pVO);
 	
 	// admemberPop 내 유저정보 뷰
 	public UserVO getadmember(String user_id);
@@ -53,5 +54,7 @@ public interface AdminDAO {
 	
 	// admember 내 유저정보 삭제
 	public int admemberDel(String genie_id);
-		
+	
+	// 총 레코드 수
+	public int totalRecord(PagingVO pVO);
 }

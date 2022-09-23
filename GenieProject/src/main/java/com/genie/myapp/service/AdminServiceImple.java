@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.genie.myapp.dao.AdminDAO;
 import com.genie.myapp.vo.AccountVO;
 import com.genie.myapp.vo.AdminVO;
+import com.genie.myapp.vo.PagingVO;
 import com.genie.myapp.vo.UserVO;
 
 @Service
@@ -25,8 +26,8 @@ public class AdminServiceImple implements AdminService {
 		return dao.adminTag(VO);
 	}
 
-	public List<UserVO> userAllSelect() {
-		return dao.userAllSelect();
+	public List<UserVO> userAllSelect(PagingVO pVO) {
+		return dao.userAllSelect(pVO);
 	}
 
 	@Override
@@ -42,6 +43,11 @@ public class AdminServiceImple implements AdminService {
 	@Override
 	public int admemberDel(String genie_id) {
 		return dao.admemberDel(genie_id);
+	}
+	
+	@Override
+	public int totalRecord(PagingVO pVO) {
+		return dao.totalRecord(pVO);
 	}
 
 	@Override

@@ -1,60 +1,47 @@
 @charset "UTF-8";
-
-/* ---------------------------뒤에 배경 설정---------------------- */
-.genie_01 {
-	width: 100%;
-	height: 100vh;
-	margin: 0;
-    padding: 3% 16%;
-
-	/*background: url(/image/gift1.png);*/
+/* --------------------------------------------- */
+.grid-container {
 	background: url(/image/gift1.png);
 	background-size: cover;
 	background-position: center;
 }
-.genie_02 {
+/* ---------------------------뒤에 배경 설정---------------------- */
+.genie>section{
+	top: 0px;
+	left: 0px;
 	width: 100%;
 	height: 100vh;
 	margin: 0;
-    padding: 3% 16%;
-
-	/*background: url(/image/gift1.png);*/
-	background: url(/image/gift2.png);
+    padding: 5% 16% 0 16%;
+}
+/* .genie_01 {
+	background: url(/image/gift1.png);
 	background-size: cover;
 	background-position: center;
+} */
+.genie_02 {
+	display: none;
+	/* background: url(/image/gift2.png);
+	background-size: cover;
+	background-position: center; */
 }
 .genie_03 {
-	width: 100%;
-	height: 100vh;
-	margin: 0;
-    padding: 3% 16%;
-
-	/*background: url(/image/gift1.png);*/
-	background: url(/image/gift3.png);
+	display: none;
+	/* background: url(/image/gift3.png);
 	background-size: cover;
-	background-position: center;
+	background-position: center; */
 }
 .genie_04 {
-	width: 100%;
-	height: 100vh;
-	margin: 0;
-    padding: 3% 16%;
-
-	/*background: url(/image/gift1.png);*/
-	background: url(/image/gift4.png);
+	display: none;
+	/* background: url(/image/gift4.png);
 	background-size: cover;
-	background-position: center;
+	background-position: center; */
 }
 .genie_05 {
-	width: 100%;
-	height: 100vh;
-	margin: 0;
-    padding: 3% 16%;
-
-	/*background: url(/image/gift1.png);*/
-	background: url(/image/gift5.png);
+	display: none;
+	/* background: url(/image/gift5.png);
 	background-size: cover;
-	background-position: center;
+	background-position: center; */
 }
 /* ---------------------------질문 타이핑 설정(1~5까지)---------------------- */
 .genie_01 h2{
@@ -155,11 +142,12 @@
     color: #fff;
 }
 /* -------------------------------------------네모난버튼 설정-----------------------------------------------*/
-.page_gradient {
+/* .page_gradient {
+	position: relative;
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	gap: .3rem;
-	margin: 0 2vw 6vh 2vw;
+	top: 5vh;
 }
 .page_gradient input[type=button] {
 	width: 100%;
@@ -168,13 +156,15 @@
 	border-radius: 4px;
 	cursor: pointer;
 	background-color:white;
-}
+} */
 
 /* -------------------------------------------동그란버튼 설정------------------------------------------------- */
 .page_order {
+	position: relative;
 	display: flex;
 	justify-content: space-evenly;
-	margin: 7vh 20vw;
+	padding: 0 35vw;
+	bottom: 8vh;
 }
 .page_order input[type=button] {
 	width: 2.5ch;

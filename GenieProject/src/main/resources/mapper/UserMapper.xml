@@ -7,7 +7,7 @@
 	<insert id="AccountWrite">
 
 		insert into account(member_type, genie_id, genie_pwd) 
-		values(#{member_type},#{genie_id}, sha2(#{genie_pwd},256));
+		values(#{member_type},#{genie_id}, sha2(#{genie_pwd},256))
 
 	</insert>
 
@@ -20,7 +20,7 @@
 
 	<insert id = "Delivery">
 
-		insert into address(genie_id)
+		insert into address(genie_id) 
 		values(#{genie_id});
 
 	</insert>
@@ -29,7 +29,7 @@
 
 		insert into address(receiver_name, receiver_tel, receiver_zipcode, receiver_addr, receiver_detailaddr) 
 		select (#{user_name}, #{user_tel}, #{user_zipcode}, #{user_addr}, #{user_detailaddr})
-		from dual
+		from dual 
 		where genie_id=#{genie_id}
 
 	</insert>

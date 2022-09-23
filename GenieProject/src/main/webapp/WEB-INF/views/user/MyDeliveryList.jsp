@@ -141,30 +141,30 @@
           <h3>배송지1</h3>
 
           <li>우편번호</li>
-          <input type ="text" name = "user_zipcode" id ="user_zipcode" value="${vo.user_zipcode}" readonly/>
+          <input type = "text" name = "user_zipcode" id ="user_zipcode" value="${vo.user_zipcode}" readonly/>
            <li>주소</li>
           <li><input type = "text" name = "user_addr" id ="user_addr" value="${vo.user_addr}" readonly/></li>
           <li>상세주소</li>
-          <li><input type ="text" name = "user_detailaddr" id ="user_detailaddr" value="${vo.user_detailaddr}" readonly/></li><br>
+          <li><input type = "text" name = "user_detailaddr" id ="user_detailaddr" value="${vo.user_detailaddr}" readonly/></li><br>
         </ul>
         <ul id="delivery_2">
           <h3>배송지2</h3>
 
           <li>우편번호</li>
-          <input type ="text" name = "user_zipcode" id ="user_zipcode" readonly/>
+          <input type = "text" name = "user_zipcode" id ="user_zipcode" readonly/>
            <li>주소</li>
           <li><input type = "text" name = "user_addr" id ="user_addr" readonly/></li>
           <li>상세주소</li>
-          <li><input type ="text" name = "user_detailaddr" id ="user_detailaddr" readonly/></li><br>
+          <li><input type = "text" name = "user_detailaddr" id ="user_detailaddr" readonly/></li><br>
         <ul id="delivery_3">
           <h3>배송지3</h3>
 
           <li>우편번호</li>
-          <input type ="text" name = "user_zipcode" id ="user_zipcode" readonly/>
+          <input type = "text" name = "user_zipcode" id ="user_zipcode" readonly/>
           <li>주소</li>
           <li><input type = "text" name = "user_addr" id ="user_addr" readonly/></li>
           <li>상세주소</li>
-          <li><input type ="text" name = "user_detailaddr" id ="user_detailaddr" readonly/></li>
+          <li><input type = "text" name = "user_detailaddr" id ="user_detailaddr" readonly/></li>
         </ul>
     </div>
   </div>
