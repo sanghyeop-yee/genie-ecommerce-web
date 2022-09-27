@@ -17,4 +17,5 @@
     <!-- Default to the left -->
     <strong>Copyright &copy; 2022 <a href="https://localhost:9070">genie</a>.</strong> All rights reserved.
   </footer>
+</div>  
 <!-- ./wrapper -->

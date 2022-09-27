@@ -154,7 +154,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: blueviolet !important;">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="/seller/sellerMain" class="brand-link">
       <img src="/js_css/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">지니셀러센터</span>
     </a>
@@ -183,36 +183,36 @@
         </div>
       </div>
 
+      
       <!-- Sidebar Menu -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="/admin/adminMain" class="nav-link active">
+          <li class="nav-item">
+            <a href="/seller/sellerMain" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>대시보드</p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/seller/productForm" class="nav-link">
-                  <i class="nav-icon fas fa-copy"></i>
-                  <p>상품등록</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/seller/sellerProduct" class="nav-link">
-                  <i class="nav-icon far fa-envelope"></i>
-                  <p>상품관리</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/seller/sellerOrder" class="nav-link">
-                  <i class="nav-icon fas fa-columns"></i>
-                  <p>주문관리</p>
-                </a>
-              </li>
-            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/seller/productForm" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>상품등록</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/seller/sellerProduct" class="nav-link">
+              <i class="nav-icon far fa-envelope"></i>
+              <p>상품관리</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/seller/sellerOrder" class="nav-link">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>주문관리</p>
+            </a>
           </li>
           <li class="nav-item">
             <a href="/seller/sellerSales" class="nav-link">
@@ -228,6 +228,15 @@
           </li>
         </ul>
       </nav>
+ 
+      <script>
+        $(function(){
+          var url = window.location;
+          $('.mt-2 a').filter(function(){
+            return this.href == url ;
+          }).addClass('active');
+        });
+      </script>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
