@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.genie.myapp.vo.AccountVO;
+import com.genie.myapp.vo.InquiryVO;
 import com.genie.myapp.vo.OrderVO;
-
+import com.genie.myapp.vo.PagingVO;
 import com.genie.myapp.vo.SellerProductVO;
 import com.genie.myapp.vo.SellerVO;
 
@@ -25,14 +26,6 @@ public interface SellerService {
 	public List<OrderVO> sellerOrder(OrderVO vo);
 	// 주문목록 배송상태 수정 
 	public void updateDeliveryStatus(Map deliveryMap);
-	// 매출관리 (결제금액)
-	public int orderSum();
-	// 일별 매출관리
-	public List<OrderVO> orderSumByDay();
-	// 결제건수
-	public int orderCount();
-	// 베스트셀러
-	public String bestSeller();
   	//판매자 로그인
 	public SellerVO loginOk(SellerVO svo);
 	//상품관리 - 상품목록
@@ -45,4 +38,14 @@ public interface SellerService {
 	public int productDel(int pid);
 	//상품수정
 	public int productEditOk(SellerProductVO pvo);
+	//문의목록
+	public List<InquiryVO> inquiryList(InquiryVO vo, String Genie_id);
+	// 매출관리 (결제금액)
+	public int orderSum();
+	// 일별 매출관리
+	public List<OrderVO> orderSumByDay();
+	// 결제건수
+	public int orderCount();
+	// 베스트셀러
+	public String bestSeller();
 }

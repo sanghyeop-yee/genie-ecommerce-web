@@ -33,6 +33,8 @@ public class SellerProductVO {
 	//여러개의 mbti를 저장할 컬렉션
 	private List<String> mbtiList;
 	
+	public String searchKey;
+	public String searchWord;
 	
 	@Override
 	public String toString() {
@@ -208,6 +210,24 @@ public class SellerProductVO {
 	public void setCompany_name(String company_name) {
 		this.company_name = company_name;
 	}
+
+	public String getSearchKey() {
+		return searchKey;
+	}
+
+	public void setSearchKey(String searchKey) {
+		this.searchKey = searchKey;
+	}
+
+	public String getSearchWord() {
+		return searchWord;
+	}
+
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
+
+	
 	
 	
 }

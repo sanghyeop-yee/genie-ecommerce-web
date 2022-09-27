@@ -57,7 +57,7 @@
 	</select>
 
 	<select resultType="UserVO" id="getadmember" parameterType="String">
-		select genie_id, user_name, user_tel, user_email, user_zipcode, user_addr, user_detailaddr, date_format(sign_in_date, '%y-%m-%d') sign_in_date, 
+		select genie_id, user_name, user_tel, user_email, user_zipcode, user_addr, user_detailaddr, user_gender, date_format(sign_in_date, '%y-%m-%d') sign_in_date, 
 		payment_method from user where genie_id='${param1}'
 	</select>
 	
@@ -72,11 +72,53 @@
 		delete from user where genie_id='${param1}'
 	</delete>
 	
-	<select resultType="int" id="totalRecord">
+	<select resultType="int" id="userTotalRecord">
 		select count(genie_id) cnt from user 
 	<if test="searchWord!=null">
 		where ${searchKey} like '%${searchWord}%'
 	</if>
 	</select>
 	
+	<!-- ============================================== -->
+	
+	<select resultType="SellerVO" id="sellerAllSelect">
+		select genie_id, seller_tel, seller_email, seller_reg_no, company_name, ceo_name, seller_address, seller_website, 
+		date_format(writedate, '%y-%m-%d') writedate, seller_status, approval_date from seller
+		<if test="searchWord!=null">
+			where ${searchKey} like '%${searchWord}%' 
+		</if> 
+		order by writedate desc limit ${onePageRecord} offset ${offsetPoint} 
+	</select>
+
+	<select resultType="SellerVO" id="getadcompany" parameterType="String">
+		select genie_id, seller_tel, seller_email, seller_reg_no, company_name, ceo_name, seller_address, seller_website, 
+		date_format(writedate, '%y-%m-%d') writedate, seller_status, approval_date from seller where genie_id='${param1}'
+	</select>
+	
+	<update id="adcompanyPopEdit" parameterType="SellerVO">
+		update seller set genie_id=#{genie_id}, seller_tel=#{seller_tel}, seller_email=#{seller_email}, seller_reg_no=#{seller_reg_no}, company_name=#{company_name}, 
+		ceo_name=#{ceo_name}, seller_address=#{seller_address}, seller_website=#{seller_website}, writedate=#{writedate}, seller_status=#{seller_status}, approval_date=#{approval_date}  
+		where genie_id=#{genie_id}
+	</update>
+	
+	<delete id="adcompanyDel">
+		delete from seller where genie_id='${param1}'
+	</delete>
+	
+	<select resultType="int" id="sellerTotalRecord">
+		select count(genie_id) cnt from seller 
+	<if test="searchWord!=null">
+		where ${searchKey} like '%${searchWord}%'
+	</if>
+	</select>
+	
+	<select resultType="int" id="sellerApproval">
+		select count(genie_id) cnt from seller where seller_status="N"
+	</select>
+	
+	<insert id="paymentWrite">
+		insert into cart(cart_num, genie_id, product_id, cart_price, cart_qty, cart_writedate) 
+		values(#{cart_num}, #{genie_id}, #{product_id}, #{cart_price}, ${cart_qty}, #{cart_writedate})
+	</insert>
+		
 </mapper>

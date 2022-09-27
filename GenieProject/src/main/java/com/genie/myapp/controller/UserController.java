@@ -50,7 +50,7 @@ public class UserController {
 	}
 
 	@PostMapping("loginOK")
-	public ModelAndView loginOk(UserVO vo, SellerVO svo, AdministerVO avo, HttpSession session ) {
+	public ModelAndView loginOk(UserVO vo, SellerVO svo, AdministerVO avo, HttpSession session) {
 		
 		mav = new ModelAndView();
 
@@ -60,7 +60,7 @@ public class UserController {
 	
 		if(logVO != null) {//로그인 성공
 
-			session.setAttribute("logId", logVO.getGenie_id());
+			session.setAttribute("logId", logVO.getGenie_id());		
 			session.setAttribute("logName", logVO.getUser_name());
 			session.setAttribute("logStatus","Y");
 			mav.setViewName("redirect:/");
@@ -146,6 +146,8 @@ public class UserController {
 			int account = service.AccountWrite(avo);
 			int user = service.UserWrite(vo);
 			//int Delivery = service.Delivery(vo);
+			System.out.println(account);
+			System.out.println(user);
 
 			String msg = "<script>";
 			msg += "alert('회원가입을 성공하였습니다.');";
@@ -218,6 +220,7 @@ public class UserController {
 
 		String genie_id = (String)session.getAttribute("logId");
 		UserVO vo = service.getUser(genie_id);
+		//System.out.print(vo);
 		
 		mav = new ModelAndView();
 		mav.addObject("pVo",pVo);

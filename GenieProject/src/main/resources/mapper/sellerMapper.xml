@@ -6,10 +6,10 @@
 
   <!-- 주문목록 -->
   <select id="sellerOrder" resultType="OrderVO">
-    select m.order_num, m.genie_id, p.product_name, m.recipient_name, m.recipient_phone, m.recipient_address, m.recipient_request, m.recipient_delivery_status, m.order_price, m.order_qty, m.order_writedate 
+    select m.order_num, m.genie_id, p.product_name product_name, m.recipient_name, m.recipient_phone, m.recipient_address, m.recipient_request, m.recipient_delivery_status, m.order_price, m.order_qty, m.order_writedate 
     from myorder m join product p 
-    on m.product_id = p.product_id
-    <!-- where m.genie_id=#{genie_id} -->
+    on m.product_id = p.product_id;
+	<!-- where m.genie_id=#{genie_id} -->
   </select>
 
 	<select id="idCheck" resultType="int">
@@ -43,9 +43,14 @@
 	</select>
 	
 	<select id="productList" resultType="SellerProductVO">
-		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_quantity 
+		select product_id, genie_id, product_category, product_tag, product_name, product_price, product_quantity, product_mbti 
 		from product 
-		where genie_id=#{genie_id}
+		<if test="searchWord==null">
+			where genie_id=#{genie_id} 
+		</if> 
+		<if test="searchWord!=null">
+			where ${searchKey} like '%${searchWord}%' and genie_id=#{genie_id} 
+		</if>
 	</select>
 
     <select id = "getSeller" resultType = "SellerVO">
@@ -83,6 +88,14 @@
 	 	where order_num = #{order_num}
 	</update>
 	
+	<select id="inquiryList" resultType="InquiryVO">
+		select i.genie_id, i.product_id, p.product_name, i.inquiry_title, i.inquiry_content, i.inquiry_status, i.inquiry_writedate 
+		from inquiry i join product p 
+		on i.product_id=p.product_id 
+		where i.product_id in(select product_id from product where genie_id=#{param2}) 
+		order by i.product_id asc
+	</select>
+
 	<!--  총매출 -->
 	<select id="orderSum" resultType="int">
 		select sum(order_price) from myorder
@@ -115,4 +128,5 @@
 		on p.product_id = m.product_id
 		<!-- where m.genie_id=#{genie_id} -->
 	</select>
+
 </mapper>

@@ -136,8 +136,8 @@ input[type=text]:placeholder {
 
 <script>
 function admemberDel(){
-	if(confirm("${vo.genie_id} 회원을 삭제하시겠습니까?")){
-		location.href="/admin/admemberDel?genie_id=${vo.genie_id}";
+	if(confirm("${vo.genie_id} 업체를 삭제하시겠습니까?")){
+		location.href="/admin/adcompanyDel?genie_id=${vo.genie_id}";
 	}
 }
 </script>
@@ -148,30 +148,33 @@ function admemberDel(){
     <h1>고객정보관리</h1>
 
     <!-- 로그인폼-->
-    <form method="post" action="/admin/admemberPopEdit" id="admemberPopFrm">
+    <form method="post" action="/admin/adcompanyPopEdit" id="adcompanyPopFrm">
     <p>아이디</p>
      	<input type="text" id="genie_id" class="second" name="genie_id" value=${vo.genie_id}>
-   	<p>이름</p>
-   		<input type="text" id="user_name" class="second" name="user_name" value=${vo.user_name}>
-   	<p>연락처</p>
-   		<input type="text" id="user_tel" class="second" name="user_tel" value=${vo.user_tel}>
-   	<p>이메일</p>
-   		<input type="text" id="user_email" class="second" name="user_email" value=${vo.user_email}>
-   	<p>우편번호</p>
-   		<input type="text" id="user_zipcode" class="second" name="user_zipcode" value=${vo.user_zipcode}>
-   	<p>주소</p>
-   		<input type="text" id="user_addr" class="second" name="user_addr" value=${vo.user_addr}>
-   	<p>상세주소</p>
-   		<input type="text" id="user_detailaddr" class="second" name="user_detailaddr" value=${vo.user_detailaddr}>
-   	<p>성별</p>
-   		<input type="text" id="user_gender" class="second" name="user_gender" value=${vo.user_gender}>
-   	<p>가입일</p>
-   		<input type="text" id="sign_in_date" class="second" name="sign_in_date" value=${vo.sign_in_date}>
-   	<p>결제방식</p>
-   		<input type="text" id="payment_method" class="second" name="payment_method" value=${vo.payment_method}>   	
+    <p>연락처</p>
+     	<input type="text" id="seller_tel" class="second" name="seller_tel" value=${vo.seller_tel}>
+    <p>이메일</p>
+     	<input type="text" id="seller_email" class="second" name="seller_email" value=${vo.seller_email}>
+    <p>상점번호</p>
+     	<input type="text" id="seller_reg_no" class="second" name="seller_reg_no" value=${vo.seller_reg_no}>
+    <p>상점명</p>
+     	<input type="text" id="company_name" class="second" name="company_name" value=${vo.company_name}>
+    <p>대표자명</p>
+     	<input type="text" id="ceo_name" class="second" name="ceo_name" value=${vo.ceo_name}>
+    <p>주소</p>
+     	<input type="text" id="seller_address" class="second" name="seller_address" value=${vo.seller_address}>
+    <p>상점사이트</p>
+     	<input type="text" id="seller_website" class="second" name="seller_website" value=${vo.seller_website}>
+    <p>가입신청일</p>
+     	<input type="text" id="writedate" class="second" name="writedate" value=${vo.writedate}>
+    <p>상점상태</p>
+     	<input type="text" id="seller_status" class="second" name="seller_status" value=${vo.seller_status}>
+    <p>상점승인일</p>
+     	<input type="text" id="approval_date" class="second" name="approval_date" value=${vo.approval_date}>
+	
       <input type="submit" class="fourth" value="수정">
-      <a href="javascript:admemberDel()"><input type="button" class="fourth" value="삭제"></a>
-      <a href="/admin/admember"><input type="button" class="fourth" value="뒤로가기"></a>
+      <a href="javascript:adcompanyDel()"><input type="button" class="fourth" value="삭제"></a>
+      <a href="/admin/adcompany"><input type="button" class="fourth" value="뒤로가기"></a>
     </form>
   </div>
 </div>

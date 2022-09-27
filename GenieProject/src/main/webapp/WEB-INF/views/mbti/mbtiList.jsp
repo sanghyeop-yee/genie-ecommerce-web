@@ -19,13 +19,13 @@
         <c:forEach var="pvo" items="${plist}">
         <div class="wrapper">
             <div class="product-list">
-                <a class="product-title" href="/product_detail"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a class="product-title" href="/product_detail?product_id=${pvo.product_id}"><i class="fa-solid fa-magnifying-glass"></i></a>
                 <div class="item">
                     <img src="${pvo.product_image1}">
                 </div>
             </div>
             <ul>
-                <li>${pvo.company_name}</li>
+                <li>${pvo.genie_id}</li>
                 <li>${pvo.product_name}</li>
                 <li><fmt:formatNumber value="${pvo.product_price}" pattern="#,###원"/></li>
             </ul>
@@ -44,7 +44,7 @@
 	if(mbti=='E'){
 		element.innerText="사교적이고 활동적인 성향의 E를 위한 선물";
 	}else if(mbti=='I'){
-		element.innerText="신중하고 정적인 성향의 I를 위한 선물";
+		element.innerText="신중하고 내향적인 성향의 I를 위한 선물";
 	}else if(mbti=='S'){
 		element.innerText="현실적이고 실용적인 성향의 S를 위한 선물";
 	}else if(mbti=='N'){

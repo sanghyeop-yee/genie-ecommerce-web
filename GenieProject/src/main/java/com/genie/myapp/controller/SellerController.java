@@ -1,7 +1,6 @@
 package com.genie.myapp.controller;
 
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -27,9 +26,9 @@ import com.genie.myapp.service.SellerService;
 
 import com.genie.myapp.vo.SellerProductVO;
 import com.genie.myapp.vo.AccountVO;
+import com.genie.myapp.vo.InquiryVO;
 import com.genie.myapp.vo.OrderVO;
-
-
+import com.genie.myapp.vo.PagingVO;
 import com.genie.myapp.vo.SellerVO;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -68,10 +67,9 @@ public class SellerController {
 	
 	// Seller 주문관리 
 	@GetMapping("sellerOrder")
-	public ModelAndView sellerOrder(OrderVO vo, HttpServletRequest request) {
-		vo.setGenie_id((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
+	public ModelAndView sellerOrder(OrderVO vo) {
 		mav = new ModelAndView();
-		
+		System.out.println(vo.toString());
 		mav.addObject("list", service.sellerOrder(vo));
 		mav.setViewName("seller/sellerOrder");
 		return mav;
@@ -289,4 +287,14 @@ public class SellerController {
 		return mav;
 	}
 	
+	//seller 문의관리 페이지
+	@GetMapping("sellerQna")
+	public ModelAndView sellerQna(InquiryVO vo, HttpServletRequest request) {
+		String Genie_id = ((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
+		
+		mav = new ModelAndView();
+		mav.addObject("list", service.inquiryList(vo, Genie_id));
+		mav.setViewName("seller/sellerQna");
+		return mav;
+	}
 }
