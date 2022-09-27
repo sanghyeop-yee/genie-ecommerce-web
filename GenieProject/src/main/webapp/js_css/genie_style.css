@@ -14,26 +14,32 @@
 	margin: 0;
     padding: 5% 16% 0 16%;
 }
-/* .genie_01 {
+ .genie_00 {
 	background: url(/image/gift1.png);
-	background-size: cover;
-	background-position: center;
-} */
-.genie_02 {
+	/* background-size: cover;
+	background-position: center; */
+} 
+.genie_01 {
 	display: none;
 	/* background: url(/image/gift2.png);
 	background-size: cover;
 	background-position: center; */
 }
-.genie_03 {
+.genie_02 {
 	display: none;
 	/* background: url(/image/gift3.png);
 	background-size: cover;
 	background-position: center; */
 }
-.genie_04 {
+.genie_03 {
 	display: none;
 	/* background: url(/image/gift4.png);
+	background-size: cover;
+	background-position: center; */
+}
+.genie_04 {
+	display: none;
+	/* background: url(/image/gift5.png);
 	background-size: cover;
 	background-position: center; */
 }
@@ -43,18 +49,18 @@
 	background-size: cover;
 	background-position: center; */
 }
-/* ---------------------------질문 타이핑 설정(1~5까지)---------------------- */
-.genie_01 h2{
+/* ---------------------------질문 타이핑 설정(0~5까지)---------------------- */
+.genie_00 h2{
 	margin: 0 0 1.5rem 1rem;
 	font-size: 2rem;
 	color: #1d1d1f;
-	width: 25ch;
+	width: 37ch;
 	animation: typing 2s steps(25), blink .5s step-end infinite alternate;
 	white-space: nowrap;
 	overflow: hidden;
 	border-right: .2rem solid;
 }
-.genie_02 h2{
+.genie_01 h2{
 	margin: 0 0 1.5rem 1rem;
 	font-size: 2rem;
 	color: #1d1d1f;
@@ -64,7 +70,7 @@
 	overflow: hidden;
 	border-right: .2rem solid;
 }
-.genie_03 h2{
+.genie_02 h2{
 	margin: 0 0 1.5rem 1rem;
 	font-size: 2rem;
 	color: #1d1d1f;
@@ -74,7 +80,7 @@
 	overflow: hidden;
 	border-right: .2rem solid;
 }
-.genie_04 h2{
+.genie_03 h2{
 	margin: 0 0 1.5rem 1rem;
 	font-size: 2rem;
 	color: #1d1d1f;
@@ -84,11 +90,21 @@
 	overflow: hidden;
 	border-right: .2rem solid;
 }
+.genie_04 h2{
+	margin: 0 0 1.5rem 1rem;
+	font-size: 2rem;
+	color: #1d1d1f;
+	width: 32ch;
+	animation: typing 2s steps(29), blink .5s step-end infinite alternate;
+	white-space: nowrap;
+	overflow: hidden;
+	border-right: .2rem solid;
+}
 .genie_05 h2{
 	margin: 0 0 1.5rem 1rem;
 	font-size: 2rem;
 	color: #1d1d1f;
-	width: 29ch;
+	width: 32ch;
 	animation: typing 2s steps(29), blink .5s step-end infinite alternate;
 	white-space: nowrap;
 	overflow: hidden;

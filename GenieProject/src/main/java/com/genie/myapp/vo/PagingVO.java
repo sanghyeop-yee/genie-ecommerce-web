@@ -7,6 +7,8 @@ public class PagingVO {
 	private int totalPage;
 	private int offsetPoint;
 	
+	private int notApproved;
+	
 	
 	private int startPage = 1;
 	private int onePageCount = 5;
@@ -31,13 +33,14 @@ public class PagingVO {
 
 	
 	
+	
 	@Override
 	public String toString() {
 		return "PagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord=" + totalRecord
-				+ ", totalPage=" + totalPage + ", offsetPoint=" + offsetPoint + ", startPage=" + startPage
-				+ ", onePageCount=" + onePageCount + ", searchKey=" + searchKey + ", searchWord=" + searchWord + "]";
+				+ ", totalPage=" + totalPage + ", offsetPoint=" + offsetPoint + ", notApproved=" + notApproved
+				+ ", startPage=" + startPage + ", onePageCount=" + onePageCount + ", searchKey=" + searchKey
+				+ ", searchWord=" + searchWord + "]";
 	}
-	
 	public int getNowPage() {
 		return nowPage;
 	}
@@ -94,4 +97,14 @@ public class PagingVO {
 	public void setSearchWord(String searchWord) {
 		this.searchWord = searchWord;
 	}
+	
+	// 승인상태
+	public int getNotApproved() {
+		return notApproved;
+	}
+	public void setNotApproved(int notApproved) {
+		this.notApproved = notApproved;
+	}
+	
+	
 }

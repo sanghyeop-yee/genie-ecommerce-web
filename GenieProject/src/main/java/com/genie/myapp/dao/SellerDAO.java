@@ -9,9 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.genie.myapp.vo.SellerProductVO;
 import com.genie.myapp.vo.AccountVO;
+import com.genie.myapp.vo.InquiryVO;
 import com.genie.myapp.vo.OrderVO;
-
-
 import com.genie.myapp.vo.SellerVO;
 
 
@@ -23,17 +22,7 @@ public interface SellerDAO {
 	// 주문목록
 	public List<OrderVO> sellerOrder(OrderVO vo);
 	// 주문상태 변경
-	public void updateDeliveryStatus(Map deliveryMap); // 매퍼파일의 id가 updateDeliveryStatus 인 SQL문을 호출
-	// 매출관리 (결제금액)
-	public int orderSum();
-	// 일별 매출관리
-	public List<OrderVO> orderSumByDay();
-	// 결제건수
-	public int orderCount();
-	// 베스트 셀러
-	public String bestSeller();
-	
-
+	public void updateDeliveryStatus(Map deliveryMap); // 매퍼파일의 id가 updateDeliveryStatus 인 SQL문을 호출합니다 
 	//아이디 중복검사
 	public int idCheck(String genie_id);
 	//seller 회원가입
@@ -54,4 +43,14 @@ public interface SellerDAO {
 	public int productDel(int pid);
 	//상품수정
 	public int productEditOk(SellerProductVO pvo);
+	//문의목록
+	public List<InquiryVO> inquiryList(InquiryVO vo, String Genie_id);
+	// 매출관리 (결제금액)
+	public int orderSum();
+	// 일별 매출관리
+	public List<OrderVO> orderSumByDay();
+	// 결제건수
+	public int orderCount();
+	// 베스트 셀러
+	public String bestSeller();
 }

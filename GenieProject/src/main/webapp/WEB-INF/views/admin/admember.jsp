@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
 <style>
 .thumb {
   width: 100px;
@@ -28,8 +29,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="/js_css/dist/css/adminlte.min.css">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/js_css/fontawesome-free/css/all.min.css">
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+	$(function(){
+		$("#searchFrm").submit(function(){
+			if($("#searchWord").val()==""){
+				alert("검색어를 입력하세요.");
+				return false;
+			}
+			return true;
+		});
+	});
+</script>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 

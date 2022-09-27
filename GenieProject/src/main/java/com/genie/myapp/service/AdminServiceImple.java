@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.AdminDAO;
-import com.genie.myapp.vo.AccountVO;
 import com.genie.myapp.vo.AdminVO;
+import com.genie.myapp.vo.CartVO;
 import com.genie.myapp.vo.PagingVO;
+import com.genie.myapp.vo.SellerVO;
 import com.genie.myapp.vo.UserVO;
 
 @Service
@@ -46,8 +47,8 @@ public class AdminServiceImple implements AdminService {
 	}
 	
 	@Override
-	public int totalRecord(PagingVO pVO) {
-		return dao.totalRecord(pVO);
+	public int userTotalRecord(PagingVO pVO) {
+		return dao.userTotalRecord(pVO);
 	}
 
 	@Override
@@ -91,4 +92,40 @@ public class AdminServiceImple implements AdminService {
 		return dao.adcategoryDel(category_id);
 	}
 	///////////////카테고리//////////////////
+
+	@Override
+
+	public int paymentWrite(CartVO vo) {
+		return dao.paymentWrite(vo);
+	}
+
+	public List<SellerVO> sellerAllSelect(PagingVO pVO) {
+		return dao.sellerAllSelect(pVO);
+	}
+
+	@Override
+	public SellerVO getadcompany(String user_id) {
+		return dao.getadcompany(user_id);
+	}
+
+	@Override
+	public int adcompanyPopEdit(SellerVO vo) {
+		return dao.adcompanyPopEdit(vo);
+	}
+
+	@Override
+	public int adcompanyDel(String genie_id) {
+		return dao.adcompanyDel(genie_id);
+	}
+
+	@Override
+	public int sellerTotalRecord(PagingVO pVO) {
+		return dao.sellerTotalRecord(pVO);
+	}
+
+	@Override
+	public int sellerApproval(PagingVO pVO) {
+		return dao.sellerApproval(pVO);
+	}
+
 }

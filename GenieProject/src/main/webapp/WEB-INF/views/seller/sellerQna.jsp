@@ -2,7 +2,9 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 
 <style>
-
+.table a{
+	color:black;
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
@@ -287,26 +289,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>상품번호</th>
-                        <th>문의날짜</th>
-                        <th>회원ID</th>
+                      	<th>답변상태</th>
+                      	<th>상품번호</th>
+                      	<th>상품명</th>
                         <th>문의제목</th>
-                        <th>답변상태</th>
+                        <th>작성자</th>
+                        <th>문의날짜</th>
                       </tr>
                     </thead>
                     <tbody>
                       <!-- 태그 반복 -->
-                      <!--  
-                      <c:forEach var="pvo" items="${plist }">
+                      
+                      <c:forEach var="vo" items="${list }">
                       <tr>
-						    <td>${pvo.product_id }</td>
-							<td>${pvo.product_name}</td>
-							<td>${pvo.product_price}</td>
-							<td>${pvo.product_quantity}</td>
-							<td>${pvo.product_category}</td>
+						    <td>${vo.inquiry_status}</td>
+						    <td>${vo.product_id }</td>
+						    <td>${vo.product_name }</td>
+							<td><a href="/product_detail?product_id=${vo.product_id}">${vo.inquiry_title}</a></td>
+							<td>${vo.genie_id}</td>
+							<td>${vo.inquiry_writedate}</td>
                       </tr>
                     </c:forEach>
-                    -->
+                    
                     <!-- 태그 반복 끝 --> 
                     </tbody>
                   </table>

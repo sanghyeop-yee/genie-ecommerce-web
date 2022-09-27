@@ -2,6 +2,7 @@ package com.genie.myapp.controller;
 
 import java.nio.charset.Charset;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.genie.myapp.service.AdminService;
 import com.genie.myapp.vo.AccountVO;
 import com.genie.myapp.vo.AdminVO;
+import com.genie.myapp.vo.CartVO;
 import com.genie.myapp.vo.PagingVO;
+import com.genie.myapp.vo.SellerVO;
 import com.genie.myapp.vo.UserVO;
 
 @Controller
@@ -211,7 +214,7 @@ public class AdminController {
 		public ModelAndView admember(PagingVO pVO) {
 			mav = new ModelAndView();
 			
-			pVO.setTotalRecord(service.totalRecord(pVO));
+			pVO.setTotalRecord(service.userTotalRecord(pVO));
 			mav.addObject("admember", service.userAllSelect(pVO));
 			mav.addObject("pVO", pVO);
 			
@@ -259,11 +262,106 @@ public class AdminController {
 			if(cnt>0) {
 				mav.setViewName("redirect:admember");
 			}else {
+				mav.setViewName("redirect:admember");
+			}
+			return mav;
+		}
+	
+	//결제 뷰화면
+	@GetMapping("adminpayment")
+	public ModelAndView productForm() {
+		mav = new ModelAndView();
+		mav.setViewName("admin/adminpayment");
+		return mav;
+	}	
+
+	//결제 컨트롤러
+	@PostMapping("adminpaymentOk")
+	public ResponseEntity<String> adminpayment(CartVO vo, HttpServletRequest request){
+		vo.setGenie_id((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
+		
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		
+		try {//결제 성공
+			int result = service.paymentWrite(vo);
+			
+			String msg = "<script>";
+			msg += "alert('결제가 되었습니다. 등록되었습니다.');";
+			msg += "location.href='/admin/adminMain';";
+			msg += "</script>";
+			entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
+			
+		}catch(Exception e) {//결제 실패
+			
+			String msg = "<script>";
+			msg += "alert('결제가 실패하였습니다.');";
+			msg += "history.back();";
+			msg += "</script>";
+			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);
+			
+			e.printStackTrace();
+		}
+		return entity;
+	}
+		// adcompany 페이지 이동
+		@GetMapping("adcompany")
+		public ModelAndView adcompany(PagingVO pVO) {
+			mav = new ModelAndView();
+			
+			pVO.setTotalRecord(service.sellerTotalRecord(pVO));
+			pVO.setNotApproved(service.sellerApproval(pVO));
+			mav.addObject("adcompany", service.sellerAllSelect(pVO));
+			mav.addObject("pVO", pVO);
+			
+			mav.setViewName("admin/adcompany");
+			return mav;
+		}	
+		
+		// 선택된 셀러의 정보 수정 폼
+		@GetMapping("adcompanyPop")
+		public ModelAndView adcompanyPop(@RequestParam("genie_id") String genie_id, PagingVO pVO) {
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("vo", service.getadcompany(genie_id));
+			mav.addObject("pVO", pVO);
+			mav.setViewName("admin/adcompanyPop");
+			return mav;
+		}
+		
+		// 셀러 DB 업데이트
+		@PostMapping("adcompanyPopEdit")
+		public ResponseEntity<String> adcompanyPopEdit(SellerVO vo){
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+			headers.add("Content-Type", "text/html; charset-UTF-8");
+			String msg = "<script>";
+			try {
+				service.adcompanyPopEdit(vo);
+				msg += "alert('수정완료되었습니다. 정보관리 페이지로 이동합니다.');";
+				msg += "location.href='/admin/adcompanyPop?genie_id="+vo.getGenie_id()+"';";
+						
+			}catch(Exception e){
+				e.printStackTrace();
+				msg += "alert('수정 실패하였습니다.');";
+				msg += "history.go(-1);";
+			}
+			msg += "</script>";
+			
+			return new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+		}
+		
+		// 셀러 정보 삭제
+		@GetMapping("adcompanyDel")
+		public ModelAndView adcompanyDel(String genie_id) {
+			int cnt = service.adcompanyDel(genie_id);
+			mav = new ModelAndView();
+			if(cnt>0) {
+				mav.setViewName("redirect:adcompany");
+			}else {
 				mav.setViewName("redirect:adcompany");
 			}
 			return mav;
 		}
-		
 }
-
-//Update 0920.17:14

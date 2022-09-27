@@ -4,7 +4,7 @@
 
 <div class="wrapper">
     <div class="cart">
-        <h1><i class="fa-solid fa-cart-plus"></i><a href="#">장바구니</a></h1>
+        <h1><i class="fa-solid fa-cart-plus"></i><a href="#">장바구니 ${logName}</li></a></h1>
         <div class="line"></div>
         <div class="cart-product">
             <div>상품이미지</div>

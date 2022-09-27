@@ -20,6 +20,7 @@ import com.genie.myapp.service.CertService;
 import com.genie.myapp.vo.UserVO;
 
 @RestController
+@SuppressWarnings("unchecked")
 @RequestMapping("/cert/*")
 public class CertController {
 
