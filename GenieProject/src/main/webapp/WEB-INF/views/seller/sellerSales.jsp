@@ -39,7 +39,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">총 매출</span>
 						<span class="info-box-number">
-							<fmt:formatNumber type="number" maxFractionDigits="3" value="${orderSum}" /> 원
+							<h2><fmt:formatNumber type="number" maxFractionDigits="3" value="${orderSum}" /> 원</h2>
 						</span>
 					</div>
 				</div>
@@ -50,7 +50,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">총 결제건수</span>
 						<span class="info-box-number">
-							<fmt:formatNumber type="number" maxFractionDigits="3" value="${orderCount}" /> 건
+							<h2><fmt:formatNumber type="number" maxFractionDigits="3" value="${orderCount}" /> 건</h2>
 						</span>
 					</div>
 				</div>
@@ -61,7 +61,7 @@
 					<div class="info-box-content">
 						<span class="info-box-text">베스트 셀러</span>
 						<span class="info-box-number">
-							${bestSeller}
+							<h2>${bestSeller}</h2>
 						</span>
 					</div>
 				</div>
@@ -88,7 +88,6 @@
   <!-- /.content-wrapper -->
 
   <%@ include file="../inc/sellerFooter.jsp"%>
-</div>
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
@@ -100,7 +99,7 @@
 					
 <!-- 차트 (chart js)-->
 <script>
-var jsonData = ${json}; // Controller 에서 가공하여 넘겨준 데이터를 jstl 문법을 통해 변수에 담기
+var jsonData = ${json} // Controller 에서 가공하여 넘겨준 데이터를 jstl 문법을 통해 변수에 담기
 var jsonObject = JSON.stringify(jsonData); // js에서 문자열형태로 사용할 수 있도록 변환
 var jData = JSON.parse(jsonObject); // json객체로 사용할수 있게 json.parse 메소드 이용
 // -> js 에서 jData 변수를 사용하여 데이터 다룰수 있게됨.
