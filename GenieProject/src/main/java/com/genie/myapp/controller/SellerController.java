@@ -67,10 +67,11 @@ public class SellerController {
 	
 	// Seller 주문관리 
 	@GetMapping("sellerOrder")
-	public ModelAndView sellerOrder(OrderVO vo) {
+	public ModelAndView sellerOrder(OrderVO vo, HttpServletRequest request) {
+		String seller_id = ((String)request.getSession().getAttribute("logId")); //세션 셀러 아이디
+
 		mav = new ModelAndView();
-		System.out.println(vo.toString());
-		mav.addObject("list", service.sellerOrder(vo));
+		mav.addObject("list", service.sellerOrder(vo, seller_id));
 		mav.setViewName("seller/sellerOrder");
 		return mav;
 	}
@@ -92,16 +93,16 @@ public class SellerController {
 	// Seller 매출관리 페이지
 	@GetMapping("sellerSales")
 	public ModelAndView sellerSales(OrderVO vo, HttpServletRequest request) {
-		vo.setGenie_id((String)request.getSession().getAttribute("logId")); //세션 로그인 아이디
+		String seller_id = (String)request.getSession().getAttribute("logId"); // 세션 셀러 아이디
 		
 		mav = new ModelAndView();
 		
-		int osum = service.orderSum(); 
-		int ocnt = service.orderCount();
-		String bs = service.bestSeller();
+		int osum = service.orderSum(seller_id); 
+		int ocnt = service.orderCount(seller_id); 
+		String bs = service.bestSeller(seller_id);
 		
 		// 쿼리로 받은 '범주(month_day)':'값(total_sales)' 형태의 리스트 데이터 추출
-		List<OrderVO> orderlist = service.orderSumByDay();
+		List<OrderVO> orderlist = service.orderSumByDay(seller_id);
 		
 		// 리스트를 Json 객체로 옮겨담기
 		// java 에서 json 객체를 다루기 쉽도록 gson 라이브러리 이용
@@ -115,8 +116,10 @@ public class SellerController {
 			String date = ovo.getMonth_day();
 			int sales = ovo.getTotal_sales();
 			
+			
 			object.addProperty("date", date);
 			object.addProperty("sales", sales);
+		
 			jArray.add(object); // json 배열 객체 생성
 		}
 		

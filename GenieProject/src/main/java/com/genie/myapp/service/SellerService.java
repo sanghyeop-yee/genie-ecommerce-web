@@ -23,7 +23,7 @@ public interface SellerService {
 	//seller 상품등록
 	public int productWrite(SellerProductVO vo);
 	// 주문목록 
-	public List<OrderVO> sellerOrder(OrderVO vo);
+	public List<OrderVO> sellerOrder(OrderVO vo, String seller_id);
 	// 주문목록 배송상태 수정 
 	public void updateDeliveryStatus(Map deliveryMap);
   	//판매자 로그인
@@ -41,11 +41,11 @@ public interface SellerService {
 	//문의목록
 	public List<InquiryVO> inquiryList(InquiryVO vo, String Genie_id);
 	// 매출관리 (결제금액)
-	public int orderSum();
+	public int orderSum(String seller_id);
 	// 일별 매출관리
-	public List<OrderVO> orderSumByDay();
+	public List<OrderVO> orderSumByDay(String seller_id);
 	// 결제건수
-	public int orderCount();
+	public int orderCount(String seller_id);
 	// 베스트셀러
-	public String bestSeller();
+	public String bestSeller(String seller_id);
 }

@@ -95,8 +95,8 @@
                           <td>${vo.product_name}</td>
                           <td>${vo.order_qty}</td>
                           <td>${vo.order_price}</td>
-                          <td>${vo.recipient_name}</td>
                           <td>${vo.genie_id}</td>
+                          <td>${vo.recipient_name}</td>
                           <td>${vo.recipient_address}</td>
                           <td>${vo.recipient_phone}</td>
                           <td>${vo.recipient_request}</td>
