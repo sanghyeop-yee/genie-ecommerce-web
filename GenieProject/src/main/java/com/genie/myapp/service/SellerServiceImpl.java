@@ -25,8 +25,8 @@ public class SellerServiceImpl implements SellerService {
   
 // 주문목록
   @Override
-	public List<OrderVO> sellerOrder(OrderVO vo) {
-		return dao.sellerOrder(vo);
+	public List<OrderVO> sellerOrder(OrderVO vo, String seller_id) {
+		return dao.sellerOrder(vo, seller_id);
 	}
 
   @Override
@@ -91,23 +91,23 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public int orderSum() {
-		return dao.orderSum();
+	public int orderSum(String seller_id) {
+		return dao.orderSum(seller_id);
 	}
 
 	@Override
-	public List<OrderVO> orderSumByDay() {
-		return dao.orderSumByDay();
+	public List<OrderVO> orderSumByDay(String seller_id) {
+		return dao.orderSumByDay(seller_id);
 	}
 
 	@Override
-	public int orderCount() {
-		return dao.orderCount();
+	public int orderCount(String seller_id) {
+		return dao.orderCount(seller_id);
 	}
 
 	@Override
-	public String bestSeller() {
-		return dao.bestSeller();
+	public String bestSeller(String seller_id) {
+		return dao.bestSeller(seller_id);
 	}
 
 }

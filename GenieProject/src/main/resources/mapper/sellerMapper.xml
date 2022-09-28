@@ -4,13 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.genie.myapp.dao.SellerDAO">
 
-  <!-- 주문목록 -->
-  <select id="sellerOrder" resultType="OrderVO">
-    select m.order_num, m.genie_id, p.product_name product_name, m.recipient_name, m.recipient_phone, m.recipient_address, m.recipient_request, m.recipient_delivery_status, m.order_price, m.order_qty, m.order_writedate 
-    from myorder m join product p 
-    on m.product_id = p.product_id;
-	<!-- where m.genie_id=#{genie_id} -->
-  </select>
+	<!-- 주문목록 -->
+	<select id="sellerOrder" resultType="OrderVO">
+		select m.order_num, m.genie_id, p.product_name, m.recipient_name, m.recipient_phone, m.recipient_address, m.recipient_request, m.recipient_delivery_status, m.order_price, m.order_qty, m.order_writedate
+		from myorder m join
+			(select product_id, genie_id as seller_id, product_name 
+			from product
+			where genie_id = #{param2}) p
+		on m.product_id = p.product_id
+		order by m.order_writedate desc;
+	</select>
 
 	<select id="idCheck" resultType="int">
 		select count(genie_id) cnt from account where genie_id=#{genie_id}
@@ -77,7 +80,7 @@
 		where product_id=${product_id}
 	</update>
 
-	<!--   주문 상태 수정-->
+	<!--  주문 상태 수정 -->
 	 <update id="updateDeliveryStatus">
 	 	update myorder
 	 	<set>
@@ -98,35 +101,52 @@
 
 	<!--  총매출 -->
 	<select id="orderSum" resultType="int">
-		select sum(order_price) from myorder
-		<!-- where m.genie_id=#{genie_id} -->
+		select sum(order_price)
+		from myorder m join
+			(select product_id, genie_id as seller_id, product_name 
+			from product
+			where genie_id = #{param1}) p
+		on m.product_id = p.product_id;
 	</select>
 	
 	<!--  일별 매출 -->
 	<select id="orderSumByDay" resultType="OrderVO">
 		select date_format(order_writedate, '%m-%d') as month_day, sum(order_price) as total_sales
+		from myorder m join
+			(select product_id, genie_id as seller_id, product_name 
+			from product
+			where genie_id = #{param1}) p
+		on m.product_id = p.product_id
+		group by month_day;
+
+		<!-- select date_format(order_writedate, '%m-%d') as month_day, sum(order_price) as total_sales
 		from myorder
-		group by month_day
-		<!-- where m.genie_id=#{genie_id} -->
+		group by month_day; -->
 	</select>
 	
 	<!--  총 결제건수 -->
 	<select id="orderCount" resultType="int">
-		select count(order_num) order_cnt from myorder
-		<!-- where m.genie_id=#{genie_id} -->
+		select count(order_num) order_cnt
+		from myorder m join
+			(select product_id, genie_id as seller_id, product_name
+			from product
+			where genie_id = #{param1}) p
+		on m.product_id = p.product_id;
 	</select>
 	
 	<!--  이달의 상품 -->
 	<select id="bestSeller" resultType="string">
-		select p.product_name
-		from product p join
-			(select product_id, count(product_id) sold_count
-			from myorder
-			group by product_id
-			order by sold_count desc
-			limit 1) m
-		on p.product_id = m.product_id
-		<!-- where m.genie_id=#{genie_id} -->
+		select product_name
+		from
+			(select seller_id, product_id, product_name, count(product_id) as sold_cnt
+			from 
+				(select m.order_num, m.genie_id orderer_id, m.product_id, p.product_name, p.genie_id seller_id
+				from myorder m join product p
+				on m.product_id = p.product_id
+				where p.genie_id=#{param1}) a
+			group by 1,2,3
+			order by sold_cnt desc
+			limit 1) b;
 	</select>
 
 </mapper>
