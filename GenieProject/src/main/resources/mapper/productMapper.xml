@@ -3,7 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.genie.myapp.dao.ProductDAO">
-    <select id="product" resultType="ProductVO">
+ <!-- 메인페이지 태그 , 카테고리별 검색 -->
+
+    <select id="listProduct" resultType="ProductVO">
 
         select 
             product_id, 
@@ -21,12 +23,27 @@
             product_image1,
             product_image2,
             product_image3,
-            product_mbti
+            product_mbti 
         from product 
-        where product_category like '%${product_category}%'  <!--where procuct_category like '%생일%'-->
-        order by product_id desc
+
+        <where>
+        <if test="product_category != null">
+
+            product_category like '%${product_category}%'  <!--where procuct_category like '%생일%'-->
+
+        </if>
+        <if test="product_tag != null">
+
+             product_tag like '%${product_tag}%'
+
+        </if>
+        </where>
+
+            order by product_id asc
 
     </select>
+
+<!-- 제품 검색(정보가져오기) -->
 
     <select id = "getProduct" resultType = "ProductVO" parameterType = "int">
 
@@ -54,15 +71,7 @@
 
     <select id="getSeller" resultType="SellerVO">
 
-        select 
-            s.genie_id, 
-            seller_tel, 
-            seller_email, 
-            seller_reg_no, 
-            company_name, 
-            ceo_name, 
-            seller_website,
-            seller_address 
+        select * 
         from seller s
         join product p
         on s.genie_id=p.genie_id
@@ -70,38 +79,50 @@
 
     </select>
 
+<!-- 장바구니 -->
+
     <select id="getCart" resultType="CartVO">
 
-        select 
-            p.product_id, 
-            p.genie_id,
-            p.product_category,
-            p.product_tag,
-            p.product_name,
-            p.product_price,
-            p.product_info,
-            p.product_stock,
-            p.product_quantity,
-            p.product_hit,
-            p.product_like,
-            p.product_writedate,
-            p.product_image1,
-            p.product_image2,
-            p.product_image3,
-            p.product_mbti  
-        from product p 
-        join cart c  
-        on c.product_id = p.product_id 
-        where c.genie_id=#{genie_id}
+        select * 
+        from 
+            product p,
+            cart c,
+            user u 
+        where u.genie_id=c.genie_id and 
+            c.product_id=p.product_id and 
+            c.genie_id=#{param1};
 
     </select>
 
-    <insert id="addCart" parameterType="CartVO">
+    <insert id="addCart">
 
         insert into Cart(cart_num, genie_id, product_id, cart_price, cart_qty) 
         values(#{cart_num}, #{genie_id}, #{product_id}, #{cart_price}, #{cart_qty})
 
     </insert>
+
+    <delete id="delProduct">
+        delete from cart where cart_num=#{param1} and genie_id=#{param2}
+    </delete>
+
+<!-- 구매정보 이동 -->
+
+    <insert id="myOrder">
+
+        insert into myorder 
+        (order_num, 
+        genie_id, 
+        receipent_name, 
+        receipent_phone,
+        receipent_address, 
+        receipent_request,
+        cart_qty) 
+        values(#{cart_num}, #{genie_id}, #{product_id}, #{cart_price}, #{cart_qty})
+
+    </insert>
+
+
+<!-- 메인페이지 지니 추천 -->
 
     <select id = "selectProduct" resultType="ProductVO">
 
@@ -141,6 +162,4 @@
         order by rand()
 
     </select>
-
-
 </mapper>

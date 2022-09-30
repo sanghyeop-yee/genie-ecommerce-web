@@ -110,4 +110,24 @@ public class SellerServiceImpl implements SellerService {
 		return dao.bestSeller(seller_id);
 	}
 
+	@Override
+	public int deliveryPending(String seller_id) {
+		return dao.deliveryPending(seller_id);
+	}
+
+	@Override
+	public int todayOrder(String seller_id) {
+		return dao.todayOrder(seller_id);
+	}
+
+	@Override
+	public int deliveringOrder(String seller_id) {
+		return dao.deliveringOrder(seller_id);
+	}
+
+	@Override
+	public List<OrderVO> revenueByProduct(String seller_id) {
+		return dao.revenueByProduct(seller_id);
+	}
+
 }

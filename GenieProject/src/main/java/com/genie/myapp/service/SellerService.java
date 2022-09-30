@@ -48,4 +48,17 @@ public interface SellerService {
 	public int orderCount(String seller_id);
 	// 베스트셀러
 	public String bestSeller(String seller_id);
+
+
+
+	// 배송 대기 중 
+    public int deliveryPending(String seller_id);
+	// 오늘 들어온 주문 
+    public int todayOrder(String seller_id);
+	// 배송 중
+    public int deliveringOrder(String seller_id);
+
+	// 아이템별 매출
+	public List<OrderVO> revenueByProduct(String seller_id);
+	
 }

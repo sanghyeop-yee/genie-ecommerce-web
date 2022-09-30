@@ -1,133 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../inc/top.jspf" %>
+
+ <title>Genie 페이지</title>
+  <!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'><link rel="stylesheet" href="./style.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+  href="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/css/themes/vertical-modern-menu-template/style.css">
+<link rel="stylesheet" type="text/css" href="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/css/pages/dashboard-modern.css">
+<link rel="stylesheet" type="text/css" href="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/css/pages/intro.css">
+<!-- BEGIN: Custom CSS-->
+<link rel="stylesheet" type="text/css" href="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/css/laravel-custom.css">
+<link rel="stylesheet" type="text/css" href="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/css/custom/custom.css">
+<!-- END: Custom CSS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <style>
-/* ------------------nav바 빼고 나머지 밑에 회색부분 페이지 설정--------------------- */
-.responsive-wrapper {
-	background-color: #f5f5f7;
-	width: 100%;
-	height: 100vh;
-	margin: 0;
-	padding: 1% 12%;
+.icon-block {
+  padding: 0 15px;
 }
-/* ---------------------------------왼쪽 흰색 상자박스설정----------------------------------- */
-.content {
-	display: flex;
-	align-items: flex-start;
+.icon-block .material-icons {
+  font-size: inherit;
 }
-.content-panel {
-	display: flex;
-	flex-direction: column;
-	width: 25%;
-	margin-right: 1em;
-	background-color: #fff;
-	color: #1d1d1f;
-	box-shadow: 0 0 1px #dfdfdf;
-	font-weight: bold;
-	border-radius: 10px;
+
+.height-64px {
+  height: 64px;
+  line-height: 64px;
 }
-.content-panel h3{
-	padding: 2.8em;
+
+nav .sidenav-trigger i {
+  height: 64px;
+  line-height: 64px;
 }
-.content-panel>ul{
-	margin: 0;
-	padding: 0;
+
+#PwdEdit {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #7600bc;
+  padding: 10px;
+  border-radius: 8px;
 }
-.content-panel>ul>li{
-	padding: 1em;
-	font-size: 14px; 
+
+#PwdEdit:hover {
+  background-color: #7600bc;
+  color: white;
 }
-.content-panel>ul>li>i{
-	margin: 0 1em; 
+
+#formSubmit {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #7600bc;
+  padding: 10px;
+  border-radius: 8px;
 }
-.content-panel>ul>li:last-child{
-	margin-bottom: 3em;
-}
-/* ----------------------------------------------------------------------- */
-/* ---------------------오른쪽상자박스------------------------ */
-/* 오른쪽 흰색박스 크기와 내부크기 */
-.content-main{
-	width: 75%;
-	padding: 1em 15em;
-	background-color: #fff;
-	border-radius: 10px;
-	box-shadow: 0 0 1px #dfdfdf;
-}
-/* 회원정보 글씨설정 */
-.content-main h1{
-	text-align: center;
-	margin: .5em 0 1em 0;
-}
-/* 리스트스타일 글자설정 */
-.userForm li{
-	font-weight: bold;
-	margin: 1em 0;
-}
-/* -------------------------------------------------------------------------------------- */
-/* 비밀번호 글자설정 */
-#passwordForm{
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	font-size: 1em;
-}
-/* 비밀번호찾기 글자설정 */
-#PwdEdit{
-	margin-left: 2vw;
-	border: none;
-	border-radius: 10px;
-	background: #F7D25A;
-	color: #fff;
-	padding: .5em;
-	font-size: 1em;
-	cursor: pointer;
-}
-/* --------------------------------------------------------------------------------------- */
-/* 휴대폰번호 빼고 회색부분 설정 */
-input[type=text], input[type=email]{
-	width: 100%;
-	background-color: #f5f5f7;
-	color: #1d1d1f;
-	font-size: 1em;
-	padding: .7em;
-	border: none;
-	border-radius: 10px;
-}
-/* ------------------------------------------------- */
-/* 휴대폰번호 회색부분 설정 */
-#user_phone_num1{
-	width: 25%;
-	background-color: #f5f5f7;
-	color: #1d1d1f;
-	font-size: 1em;
-	padding: .7em;
-	border: none;
-	border-radius: 10px;
-}
-#user_phone_num2, #user_phone_num3{
-	width: 33%;
-	margin-left: .5em;
-}
-/* -------------------------------------------------- */
-/* 회원정보수정 버튼 */
-#formSubmit{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: .5em;
-	margin: 1em auto;
-	font-size: 1.5em;
-	background: #F7D25A;
-	color: #fff;
-	border:none;
-	border-radius: 10px;
-	cursor: pointer;
+
+#formSubmit:hover {
+  background-color: #7600bc;
+  color: white;
 }
 </style>
 
-<!-- -----------------------------------------스크립트 부분 시작---------------------------------- -->
 <script>
-	$(function(){
+ 
+ $(function(){
 		$("#PwdEdit").click(function(){
 			window.open("/user/PwdEdit","PwdEdit","width=400,height=300");
 		});
@@ -165,58 +101,284 @@ input[type=text], input[type=email]{
 			}			
 			return true;
 		});
-    });
+  });
 </script>
-<!-- ------------------------------------스크립트부분 끝------------------------------------------->
-<div class="responsive-wrapper">
- 	<div class="content">
-		<div class="content-panel">
-			<h3>${vo.user_name} ${svo.ceo_name}님</h3>
-				<ul class="fa-ul">
-					<li><i class="fa-solid fa-circle-user"></i><a href="/user/MyPage">회원정보 확인/수정</a></li>
-					<li><i class="fa-brands fa-shopify"></i><a href="/user/MyOrderList">주문목록/배송조회</a></li>
-					<li><i class="fa-sharp fa-solid fa-truck"></i><a href="/user/MyDeliveryList">배송지 관리</a></li>
-					<li><i class="fa-solid fa-clipboard"></i><a href="/user/MyInquiryList">나의 문의사항</a></li>
-				</ul>
-		</div>
-			<div class="content-main">
-				<h1>회원정보</h1>
-				<div class="userForm">
-					<form method="post" action="/user/UserEditOk" id="logFrm">
-						<ul id="idForm">
-							<li>아이디</li>
-							<input type="text" id="genie_id" name="genie_id" value= "${vo.genie_id} ${svo.genie_id}" readonly>
-							<input type ="hidden" id = "idCheckState" value = "Y"/>
-						</ul>
-						<ul id="name">
-							<li>이름</li>
-							<input type="text" id="user_name" name="user_name" value= "${vo.user_name} ${svo.ceo_name}" readonly>
-						</ul>
-						<ul id="passwordForm">
-							<li>비밀번호</li>
-							<li><input type="button" id="PwdEdit" value="비밀번호를 변경하려면 클릭하세요"/></li>
-						</ul>
-						<ul id="phoneForm">
-							<li>휴대폰 번호</li>
-							<select id = "user_phone_num1" name = "user_phone_num1" size = "1" value = "${vo.user_phone_num1}">
-								<option value="010">010</option>
-								<option value="011">011</option>
-								<option value="016">016</option>
-								<option value="017">017</option>
-								<option value="018">018</option>
-								<option value="019">019</option>
-							</select>
-							<input type ="text" name = "user_phone_num2" id ="user_phone_num2" maxlength = "4" value ="${vo.user_phone_num2}"/>
-							<input type ="text" name = "user_phone_num3" id ="user_phone_num3" maxlength = "4" value ="${vo.user_phone_num3}"/>
-						</ul>
-						<ul id="emailForm">
-							<li>이메일</li>
-							<input type="email" id="user_email" name="user_email" value ="${vo.user_email} ${svo.seller_email}" placeholder="이메일을 입력하세요">
-						</ul>
-						<input type = "submit" id="formSubmit" value = "회원정보 수정"/>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+<body>
+
+<body
+  class="vertical-layout vertical-menu-collapsible page-header-dark vertical-modern-menu 2-columns  "
+  data-open="click" data-menu="vertical-modern-menu" data-col="2-columns">
+
+  <!-- BEGIN: Header-->
+  <header class="page-topbar" id="header">
+    <div class="navbar navbar-fixed ">
+  <nav
+    class="navbar-main navbar-color nav-collapsible no-shadow nav-expanded sideNav-lock  navbar-dark gradient-45deg-indigo-purple ">
+    <div class="nav-wrapper">
+      <div class="header-search-wrapper hide-on-med-and-down">
+        <i class="material-icons">search</i>
+        <input class="header-search-input z-depth-2" type="text" name="Search" placeholder="Explore Materialize"
+          data-search="template-list">
+        <ul class="search-list collection display-none"></ul>
+      </div>
+      <ul class="navbar-list right">
+        <li class="dropdown-language">
+          <a class="waves-effect waves-block waves-light translation-button" href="#"
+            data-target="translation-dropdown">
+            <span class="flag-icon flag-icon-gb"></span>
+          </a>
+        </li>
+        <li class="hide-on-med-and-down">
+          <a class="waves-effect waves-block waves-light toggle-fullscreen" href="javascript:void(0);">
+            <i class="material-icons">settings_overscan</i>
+          </a>
+        </li>
+        <li class="hide-on-large-only search-input-wrapper">
+          <a class="waves-effect waves-block waves-light search-button" href="javascript:void(0);">
+            <i class="material-icons">search</i>
+          </a>
+        </li>
+        <li>
+          <a class="waves-effect waves-block waves-light notification-button" href="javascript:void(0);"
+            data-target="notifications-dropdown">
+            <i class="material-icons">notifications_none<small class="notification-badge">2</small></i>
+          </a>
+        </li>
+        <li>
+          <a class="waves-effect waves-block waves-light sidenav-trigger" href="#" data-target="slide-out-right">
+            <i class="material-icons">format_indent_increase</i>
+          </a>
+        </li>
+      </ul>
+      <!-- translation-button-->
+      <ul class="dropdown-content" id="translation-dropdown">
+      </ul>
+      <!-- notifications-dropdown-->
+      <ul class="dropdown-content" id="notifications-dropdown">
+        <li>
+          <h6>알림<span class="new badge">2</span></h6>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a class="black-text" href="javascript:void(0)">
+            <span class="material-icons icon-bg-circle red small">stars</span>
+            결제가 완료되었습니다.
+          </a>
+          <time class="media-meta grey-text darken-2" datetime="2022-09-12T20:50:48+08:00">3 days ago</time>
+        </li>
+        <li>
+          <a class="black-text" href="javascript:void(0)">
+            <span class="material-icons icon-bg-circle amber small">trending_up</span>
+            주문하신 물건의 배송이 완료되었습니다.
+          </a>
+          <time class="media-meta grey-text darken-2" datetime="2015-06-12T20:50:48+08:00">1 week ago</time>
+        </li>
+      </ul>
+    </div>
+    <nav class="display-none search-sm">
+      <div class="nav-wrapper">
+        <form id="navbarForm">
+          <div class="input-field search-input-sm">
+            <input class="search-box-sm mb-0" type="search" required="" placeholder='Explore Materialize' id="search"
+              data-search="template-list">
+            <label class="label-icon" for="search">
+              <i class="material-icons search-sm-icon">search</i>
+            </label>
+            <i class="material-icons search-sm-close">close</i>
+            <ul class="search-list collection search-list-sm display-none"></ul>
+          </div>
+        </form>
+      </div>
+    </nav>
+  </nav>
 </div>
+
+</header>
+  <!-- END: Header-->
+
+  <!-- BEGIN: SideNav-->
+  <aside
+  class="sidenav-main nav-expanded nav-lock nav-collapsible  sidenav-active-square  sidenav-light">
+  <div class="brand-sidebar">
+    <h1 class="logo-wrapper">
+      <a class="brand-logo darken-1" href="/">
+          <img class="hide-on-med-and-down" src="/image/logo_western.png" alt="materialize logo" />
+          <img class="show-on-medium-and-down hide-on-med-and-up" src="/image/logo_western.png"
+          alt="materialize logo" />
+
+                  <span class="logo-text hide-on-med-and-down">
+                    ${vo.user_name} ${svo.ceo_name}님
+                  </span>
+      </a>
+      </h1>
+  </div>
+  <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out"
+    data-menu="menu-navigation" data-collapsible="menu-accordion">
+    
+
+
+
+    <li class="navigation-header">
+      <a class="navigation-header-text">Applications</a>
+      <i class="navigation-header-icon material-icons">more_horiz</i>
+    </li>
+    <li class="bold ">
+      <a class="waves-effect waves-cyan "
+      href="/user/MyOrderList "
+      >
+      <i class="material-icons">check</i>
+      <span class="menu-title" data-i18n="ToDo">주문목록/배송조회</span>
+    </a>
+  </li>
+  <li class="bold ">
+    <a class="waves-effect waves-cyan "
+    href="/user/MyDeliveryList "
+    >
+    <i class="material-icons">content_paste</i>
+    <span class="menu-title" data-i18n="File Manager">배송지 관리</span>
+    </a>
+  </li>
+    <li class="bold ">
+    <a class="waves-effect waves-cyan "
+              href="/user/MyPage "
+      >
+      <i class="material-icons">mail_outline</i>
+      <span class="menu-title" data-i18n="Mail">회원정보확인/수정</span>
+              <span class="new badge pill pink accent-2 float-right mr-2">5</span>
+            </a>
+        </li>
+      <%-- <li class="bold ">
+      <a class="waves-effect waves-cyan "
+                href="/user/MyInquiryList "
+        >
+        <i class="material-icons">import_contacts</i>
+        <span class="menu-title" data-i18n="Contacts">나의 문의사항</span>
+              </a>
+          </li> --%>
+
+    <li class="navigation-header">
+      <a class="navigation-header-text">공지사항 </a>
+      <i class="navigation-header-icon material-icons">more_horiz</i>
+    </li>
+
+    <li class="bold ">
+      <a class="waves-effect waves-cyan "
+                href="/"
+        target=&quot;_blank&quot;>
+        <i class="material-icons">help_outline</i>
+        <span class="menu-title" data-i18n="Support">Support</span>
+              </a>
+          </li>
+              </ul>
+  <div class="navigation-background"></div>
+  <a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only"
+    href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
+</aside>  <!-- END: SideNav-->
+
+  <!-- BEGIN: Page Main-->
+  <div id="main">
+    <div class="row">
+                  
+      <div
+        class="content-wrapper-before  gradient-45deg-indigo-purple ">
+      </div>
+            
+
+            <div class="col s12">
+        <div class="container">
+          
+          <div class="section">
+   <!-- Current balance & total transactions cards-->
+   <div class="row vertical-modern-dashboard">
+      <div class="col s12 m8 l8">
+         <!-- Current Balance -->
+         <div class="card animate fadeLeft">
+            <div class="card-content">
+
+        <h3>회원정보</h3>
+        <div class="userForm">
+          <form method="post" action="/user/UserEditOk" id="logFrm">
+            <ul id="idForm">
+              <li>아이디</li>
+              <input type="text" id="genie_id" name="genie_id" value= "${vo.genie_id} ${svo.genie_id}" readonly>
+              <input type ="hidden" id = "idCheckState" value = "Y"/>
+            </ul>
+            <ul id="name">
+              <li>이름</li>
+              <input type="text" id="user_name" name="user_name" value= "${vo.user_name} ${svo.ceo_name}" readonly>
+            </ul>
+            <ul id="passwordForm">
+              <li>비밀번호</li>
+              <li><input type="button" id="PwdEdit" value="비밀번호를 변경하려면 클릭하세요"/></li>
+            </ul>
+            <ul id="phoneForm">
+              <li>휴대폰 번호</li>
+              <select id = "user_phone_num1" name = "user_phone_num1" size = "1" value = "${vo.user_phone_num1}">
+                <option value="010">010</option>
+                <option value="011">011</option>
+                <option value="016">016</option>
+                <option value="017">017</option>
+                <option value="018">018</option>
+                <option value="019">019</option>
+              </select>
+              <input type ="text" name = "user_phone_num2" id ="user_phone_num2" maxlength = "4" value ="${vo.user_phone_num2}"/>
+              <input type ="text" name = "user_phone_num3" id ="user_phone_num3" maxlength = "4" value ="${vo.user_phone_num3}"/>
+            </ul>
+            <ul id="emailForm">
+              <li>이메일</li>
+              <input type="email" id="user_email" name="user_email" value ="${vo.user_email} ${svo.seller_email}" placeholder="이메일을 입력하세요">
+            </ul>
+            <input type = "submit" id="formSubmit" value = "회원정보 수정"/>
+          </form>
+        </div>
+        
+
+            </div>
+         </div>
+      </div>
+   </div>
+   <!--/ Current balance & total transactions cards-->
+         
+
+<!-- END RIGHT SIDEBAR NAV -->                  
+</div>
+        
+        <div class="content-overlay"></div>
+      </div>
+    </div>
+  </div>
+  <!-- END: Page Main-->
+
+  <!-- BEGIN: Footer-->
+<footer
+  class="page-footer footer gradient-shadow  footer-static   footer-dark gradient-45deg-indigo-purple ">
+  <div class="footer-copyright">
+    <div class="container">
+      <span>&copy; 2022 <a href="/"
+          target="_blank">Genie</a> All rights reserved.
+      </span>
+      <span class="right hide-on-small-only">
+        <a href="/"></a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- END: Footer-->  
+  <!-- BEGIN VENDOR JS-->
+<script src="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/js/vendors.min.js"></script>
+<!-- BEGIN VENDOR JS-->
+<!-- BEGIN PAGE VENDOR JS-->
+<script src="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/vendors/chartjs/chart.min.js"></script>
+<script src="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/vendors/chartist-js/chartist.min.js"></script>
+<script src="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/vendors/chartist-js/chartist-plugin-tooltip.js"></script>
+<script src="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/vendors/chartist-js/chartist-plugin-fill-donut.min.js"></script>
+<!-- END PAGE VENDOR JS-->
+<!-- BEGIN THEME  JS-->
+<script src="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/js/plugins.js"></script>
+<script src="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/js/search.js"></script>
+<script src="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/js/custom/custom-script.js"></script>
+<script src="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/js/scripts/customizer.js"></script>
+<!-- END THEME  JS-->
+
+</body>

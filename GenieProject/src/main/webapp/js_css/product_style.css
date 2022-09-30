@@ -29,10 +29,6 @@
     z-index: 1;
 }
 /* -------------------------------컨테이너 안 이미지 설정------------------------------------------ */
-img{
-    width: 100%;
-    height: auto;
-}
 /* ------------------------그리드 설정과 이미지 설정------------------- */
 .grid-container{
     /* grid style */
@@ -53,6 +49,9 @@ img{
     filter: blur(0px);
     transition: filter 0.3s ease-in;
     transform: scale(1.1);
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
 }
 .product-title{
     font-size: 1.5rem;

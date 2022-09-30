@@ -18,8 +18,8 @@ public class ProductServiceImpl implements ProductService{
     ProductDAO dao;
 
 	@Override
-	public List<ProductVO> product(ProductVO pVO) {
-		return dao.product(pVO);
+	public List<ProductVO> listProduct(ProductVO pVO) {
+		return dao.listProduct(pVO);
 	}
 	
 	@Override
@@ -40,6 +40,16 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public SellerVO getSeller(int product_id) {
 		return dao.getSeller(product_id);
+	}
+
+	@Override
+	public int addCart(CartVO cvo) {
+		return dao.addCart(cvo);
+	}
+
+	@Override
+	public int delProduct(int cart_num, String genie_id) {
+		return dao.delProduct(cart_num, genie_id);
 	}
 
 

@@ -13,23 +13,23 @@ import com.genie.myapp.vo.SellerVO;
 @Mapper
 @Repository
 public interface ProductDAO{
+    
     //상품정보리스트에서 상품정보 가져오기
-    public List<ProductVO> product(ProductVO pVO);
+    public List<ProductVO> listProduct(ProductVO pVO);
     //제품 상세정보(구매페이지)
     public ProductVO getProduct(int no);
-
-
 
     //장바구니 가져오기(상품포함)
     public List<CartVO> getCart(String genie_id);
 
-
-
-    // //장바구니에 상품 넣기
-    // public CartVO addCart(CartVO cVo);
+    //장바구니 상품 넣기
+    public int addCart(CartVO cvo);
+    //장바구니 제품 삭제
+    public int delProduct(int cart_num, String genie_id);
 
     //지니페이지 제품 선택
     public List<ProductVO> selectProduct(Map<String, Object> map);
     //상세페이지 관리자정보 가져오기
     public SellerVO getSeller(int product_id);
+ 
 }

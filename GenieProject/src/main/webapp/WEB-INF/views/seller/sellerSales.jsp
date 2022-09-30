@@ -3,6 +3,35 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+	#salesbody{
+		padding-top: 10px;
+		padding-left: 100px;
+		padding-right: 100px;
+	}
+	.info-box-text{
+		font-size: 13px;
+	}
+	.info-box{
+		width: 300px;
+		height: 200px;
+		
+	}
+	#icon {
+		width: 100%;
+		height: 100%;
+		border-radius: 25px;
+	}
+
+	#chart{
+		padding-bottom: 50px;
+	}
+
+	
+
+
+</style>
 
 <div class="wrapper">
 
@@ -20,61 +49,67 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/seller/sellerMain">Home</a></li>
-              <li class="breadcrumb-item active">Main</li>
+              <li class="breadcrumb-item active">Sales</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
+	
     <!-- Main content -->
-    <div class="content">
+    <div class="content" id="salesbody">
       <div class="container-fluid">
 		<!-- info boxes -->
         <div class="row">
 			<div class="col-12 col-sm-6 col-md-4">
-				<div class="info-box">
-					<span class="info-box-icon bg-danger elevation-1"><i class="fas fa-credit-card"></i></span>
-					<div class="info-box-content">
-						<span class="info-box-text">총 매출</span>
-						<span class="info-box-number">
-							<h2><fmt:formatNumber type="number" maxFractionDigits="3" value="${orderSum}" /> 원</h2>
-						</span>
-					</div>
+				<div class="info-box" style="background-color: transparent; box-shadow: none;">
+					<span class="info-box-icon elevation-1" id="icon" style="background: linear-gradient(#ff796f, #bd261b);color:white;"><i class="fas fa-credit-card">
+						<div class="info-box-content">
+							<span class="info-box-text">총 매출</span>
+							<span class="info-box-number">
+								<h2><fmt:formatNumber type="number" maxFractionDigits="3" value="${orderSum}" /> 원</h2>
+							</span>
+						</div>
+					</i></span>
+					
 				</div>
 			</div>
 			<div class="col-12 col-sm-6 col-md-4">
-				<div class="info-box mb-3">
-					<span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span> 
-					<div class="info-box-content">
-						<span class="info-box-text">총 결제건수</span>
-						<span class="info-box-number">
-							<h2><fmt:formatNumber type="number" maxFractionDigits="3" value="${orderCount}" /> 건</h2>
-						</span>
-					</div>
+				<div class="info-box mb-3" style="background-color: transparent; box-shadow: none;">
+					<span class="info-box-icon bg-success elevation-1" id="icon"><i class="fas fa-shopping-cart">
+						<div class="info-box-content">
+							<span class="info-box-text">총 결제건수</span>
+							<span class="info-box-number">
+								<h2><fmt:formatNumber type="number" maxFractionDigits="3" value="${orderCount}" /> 건</h2>
+							</span>
+						</div>
+					</i></span> 
 				</div>
 			</div>
 			<div class="col-12 col-sm-6 col-md-4">
-				<div class="info-box mb-3">
-					<span class="info-box-icon bg-info elevation-1"><i class="fas fa-thumbs-up"></i></span> 
-					<div class="info-box-content">
-						<span class="info-box-text">베스트 셀러</span>
-						<span class="info-box-number">
-							<h2>${bestSeller}</h2>
-						</span>
-					</div>
+				<div class="info-box mb-3" style="background-color: transparent; box-shadow: none;">
+					<span class="info-box-icon bg-info elevation-1" id="icon"><i class="fas fa-thumbs-up"> 
+						<div class="info-box-content">
+							<span class="info-box-text">베스트 셀러</span>
+							<span class="info-box-number">
+								<h2>${bestSeller}</h2>
+							</span>
+						</div>
+					</i></span>
 				</div>
 			</div>
+		
           <div class="col-lg-12">
-            <div class="card card-primary card-outline">
+			<br>
+            <div class="card-primary card-outline" id="chartbox">
               <div class="card-body">
                 <p class="card-text">
                   
                 </p>
 				<!-- 차트 (chart js)-->
 				<h3 style="text-align:center;">일별 매출</h3>
-				<canvas id="chart" style="width:300px; height:150px;"></canvas>
+				<canvas id="chart" style="width:200px; height:100px;"></canvas>
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>		          
               </div>
             </div><!-- /.card -->
@@ -85,9 +120,9 @@
     </div>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
+<!-- /.content-wrapper -->
 
-  <%@ include file="../inc/sellerFooter.jsp"%>
+
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
@@ -149,3 +184,4 @@ new Chart(chart, {
 })
 
 </script>
+<%@ include file="../inc/sellerFooter.jsp"%>

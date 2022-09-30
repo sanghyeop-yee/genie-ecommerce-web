@@ -1,12 +1,15 @@
 package com.genie.myapp.service;
 
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.UserDAO;
 import com.genie.myapp.vo.AccountVO;
+import com.genie.myapp.vo.DeliveryVO;
 import com.genie.myapp.vo.UserVO;
 
 @Service
@@ -46,8 +49,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int MyDeliveryEditOk(UserVO vo) {
-        return dao.MyDeliveryEditOk(vo);
+    public int addDelivery(UserVO vo) {
+        return dao.addDelivery(vo);
     }
     
     @Override
@@ -58,6 +61,18 @@ public class UserServiceImpl implements UserService{
     public int AccountWrite(AccountVO avo) {
        return dao.AccountWrite(avo);
     }
+
+    @Override
+    public List<DeliveryVO> getDeliveryList(String genie_id) {
+        return dao.getDeliveryList(genie_id);
+    }
+
+    @Override
+    public int delDelivery(int address_num, String genie_id) {
+        return dao.delDelivery(address_num, genie_id);
+    }
+
+    
 
        
 }

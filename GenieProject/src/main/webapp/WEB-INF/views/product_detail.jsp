@@ -43,7 +43,7 @@ $(function(){
         */            
         name: '${pvo.product_name}',            
         //결제창에서 보여질 이름            
-        amount: ${pvo.product_price},             
+        amount: '${pvo.product_price}',             
         //가격             
         buyer_email: 'iamport@siot.do',            
         buyer_name: '구매자이름',           
@@ -69,122 +69,74 @@ $(function(){
                     msg += '에러내용 : ' + rsp.error_msg;            
                 }           
             alert(msg);        
-            });    
+        });
     });
 });
 </script>
+<script>
+$(function(){
+	//유효성 검사
+    $("#Cart").submit(function(){
+		
+		// 아이디, 비밀번호
+		if($("#cart_qty").val().trim()==""){
+			alert("최소 수량은 1개 이상입니다.");
+			$("#cart_qty").focus();
+			return false;
+		}
+        if($("#cart_qty").val().trim()=="0"){
+			alert("최소 수량은 1개 이상입니다.");
+			$("#cart_qty").focus();
+			return false;
+        };
+    });
+
+});
+</script>
+
 <section class="product_detail">
     <h1>상세페이지</h1>
-    <div class="box-wrapper1"> 
-        <div class="box1" style="background-image:url(${pvo.product_image1})"></div>
-        <button class="box2" onclick="detail1()" style="background-image:url(${pvo.product_image1})">
-        </button>
-        <button class="box3" onclick="detail2()" style="background-image:url(${pvo.product_image2})">
-        </button>
-        <button class="box4" onclick="detail3()" style="background-image:url(${pvo.product_image3})">
-        </button>
-        <div class="box5">
-            상품명 : ${pvo.product_name}
-        </div>
-        <div class="box6">
-            상품가격 : <fmt:formatNumber value="${pvo.product_price}" pattern="#,###원" />
-        </div>
-        <div class="box7">
-            상품카테고리 : ${pvo.product_category}
-        </div>
-        <div class="box8">
-            상품설명 : ${pvo.product_info}
-        </div>
-        <div class="box9">
-            셀러명 : ${svo.ceo_name}
-        </div>
-        <div class="box10">
-            회사이름 : ${svo.company_name}
-        </div>
-        <div class="box11">
-            셀러주소 : ${svo.seller_address}
-        </div>
-        <button class="box12" id="addCart">
-            장바구니
-        </button>
-        <button class="box13" id="buynow">
-            구매하기
-        </button>
-    </div>
+    <form method="post" action="/addCart" id="Cart">
+        <div class="box-wrapper1"> 
+            <input type="hidden" value="${logId}" name="genie_id">
+            <input type="hidden" value="${pvo.product_id}" name="product_id">
 
-    <div class="box-wrapper2"> 
-        <div class="box1" style="background-image:url(${pvo.product_image2})"></div>
-        <button class="box2" onclick="detail1()" style="background-image:url(${pvo.product_image1})">
-        </button>
-        <button class="box3" onclick="detail2()" style="background-image:url(${pvo.product_image2})">
-        </button>
-        <button class="box4" onclick="detail3()" style="background-image:url(${pvo.product_image3})">
-        </button>
-        <div class="box5">
-            상품명 : ${pvo.product_name}
+            <div class="box1" style="background-image:url(${pvo.product_image1})"></div>
+            <div class="box2" onclick="detail1('${pvo.product_image1}')" style="background-image:url(${pvo.product_image1})"></div>
+            <div class="box3" onclick="detail1('${pvo.product_image2}')" style="background-image:url(${pvo.product_image2})"></div>
+            <div class="box4" onclick="detail1('${pvo.product_image3}')" style="background-image:url(${pvo.product_image3})"></div>
+            <div class="box5">
+                상품명 : ${pvo.product_name}
+            </div>
+            <div class="box6">
+                상품가격 : <fmt:formatNumber value="${pvo.product_price}" pattern="#,###원"/>
+                <input type="hidden" value="${pvo.product_price}" name="cart_price">
+            </div>
+            <div class="box7">
+                상품카테고리 : ${pvo.product_category}
+            </div>
+            <div class="box8">
+                상품설명 : ${pvo.product_info}
+            </div>
+            <div class="box9">
+                셀러명 : ${svo.ceo_name}
+            </div>
+            <div class="box10">
+                회사이름 : ${svo.company_name}
+            </div>
+            <div class="box11">
+                상품 수량 : <input type="text" id="cart_qty" name="cart_qty" value="1" 
+                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+            </div>
+            <button class="box12" id="addCart">
+                장바구니
+            </button>
+            <button class="box13" id="buynow">
+                구매하기
+            </button>
         </div>
-        <div class="box6">
-            상품가격 : <fmt:formatNumber value="${pvo.product_price}" pattern="#,###원" />
-        </div>
-        <div class="box7">
-            상품카테고리 : ${pvo.product_category}
-        </div>
-        <div class="box8">
-            상품설명 : ${pvo.product_info}
-        </div>
-        <div class="box9">
-            셀러명 : ${svo.ceo_name}
-        </div>
-        <div class="box10">
-            회사이름 : ${svo.company_name}
-        </div>
-        <div class="box11">
-            셀러주소 : ${svo.seller_address}
-        </div>
-        <button class="box12" id="addCart">
-            장바구니
-        </button>
-        <button class="box13" id="buynow">
-            구매하기
-        </button>
-    </div>
+    </form>
 
-    <div class="box-wrapper3"> 
-         <div class="box1" style="background-image:url(${pvo.product_image3})"></div>
-        <button class="box2" onclick="detail1()" style="background-image:url(${pvo.product_image1})">
-        </button>
-        <button class="box3" onclick="detail2()" style="background-image:url(${pvo.product_image2})">
-        </button>
-        <button class="box4" onclick="detail3()" style="background-image:url(${pvo.product_image3})">
-        </button>
-        <div class="box5">
-            상품명 : ${pvo.product_name}
-        </div>
-        <div class="box6">
-            상품가격 : <fmt:formatNumber value="${pvo.product_price}" pattern="#,###원" />
-        </div>
-        <div class="box7">
-            상품카테고리 : ${pvo.product_category}
-        </div>
-        <div class="box8">
-            상품설명 : ${pvo.product_info}
-        </div>
-        <div class="box9">
-            셀러명 : ${svo.ceo_name}
-        </div>
-        <div class="box10">
-            회사이름 : ${svo.company_name}
-        </div>
-        <div class="box11">
-            셀러주소 : ${svo.seller_address}
-        </div>
-       <button class="box12" id="addCart">
-            장바구니
-        </button>
-        <button class="box13" id="buynow">
-            구매하기
-        </button>
-    </div>
 <!-- ------------------------------------------------------------------------------------------- -->
     <div class="review-wrapper">
         <button class="box_1" onclick="content1()">
@@ -207,10 +159,9 @@ $(function(){
             글쓴이 + (글쓴 시각)
         </div>
         <div class="box_7">
+            <form method="post" id="replyFrm">
             글내용
-        </div>
-        <div class="box_8">
-            상품이미지
+            </form>
         </div>
     </div>
 
@@ -226,21 +177,41 @@ $(function(){
                 <h1>반품/교환정보</h1>
             </button>
             <div class="box_04">
-                <h2>상품문의</h2>
-                <h3>구매하려는 상품에 대해 궁금한 점이 있으신 경우 문의해주세요</h3>
-                <h4>공개 게시판이므로 전화번호, 메일 주소 등 고객님의 소중한 개인정보는 절대 남기지 말아주세요.</h4>
-                <h4>상품문의 및 후기게시판을 통해 취소나 환불, 반품 등은 처리되지 않습니다.</h4>
+                <h2>자주 묻는 질문</h2>
             </div>
         </div>
         <div class="qna-content">
-            <div class="box_05">답변상태</div>
-            <div class="box_06">글내용(글제목)</div>
-            <div class="box_07">작성자</div>
-            <div class="box_08">작성일</div>
-            <div class="box_09">답변완료</div>
-            <div class="box_10">문의내용</div>
-            <div class="box_11">genie_id</div>
-            <div class="box_12">writedate</div>
+            <div class="box_05">Q. 아이디와 비밀번호가 기억나지 않아요.</div>
+            <div class="box_06">A. 로그인 화면에서 아이디찾기/비밀번호를 찾기를 통해 확인 가능합니다.</div>
+            <div class="box_07">Q. 구매했을 때 보다 가격이 떨어졌어요 차액 환불이 되나요?</div>
+            <div class="box_08">
+                A. 상품 금액은 온라인 판매처 특성상 유동적으로 변동될 수 있어 차액 환불은 가능하지 않습니다.<br>
+                ※ 판매 가격 변동으로 인한 교환(환불) 신청 시 반품 배송비는 회원님 부담으로 진행됩니다.<br>
+                ※ 출고 처리중인 경우 취소는 가능하지 않습니다.
+            </div>
+            <div class="box_09">Q. 상품을 받는 주소(배송지) 등록은 어떻게 하나요?</div>
+            <div class="box_10">
+                A. 마이페이지 > 배송지 관리<br>
+                배송지 관리 또는 주문서 작성 시 배송지 관리에서 배송 주소를 등록/수정/삭제할 수 있습니다.<br>
+                ※ 주소지는 행정안전부의 [도로명 조회 사이트]에서 검색되는 주소를 기반으로 합니다.<br>
+                ※ 띄어쓰기, 오타 여부 및 검색을 통해 실제 있는 주소인지 확인해 주세요.<br>
+                ※ 주소가 등록되어 있지 않거나 건물명이 다른 경우 도로명주소 도움센터에 등록(변경) 요청해 주세요.<br>
+                ※ 도로명 주소가 있지 않은 주소지는 등록이 가능하지 않습니다.
+            </div>
+            <div class="box_11">Q. 주문한 상품이 일부만 도착했어요.</div>
+            <div class="box_12">
+                A. 브랜드 및 상품에 따라 출고지가 다르기 때문에 여러 개 상품을 주문한 경우에는 각각 배송이 됩니다.<br>
+                브랜드가 달라도 상품 주문 시 한 번에 결제할 수 있습니다.
+            </div>
+            <div class="box_13">
+                Q. 일반 배송 상품은 언제 배송 되나요?
+            </div>
+            <div class="box_14">
+                A. 일반배송은 브랜드마다 일정이 다르고 평일 기준으로 출고 됩니다.<br>
+                평일 기준 출고로 연휴 및 공휴일은 배송일에서 제외됩니다.<br>
+                지니스토어는 전 상품 100% 무료 배송입니다.<br>
+                주문 시 배송 메모에 배송 희망 일자를 작성하셔도 해당일에 지정 배송은 어렵습니다.
+            </div>
         </div>
     </div>
 
@@ -305,25 +276,7 @@ $(function(){
             <div class="box_026">ㆍ복제가 가능한 상품의 포장 등을 훼손한 경우</div>
             <div class="box_027"><h1>판매자 정보</h1></div>
             <div class="box_028">판매자</div>
-            <div class="box_029">company_name</div>
+            <div class="box_029">${svo.company_name}</div>
         </div>
     </div>
 </section>
-<script>
-function add_cart(goods_id) {
-		$.ajax({
-			type : "post",
-			async : false,
-			url : "",
-			data : {
-				product_id:product_id
-				
-			},
-			success : function(data, textStatus) {
-
-					alert("장바구니에 추가되었습니다.");	
-				}
-
-		});	
-	}
-</script>
