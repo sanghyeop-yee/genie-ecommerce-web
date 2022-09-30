@@ -9,15 +9,16 @@ import com.genie.myapp.vo.SellerVO;
 
 
 public interface ProductService{
-    public List<ProductVO> product(ProductVO pVO);
+    public List<ProductVO> listProduct(ProductVO pVO);
     public ProductVO getProduct(int no);
 
-    // public CartVO addCart(CartVO cVo);
-    
+    public int addCart(CartVO cvo);
     public List<CartVO> getCart(String genie_id);
 
     public SellerVO getSeller(int product_id);
     public List<ProductVO> selectProduct(Map<String, Object> map);
+    
+    public int delProduct(int cart_num, String genie_id);
 
 
 }   

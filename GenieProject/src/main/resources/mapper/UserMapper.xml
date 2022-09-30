@@ -4,36 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "com.genie.myapp.dao.UserDAO">
 
-	<insert id="AccountWrite">
-
-		insert into account(member_type, genie_id, genie_pwd) 
-		values(#{member_type},#{genie_id}, sha2(#{genie_pwd},256))
-
-	</insert>
-
-    <insert id = "UserWrite">	
-
-		insert into user(genie_id, user_name, user_tel, user_email, user_zipcode, user_addr, user_detailaddr, user_gender) 
-		values(#{genie_id}, #{user_name}, #{user_tel}, #{user_email}, #{user_zipcode}, #{user_addr}, #{user_detailaddr}, #{user_gender})
-
-	</insert>
-
-	<insert id = "Delivery">
-
-		insert into address(genie_id) 
-		values(#{genie_id});
-
-	</insert>
-
-	<insert id="MyDeliveryEditOk">	
-
-		insert into address(receiver_name, receiver_tel, receiver_zipcode, receiver_addr, receiver_detailaddr) 
-		select (#{user_name}, #{user_tel}, #{user_zipcode}, #{user_addr}, #{user_detailaddr})
-		from dual 
-		where genie_id=#{genie_id}
-
-	</insert>
-	
+	<!-- 로그인 -->
 	<select id = "loginOk" resultType = "UserVO">
 
 		select u.genie_id, u.user_name 
@@ -44,9 +15,57 @@
 
 	</select>
 
+
+	<!-- 회원가입 -->
 	<select id = "idCheck" resultType="int">
 
 		select count(genie_id) cnt from account where genie_id=#{genie_id}
+
+	</select>
+
+	<insert id="AccountWrite">
+
+		insert into account(member_type, genie_id, genie_pwd) 
+		values(#{member_type},#{genie_id}, sha2(#{genie_pwd},256))
+
+	</insert>
+
+    <insert id = "UserWrite">	
+
+		insert into user(genie_id, user_name, user_tel, user_email, user_gender) 
+		values(#{genie_id}, #{user_name}, #{user_tel}, #{user_email},  #{user_gender})
+
+	</insert>
+
+
+	<!-- 배송지 -->
+	<select id = "getDeliveryList" resultType="DeliveryVO">
+
+		select * 
+		from address 
+		where genie_id=#{genie_id}
+
+	</select>
+
+	<insert id="addDelivery">	
+
+		insert into address(address_num, genie_id, receiver_name, receiver_tel, receiver_zipcode, receiver_addr, receiver_detailaddr) 
+		values(#{address_num}, #{genie_id},#{user_name}, #{user_tel}, #{user_zipcode}, #{user_addr}, #{user_detailaddr})
+
+	</insert>
+
+	<delete id="delDelivery">
+		delete from address 
+		where address_num=#{param1} and genie_id=#{param2}
+	</delete>
+
+
+	<!-- 회원정보 -->
+    <select id = "getUser" resultType = "UserVO">
+
+		select genie_id, user_name, user_tel, user_email 
+		from user
+		where genie_id=#{genie_id}
 
 	</select>
 
@@ -65,14 +84,5 @@
 		where genie_id=#{genie_id}
 
 	</update>
-
-
-    <select id = "getUser" resultType = "UserVO">
-
-		select genie_id, user_name, user_tel, user_email, user_zipcode, user_addr, user_detailaddr
-		from user
-		where genie_id=#{genie_id}
-
-	</select>
 
 </mapper>

@@ -159,7 +159,7 @@ $(function(){
 				<li>이메일</li>
 				<input type="email" id="user_email" name="user_email" value="ghdtpgh8913@naver.com" placeholder="이메일을 입력하세요">
 			</ul>
-			<ul id="addrForm">
+			<%-- <ul id="addrForm">
 				<li>우편번호</li>
 				<li>
 					<input type ="text" name = "user_zipcode" id ="user_zipcode" value="123" readonly/>
@@ -169,7 +169,7 @@ $(function(){
 				<li><input type = "text" name = "user_addr" id ="user_addr" value="123" readonly/></li>
 				<li>상세주소</li>
 				<li><input type ="text" name = "user_detailaddr" id ="user_detailaddr" value="123" /></li>	
-			</ul>
+			</ul> --%>
 			<ul id="user_gender">
 				<li>성별</li>
 				<input type="radio" name="user_gender" value="1"><label for="radio_male">남성</label>
@@ -180,7 +180,7 @@ $(function(){
 		
 	</div>	
 </section>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="../js_css/KakaoAddress.js"></script>
+<%-- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="../js_css/KakaoAddress.js"></script> --%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<%-- <script src="../js_css/Registration.js"></script> --%>
+<script src="../js_css/Registration.js"></script>

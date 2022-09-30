@@ -17,7 +17,7 @@
 			<div>
 				<h2>선물을 주고 싶은 사람이 있나요? 어떤 사람인가요?</h2>
 			</div>
-			<div class="grid-container4">
+			<div class="grid-container-button">
 				<div class="tag_name">
 					<input type="radio" name="genie_who" id="1" value="부모님">
 					<label for="1">부모님</label>
@@ -53,7 +53,7 @@
 			<div>
 				<h2>어떤 특별한 날에 드릴 선물인가요?</h2>
 			</div>
-			<div class="grid-container3">
+			<div class="grid-container-button">
 				<div class="tag_name">
 					<input type="radio" name="genie_day" id="8" value="생일">
 					<label for="8">생일</label>
@@ -109,7 +109,7 @@
 			<div>
 				<h2>선물 받는 분의 나이대가 어떻게 되시나요?</h2>
 			</div>
-			<div class="grid-container3">
+			<div class="grid-container-button">
 				<div class="tag_name">
 					<input type="radio" name="genie_old" id="26" value="10대이하">
 					<label for="26">10대이하</label>
@@ -141,7 +141,7 @@
 			<div>
 				<h2>선물 받는 분의 성별은 어떻게 되시나요?</h2>
 			</div>
-			<div class="grid-container3">
+			<div class="grid-container-button">
 				<div class="tag_name">
 					<input type="radio" name="gender" id="32" value="남성">
 					<label for="32">남자</label>
@@ -157,7 +157,7 @@
 			<div>
 				<h2>최소 예산은 어느 정도로 생각하고 계신가요?</h2>
 			</div>
-			<div class="grid-container3">
+			<div class="grid-container-button">
 				<div class="tag_name">
 					<input type="radio" name="money_low" id="20" value="0">
 					<label for="20">일단 보고 선택할게요</label>
@@ -189,7 +189,7 @@
 			<div>
 				<h2>최대 예산은 어느 정도로 생각하고 계신가요?</h2>
 			</div>
-			<div class="grid-container3">
+			<div class="grid-container-button">
 				<div class="tag_name">
 					<input type="radio" name="money_max" id="40" value="10000">
 					<label for="40">10,000원</label>

@@ -19,16 +19,19 @@ public class OrderVO {
     private String month_day;
     private int total_sales;
 
-
+    private int sold_counts;
+    private String product_image1;
+    
     @Override
-	public String toString() {
-		return "OrderVO [order_num=" + order_num + ", genie_id=" + genie_id + ", product_id=" + product_id
-				+ ", recipient_name=" + recipient_name + ", recipient_phone=" + recipient_phone + ", recipient_address="
-				+ recipient_address + ", recipient_request=" + recipient_request + ", recipient_delivery_status="
-				+ recipient_delivery_status + ", order_price=" + order_price + ", order_qty=" + order_qty
-				+ ", order_writedate=" + order_writedate + ", payment_method=" + payment_method + ", product_name="
-				+ product_name + ", month_day=" + month_day + ", total_sales=" + total_sales + "]";
-	}
+    public String toString() {
+        return "OrderVO [genie_id=" + genie_id + ", month_day=" + month_day + ", order_num=" + order_num
+                + ", order_price=" + order_price + ", order_qty=" + order_qty + ", order_writedate=" + order_writedate
+                + ", payment_method=" + payment_method + ", product_id=" + product_id + ", product_image1="
+                + product_image1 + ", product_name=" + product_name + ", recipient_address=" + recipient_address
+                + ", recipient_delivery_status=" + recipient_delivery_status + ", recipient_name=" + recipient_name
+                + ", recipient_phone=" + recipient_phone + ", recipient_request=" + recipient_request + ", sold_counts="
+                + sold_counts + ", total_sales=" + total_sales + "]";
+    }
 
     public int getOrder_num() {
         return order_num;
@@ -141,7 +144,7 @@ public class OrderVO {
     public void setMonth_day(String month_day) {
         this.month_day = month_day;
     }
-    
+
     public int getTotal_sales() {
         return total_sales;
     }
@@ -150,6 +153,22 @@ public class OrderVO {
         this.total_sales = total_sales;
     }
 
+    public int getSold_counts() {
+        return sold_counts;
+    }
 
+    public void setSold_counts(int sold_counts) {
+        this.sold_counts = sold_counts;
+    }
+
+    public String getProduct_image1() {
+        return product_image1;
+    }
+
+    public void setProduct_image1(String product_image1) {
+        this.product_image1 = product_image1;
+    }
+    
+    
     
 }

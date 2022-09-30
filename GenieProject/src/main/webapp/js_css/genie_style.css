@@ -1,9 +1,9 @@
 @charset "UTF-8";
 /* --------------------------------------------- */
 .grid-container {
-	background: url(/image/gift1.png);
-	background-size: cover;
-	background-position: center;
+	height: 100vh;
+	padding: 0;
+	margin: 0;
 }
 /* ---------------------------뒤에 배경 설정---------------------- */
 .genie>section{
@@ -12,42 +12,42 @@
 	width: 100%;
 	height: 100vh;
 	margin: 0;
-    padding: 5% 16% 0 16%;
+    padding: 3% 16% 0 16%;
 }
  .genie_00 {
 	background: url(/image/gift1.png);
-	/* background-size: cover;
-	background-position: center; */
+	background-size: cover;
+	background-position: center;
 } 
 .genie_01 {
 	display: none;
-	/* background: url(/image/gift2.png);
+	background: url(/image/gift2.png);
 	background-size: cover;
-	background-position: center; */
+	background-position: center;
 }
 .genie_02 {
 	display: none;
-	/* background: url(/image/gift3.png);
+	background: url(/image/gift3.png);
 	background-size: cover;
-	background-position: center; */
+	background-position: center;
 }
 .genie_03 {
 	display: none;
-	/* background: url(/image/gift4.png);
+	background: url(/image/gift4.png);
 	background-size: cover;
-	background-position: center; */
+	background-position: center;
 }
 .genie_04 {
 	display: none;
-	/* background: url(/image/gift5.png);
+	background: url(/image/gift5.png);
 	background-size: cover;
-	background-position: center; */
+	background-position: center;
 }
 .genie_05 {
 	display: none;
-	/* background: url(/image/gift5.png);
+	background: url(/image/gift10.png);
 	background-size: cover;
-	background-position: center; */
+	background-position: center;
 }
 /* ---------------------------질문 타이핑 설정(0~5까지)---------------------- */
 .genie_00 h2{
@@ -121,15 +121,11 @@
 	}
 }
 /* --------------------------------라디오버튼 css------------------------ */
-.grid-container4 {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 2rem;
-}
-.grid-container3 {
+.grid-container-button {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 2rem;
+	column-gap: 1rem;
+	row-gap: 1rem;
 }
 .tag_name {
 	padding: 1rem;
@@ -142,7 +138,7 @@
 	align-content: stretch;
 	justify-content: center;
     cursor: pointer;
-	padding: 2rem;
+	padding: 1.5rem;
     font-size: 3ch;
     font-weight: bold;
 	border-radius: 25px;
@@ -180,7 +176,7 @@
 	display: flex;
 	justify-content: space-evenly;
 	padding: 0 35vw;
-	bottom: 8vh;
+	top: 85vh;
 }
 .page_order input[type=button] {
 	width: 2.5ch;

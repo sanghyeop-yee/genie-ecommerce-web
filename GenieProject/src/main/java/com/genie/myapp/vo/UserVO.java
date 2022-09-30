@@ -21,6 +21,7 @@ public class UserVO {
 	private String user_phone_num2;
 	private String user_phone_num3;
 
+    private String address_num;
 	private String user_email;
 	private String user_zipcode;
 	private String user_addr;
