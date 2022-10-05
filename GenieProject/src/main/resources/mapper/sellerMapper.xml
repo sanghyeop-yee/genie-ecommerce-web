@@ -54,6 +54,7 @@
 		<if test="searchWord!=null">
 			where ${searchKey} like '%${searchWord}%' and genie_id=#{genie_id} 
 		</if>
+		order by product_id desc;
 	</select>
 
     <select id = "getSeller" resultType = "SellerVO">
@@ -199,4 +200,15 @@
 	limit 3
 	</select>
 
+	<!-- 이번달 매출 -->
+	<select id="thisMonthRevenue" resultType="int">
+	select ifnull(sum(m.order_price), 0) monthly_revenue
+	from myorder m join 
+			(select product_id, genie_id as seller_id, product_name 
+			from product 
+			where genie_id=#{param1}) p
+		on m.product_id = p.product_id
+	where date_format(m.order_writedate, '%y-%m') = month(curdate())
+	</select>
+	
 </mapper>

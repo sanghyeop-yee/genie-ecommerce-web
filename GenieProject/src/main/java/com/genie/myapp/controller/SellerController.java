@@ -61,17 +61,45 @@ public class SellerController {
 	@GetMapping("sellerMain")
 	public ModelAndView sellerMain(OrderVO vo, HttpServletRequest request) {
 		String seller_id = ((String)request.getSession().getAttribute("logId")); //세션 셀러 아이디
+		mav = new ModelAndView();
 
 		int torder = service.todayOrder(seller_id); // 오늘 들어온 주문 
+		int devp = service.deliveryPending(seller_id); 
 		String bs = service.bestSeller(seller_id); // 이달의 상품
+		int tmr = service.thisMonthRevenue(seller_id);
 		List<OrderVO> rlist = service.revenueByProduct(seller_id); // 아이템별 매출
 
+		
+		// 쿼리로 받은 '범주(month_day)':'값(total_sales)' 형태의 리스트 데이터 추출
+		List<OrderVO> orderlist = service.orderSumByDay(seller_id);
 
-		mav = new ModelAndView();
+		// 리스트를 Json 객체로 옮겨담기
+		// java 에서 json 객체를 다루기 쉽도록 gson 라이브러리 이용
+		Gson gson = new Gson(); // json 으로 가공하기 위해 빈 gson 객체생성
+		JsonArray jArray = new JsonArray(); // json 형태로 여러개의 데이터를 담기위해 JsonArray 객체 생성
+		
+		Iterator<OrderVO> it = orderlist.iterator(); // 반복자 얻기 
+		while(it.hasNext()) { // 하나하나의 VO 에서 데이터 추출, json 형태로 가공
+			OrderVO ovo = it.next();
+			JsonObject object = new JsonObject();
+			String date = ovo.getMonth_day();
+			int sales = ovo.getTotal_sales();
+			
+			object.addProperty("date", date);
+			object.addProperty("sales", sales);
+		
+			jArray.add(object); // json 배열 객체 생성
+		}
+		
+		String json = gson.toJson(jArray); // 사용가능한 json 데이터 형태로 변환		
+		mav.addObject("json", json); // 일별매출
+
 		mav.addObject("todayOrder", torder); // 오늘 들어온 주문
+		mav.addObject("deliveryPending", devp);
 		mav.addObject("bestSeller", bs); // 이달의 상품
+		
 		mav.addObject("revenueByProduct", rlist); // 아이템별 매출
-
+		mav.addObject("thisMonthRevenue", tmr);
 
 		mav.setViewName("seller/sellerMain");
 		return mav;

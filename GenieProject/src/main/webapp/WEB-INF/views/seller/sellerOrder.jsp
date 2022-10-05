@@ -4,6 +4,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
+  .content-wrapper{
+	overflow-y:scroll;
+	-ms-overflow-style: none;
+}
+
+  .content-wrapper::-webkit-scrollbar{
+  display:none;
+}
 
   #orderbody{
 		padding-top: 10px;
@@ -103,7 +111,6 @@
                   </span>
                 </div>
               </i></span>
-              
             </div>
           </div>
           <div class="col-12 col-sm-6 col-md-4">
@@ -130,7 +137,7 @@
               </i></span>
             </div>
           </div>
-        <div class="container-fluid">  
+        </div> <!-- /.row -->
           <div class="row">
             <div class="col-lg-12">
               <div class="card card-primary card-outline">
@@ -161,8 +168,8 @@
                       </thead>
                       <tbody>
                       <!-- 주문 상품 목록을 리스트로 표시 -->
-                      <c:forEach var="vo" items="${list}" varStatus="i"> 
-                        <tr>
+                        <c:forEach var="vo" items="${list}" varStatus="i"> 
+                          <tr>
                             <td>${vo.order_num}</td>
                             <td>${vo.order_writedate}</td>
                             <td>${vo.product_name}</td>
@@ -218,7 +225,7 @@
                                 <!-- 수정을 클릭하면 선택한 셀렉트 박스의 id를 함수로 전달 -->
                                 <input type="button" value="수정" onClick="fn_modify_order_state('${vo.order_num}','s_delivery_status${i.index}')"/>
                             </td>
-                        </tr>
+                          </tr>
                         </c:forEach>
                       </tbody>
                     </table>
@@ -226,14 +233,11 @@
                 </div>
               </div><!-- /.card -->
             </div>
-          </div>
-        <!-- /.row -->
-        </div>
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+        </div> <!-- /.row -->
+      </div> <!-- /.container-fluid -->
+    </div> <!-- /.content -->
+  </div> <!-- /.content-wrapper -->
+  
 
 
 <!-- REQUIRED SCRIPTS -->
@@ -246,5 +250,5 @@
 <script src="/js_css/dist/js/adminlte.min.js"></script>
 
 
-  <%@ include file="../inc/sellerFooter.jsp"%>
+<%@ include file="../inc/sellerFooter.jsp"%>
                   

@@ -66,4 +66,6 @@ public interface SellerDAO {
 
 	// 아이템별 매출
 	public List<OrderVO> revenueByProduct(String seller_id);
+	// 이번달 매출
+	public int thisMonthRevenue(String seller_id);
 }
