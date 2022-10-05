@@ -130,4 +130,9 @@ public class SellerServiceImpl implements SellerService {
 		return dao.revenueByProduct(seller_id);
 	}
 
+	@Override
+	public int thisMonthRevenue(String seller_id) {
+		return dao.thisMonthRevenue(seller_id);
+	}
+
 }
