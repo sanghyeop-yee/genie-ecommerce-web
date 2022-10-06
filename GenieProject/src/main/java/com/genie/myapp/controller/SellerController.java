@@ -78,10 +78,9 @@ public class SellerController {
 		List<OrderVO> rlist = service.revenueByProduct(seller_id); // 아이템별 매출
 		String ss = service.sellerStatus(seller_id); // 셀러상태 
 
-		
+		// 일별매출
 		// 쿼리로 받은 '범주(month_day)':'값(total_sales)' 형태의 리스트 데이터 추출
 		List<OrderVO> orderlist = service.orderSumByDay(seller_id);
-
 		// 리스트를 Json 객체로 옮겨담기
 		// java 에서 json 객체를 다루기 쉽도록 gson 라이브러리 이용
 		Gson gson = new Gson(); // json 으로 가공하기 위해 빈 gson 객체생성
@@ -101,6 +100,25 @@ public class SellerController {
 		}
 		String json = gson.toJson(jArray); // 사용가능한 json 데이터 형태로 변환
 
+		// 카테고리별 판매건수
+		List<OrderVO> categorylist = service.topCategory(seller_id);
+		Gson gson2 = new Gson();
+		JsonArray jArray2 = new JsonArray();
+		Iterator<OrderVO> it2 = categorylist.iterator();
+		while(it2.hasNext()) {
+			OrderVO ovo2 = it2.next();
+			JsonObject object2 = new JsonObject();
+			String category = ovo2.getProduct_category();
+			int sold_counts = ovo2.getSold_counts();
+
+			object2.addProperty("category", category);
+			object2.addProperty("sold_counts", sold_counts);
+
+			jArray2.add(object2);
+		}
+		String json2 = gson.toJson(jArray2);
+
+
 		if(ss.equals("Y")) {
 			mav.addObject("json", json); // 일별매출
 
@@ -110,6 +128,7 @@ public class SellerController {
 			
 			mav.addObject("revenueByProduct", rlist); // 아이템별 매출
 			mav.addObject("thisMonthRevenue", tmr);
+			mav.addObject("json2", json2); // 카테고리별 판매건수
 
 			mav.setViewName("seller/sellerMain");
 			

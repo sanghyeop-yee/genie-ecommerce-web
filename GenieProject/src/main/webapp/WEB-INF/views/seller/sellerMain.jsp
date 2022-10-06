@@ -27,7 +27,7 @@
   grid-template-areas: 
     "banner banner banner"
     "order_delivery1 order_delivery2 month_bestseller"
-    "total_sales total_sales total_sales"
+    "total_sales total_sales category_sales"
     "items_sales items_sales items_sales"; 
 }
 
@@ -35,6 +35,7 @@
 .order_delivery1 { grid-area: order_delivery1; }
 .order_delivery2 { grid-area: order_delivery2; }
 .month_bestseller { grid-area: month_bestseller; }
+.category_sales { grid-area: category_sales; }
 .total_sales { grid-area: total_sales; }
 .items_sales { grid-area: items_sales; }
 
@@ -54,6 +55,7 @@
 
 .banner a{
   vertical-align: middle;
+  margin-left: 20px;
   margin-right: 20px;
   margin-top: 15px;
   display: block;
@@ -68,6 +70,12 @@
 .banner a:hover{
   box-shadow: 0 0.5rem 0.5rem rgba(71, 7, 234, 0.2);
 }
+
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
 
 </style>
 
@@ -99,8 +107,8 @@
                 <div class="card-body"> 
                   <img class="mr-4" src="../image/banner_icon.png" style="width:6rem; float:left; margin-left:20px;"/>
                   <a href="#"><i class="fas fa-play"></i> &nbsp&nbsp&nbsp Watch Now</a>
-                    <h5 class="mt-2">지니셀러님들을 위한 반품 안심케어를 무료로 사용하시고 더욱 쉽게 주문을 관리하세요.</h5> 
-                    10분짜리 영상을 통해 자세히 알아보세요.
+                    <h5 class="mt-2">지니셀러님들을 위한 반품 안심케어를 무료로 사용하시고 더욱 쉽게 주문을 관리해보세요.</h5> 
+                    영상을 통해 더 자세히 알아보세요.
                 </div>
               </div>
             </div>
@@ -186,8 +194,21 @@
                     이번 달 총 매출은 ${thisMonthRevenue} 원 이에요.
                   </p>
                   <!-- 차트 (chart js)-->
-                  <h5 style="text-align:center;">일별 매출</h5>
-                  <canvas id="chart" style="width:200px; height:50px;"></canvas>
+                  <canvas id="chart" style="width:200px; height:75px;"></canvas>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                </div>
+              </div>
+            </div>
+            <div class="category_sales">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="m-0">카테고리별 판매건수</h5>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">
+                    
+                  </p>
+                  <canvas id="chart2"></canvas>
                   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                 </div>
               </div>
@@ -245,19 +266,82 @@
         backgroundColor: colorList,
         data: valueList
         
-      }],
-      options: {
-        title: {
-          display: true,
-          text: '일별 매출'
-        }
-      }
+      }]
   };
   
   const chart = document.querySelector("#chart").getContext('2d');
   new Chart(chart, {
     type: 'line',
-    data: data
+    data: data,
+    options: {
+      scales: {
+        x: {
+          grid: {
+            display: false
+          }
+        },
+        y: {
+          beginAtZero: false,
+          grid: {
+            display: false
+          }
+        }
+      }
+    }
+  })
+  
+  </script>
+
+<!-- 파이 차트 (chart js)-->
+<script>
+  var jsonData2 = ${json2}; // Controller 에서 가공하여 넘겨준 데이터를 jstl 문법을 통해 변수에 담기
+  var jsonObject2 = JSON.stringify(jsonData2); // js에서 문자열형태로 사용할 수 있도록 변환
+  var jData2 = JSON.parse(jsonObject2); // json객체로 사용할수 있게 json.parse 메소드 이용
+  // -> js 에서 jData 변수를 사용하여 데이터 다룰수 있게됨.
+  
+  // 차트표현을 위해 필요한 핵심데이터들이 각각 들어갈 js 배열 객체 선언
+  var labelList2 = new Array();
+  var valueList2 = new Array();
+  var colorList2 = new Array();
+  
+  // jData 에 담겨있는 변수들을 추출하여 위에서 선언한 각각의 js array 에 분배
+  for(var i=0; i<jData2.length; i++){ // jData 길이만큼 반복문 수행
+    var d2 = jData2[i]; // 각각의 json 데이터안에 입력디어 있는 값중
+    labelList2.push(d2.category); // date (month_day) 에 해당하는 부분을 labelList에 삽입
+    valueList2.push(d2.sold_counts); // sales (total_sales) 에 해당하는 부분을 valueList에 삽입
+    colorList2.push(colorize()); // 랜덤한 색상값을 생성해 반환
+  }
+  
+  function colorize(){
+    var r = Math.floor(Math.random()*200);
+    var g = Math.floor(Math.random()*200);
+    var b = Math.floor(Math.random()*200);
+    var color = 'rgba(' + r + ', ' + g + ', ' + b +  ', 0.7)';
+    return color;
+  }
+  
+  // 각각의 리스트를 chart js 형식에 넣어주기
+  var data2 = {
+      labels: labelList2,
+      datasets: [{
+        backgroundColor: colorList,
+        data: valueList2
+        
+      }],
+      options: {
+        title: {
+          display: true
+        },
+        legend: {
+          display: false
+        }
+      }
+  };
+  
+  const chart2 = document.querySelector("#chart2").getContext('2d');
+  new Chart(chart2, {
+    type: 'doughnut',
+    data: data2
   })
   
   </script>
