@@ -115,12 +115,16 @@
 	}
 	input[type=checkbox] {
 		zoom: 1.5;
+		margin-right:0.5em;
 	}
 	label{
 		display: inline-block;
     	width: 190px;
     	line-height: 50px;
     	font-size:20px;
+	}
+	label span{
+		font-weight:normal;
 	}
 	.subTag{
 		font-size:20px;
@@ -276,68 +280,63 @@
 							</div>
 							<div id="cateDiv">
 								<p>카테고리</p>
-								<label><input type="checkbox" name="categoryList" value="생일"/>생일</label>
-								<label><input type="checkbox" name="categoryList" value="기념일"/>기념일</label>
-								<label><input type="checkbox" name="categoryList" value="명절"/>명절</label>
-								<label><input type="checkbox" name="categoryList" value="집들이"/>집들이</label>
-								<label><input type="checkbox" name="categoryList" value="서프라이즈"/>서프라이즈</label>
-								<label><input type="checkbox" name="categoryList" value="응원"/>응원</label>
-								<label><input type="checkbox" name="categoryList" value="캠핑"/>캠핑</label>
-								<label><input type="checkbox" name="categoryList" value="반려동물"/>반려동물</label>
-								<label><input type="checkbox" name="categoryList" value="운동"/>운동</label>
-								<label><input type="checkbox" name="categoryList" value="키덜트"/>키덜트</label>
-								<label><input type="checkbox" name="categoryList" value="요리"/>요리</label>
-								<label><input type="checkbox" name="categoryList" value="홈파티"/>홈파티</label>
+								<label><span><input type="checkbox" name="categoryList" value="생일"/>생일</span></label>
+								<label><span><input type="checkbox" name="categoryList" value="기념일"/>기념일</span></label>
+								<label><span><input type="checkbox" name="categoryList" value="명절"/>명절</span></label>
+								<label><span><input type="checkbox" name="categoryList" value="집들이"/>집들이</span></label>
+								<label><span><input type="checkbox" name="categoryList" value="서프라이즈"/>서프라이즈</span></label>
+								<label><span><input type="checkbox" name="categoryList" value="응원"/>응원</span></label>
+								<label><span><input type="checkbox" name="categoryList" value="캠핑"/>캠핑</span></label>
+								<label><span><input type="checkbox" name="categoryList" value="반려동물"/>반려동물</span></label>
+								<label><span><input type="checkbox" name="categoryList" value="운동"/>운동</span></label>
+								<label><span><input type="checkbox" name="categoryList" value="키덜트"/>키덜트</span></label>
+								<label><span><input type="checkbox" name="categoryList" value="요리"/>요리</span></label>
+								<label><span><input type="checkbox" name="categoryList" value="홈파티"/>홈파티</span></label>
 								
 							</div>
 							<div id="tagDiv">
 								<p>태그</p>
 								<p class="subTag">대상</p>
-								<label><input type="checkbox" name="tagList" value="부모님"/>부모님</label>
-								<label><input type="checkbox" name="tagList" value="배우자"/>배우자</label>
-								<label><input type="checkbox" name="tagList" value="연인"/>연인</label>
-								<label><input type="checkbox" name="tagList" value="가족/친척"/>가족/친척</label>
-								<label><input type="checkbox" name="tagList" value="친구/지인"/>친구/지인</label>
-								<label><input type="checkbox" name="tagList" value="회사동료"/>회사동료</label>
-								<label><input type="checkbox" name="tagList" value="스승/멘토"/>스승/멘토</label>
+								<label><span><input type="checkbox" name="tagList" value="부모님"/>부모님</span></label>
+								<label><span><input type="checkbox" name="tagList" value="배우자"/>배우자</span></label>
+								<label><span><input type="checkbox" name="tagList" value="연인"/>연인</span></label>
+								<label><span><input type="checkbox" name="tagList" value="가족/친척"/>가족/친척</span></label>
+								<label><span><input type="checkbox" name="tagList" value="친구/지인"/>친구/지인</span></label>
+								<label><span><input type="checkbox" name="tagList" value="회사동료"/>회사동료</span></label>
+								<label><span><input type="checkbox" name="tagList" value="스승/멘토"/>스승/멘토</span></label>
 								<p class="subTag">특정기념일</p>
-								<label><input type="checkbox" name="tagList" value="생일"/>생일</label>
-								<label><input type="checkbox" name="tagList" value="기념일"/>기념일</label>
-								<label><input type="checkbox" name="tagList" value="백일"/>백일</label>
-								<label><input type="checkbox" name="tagList" value="집들이"/>집들이</label>
-								<label><input type="checkbox" name="tagList" value="서프라이즈"/>서프라이즈</label>
-								<label><input type="checkbox" name="tagList" value="응원"/>응원</label>
-								<label><input type="checkbox" name="tagList" value="감사"/>감사</label>
-								<label><input type="checkbox" name="tagList" value="결혼"/>결혼</label>
-								<label><input type="checkbox" name="tagList" value="출산"/>출산</label>
-								<label><input type="checkbox" name="tagList" value="임신"/>임신</label>
-								<label><input type="checkbox" name="tagList" value="개업"/>개업</label>
-								<label><input type="checkbox" name="tagList" value="위로"/>위로</label>
+								<label><span><input type="checkbox" name="tagList" value="감사"/>감사</span></label>
+								<label><span><input type="checkbox" name="tagList" value="위로"/>위로</span></label>
+								<label><span><input type="checkbox" name="tagList" value="결혼"/>결혼</span></label>
+								<label><span><input type="checkbox" name="tagList" value="출산"/>출산</span></label>
+								<label><span><input type="checkbox" name="tagList" value="임신"/>임신</span></label>
+								<label><span><input type="checkbox" name="tagList" value="백일"/>백일</span></label>
+								<label><span><input type="checkbox" name="tagList" value="개업"/>개업</span></label>
 								<p class="subTag">나이</p>
-								<label><input type="checkbox" name="tagList" value="10대이하"/>10대이하</label>
-								<label><input type="checkbox" name="tagList" value="20대"/>20대</label>
-								<label><input type="checkbox" name="tagList" value="30대"/>30대</label>
-								<label><input type="checkbox" name="tagList" value="40대"/>40대</label>
-								<label><input type="checkbox" name="tagList" value="50대"/>50대</label>
-								<label><input type="checkbox" name="tagList" value="60대"/>60대이상</label>
+								<label><span><input type="checkbox" name="tagList" value="10대이하"/>10대이하</span></label>
+								<label><span><input type="checkbox" name="tagList" value="20대"/>20대</span></label>
+								<label><span><input type="checkbox" name="tagList" value="30대"/>30대</span></label>
+								<label><span><input type="checkbox" name="tagList" value="40대"/>40대</span></label>
+								<label><span><input type="checkbox" name="tagList" value="50대"/>50대</span></label>
+								<label><span><input type="checkbox" name="tagList" value="60대"/>60대이상</span></label>
 								<p class="subTag">성별</p>
-								<label><input type="checkbox" name="tagList" value="남성"/>남성</label>
-								<label><input type="checkbox" name="tagList" value="여성"/>여성</label>
+								<label><span><input type="checkbox" name="tagList" value="남성"/>남성</span></label>
+								<label><span><input type="checkbox" name="tagList" value="여성"/>여성</span></label>
 							</div>
 							<div id="mbtiDiv">
 								<p>MBTI</p>
 								<p class="subTag">E : 외향형 (사교적,활동적) / I : 내향형 (정적,신중함)</p>
-								<label><input type="checkbox" name="mbtiList" value="E"/>E</label>
-								<label><input type="checkbox" name="mbtiList" value="I"/>I</label>
+								<label><span><input type="checkbox" name="mbtiList" value="E"/>E</span></label>
+								<label><span><input type="checkbox" name="mbtiList" value="I"/>I</span></label>
 								<p class="subTag">S : 감각형 (실용적,현실적) / N : 직관형 (이상적,비약적)</p>
-								<label><input type="checkbox" name="mbtiList" value="S"/>S</label>
-								<label><input type="checkbox" name="mbtiList" value="N"/>N</label>
+								<label><span><input type="checkbox" name="mbtiList" value="S"/>S</span></label>
+								<label><span><input type="checkbox" name="mbtiList" value="N"/>N</span></label>
 								<p class="subTag">T : 사고형 (객관적,합리적) / F : 감정형 (상황적,공감성)</p>
-								<label><input type="checkbox" name="mbtiList" value="T"/>T</label>
-								<label><input type="checkbox" name="mbtiList" value="F"/>F</label>
+								<label><span><input type="checkbox" name="mbtiList" value="T"/>T</span></label>
+								<label><span><input type="checkbox" name="mbtiList" value="F"/>F</span></label>
 								<p class="subTag">J : 판단형 (계획적,체계적) / P : 인식형 (즉흥적,융통성)</p>
-								<label><input type="checkbox" name="mbtiList" value="J"/>J</label>
-								<label><input type="checkbox" name="mbtiList" value="P"/>P</label>
+								<label><span><input type="checkbox" name="mbtiList" value="J"/>J</span></label>
+								<label><span><input type="checkbox" name="mbtiList" value="P"/>P</span></label>
 							</div>
 							<li><input type="submit" id="formSubmit" value="상품등록"/></li>
 						</ul>

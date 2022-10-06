@@ -35,7 +35,7 @@ nav .sidenav-trigger i {
   line-height: 64px;
 }
 
-#address_kakao {
+#Btn, #address_kakao {
   background-color: white; 
   color: black; 
   border: 2px solid #7600bc;
@@ -43,20 +43,12 @@ nav .sidenav-trigger i {
   border-radius: 8px;
 }
 
-#address_kakao:hover {
+.Btn:hover {
   background-color: #7600bc;
   color: white;
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="../js_css/KakaoAddress.js"></script>
-
-
-
-
-
-
 <body>
 
 <body
@@ -150,82 +142,8 @@ nav .sidenav-trigger i {
 </header>
   <!-- END: Header-->
 
-  <!-- BEGIN: SideNav-->
-  <aside
-  class="sidenav-main nav-expanded nav-lock nav-collapsible  sidenav-active-square  sidenav-light">
-  <div class="brand-sidebar">
-    <h1 class="logo-wrapper">
-      <a class="brand-logo darken-1" href="/">
-                        <img class="hide-on-med-and-down" src="/image/logo_western.png" alt="materialize logo" />
-        <img class="show-on-medium-and-down hide-on-med-and-up" src=""
-          alt="materialize logo" />
-
-                        <span class="logo-text hide-on-med-and-down">
-                    ${vo.user_name} ${svo.ceo_name}님
-                  </span>
-      </a>
-      </h1>
-  </div>
-  <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out"
-    data-menu="menu-navigation" data-collapsible="menu-accordion">
-    
 
 
-
-    <li class="navigation-header">
-      <a class="navigation-header-text">Applications</a>
-      <i class="navigation-header-icon material-icons">more_horiz</i>
-    </li>
-    <li class="bold ">
-      <a class="waves-effect waves-cyan "
-      href="/user/MyOrderList "
-      >
-      <i class="material-icons">check</i>
-      <span class="menu-title" data-i18n="ToDo">주문목록/배송조회</span>
-    </a>
-  </li>
-  <li class="bold ">
-    <a class="waves-effect waves-cyan "
-    href="/user/MyDeliveryList "
-    >
-    <i class="material-icons">content_paste</i>
-    <span class="menu-title" data-i18n="File Manager">배송지 관리</span>
-    </a>
-  </li>
-    <li class="bold ">
-    <a class="waves-effect waves-cyan "
-              href="/user/MyPage "
-      >
-      <i class="material-icons">mail_outline</i>
-      <span class="menu-title" data-i18n="Mail">회원정보확인/수정</span>
-              <span class="new badge pill pink accent-2 float-right mr-2">5</span>
-            </a>
-        </li>
-      <%-- <li class="bold ">
-      <a class="waves-effect waves-cyan "
-                href="/user/MyInquiryList "
-        >
-        <i class="material-icons">import_contacts</i>
-        <span class="menu-title" data-i18n="Contacts">나의 문의사항</span>
-              </a>
-          </li> --%>
-
-
-
-    <li class="navigation-header">
-      <a class="navigation-header-text">공지사항 </a>
-      <i class="navigation-header-icon material-icons">more_horiz</i>
-    </li>
-
-    <li class="bold ">
-      <a class="waves-effect waves-cyan "
-                href="/"
-        target=&quot;_blank&quot;>
-        <i class="material-icons">help_outline</i>
-        <span class="menu-title" data-i18n="Support">Support</span>
-              </a>
-          </li>
-              </ul>
   <div class="navigation-background"></div>
   <a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only"
     href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
@@ -245,54 +163,7 @@ nav .sidenav-trigger i {
           
           <div class="section">
    <!-- Current balance & total transactions cards-->
-   <div class="row vertical-modern-dashboard">
-      <div class="col s12 m6 l6">
-         <!-- Current Balance -->
-         <div class="card animate fadeLeft"> 
-            <div class="card-content">
 
-<!-- 추가되는 부분 -->
-    <div class="content-main">
-      <h4>새로운 배송지</h4>
-      <div class="inquiry">
-      <form method="post" action="/user/addDelivery">
-        <input type="hidden" value="${vo.genie_id}" name="genie_id"/>
-          <ul id="addrForm">
-            <li>이름</li>
-            <li><input type="text" name="user_name" id ="user_name"/></li>
-
-            <ul id="phoneForm">
-              <li>휴대폰 번호</li>
-              <select id = "user_phone_num1" name = "user_phone_num1" size = "1">
-                <option value="">선택하세요</option>
-                <option value="010">010</option>
-                <option value="011">011</option>
-                <option value="016">016</option>
-                <option value="017">017</option>
-                <option value="018">018</option>
-                <option value="019">019</option>
-              </select>
-              <input type ="text" name = "user_phone_num2" id ="user_phone_num2" maxlength = "4"/>
-              <input type ="text" name = "user_phone_num3" id ="user_phone_num3" maxlength = "4"/>
-            </ul>
-
-            <li>우편번호</li>
-            <li>
-              <input type="text" name="user_zipcode" id ="user_zipcode" readonly/>
-              <input type= "button" value = "우편번호찾기" id = "address_kakao"/>
-            </li>
-            <li>주소</li>
-            <li><input type="text" name="user_addr" id ="user_addr" readonly/></li>
-            <li>상세주소</li>
-            <li><input type="text" name="user_detailaddr" id ="user_detailaddr" /></li> 
-            <li><input type="submit" id = "address_kakao" value = "배송지 등록"/></li>
-          </ul>
-      </form>   
-      </div>
-    </div>
-</div>
-</div>
-</div>
 
 <!-- 추가되는 부분 끝 -->  
 <!-- 추가되는 2부분 시작 -->
@@ -306,43 +177,25 @@ nav .sidenav-trigger i {
 
     <div class="my-delivery">
       <h4>배송지 목록</h4>
-
         <ul id="delivery_1">
         <c:forEach var="dvo" items="${dlist}">
             <h5>배송지</h5>
+            <input type="hidden" value="${dvo.address_num}" readonly/>
             <li>수령자 이름</li>
-            <input type="text" value="${dvo.receiver_name}" readonly/>
+            <input type="text" id="receiver_name" value="${dvo.receiver_name}" readonly/>
             <li>전화번호</li>
-            <input type="text" value="${dvo.receiver_tel}" readonly/>
+            <input type="text" id="receiver_tel" value="${dvo.receiver_tel}" readonly/>
             <li>우편번호</li>
-            <input type="text" value="${dvo.receiver_zipcode}" readonly/>
+            <input type="text" id="receiver_zipcode" value="${dvo.receiver_zipcode}" readonly/>
             <li>주소</li>
-            <li><input type="text" value="${dvo.receiver_addr}" readonly/></li>
-            <li>상세주소</li>
-            <li><input type="text" value="${dvo.receiver_detailaddr}" readonly/></li><br>
+            <input type="text" id="receiver_addr" value="${dvo.receiver_addr}, ${dvo.receiver_detailaddr}" readonly/><br>
             <div><input type="hidden" value='${dvo.address_num}' /></div>
-            <div><input type="button" value='삭제' address_num="${dvo.address_num}" id="address_kakao"/></div>
-          </c:forEach>        
+            <div><input type="button" value='선택' id="select" class="Btn"/>
+            <input type="button" value='삭제' address_num="${dvo.address_num}" class="Btn" /></div>
+        </c:forEach>    
     </div>
-
-<!-- 추가되는 2부분 끝 --> 
-            </div>
-         </div>
-      </div>
-   </div>
-   <!--/ Current balance & total transactions cards-->
+        <a href="/user/Addaddressbook"><input type="button" value='추가' class="Btn" id="addBtn"/></div></a>
          
-
-<!-- END RIGHT SIDEBAR NAV -->                  
-</div>
-        
-        <div class="content-overlay"></div>
-      </div>
-    </div>
-  </div>
-  <!-- END: Page Main-->
-
-  
   <!-- BEGIN: Footer-->
 <footer
   class="page-footer footer gradient-shadow  footer-static   footer-dark gradient-45deg-indigo-purple ">
@@ -390,5 +243,12 @@ nav .sidenav-trigger i {
 			});	
 	  });
 </script>
-
-                                      
+<script>
+	document.getElementById("select").addEventListener('click',function(){
+    opener.document.getElementById("receiver_name").value=document.getElementById("receiver_name").value;
+    opener.document.getElementById("receiver_tel").value=document.getElementById("receiver_tel").value;
+    opener.document.getElementById("receiver_zipcode").value=document.getElementById("receiver_zipcode").value;
+    opener.document.getElementById("receiver_addr").value=document.getElementById("receiver_addr").value;
+    window.close();
+  })
+</script>

@@ -54,8 +54,8 @@
 	margin: 0 0 1.5rem 1rem;
 	font-size: 2rem;
 	color: #1d1d1f;
-	width: 37ch;
-	animation: typing 2s steps(25), blink .5s step-end infinite alternate;
+	width: 26ch;
+	animation: typing 2s steps(26), blink .5s step-end infinite alternate;
 	white-space: nowrap;
 	overflow: hidden;
 	border-right: .2rem solid;
@@ -64,8 +64,8 @@
 	margin: 0 0 1.5rem 1rem;
 	font-size: 2rem;
 	color: #1d1d1f;
-	width: 26ch;
-	animation: typing 2s steps(26), blink .5s step-end infinite alternate;
+	width: 29ch;
+	animation: typing 2s steps(29), blink .5s step-end infinite alternate;
 	white-space: nowrap;
 	overflow: hidden;
 	border-right: .2rem solid;
@@ -74,8 +74,8 @@
 	margin: 0 0 1.5rem 1rem;
 	font-size: 2rem;
 	color: #1d1d1f;
-	width: 32ch;
-	animation: typing 2s steps(32), blink .5s step-end infinite alternate;
+	width: 33ch;
+	animation: typing 2s steps(33), blink .5s step-end infinite alternate;
 	white-space: nowrap;
 	overflow: hidden;
 	border-right: .2rem solid;
@@ -94,8 +94,8 @@
 	margin: 0 0 1.5rem 1rem;
 	font-size: 2rem;
 	color: #1d1d1f;
-	width: 32ch;
-	animation: typing 2s steps(29), blink .5s step-end infinite alternate;
+	width: 36ch;
+	animation: typing 2s steps(36), blink .5s step-end infinite alternate;
 	white-space: nowrap;
 	overflow: hidden;
 	border-right: .2rem solid;
@@ -104,8 +104,8 @@
 	margin: 0 0 1.5rem 1rem;
 	font-size: 2rem;
 	color: #1d1d1f;
-	width: 32ch;
-	animation: typing 2s steps(29), blink .5s step-end infinite alternate;
+	width: 36ch;
+	animation: typing 2s steps(36), blink .5s step-end infinite alternate;
 	white-space: nowrap;
 	overflow: hidden;
 	border-right: .2rem solid;

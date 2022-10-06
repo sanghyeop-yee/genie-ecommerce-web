@@ -85,4 +85,15 @@
 
 	</update>
 
+	<!-- 주문정보 -->
+	<select id="getOrder" resultType="OrderVO">
+		
+		select * 
+		from myorder m
+		join product d
+		on m.product_id=d.product_id 
+		where m.genie_id=#{param1} 
+
+	</select>
+
 </mapper>

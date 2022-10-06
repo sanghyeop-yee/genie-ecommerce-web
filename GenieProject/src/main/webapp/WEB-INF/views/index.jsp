@@ -5,10 +5,10 @@
 <!--Genie 메인화면--->
 <section class="index">
    <div class="index-list">      
-      <a href="/genie"><img src="/image/banner_western_simple.png"></a>
+      <a href="/genie"><img src="/image/main_bg.png"></a>
    </div>
 
-   <div class="category">
+   <div class="category" id="category">
       <h1>카테고리</h1>
       <div class="category-list">
          <span><a href="/product?product_category=생일"><img src="https://img1.kakaocdn.net/thumb/C600x600.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20220223091003_007dc2b6f60645a8bc2682e97914b829.jpg"></a><br>생일</span>
@@ -26,37 +26,140 @@
       </div>
    </div>
    
+   <!--
    <div class="ranking-list">
       <h1>고민될 땐 선물랭킹!<h1>
       <div>
-         <a href="/product?product_tag=여자"><img src="/image/gender_female_long.png"></a>
-         <a href="/product?product_tag=남여공용"><img src="/image/gender_all_long.png"></a>
-         <a href="/product?product_tag=남자"><img src="/image/gender_male_long.png"></a>
+         <a href="/product?product_tag=여성"><img src="/image/gender_female_long.png"></a>
+         <a href="/product?product_tag=남녀공용"><img src="/image/gender_all_long.png"></a>
+         <a href="/product?product_tag=남성"><img src="/image/gender_male_long.png"></a>
       </div>
    <div>
+   -->
 
-   <div class="best-tag">
-      <h1># 모두의 인기 태그</h1>
+   <div class="best-tag" id="tag">
+      <h1>모두의 인기 태그</h1>
       <div class="tag-button">
-         <button onclick="location.href='/product?product_tag=연인'">#연인</button>
+      <!-- 
+      <c:forEach var="tvo" items="${tlist}">
+         <button onclick="location.href='/product?product_tag=${tvo.product_tag}'">#${tvo.product_tag}</button>
+      </c:forEach>
+      -->
          <button onclick="location.href='/product?product_tag=생일'">#생일</button>
          <button onclick="location.href='/product?product_tag=20대'">#20대</button>
          <button onclick="location.href='/product?product_tag=여성'">#여성</button>
          <button onclick="location.href='/product?product_tag=부모님'">#부모님</button>
          <button onclick="location.href='/product?product_tag=회사동료'">#회사동료</button>
-         <button onclick="location.href='/product?product_tag=결혼'">#결혼</button>
+         <button onclick="location.href='/product?product_tag=결혼'">#결혼</button> 
+         <button onclick="location.href='/product?product_tag=백일'">#백일</button> 
+         <button onclick="location.href='/product?product_tag=연인'">#연인</button> 
+         <button onclick="location.href='/product?product_tag=가족/친척'">#가족/친척</button> 
+         <button onclick="location.href='/product?product_tag=스승/멘토'">#스승/멘토</button> 
+         <button onclick="location.href='/product?product_tag=결혼'">#30대</button> 
+         <button onclick="location.href='/product?product_tag=친구'">#친구</button> 
+         <button onclick="location.href='/product?product_tag=출산'">#출산</button> 
          <button onclick="location.href='/mbti/mbtiMain'">#mbti</button>
+         <button onclick="window.open('https://kr.vonvon.me/quiz/19484', 'window_name', 'width=430, height=700, location=no, status=no, scrollbars=yes');">#내 mbti는?</button>   
       </div>
    </div>
 
-   <div class="recommend">
-      <div class="box1">금주의 추천상품</div>
-      <a href="/product" class="box2"></a>
-      <a href="/product" class="box3"></a>
-      <a href="/product" class="box4"></a>
-      <div class="box5" style="font-size: 2rem;"><a href="/">브랜드1 상품명</a></div>
-      <div class="box6" style="font-size: 1.5rem;"><a href="/">브랜드1 가격</a></div>
-      <div class="box7" style="font-size: 2rem;"><a href="/">브랜드2 상품명</a></div>
-      <div class="box8" style="font-size: 1.5rem;"><a href="/">브랜드2 가격</a></div>
+   <div class="mbti" id="mbti">
+      <h1>MBTI 추천 선물</h1>
+      <div class="mbti-list">      
+         <a href="/mbti/mbtiMain"><img src="/image/mbti_bg.jpg"></a>
+      </div>
    </div>
+
+   <div class="recommand_listing">      
+      <div id="product_order_list">
+         <p>
+         <button type="button" onclick="location.href='/mbti/${mbti}/pricelist'">가격낮은순</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+         <button type="button" onclick="location.href='/mbti/${mbti}/pricelistdesc'">가격높은순</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+         <button type="button" onclick="location.href='/mbti/${mbti}/recentlist'">최신순</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+         <button type="button" onclick="location.href='/mbti/${mbti}/likelist'">인기순</button> </p>
+      </div>
+   </div>
+ 
+      <!--
+      <div class="recommend">
+         <div class="box1">금주의 추천상품</div>
+         <a href="/product" class="box2"></a>
+         <a href="/product" class="box3"></a>
+         <a href="/product" class="box4"></a>
+         <div class="box5" style="font-size: 2rem;"><a href="/">브랜드1 상품명</a></div>
+         <div class="box6" style="font-size: 1.5rem;"><a href="/">브랜드1 가격</a></div>
+         <div class="box7" style="font-size: 2rem;"><a href="/">브랜드2 상품명</a></div>
+         <div class="box8" style="font-size: 1.5rem;"><a href="/">브랜드2 가격</a></div>
+      </div>
+      -->
+
+   <div class="genieContainer" id="product_list">
+      <h1>금주의 추천상품</h1>
+      <h4>소중한 분들을 위한 추천 상품입니다.<br>
+          공간과 마음을 채우는 특별한 선물로 소중한 사람들에게 감사의 마음을 전해보세요.</h4>
+      <div class="genieRow">
+      
+      <!-- 
+         <div class="card-col">
+            <div class="card_header">
+               <img id="img-caption"  src="https://image.idus.com/image/files/de982f5b2908436a90e816c0369da844_720.jpg" alt="Img_1">
+            </div>
+            <div class="card_bottom">
+               <h3>제품이름</h3>
+               <p>제품 정보</p>
+            </div>
+         </div>
+      -->
+
+         <c:forEach var="pvo" items="${plist }">
+            <div class="card-col">
+               <a class="product-title" href="/product_detail?product_id=${pvo.product_id}"></a>
+               <div class="card_header">
+                  <img id="img-caption"  src="${pvo.product_image1}" alt="Img_1">
+               </div>
+               <div class="card_bottom">
+                  <h3>${pvo.genie_id}</h3>
+                  <p>${pvo.product_name}</p>	
+                  <p><fmt:formatNumber value="${pvo.product_price}" pattern="#,###원"/></p>	
+               </div>
+            </div>
+         </c:forEach>
+
+      </div>
+   </div>
+
 </section>
+
+	 <!-- Footer -->
+
+   <div class="blank"></div>
+  
+	<section class="contact" id="contact">
+		<div class="main-contact">
+			<div class="contact-content">
+				<img src="/image/logo_western.png">
+			</div>
+
+			<div class="contact-content">
+			   <li><a href="/">Home</a></li>
+            <li><a href="#mbti">MBTI</a></li>
+            <li><a href="#category">카테고리</a></li>
+            <li><a href="#tag">인기태그</a></li>
+			</div>
+
+			<div class="contact-content">
+				<li><a href="/user/login">Login</a></li>
+				<li><a href="/cart">Cart</a></li>
+				<li><a href="/user/MyPage">마이페이지</a></li>
+				<li><a href="#">문의하기</a></li>
+			</div>
+
+			<div class="contact-content">
+				<li><a href="#">GENIE<br></a></li>
+            <li><a href="#">강남구 역삼동 멀티캠퍼스</a></li>
+				<li><a href="#">genie@genie.com</a></li>
+				<li><a href="#">02-475-3421</a></li>
+			</div>
+
+		</div>
+	</section>

@@ -9,7 +9,7 @@
 }
 #product_order_list button{
 	border:none;
-	background-color:none;
+	background-color:#fafafa;
 	font-size:1.1em;
 }
 </style>
@@ -46,10 +46,10 @@
 	
 	<div id="product_order_list">
 		<p>
-		<button type="button" onclick="location.href='/mbti/${mbti}/pricelist'">가격낮은순</button>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
-		<button type="button" onclick="location.href='/mbti/${mbti}/pricelistdesc'">가격높은순</button>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+		<button type="button" onclick="location.href='/mbti/${mbti}/likelist'">지니 PICK</button>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
 		<button type="button" onclick="location.href='/mbti/${mbti}/recentlist'">최신순</button>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
-		<button type="button" onclick="location.href='/mbti/${mbti}/likelist'">인기순</button> </p>
+		<button type="button" onclick="location.href='/mbti/${mbti}/pricelist'">가격낮은순</button>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+		<button type="button" onclick="location.href='/mbti/${mbti}/pricelistdesc'">가격높은순</button> </p>
 	</div>
 	
 	<div class="grid-container">

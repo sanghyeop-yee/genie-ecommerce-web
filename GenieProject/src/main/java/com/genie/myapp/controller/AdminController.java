@@ -3,7 +3,6 @@ package com.genie.myapp.controller;
 import java.nio.charset.Charset;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -12,14 +11,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.genie.myapp.service.AdminService;
-import com.genie.myapp.vo.AccountVO;
 import com.genie.myapp.vo.AdminVO;
 import com.genie.myapp.vo.CartVO;
 import com.genie.myapp.vo.PagingVO;
@@ -286,7 +283,7 @@ public class AdminController {
 		headers.add("Content-Type", "text/html; charset=utf-8");
 		
 		try {//결제 성공
-			int result = service.paymentWrite(vo);
+			int result  = service.paymentWrite(vo);
 			
 			String msg = "<script>";
 			msg += "alert('결제가 되었습니다. 등록되었습니다.');";

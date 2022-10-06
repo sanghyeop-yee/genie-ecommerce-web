@@ -13,30 +13,39 @@
   display:none;
 }
 
+#mainbody{
+	padding-top: 10px;
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
 .container {
   display: grid; 
   grid-template-columns: 1fr 1fr 1fr; 
-  grid-template-rows: 0.1fr 0.1fr 1fr; 
-  gap: 3px 13px; 
+  grid-template-rows: 0.1fr 0.1fr 0.1fr 0.1fr; 
+  gap: 1px 13px; 
   grid-template-areas: 
+    "banner banner banner"
     "order_delivery1 order_delivery2 month_bestseller"
     "total_sales total_sales total_sales"
     "items_sales items_sales items_sales"; 
 }
 
-.items_sales { grid-area: items_sales; }
+.banner { grid-area: banner; }
 .order_delivery1 { grid-area: order_delivery1; }
 .order_delivery2 { grid-area: order_delivery2; }
 .month_bestseller { grid-area: month_bestseller; }
 .total_sales { grid-area: total_sales; }
-.product_qty { grid-area: product_qty; }
-
-
+.items_sales { grid-area: items_sales; }
 
 .thumb {
   width: 30%;
   aspect-ratio: 1/1;
   object-fit:cover;
+}
+
+.banner .card {
+  background-color: #FDF5C4;
 }
 
 </style>
@@ -58,11 +67,21 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content">
+    <div class="content" id="mainbody">
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
           <div class="container">
+            <div class="banner">
+              <div class="card">
+                <div class="card-body"> 
+                  <p class="card-text">
+                    <img src="../image/banner_icon.png" style="width:5rem;"/>
+                    지니셀러님들을 위한 반품안심케어 무료지원
+                  </p>
+                </div>
+              </div>
+            </div>
             <div class="order_delivery1">
               <div class="card">
                 <div class="card-header">

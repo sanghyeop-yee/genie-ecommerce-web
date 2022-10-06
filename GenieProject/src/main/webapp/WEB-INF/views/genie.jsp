@@ -15,7 +15,7 @@
 	<div class="genie">
 		<section class="genie_00">
 			<div>
-				<h2>선물을 주고 싶은 사람이 있나요? 어떤 사람인가요?</h2>
+				<h2>어떤 분에게 선물할 계획인가요?</h2>
 			</div>
 			<div class="grid-container-button">
 				<div class="tag_name">
@@ -107,7 +107,7 @@
 
 		<section class="genie_02">
 			<div>
-				<h2>선물 받는 분의 나이대가 어떻게 되시나요?</h2>
+				<h2>선물 받는 분의 나이대가 어떻게 되나요?</h2>
 			</div>
 			<div class="grid-container-button">
 				<div class="tag_name">
@@ -139,7 +139,7 @@
 
 		<section class="genie_03">
 			<div>
-				<h2>선물 받는 분의 성별은 어떻게 되시나요?</h2>
+				<h2>선물 받는 분의 성별은 어떻게 되나요?</h2>
 			</div>
 			<div class="grid-container-button">
 				<div class="tag_name">
@@ -160,7 +160,7 @@
 			<div class="grid-container-button">
 				<div class="tag_name">
 					<input type="radio" name="money_low" id="20" value="0">
-					<label for="20">일단 보고 선택할게요</label>
+					<label for="20">보고 선택할게요</label>
 				</div>
 				<div class="tag_name">
 					<input type="radio" name="money_low" id="21" value="10000">

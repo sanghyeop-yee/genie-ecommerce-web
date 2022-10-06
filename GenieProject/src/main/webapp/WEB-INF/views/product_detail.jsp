@@ -2,100 +2,150 @@
 <%@ include file="./inc/top.jspf"%>
 <link rel="stylesheet" href="/js_css/product_detail_style.css" type="text/css"/>
 <script src="/js_css/product_detail_js.js"></script>
-
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
-
+<style>
+    .likeChange{
+        font-size:2em; color:#ddd;        
+    }
+</style>
 <script>
-$(function(){
-    $("#buynow").click(function () {        
-    var IMP = window.IMP; // 생략가능        
-    IMP.init('imp49851084');         
-    // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용        
-    // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드        
-    IMP.request_pay({
-        pg: 'inicis', // version 1.1.0부터 지원.            
-        /*                 
-        'kakao':카카오페이,                 
-        html5_inicis':이니시스(웹표준결제)                    
-        'nice':나이스페이                    
-        'jtnet':제이티넷                    
-        'uplus':LG유플러스                    
-        'danal':다날                    
-        'payco':페이코                    
-        'syrup':시럽페이                    
-        'paypal':페이팔                
-        */            
-        pay_method: 'kakaopay',            
-        /*                 
-        'samsung':삼성페이,                 
-        'card':신용카드,                 
-        'trans':실시간계좌이체,                
-        'vbank':가상계좌,                
-        'phone':휴대폰소액결제             
-        */            
-        merchant_uid: 'merchant_' + new Date().getTime(),            
-        /*                 
-        merchant_uid에 경우                            
-        */            
-        name: '${pvo.product_name}',            
-        //결제창에서 보여질 이름            
-        amount: '${pvo.product_price}',             
-        //가격             
-        buyer_email: 'iamport@siot.do',            
-        buyer_name: '구매자이름',           
-        buyer_tel: '010-1234-5678',            
-        buyer_addr: '서울특별시 강남구 삼성동',            
-        buyer_postcode: '123-456',           
-        m_redirect_url: 'https://www.yourdomain.com/payments/complete'           
-        /*                  
-        모바일 결제시,                
-        결제가 끝나고 랜딩되는 URL을 지정                 
-        (카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
-        */        
-        }, function (rsp) {            
-            console.log(rsp);            
-            if (rsp.success) {                
-                var msg = '결제가 완료되었습니다.';                
-                msg += '고유ID : ' + rsp.imp_uid;                
-                msg += '상점 거래ID : ' + rsp.merchant_uid;                
-                msg += '결제 금액 : ' + rsp.paid_amount;                
-                msg += '카드 승인번호 : ' + rsp.apply_num;            
-                } else {                
-                    var msg = '결제에 실패하였습니다.';                
-                    msg += '에러내용 : ' + rsp.error_msg;            
-                }           
-            alert(msg);        
-        });
-    });
-});
-</script>
-<script>
-$(function(){
-	//유효성 검사
-    $("#Cart").submit(function(){
-		
-		// 아이디, 비밀번호
-		if($("#cart_qty").val().trim()==""){
-			alert("최소 수량은 1개 이상입니다.");
-			$("#cart_qty").focus();
-			return false;
+    $(function(){
+		function replyAllList(){
+			$("#replyList>ul").empty();
+			var url = "/reply/replyProductList";
+			var params = {no:${pvo.product_id}};
+			console.log(params);
+			
+			$.ajax({
+				url:url,
+				data:params,
+				success:function(result){
+					var $reply = $(result);
+					
+					$reply.each(function(i, vo){ // index, vo
+						tag = "<li>";
+						tag += "<div><b>"+"작성자 : "+vo.genie_id+"</b>";
+						// 수정, 삭제버튼(자신이 쓴 글일때만) 표시
+						if(vo.genie_id=='${logId}'){
+							tag += "<input type='button' value='리뷰수정'/>";
+							tag += "<input type='button' value='리뷰삭제' title='"+vo.reply_no+"'/>";
+						}
+						tag += "<br/>"
+                            if(vo.rating==5){ 
+                                tag +='만족도 : ★★★★★'
+                            }else if(vo.rating==4){
+                                tag +='만족도 : ★★★★☆'
+                            }else if(vo.rating==3){
+                                tag +='만족도 : ★★★☆☆'
+                            }else if(vo.rating==2){
+                                tag +='만족도 : ★★☆☆☆'
+                            }else if(vo.rating==1){
+                                tag +='만족도 : ★☆☆☆☆'
+                            }
+                        tag += "<br>"
+                                +"리뷰내용 : "
+                                +vo.comment+"<br></div>";
+						// 로그인 아이디와 댓글 아이디 동일시 수정폼
+						if(vo.genie_id=='${logId}'){
+							tag += "<div style='display:none'><form method='post'>";
+							tag += "<input type='hidden' name='reply_no' value='"+vo.reply_no+"'/>";
+                            tag += "<fieldset>"
+                                    +"<input type='radio' name='rating' value='5' id='rate6'>"
+                                    +"<label for='rate6'>★</label>"
+                                    +"<input type='radio' name='rating' value='4' id='rate7'>"
+                                    +"<label for='rate7'>★</label>"
+                                    +"<input type='radio' name='rating' value='3' id='rate8'>"
+                                    +"<label for='rate8'>★</label>"
+                                    +"<input type='radio' name='rating' value='2' id='rate9'>"
+                                    +"<label for='rate9'>★</label>"
+                                    +"<input type='radio' name='rating' value='1' id='rate10'>"
+                                    +"<label for='rate10'>★</label>"
+                                    +"</fieldset>"
+							tag += "<textarea name='comment' style='width:100%; height:30vh;'/>"+vo.comment+"</textarea>";
+							tag += "<input type='submit' value='리뷰 수정하기' style='display:flex; align-items:center; padding:1ch;'/>";
+							tag += "</form></div>";
+						}						
+						tag += "</li>"
+						
+						$("#replyList>ul").append(tag);
+					});
+				}, error:function(e){
+					console.log(e.responseText);
+				}
+			});
 		}
-        if($("#cart_qty").val().trim()=="0"){
-			alert("최소 수량은 1개 이상입니다.");
-			$("#cart_qty").focus();
-			return false;
-        };
+		
+		// 리뷰 작성
+		$("#replyFrm").submit(function(){
+			event.preventDefault();
+			
+			var params = $("#replyFrm").serialize();
+			
+			$.ajax({
+				url:"/reply/replyProductWrite",
+				data:params, 
+				type:"POST", 
+				success:function(result){
+					console.log("리뷰등록수 : ", result);
+					
+					$("#comment").val("");
+					
+					replyAllList();
+					
+				}, error:function(e){
+					console.log(e.responseText);
+				}
+			});
+		});
+		
+		// 리뷰 수정폼
+		$(document).on('click','#replyList input[value=리뷰수정]',function(){
+			$(this).parent().css("display","none"); // Edit버튼의 부모를 숨김
+			$(this).parent().next().css("display","block"); // Edit 폼 보여주기
+		});
+		
+		// 리뷰 수정(DB)
+		$(document).on('submit','#replyList form',function(){
+			event.preventDefault();
+			var url = "/reply/replyProductEdit";
+			var params = $(this).serialize();
+			$.ajax({
+				url:url,
+				data:params,
+				type:"POST",
+				success:function(result){
+					replyAllList();
+				},error:function(e){
+					console.log(e.responseText);
+				}
+			});
+		});
+		
+		// 리뷰 삭제
+		$(document).on('click','#replyList input[value=리뷰삭제]',function(){
+			if(confirm("리뷰를 삭제하시겠습니까?")){	
+				var params = {reply_no: $(this).attr('title')};
+				
+				$.ajax({
+					url:"/reply/replyProductDel",
+					data:params,
+					success:function(result){
+						replyAllList();
+					}, error:function(e){
+						console.log(e.responseText);
+					}
+				});
+			}
+		});
+		replyAllList(); // 리뷰 목록 가져오기
     });
-
-});
 </script>
 
 <section class="product_detail">
-    <h1>상세페이지</h1>
+    <!--<h1>상세페이지</h1>-->
     <form method="post" action="/addCart" id="Cart">
         <div class="box-wrapper1"> 
             <input type="hidden" value="${logId}" name="genie_id">
@@ -106,17 +156,17 @@ $(function(){
             <div class="box3" onclick="detail1('${pvo.product_image2}')" style="background-image:url(${pvo.product_image2})"></div>
             <div class="box4" onclick="detail1('${pvo.product_image3}')" style="background-image:url(${pvo.product_image3})"></div>
             <div class="box5">
-                상품명 : ${pvo.product_name}
+                ${pvo.product_name}
             </div>
             <div class="box6">
                 상품가격 : <fmt:formatNumber value="${pvo.product_price}" pattern="#,###원"/>
                 <input type="hidden" value="${pvo.product_price}" name="cart_price">
             </div>
             <div class="box7">
-                상품카테고리 : ${pvo.product_category}
+                상품설명 : ${pvo.product_info}
             </div>
             <div class="box8">
-                상품설명 : ${pvo.product_info}
+                상품카테고리 : ${pvo.product_category}
             </div>
             <div class="box9">
                 셀러명 : ${svo.ceo_name}
@@ -131,12 +181,9 @@ $(function(){
             <button class="box12" id="addCart">
                 장바구니
             </button>
-            <button class="box13" id="buynow">
-                구매하기
-            </button>
+            <input class="box13" type="button" id="buynow" value="구매하기"/>
         </div>
     </form>
-
 <!-- ------------------------------------------------------------------------------------------- -->
     <div class="review-wrapper">
         <button class="box_1" onclick="content1()">
@@ -152,19 +199,45 @@ $(function(){
             <h2>상품리뷰</h2>
             <h3>동일한 상품에 대해 작성한 상품평이며 상품을 구매하신 분들이 직접 작성하신 리뷰입니다.</h3>
         </div>
-        <div class="box_5">
-            평점(구현못하면 글제목)
-        </div>
-        <div class="box_6">
-            글쓴이 + (글쓴 시각)
-        </div>
-        <div class="box_7">
-            <form method="post" id="replyFrm">
-            글내용
-            </form>
-        </div>
-    </div>
 
+        <form class="replyFrm" name="replyFrm" id="replyFrm" method="post">
+
+            <div class="box_5">
+                <fieldset>
+                    <span class="text-bold">만족도</span>
+                    <input type="radio" name="rating" value="5" id="rate1">
+                    <label for="rate1">★</label>
+                    <input type="radio" name="rating" value="4" id="rate2">
+                    <label for="rate2">★</label>
+                    <input type="radio" name="rating" value="3" id="rate3">
+                    <label for="rate3">★</label>
+                    <input type="radio" name="rating" value="2" id="rate4">
+                    <label for="rate4">★</label>
+                    <input type="radio" name="rating" value="1" id="rate5">
+                    <label for="rate5">★</label>
+                </fieldset>
+            </div>
+
+            <div class="box_6">
+                <input type="hidden" name="product_id" value="${pvo.product_id}"/>
+                <textarea class="col-auto form-control" type="text" id="comment" name="comment" placeholder="다른 고객님에게 도움이 되도록 상품에 대한 솔직한 평가를 남겨주세요."></textarea>
+            </div>
+
+            <div class="box_7">
+                <input type="submit" value="리뷰 등록하기"/>
+            </div>
+        </form>
+
+        <div class="box_8">
+            <div id="replyList">
+                <ul>
+                    
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    
     <div class="qna-wrapper">
         <div class="qna">
             <button class="box_01" onclick="content1()">
@@ -204,7 +277,7 @@ $(function(){
                 브랜드가 달라도 상품 주문 시 한 번에 결제할 수 있습니다.
             </div>
             <div class="box_13">
-                Q. 일반 배송 상품은 언제 배송 되나요?
+                Q. 일반 배송 상품은 언제 배송 되나요??
             </div>
             <div class="box_14">
                 A. 일반배송은 브랜드마다 일정이 다르고 평일 기준으로 출고 됩니다.<br>

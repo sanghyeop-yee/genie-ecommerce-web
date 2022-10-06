@@ -131,6 +131,11 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
+	public String sellerStatus(String seller_id) {
+		return dao.sellerStatus(seller_id);
+	}
+
+	@Override
 	public int thisMonthRevenue(String seller_id) {
 		return dao.thisMonthRevenue(seller_id);
 	}

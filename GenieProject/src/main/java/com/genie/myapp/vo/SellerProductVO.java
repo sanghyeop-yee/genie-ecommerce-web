@@ -14,7 +14,7 @@ public class SellerProductVO {
 	private int product_stock; 
 	private int product_quantity; 
 	private int product_hit;
-    private String product_like;
+    private int product_like;
 	private String product_writedate; 
 	private String product_image1; 
 	private String product_image2;
@@ -121,10 +121,10 @@ public class SellerProductVO {
 	public void setProduct_hit(int product_hit) {
 		this.product_hit = product_hit;
 	}
-	public String getProduct_like() {
+	public int getProduct_like() {
 		return product_like;
 	}
-	public void setProduct_like(String product_like) {
+	public void setProduct_like(int product_like) {
 		this.product_like = product_like;
 	}
 	public String getProduct_writedate() {

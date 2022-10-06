@@ -90,7 +90,7 @@
   }
 </style>
 <script>
-	$(function(){
+$(function(){
 
     $("#FindId").click(function(){
 			window.open("/cert/FindId","FindId","width=400, height=300");
