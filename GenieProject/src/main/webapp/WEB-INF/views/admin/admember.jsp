@@ -195,7 +195,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="/js_css/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <img src="https://st.depositphotos.com/1105977/1271/i/950/depositphotos_12715373-stock-photo-blue-circle-splash.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <a href="#" class="d-block">조준환</a>
@@ -331,9 +331,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <!-- 태그 반복 -->
                       <c:forEach var="vo" items="${admember }">
                       <tr>
-					  	<td>${vo.genie_id}</td>
-						<td>${vo.user_name}</td>
-						<td>${vo.user_tel}</td>
+					             	<td>${vo.genie_id}</td>
+					            	<td>${vo.user_name}</td>
+					             	<td>${vo.user_tel}</td>
                         <td>${vo.user_email}</td>
                         <td>${vo.sign_in_date}</td>
                         <td><a href="/admin/admemberPop?genie_id=${vo.genie_id}"><input type="button" value="관리"></a></td>
@@ -342,7 +342,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </tbody>
                   </table>
                   <div>
-                 	 <ul id="page">
+          <ul id="page">
 						<c:if test="${pVO.nowPage<=1}">
 							<li>prev</li>
 						</c:if>

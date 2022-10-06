@@ -102,24 +102,46 @@
     </insert>
 
     <delete id="delProduct">
+
         delete from cart where cart_num=#{param1} and genie_id=#{param2}
+
     </delete>
 
 <!-- 구매정보 이동 -->
 
-    <insert id="myOrder">
+    <insert id="myorder">
 
-        insert into myorder 
-        (order_num, 
-        genie_id, 
-        receipent_name, 
-        receipent_phone,
-        receipent_address, 
-        receipent_request,
-        cart_qty) 
-        values(#{cart_num}, #{genie_id}, #{product_id}, #{cart_price}, #{cart_qty})
+    	insert into myorder 
+            (order_num, 
+            genie_id, 
+            product_id,
+            recipient_name, 
+            recipient_phone,
+            recipient_address, 
+            recipient_request,
+            recipient_delivery_status,
+            order_price,
+            order_qty,
+            payment_method) 
+
+        values
+            (#{imp_uid}, 
+            #{genie_id}, 
+            #{product_id}, 
+            #{receiver_name},
+            #{receiver_tel},
+            #{receiver_addr}, 
+            #{receipent_request}, 
+            #{cart_price},
+            #{cart_qty},
+            #{payment_method} )
 
     </insert>
+     <delete id = "delCart">
+	  		
+        delete from cart where genie_id=#{genie_id}
+	  		
+	</delete>
 
 
 <!-- 메인페이지 지니 추천 -->
@@ -162,4 +184,17 @@
         order by rand()
 
     </select>
+    
+    <update id="hitCount">
+    	update product set product_hit = product_hit+1 where product_id=${param1} 
+    </update>
+
+<!-- 메인페이지 페이지네이션 -->
+	<select resultType="int" id="mainTotalRecord">
+		select count(product_id) cnt from product 
+	<if test="searchWord!=null">
+		where ${searchKey} like '%${searchWord}%'
+	</if>
+	</select>
+
 </mapper>

@@ -7,8 +7,6 @@ public class InquiryVO {
 	public String inquiry_content;
 	public String inquiry_status;
 	public String inquiry_writedate;
-	
-
 	public String product_name;
 	
 	@Override

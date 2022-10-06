@@ -6,11 +6,14 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +27,7 @@ import com.genie.myapp.service.UserService;
 import com.genie.myapp.vo.AccountVO;
 import com.genie.myapp.vo.AdministerVO;
 import com.genie.myapp.vo.DeliveryVO;
-import com.genie.myapp.vo.ProductVO;
+import com.genie.myapp.vo.OrderVO;
 import com.genie.myapp.vo.SellerVO;
 import com.genie.myapp.vo.UserVO;
 
@@ -42,7 +45,14 @@ public class UserController {
 	@Inject
 	AdministerService service_a;
 
-	ModelAndView mav;
+	ModelAndView mav=null;
+
+	@Autowired
+	PlatformTransactionManager transactionManager;
+
+	@Autowired
+	TransactionDefinition definition;
+
 
 	@GetMapping("login")
 	public ModelAndView adminLogin() {
@@ -140,14 +150,14 @@ public class UserController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		headers.add("Content-Type","text/html; charset=utf-8");
+		TransactionStatus status= transactionManager.getTransaction(definition);
 		
-			
-
+		
 		try {//회원가입 성공
 			
 			int account = service.AccountWrite(avo);
 			int user = service.UserWrite(vo);
-			//int Delivery = service.Delivery(vo);
+
 			System.out.println(account);
 			System.out.println(user);
 
@@ -157,6 +167,8 @@ public class UserController {
 			msg += "</script>";
 			entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
 
+			transactionManager.commit(status);
+
 		}catch(Exception e) {//회원등록 실패
 
 			String msg = "<script>";
@@ -165,7 +177,9 @@ public class UserController {
 			msg += "</script>";
 			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);
 			
+			transactionManager.rollback(status);
 			e.printStackTrace();
+			
 		}
 
 		return entity;
@@ -218,14 +232,14 @@ public class UserController {
 
 	//주문목록/배송조회
 	@GetMapping("MyOrderList")
-	public ModelAndView MyOrderList(HttpSession session, ProductVO pVo) {
+	public ModelAndView MyOrderList(HttpSession session) {
 
 		String genie_id = (String)session.getAttribute("logId");
 		UserVO vo = service.getUser(genie_id);
-		//System.out.print(vo);
+		List<OrderVO> orderList =service.getOrder(genie_id);
 		
 		mav = new ModelAndView();
-		mav.addObject("pVo",pVo);
+		mav.addObject("list",orderList);
 		mav.addObject("vo",vo);
 		mav.setViewName("/user/MyOrderList");
 	
@@ -237,13 +251,8 @@ public class UserController {
 	public ModelAndView MyDeliveryLIst(HttpSession session) {
 		
 		String genie_id = (String)session.getAttribute("logId");
-
-		List<DeliveryVO> dlist = service.getDeliveryList(genie_id);
-
-		//System.out.println(genie_id);
-		//System.out.println("dlist:" + dlist.size());
-		
 		UserVO vo = service.getUser(genie_id);
+		List<DeliveryVO> dlist = service.getDeliveryList(genie_id);	
 
 		mav = new ModelAndView();
 		mav.addObject("vo", vo);
@@ -262,7 +271,6 @@ public class UserController {
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		headers.add("Content-Type","text/html; charset=UTF-8");
 	
-
 		String msg = "<script>";
 		int cnt = service.addDelivery(vo);
 
@@ -271,8 +279,32 @@ public class UserController {
 		}else {//수정못함
 			msg+="alert('배송지 등록에 실패하였습니다.');";
 		}
-		msg+="location.href='/user/MyPage';</script>";
+		msg+="location.href='/user/MyDeliveryList';</script>";
+
+		entity = new ResponseEntity<String>(msg,headers, HttpStatus.OK);
+
+		return entity;
+	}
+
+	//주문 결제 페이지의 주소 추가창
+	@PostMapping("addAddressbook")
+	public ResponseEntity<String> addAddressbook(UserVO vo) {
 		
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
+		headers.add("Content-Type","text/html; charset=UTF-8");
+	
+		String msg = "<script>";
+		int cnt = service.addDelivery(vo);
+
+		if(cnt>0) {//수정됨
+			msg+="alert('배송지가 등록되었습니다.');";
+		}else {//수정못함
+			msg+="alert('배송지 등록에 실패하였습니다.');";
+		}
+		msg+="location.href='/user/addressbook';</script>";
+		//msg+="location.reload();</script>";
 		entity = new ResponseEntity<String>(msg,headers, HttpStatus.OK);
 
 		return entity;
@@ -282,6 +314,35 @@ public class UserController {
 	public int delDelivery(int address_num, HttpSession session){
 		String genie_id = (String)session.getAttribute("logId");
 		return service.delDelivery(address_num, genie_id);
+	}
+
+	@GetMapping("addressbook")
+	public ModelAndView addressbook(HttpSession session){
+
+		String genie_id=(String)session.getAttribute("logId");
+		List<DeliveryVO> dlist=service.getDeliveryList(genie_id);
+
+		mav=new ModelAndView();
+		mav.addObject("dlist", dlist);
+		mav.setViewName("/user/addressbook");
+		return mav;
+	}
+
+
+	
+
+	@GetMapping("Addaddressbook")
+	public ModelAndView Addaddressbook(HttpSession session){
+
+		String genie_id=(String)session.getAttribute("logId");
+		UserVO vo=service.getUser(genie_id);
+		List<DeliveryVO> dlist=service.getDeliveryList(genie_id);
+
+		mav=new ModelAndView();
+		mav.addObject("vo", vo);
+		mav.addObject("dlist", dlist);
+		mav.setViewName("/user/Addaddressbook");
+		return mav;
 	}
 	
   

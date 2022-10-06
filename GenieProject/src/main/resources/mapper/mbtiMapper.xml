@@ -42,7 +42,7 @@
 		product_writedate, product_image1, product_image2, product_image3, product_mbti 
 		from product 
 		where product_mbti like '%${param1}%' 
-		order by product_like desc
+		order by product_like desc, product_hit desc
 	</select>
 	
 	
@@ -189,6 +189,6 @@
         </if>
         </where>
 
-            order by product_like desc
+            order by product_like desc, product_hit desc
 	</select>
 </mapper>

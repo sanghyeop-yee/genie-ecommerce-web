@@ -49,14 +49,6 @@ nav .sidenav-trigger i {
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="../js_css/KakaoAddress.js"></script>
-
-
-
-
-
-
 <body>
 
 <body
@@ -150,87 +142,7 @@ nav .sidenav-trigger i {
 </header>
   <!-- END: Header-->
 
-  <!-- BEGIN: SideNav-->
-  <aside
-  class="sidenav-main nav-expanded nav-lock nav-collapsible  sidenav-active-square  sidenav-light">
-  <div class="brand-sidebar">
-    <h1 class="logo-wrapper">
-      <a class="brand-logo darken-1" href="/">
-                        <img class="hide-on-med-and-down" src="/image/logo_western.png" alt="materialize logo" />
-        <img class="show-on-medium-and-down hide-on-med-and-up" src=""
-          alt="materialize logo" />
-
-                        <span class="logo-text hide-on-med-and-down">
-                    ${vo.user_name} ${svo.ceo_name}님
-                  </span>
-      </a>
-      </h1>
-  </div>
-  <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out"
-    data-menu="menu-navigation" data-collapsible="menu-accordion">
-    
-
-
-
-    <li class="navigation-header">
-      <a class="navigation-header-text">Applications</a>
-      <i class="navigation-header-icon material-icons">more_horiz</i>
-    </li>
-    <li class="bold ">
-      <a class="waves-effect waves-cyan "
-      href="/user/MyOrderList "
-      >
-      <i class="material-icons">check</i>
-      <span class="menu-title" data-i18n="ToDo">주문목록/배송조회</span>
-    </a>
-  </li>
-  <li class="bold ">
-    <a class="waves-effect waves-cyan "
-    href="/user/MyDeliveryList "
-    >
-    <i class="material-icons">content_paste</i>
-    <span class="menu-title" data-i18n="File Manager">배송지 관리</span>
-    </a>
-  </li>
-    <li class="bold ">
-    <a class="waves-effect waves-cyan "
-              href="/user/MyPage "
-      >
-      <i class="material-icons">mail_outline</i>
-      <span class="menu-title" data-i18n="Mail">회원정보확인/수정</span>
-              <span class="new badge pill pink accent-2 float-right mr-2">5</span>
-            </a>
-        </li>
-      <%-- <li class="bold ">
-      <a class="waves-effect waves-cyan "
-                href="/user/MyInquiryList "
-        >
-        <i class="material-icons">import_contacts</i>
-        <span class="menu-title" data-i18n="Contacts">나의 문의사항</span>
-              </a>
-          </li> --%>
-
-
-
-    <li class="navigation-header">
-      <a class="navigation-header-text">공지사항 </a>
-      <i class="navigation-header-icon material-icons">more_horiz</i>
-    </li>
-
-    <li class="bold ">
-      <a class="waves-effect waves-cyan "
-                href="/"
-        target=&quot;_blank&quot;>
-        <i class="material-icons">help_outline</i>
-        <span class="menu-title" data-i18n="Support">Support</span>
-              </a>
-          </li>
-              </ul>
-  <div class="navigation-background"></div>
-  <a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only"
-    href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
-</aside>  <!-- END: SideNav-->
-
+  
   <!-- BEGIN: Page Main-->
   <div id="main">
     <div class="row">
@@ -255,7 +167,7 @@ nav .sidenav-trigger i {
     <div class="content-main">
       <h4>새로운 배송지</h4>
       <div class="inquiry">
-      <form method="post" action="/user/addDelivery">
+      <form method="post" action="/user/addAddressbook">
         <input type="hidden" value="${vo.genie_id}" name="genie_id"/>
           <ul id="addrForm">
             <li>이름</li>
@@ -293,39 +205,8 @@ nav .sidenav-trigger i {
 </div>
 </div>
 </div>
-
 <!-- 추가되는 부분 끝 -->  
-<!-- 추가되는 2부분 시작 -->
 
-   <!-- Current balance & total transactions cards-->
-
-      <div class="col s12 m6 l6">
-         <!-- Current Balance -->
-         <div class="card animate fadeLeft">
-            <div class="card-content">
-
-    <div class="my-delivery">
-      <h4>배송지 목록</h4>
-
-        <ul id="delivery_1">
-        <c:forEach var="dvo" items="${dlist}">
-            <h5>배송지</h5>
-            <li>수령자 이름</li>
-            <input type="text" value="${dvo.receiver_name}" readonly/>
-            <li>전화번호</li>
-            <input type="text" value="${dvo.receiver_tel}" readonly/>
-            <li>우편번호</li>
-            <input type="text" value="${dvo.receiver_zipcode}" readonly/>
-            <li>주소</li>
-            <li><input type="text" value="${dvo.receiver_addr}" readonly/></li>
-            <li>상세주소</li>
-            <li><input type="text" value="${dvo.receiver_detailaddr}" readonly/></li><br>
-            <div><input type="hidden" value='${dvo.address_num}' /></div>
-            <div><input type="button" value='삭제' address_num="${dvo.address_num}" id="address_kakao"/></div>
-          </c:forEach>        
-    </div>
-
-<!-- 추가되는 2부분 끝 --> 
             </div>
          </div>
       </div>
@@ -374,21 +255,6 @@ nav .sidenav-trigger i {
 <script src="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/js/custom/custom-script.js"></script>
 <script src="https://www.pixinvent.com/materialize-material-design-admin-template/laravel/demo-1/js/scripts/customizer.js"></script>
 <!-- END THEME  JS-->
-<script>
-	$(document).on('click','#delivery_1 input[value=삭제]',function(){
 
-		var params = {address_num: $(this).attr('address_num')};
-		    $.ajax({
-				url:"/user/delDelivery",
-				data:params,
-				success:function(result){
-          alert("삭제되었습니다.");
-					location.reload();
-				},error:function(e){
-					console.log(e.responseText);
-				}
-			});	
-	  });
-</script>
-
-                                      
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="../js_css/KakaoAddress.js"></script>

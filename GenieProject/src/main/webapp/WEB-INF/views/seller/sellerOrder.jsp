@@ -231,22 +231,22 @@
                     </table>
                   </p>
                 </div>
-              </div><!-- /.card -->
+              </div><!— /.card —>
             </div>
-        </div> <!-- /.row -->
-      </div> <!-- /.container-fluid -->
-    </div> <!-- /.content -->
-  </div> <!-- /.content-wrapper -->
+        </div> <!— /.row —>
+      </div> <!— /.container-fluid —>
+    </div> <!— /.content —>
+  </div> <!— /.content-wrapper —>
   
 
 
-<!-- REQUIRED SCRIPTS -->
+<!— REQUIRED SCRIPTS —>
 
-<!-- jQuery -->
+<!— jQuery —>
 <script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
+<!— Bootstrap 4 —>
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
+<!— AdminLTE App —>
 <script src="/js_css/dist/js/adminlte.min.js"></script>
 
 

@@ -7,7 +7,7 @@
 	width: 100%;
     margin: 0;
     padding: 10vh 10vw;
-	background: #f5f5f7;
+	background: #fafafa;
 }
 /*--------mbti-------------*/
 #title h1{
@@ -26,7 +26,7 @@
 	width:100%;
 	height:auto;
 	border-radius:50%;
-	box-shadow: 0 0 50px #b4b4b4;
+	box-shadow: 0 0 50px #eee;
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

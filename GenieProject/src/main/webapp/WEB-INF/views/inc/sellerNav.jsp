@@ -56,7 +56,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
+          <span class="badge badge-danger navbar-badge"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="#" class="dropdown-item">
@@ -152,11 +152,11 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: darkblue !important;"> <!-- blueviolet -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #4846F5 !important;"> <!-- blueviolet -->
     <!-- Brand Logo -->
     <a href="/seller/sellerMain" class="brand-link">
-      <img src="/image/logo_western.png" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text" style="color: gray;">지니셀러센터</span>
+      <img src="/js_css/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text" style="color: white;">지니셀러센터</span>
     </a>
 
     <!-- Sidebar -->

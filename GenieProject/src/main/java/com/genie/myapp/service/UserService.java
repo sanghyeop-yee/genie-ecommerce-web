@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.genie.myapp.vo.AccountVO;
 import com.genie.myapp.vo.DeliveryVO;
+import com.genie.myapp.vo.OrderVO;
 import com.genie.myapp.vo.UserVO;
 
 public interface UserService {
@@ -32,4 +33,7 @@ public interface UserService {
 	public List<DeliveryVO> getDeliveryList(String genie_id);
 	//배송지 삭제
 	public int delDelivery(int address_num, String genie_id);
+
+	//주문목록 가져오기
+	public List<OrderVO> getOrder(String genie_id);
 }

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.genie.myapp.vo.CartVO;
+import com.genie.myapp.vo.PagingVO;
 import com.genie.myapp.vo.ProductVO;
 import com.genie.myapp.vo.SellerVO;
 
@@ -31,5 +32,16 @@ public interface ProductDAO{
     public List<ProductVO> selectProduct(Map<String, Object> map);
     //상세페이지 관리자정보 가져오기
     public SellerVO getSeller(int product_id);
- 
+
+    // 조회수 증가
+    public void hitCount(int product_id);
+
+    
+    //구매완료 후, 장바구니에서 삭제
+    public int delCart(String genie_id);
+    //구매 완료 후, myorder로 넘기기
+    public int myorder(String genie_id, CartVO cvo, String imp_uid);
+
+    //메인페이지 페이징
+    public List<ProductVO> mainAllSelect(PagingVO pVO);
 }
