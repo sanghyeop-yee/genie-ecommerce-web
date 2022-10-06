@@ -46,6 +46,27 @@
 
 .banner .card {
   background-color: #FDF5C4;
+  vertical-align: middle;
+}
+.banner .card-body{
+  padding: 10px;
+}
+
+.banner a{
+  vertical-align: middle;
+  margin-right: 20px;
+  margin-top: 15px;
+  display: block;
+  float: right;
+  background: #67AD5B;
+  color: white;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+   
+}
+
+.banner a:hover{
+  box-shadow: 0 0.5rem 0.5rem rgba(71, 7, 234, 0.2);
 }
 
 </style>
@@ -72,13 +93,14 @@
         <div class="row">
           <div class="col-lg-12">
           <div class="container">
+
             <div class="banner">
               <div class="card">
                 <div class="card-body"> 
-                  <p class="card-text">
-                    <img src="../image/banner_icon.png" style="width:5rem;"/>
-                    지니셀러님들을 위한 반품안심케어 무료지원
-                  </p>
+                  <img class="mr-4" src="../image/banner_icon.png" style="width:6rem; float:left; margin-left:20px;"/>
+                  <a href="#"><i class="fas fa-play"></i> &nbsp&nbsp&nbsp Watch Now</a>
+                    <h5 class="mt-2">지니셀러님들을 위한 반품 안심케어를 무료로 사용하시고 더욱 쉽게 주문을 관리하세요.</h5> 
+                    10분짜리 영상을 통해 자세히 알아보세요.
                 </div>
               </div>
             </div>
