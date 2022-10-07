@@ -157,18 +157,12 @@ function admemberDel(){
    		<input type="text" id="user_tel" class="second" name="user_tel" value=${vo.user_tel}>
    	<p>이메일</p>
    		<input type="text" id="user_email" class="second" name="user_email" value=${vo.user_email}>
-   	<p>우편번호</p>
-   		<input type="text" id="user_zipcode" class="second" name="user_zipcode" value=${vo.user_zipcode}>
-   	<p>주소</p>
-   		<input type="text" id="user_addr" class="second" name="user_addr" value=${vo.user_addr}>
-   	<p>상세주소</p>
-   		<input type="text" id="user_detailaddr" class="second" name="user_detailaddr" value=${vo.user_detailaddr}>
    	<p>성별</p>
    		<input type="text" id="user_gender" class="second" name="user_gender" value=${vo.user_gender}>
    	<p>가입일</p>
-   		<input type="text" id="sign_in_date" class="second" name="sign_in_date" value=${vo.sign_in_date}>
+   		<input type="text" id="sign_in_date" class="second" name="sign_in_date" value=${vo.sign_in_date}>	
    	<p>결제방식</p>
-   		<input type="text" id="payment_method" class="second" name="payment_method" value=${vo.payment_method}>   	
+   		<input type="text" id="payment_method" class="second" name="payment_method" value=${vo.payment_method}>	
       <input type="submit" class="fourth" value="수정">
       <a href="javascript:admemberDel()"><input type="button" class="fourth" value="삭제"></a>
       <a href="/admin/admember"><input type="button" class="fourth" value="뒤로가기"></a>

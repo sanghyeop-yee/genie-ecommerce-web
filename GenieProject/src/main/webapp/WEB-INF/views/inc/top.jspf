@@ -21,14 +21,14 @@
 	<nav>
 		<a href="/"><img src="/image/logo_western.png" style="width:8vw; height:auto; display:block;"></a>
 		<ul>
-			<%-- MBTI --%>
-			<li><a href="#mbti">MBTI</a></li>
-			<%-- 제품리스트 --%>
-			<li><a href="#product_list">제품리스트</a></li>
 			<%-- 카테고리 --%>
 			<li><a href="#category">카테고리</a></li>
 			<%-- 인기태그 --%>
 			<li><a href="#tag">인기태그</a></li>
+			<%-- MBTI --%>
+			<li><a href="#mbti">MBTI</a></li>
+			<%-- 제품리스트 --%>
+			<li><a href="#product_list">추천선물</a></li>
 		</ul>
 		<ul>
 			<%-- 전체상품 --%>
@@ -39,8 +39,16 @@
 				<li><a href = "/user/login"><i class="fa-solid fa-user"></i></a></li>
 			</c:if> 
 			
-			<c:if test ="${logStatus =='Y'}">
+			<c:if test ="${logStatus =='Y' && memberType == '1'}">
 				<li><a href = "/user/MyOrderList"><i class="fa-solid fa-address-card"></i></a></li>
+				<li>${logName}님<a href ="/user/logout"> 로그아웃</a></li>
+			</c:if>
+			<c:if test ="${logStatus =='Y' && memberType == '2'}">
+				<li><a href = "/seller/sellerMain"><i class="fa-solid fa-address-card"></i></a></li>
+				<li>${logName}님<a href ="/user/logout"> 로그아웃</a></li>
+			</c:if>
+			<c:if test ="${logStatus =='Y' && memberType == '3'}">
+				<li><a href = "/admin/adminMain"><i class="fa-solid fa-address-card"></i></a></li>
 				<li>${logName}님<a href ="/user/logout"> 로그아웃</a></li>
 			</c:if>
 		</ul>

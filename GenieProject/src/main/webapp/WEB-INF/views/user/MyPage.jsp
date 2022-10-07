@@ -247,6 +247,14 @@ nav .sidenav-trigger i {
               <span class="new badge pill pink accent-2 float-right mr-2">5</span>
             </a>
         </li>
+        <li class="bold ">
+          <a class="waves-effect waves-cyan "
+              href="/user/MyLikeList "
+          >
+          <i class="material-icons">favorite</i>
+          <span class="menu-title" data-i18n="Like">찜한 상품</span>
+          </a>
+        </li>
       <%-- <li class="bold ">
       <a class="waves-effect waves-cyan "
                 href="/user/MyInquiryList "

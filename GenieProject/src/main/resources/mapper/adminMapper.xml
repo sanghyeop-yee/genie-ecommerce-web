@@ -57,13 +57,12 @@
 	</select>
 
 	<select resultType="UserVO" id="getadmember" parameterType="String">
-		select genie_id, user_name, user_tel, user_email, user_zipcode, user_addr, user_detailaddr, user_gender, date_format(sign_in_date, '%y-%m-%d') sign_in_date, 
+		select genie_id, user_name, user_tel, user_email,user_gender, date_format(sign_in_date, '%y-%m-%d') sign_in_date, 
 		payment_method from user where genie_id='${param1}'
 	</select>
 	
 	<update id="admemberPopEdit" parameterType="UserVO">
-		update user set genie_id=#{genie_id}, user_name=#{user_name}, user_tel=#{user_tel}, user_email=#{user_email}, 
-		user_zipcode=#{user_zipcode}, user_addr=#{user_addr}, user_detailaddr=#{user_detailaddr}, 
+		update user set genie_id=#{genie_id}, user_name=#{user_name}, user_tel=#{user_tel}, user_email=#{user_email},
 		sign_in_date=#{sign_in_date}, payment_method=#{payment_method} 
 		where genie_id=#{genie_id}
 	</update>

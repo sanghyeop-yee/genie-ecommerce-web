@@ -9,7 +9,7 @@
     height: 100vh;
     margin: 0;
     padding: 3% 23%;
-    background: #f5f5f7;
+    background: #fafafa;
   }
   /* 폼을 세로로 정렬하기 위한 css */
   .wrapper {
@@ -31,7 +31,7 @@
     padding: 3%;
     width: 70%;
     position: relative;
-    box-shadow: 0 0 15px #b4b4b4;
+    box-shadow: 0 0 15px #fbfbfb;
     text-align: center;
   }
   /* 아이디랑 비밀번호 입력란 설정 */

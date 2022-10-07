@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.genie.myapp.vo.AccountVO;
 import com.genie.myapp.vo.DeliveryVO;
 import com.genie.myapp.vo.OrderVO;
+import com.genie.myapp.vo.ProductVO;
 import com.genie.myapp.vo.UserVO;
 
 @Mapper
@@ -42,5 +43,6 @@ public interface UserDAO {
 	//주문목록 가져오기
 	public List<OrderVO> getOrder(String genie_id);
 	
-	
+	//찜한 상품 리스트
+	public List<ProductVO> getLikeList(String genie_id);
 }

@@ -5,7 +5,7 @@
 <!--Genie 메인화면--->
 <section class="index">
    <div class="index-list">      
-      <a href="/genie"><img src="/image/main_bg.png"></a>
+      <a href="/genie"><img src="/image/main_banner1.png"></a>
    </div>
 
    <div class="category" id="category">
@@ -55,7 +55,7 @@
          <button onclick="location.href='/product?product_tag=연인'">#연인</button> 
          <button onclick="location.href='/product?product_tag=가족/친척'">#가족/친척</button> 
          <button onclick="location.href='/product?product_tag=스승/멘토'">#스승/멘토</button> 
-         <button onclick="location.href='/product?product_tag=결혼'">#30대</button> 
+         <button onclick="location.href='/product?product_tag=30대'">#30대</button> 
          <button onclick="location.href='/product?product_tag=친구'">#친구</button> 
          <button onclick="location.href='/product?product_tag=출산'">#출산</button> 
          <button onclick="location.href='/mbti/mbtiMain'">#mbti</button>
@@ -66,20 +66,10 @@
    <div class="mbti" id="mbti">
       <h1>MBTI 추천 선물</h1>
       <div class="mbti-list">      
-         <a href="/mbti/mbtiMain"><img src="/image/mbti_bg.jpg"></a>
+         <a href="/mbti/mbtiMain"><img src="/image/mbti_banner1.png"></a>
       </div>
    </div>
-
-   <div class="recommand_listing">      
-      <div id="product_order_list">
-         <p>
-         <button type="button" onclick="location.href='/mbti/${mbti}/pricelist'">가격낮은순</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-         <button type="button" onclick="location.href='/mbti/${mbti}/pricelistdesc'">가격높은순</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-         <button type="button" onclick="location.href='/mbti/${mbti}/recentlist'">최신순</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-         <button type="button" onclick="location.href='/mbti/${mbti}/likelist'">인기순</button> </p>
-      </div>
-   </div>
- 
+   
       <!--
       <div class="recommend">
          <div class="box1">금주의 추천상품</div>
@@ -141,7 +131,7 @@
 			</div>
 
 			<div class="contact-content">
-			   <li><a href="/">Home</a></li>
+			   <li><a href="#">Home</a></li>
             <li><a href="#mbti">MBTI</a></li>
             <li><a href="#category">카테고리</a></li>
             <li><a href="#tag">인기태그</a></li>

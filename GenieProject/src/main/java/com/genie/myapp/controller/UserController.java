@@ -75,6 +75,7 @@ public class UserController {
 			session.setAttribute("logId", logVO.getGenie_id());		
 			session.setAttribute("logName", logVO.getUser_name());
 			session.setAttribute("logStatus","Y");
+			session.setAttribute("memberType", "1");
 			mav.setViewName("redirect:/");
 			
 			return mav;
@@ -84,6 +85,7 @@ public class UserController {
 			session.setAttribute("logId", slogVO.getGenie_id());
 			session.setAttribute("logName", slogVO.getCompany_name());
 			session.setAttribute("logStatus","Y");
+			session.setAttribute("memberType", "2");
 			mav.setViewName("redirect:/seller/sellerMain");
 
 			return mav;
@@ -93,6 +95,7 @@ public class UserController {
 			session.setAttribute("logId", alogVO.getGenie_id());
 			session.setAttribute("logName", alogVO.getAdminister_name());
 			session.setAttribute("logStatus","Y");
+			session.setAttribute("memberType", "3");
 			mav.setViewName("redirect:/admin/adminMain");
 
 			return mav;
@@ -359,7 +362,22 @@ public class UserController {
 	
 		return mav;
 	}
-  
+	
+	//찜한 상품 리스트
+	@GetMapping("MyLikeList")
+	public ModelAndView MyLikeList(HttpSession session){
+		String genie_id = (String)session.getAttribute("logId");
+		UserVO vo = service.getUser(genie_id);
+
+		mav = new ModelAndView();
+		mav.addObject("list",service.getLikeList(genie_id));
+		mav.addObject("vo",vo);
+		mav.setViewName("/user/MyLikeList");
+	
+		return mav;
+
+	}
+
 	////////////////////////////////////////////////////////////////////
 
 	@GetMapping("PwdEdit")

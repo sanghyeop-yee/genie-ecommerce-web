@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
-  @import url('https://fonts.googleapis.com/css?family=Poppins');
  
+ * {
+	font-family: 'Noto Sans KR', sans-serif;
+ }
 .find_info {
 	width: 350px;
 	max-width: 90%;
@@ -10,12 +12,27 @@
 }
  
 .find_id_page .find_info input, .find_password_page .find_info input {
-	border-radius: 5px;
-	border: 1px solid #666;
+	border-radius: 15px;
 	width: 75%;
 	min-width: 150px;
 	height: 30px;
-	padding: 0 5px;
+	
+}
+input {
+	background-color: #f5f5f7;
+	border: 1px solid #c6c6c6;
+	box-shadow: 0 0 15px #fbfbfb;
+	padding: 10px;
+	border-radius: 8px;
+}
+
+button{
+	background-color: #56baed;
+	box-shadow: 0 0 15px #fbfbfb;
+	border: none;
+	padding: 10px;
+	border-radius: 8px;
+	color: #fff;
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
