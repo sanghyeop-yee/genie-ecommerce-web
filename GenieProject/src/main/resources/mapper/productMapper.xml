@@ -101,11 +101,21 @@
 
     </insert>
 
-    <delete id="delProduct">
+    <delete id="delCart">
 
-        delete from cart where cart_num=#{param1} and genie_id=#{param2}
-
+          delete from cart where cart_num=#{param1} and genie_id=#{param2}
+        
     </delete>
+
+    <delete id = "delMultiCart">
+	  	delete from cart 
+	  	<where>
+	  		<foreach collection="cartList" index="index" item = "item" open="cart_num in (" separator ="," close=")">
+	  			#{item}  			
+	  		</foreach>	
+            
+	  	</where>
+	</delete>
 
 <!-- 구매정보 이동 -->
 
@@ -137,12 +147,6 @@
             #{payment_method} )
 
     </insert>
-     <delete id = "delCart">
-	  		
-        delete from cart where genie_id=#{genie_id}
-	  		
-	</delete>
-
 
 <!-- 메인페이지 지니 추천 -->
 
@@ -196,5 +200,13 @@
 		where ${searchKey} like '%${searchWord}%'
 	</if>
 	</select>
+
+    <select id="likeStatus" resultType="ProductVO">
+    	select product_like from product where product_id = #{product_id}
+    </select>
+    
+    <select id="likeCheck" resultType="LikeVO">
+    	select genie_id from product_like where genie_id='${param2}' and product_id=#{param1}
+    </select>
 
 </mapper>

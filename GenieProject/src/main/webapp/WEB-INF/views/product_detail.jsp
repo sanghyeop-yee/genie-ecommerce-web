@@ -6,18 +6,13 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
-<style>
-    .likeChange{
-        font-size:2em; color:#ddd;        
-    }
-</style>
+
 <script>
     $(function(){
 		function replyAllList(){
 			$("#replyList>ul").empty();
 			var url = "/reply/replyProductList";
 			var params = {no:${pvo.product_id}};
-			console.log(params);
 			
 			$.ajax({
 				url:url,
@@ -27,7 +22,7 @@
 					
 					$reply.each(function(i, vo){ // index, vo
 						tag = "<li>";
-						tag += "<div><b>"+"작성자 : "+vo.genie_id+"</b>";
+						tag += "<div><b>"+"작성자 : "+vo.genie_id+" | "+vo.writedate+"</b>";
 						// 수정, 삭제버튼(자신이 쓴 글일때만) 표시
 						if(vo.genie_id=='${logId}'){
 							tag += "<input type='button' value='리뷰수정'/>";
@@ -35,20 +30,20 @@
 						}
 						tag += "<br/>"
                             if(vo.rating==5){ 
-                                tag +='만족도 : ★★★★★'
+                                tag +='만족도 : <span>★★★★★</span>'
                             }else if(vo.rating==4){
-                                tag +='만족도 : ★★★★☆'
+                                tag +='만족도 : <span>★★★★☆</span>'
                             }else if(vo.rating==3){
-                                tag +='만족도 : ★★★☆☆'
+                                tag +='만족도 : <span>★★★☆☆</span>'
                             }else if(vo.rating==2){
-                                tag +='만족도 : ★★☆☆☆'
+                                tag +='만족도 : <span>★★☆☆☆</span>'
                             }else if(vo.rating==1){
-                                tag +='만족도 : ★☆☆☆☆'
+                                tag +='만족도 : <span>★☆☆☆☆</span>'
                             }
                         tag += "<br>"
                                 +"리뷰내용 : "
                                 +vo.comment+"<br></div>";
-						// 로그인 아이디와 댓글 아이디 동일시 수정폼
+						// 로그인 아이디와 댓글 아이디 동일시 (수정폼)을 만들어준다.
 						if(vo.genie_id=='${logId}'){
 							tag += "<div style='display:none'><form method='post'>";
 							tag += "<input type='hidden' name='reply_no' value='"+vo.reply_no+"'/>";
@@ -89,12 +84,8 @@
 				data:params, 
 				type:"POST", 
 				success:function(result){
-					console.log("리뷰등록수 : ", result);
-					
 					$("#comment").val("");
-					
 					replyAllList();
-					
 				}, error:function(e){
 					console.log(e.responseText);
 				}
@@ -144,6 +135,53 @@
     });
 </script>
 
+<script>
+	// 좋아요
+    $(function(){
+    	// 해당상품 좋아요 숫자 가져오기
+		var likeNum = ${lvo.product_like};
+		$("#likeBtn").append("<p>"+likeNum+"</p>");
+		
+		// 로그인 아이디의 해당상품 좋아요 판별
+		if("${cvo.genie_id}"!=""){ // 이미 좋아요를 누른상태면
+			likeRed();
+		}else { // 좋아요를 누른적이 없으면
+			likeGray();
+		}
+		
+        $('#likeBtn').click(function(){
+            $.ajax({
+                url:"reply/likeStatus",
+                data:{product_id:${pvo.product_id}},
+                success:function(result){
+                    if (result>100){ // 좋아요 클릭
+                        likeRed();
+                    	likeNum += 1;
+                    	$("#likeBtn>p").remove();
+                        $("#likeBtn").append("<p>"+likeNum+"</p>");
+                    }else { // 좋아요 취소
+                        likeGray();
+                    	likeNum -= 1;
+                    	$("#likeBtn>p").remove();
+                        $("#likeBtn").append("<p>"+likeNum+"</p>");
+                    }
+                },error:function(e){
+                    console.log(e.responseText);
+                }
+            });
+        });
+        
+        function likeRed(){ // 좋아요 클릭 시 CSS
+            $('#likeBtn').css('color','red');
+        }
+        
+        function likeGray(){ // 좋아요 취소 시 CSS
+            $('#likeBtn').css('color','gray');
+        }        
+       
+    });
+    </script>
+
 <section class="product_detail">
     <!--<h1>상세페이지</h1>-->
     <form method="post" action="/addCart" id="Cart">
@@ -157,6 +195,10 @@
             <div class="box4" onclick="detail1('${pvo.product_image3}')" style="background-image:url(${pvo.product_image3})"></div>
             <div class="box5">
                 ${pvo.product_name}
+                
+                <div class="w3-button w3-black w3-round" style="text-align:center;">
+    				<i class="fa fa-heart likeChange" id="likeBtn"></i>
+   				</div>
             </div>
             <div class="box6">
                 상품가격 : <fmt:formatNumber value="${pvo.product_price}" pattern="#,###원"/>
@@ -184,6 +226,7 @@
             <input class="box13" type="button" id="buynow" value="구매하기"/>
         </div>
     </form>
+
 <!-- ------------------------------------------------------------------------------------------- -->
     <div class="review-wrapper">
         <button class="box_1" onclick="content1()">
@@ -201,7 +244,6 @@
         </div>
 
         <form class="replyFrm" name="replyFrm" id="replyFrm" method="post">
-
             <div class="box_5">
                 <fieldset>
                     <span class="text-bold">만족도</span>

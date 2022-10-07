@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="./inc/top.jspf"%>
 
 <link rel="stylesheet" href="/js_css/cart_style.css" type="text/css"/>
@@ -55,6 +56,7 @@
   }
   .info p{
     margin-bottom: 15px;
+    color: gray;
   }
   .title{
     float: right;
@@ -142,8 +144,7 @@
             </div><!--End Info-->
             <div class="title">
                 <h2>Invoice #0001</h2>
-                <p>결제일: June 27, 2015
-                </p>
+                <p>2022년 10월 6일</p>
             </div><!--End Title-->
             </div><!--End InvoiceTop-->
             
@@ -156,15 +157,22 @@
                 <h3>${uvo.user_name}</h3>
                 <p>${uvo.user_email}<br/>
                    ${uvo.user_tel}<br/>
-            </div><br/>
+            </div>
 
             <div id="project">
             배송목록<br/>
-            <c:forEach items="${clist}" var="cvo">
-                 ${cvo.product_name}<br/>
-           </c:forEach></p>
-            </div><br/>
+            <c:forEach var="i" begin="0" end="${fn:length(Product_qty)-1}">
+                ${Product_name[i]} ${Product_price[i]}원 ${Product_qty[i]}개 <br/>
+            </c:forEach>
+            <br/>
 
+             <c:set var="total" value="0"/>
+                <c:forEach var="i" begin="0" end="${fn:length(Product_qty)}">
+              <c:set var="total" value="${total+Product_price[i]*Product_qty[i]}"/>
+                </c:forEach>
+            
+            </div><br/>
+                ${total}원
             </div><!--End Invoice Mid-->
             
             <div id="invoice-bot">
@@ -219,16 +227,9 @@
           IMP.request_pay({
               pg: 'html5_inicis',                  
               pay_method: 'card',         
-              merchant_uid: 'merchant_' + new Date().getTime(),            
-              name:'<c:forEach var="cvo" items="${clist}">${cvo.product_name} </c:forEach>',
-                
-              <c:set var="total" value="0"/>
-                <c:forEach var="cvo" items="${clist}">
-              <c:set var="total" value="${total+cvo.product_price*cvo.cart_qty}"/>
-                </c:forEach>
-
-              amount: '${total}',//가격  
-         
+              merchant_uid: 'merchant_' + new Date().getTime(), 
+              name:'${Product_name}',     
+              amount: '${total}',//가격          
               buyer_email: '${uvo.user_email}',
               buyer_name: $("#receiver_name").val(),
               buyer_tel: $("#receiver_tel").val(),      

@@ -28,7 +28,9 @@ import com.genie.myapp.service.SellerService;
 import com.genie.myapp.service.UserService;
 import com.genie.myapp.vo.AdminVO;
 import com.genie.myapp.vo.CartVO;
+import com.genie.myapp.vo.LikeVO;
 import com.genie.myapp.vo.PagingVO;
+import com.genie.myapp.vo.PaymentVO;
 import com.genie.myapp.vo.ProductVO;
 import com.genie.myapp.vo.TagVO;
 
@@ -86,13 +88,15 @@ public class ProductController{
 
 	//제폼 상세페이지
 	@GetMapping("product_detail")
-	public ModelAndView product_detail(@RequestParam("product_id") int product_id) {
+	public ModelAndView product_detail(@RequestParam("product_id") int product_id, HttpSession session) {
+		mav = new ModelAndView();
+		String genie_id = (String)session.getAttribute("logId");
 
 		productService.hitCount(product_id);
-
-		mav = new ModelAndView();
 		mav.addObject("pvo", productService.getProduct(product_id));
 		mav.addObject("svo", productService.getSeller(product_id));
+		mav.addObject("lvo", productService.likeStatus(product_id));
+		mav.addObject("cvo", productService.likeCheck(product_id, genie_id));
 		mav.setViewName("/product_detail");
 
 		return mav;
@@ -160,23 +164,45 @@ public class ProductController{
 		return entity;
 	}
 
+
+
 	//장바구니에서 제품 삭제
-	@GetMapping("delProduct")
-	public int delProduct(HttpSession session, int cart_num) {
-		System.out.print(cart_num);
+	@GetMapping("delCart")
+	public int delCart(HttpSession session, int cart_num) {
 		String genie_id = (String)session.getAttribute("logId");
-		return productService.delProduct(cart_num, genie_id);	
+		return productService.delCart(cart_num, genie_id);
+
+	}
+
+	//장바구니에서 제품 삭제
+	@GetMapping("delMultiCart")
+	public ModelAndView delMultiCart(HttpSession session, CartVO cvo) {
+
+		mav=new ModelAndView();
+		System.out.println(cvo.toString());
+		//String genie_id = (String)session.getAttribute("logId");
+		int cnt = productService.delMultiCart(cvo);
+
+		System.out.print("지워진 상품 : "+cnt);
+		mav.setViewName("redirect:/cart");
+		return mav;
 	}
 
 	//--------------------------------------------상품 결제페이지-----------------------------------------------------
 	@GetMapping("payment")
-	public ModelAndView payment(HttpSession session){
+	public ModelAndView payment(HttpSession session, PaymentVO pvo){
 		
 		String genie_id = (String)session.getAttribute("logId"); 
-		List<CartVO> cartList = productService.getCart(genie_id);
+
+		session.setAttribute("Product_name", pvo.getProduct_name());
+		session.setAttribute("Product_qty", pvo.getP_num());
+		session.setAttribute("Product_price", pvo.getProduct_price());
+		session.setAttribute("total", pvo.getTotal());
+		
+		
 
 		mav = new ModelAndView();
-		mav.addObject("clist", cartList);
+		mav.addObject("plist", pvo);
 		mav.addObject("uvo",userService.getUser(genie_id));
 
 		mav.setViewName("/payment");
@@ -203,7 +229,7 @@ public class ProductController{
 			System.out.print(ocnt);
 		
 			//장바구니 삭제
-			int cnt= productService.delCart(genie_id);
+			int cnt= productService.payEndCart(genie_id);
 			System.out.println("삭제된 레코드 수:"+cnt);
 
 			String msg = "<script>";

@@ -1,21 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="./inc/top.jspf"%>
-
-<link rel="stylesheet" href="/js_css/cart_style.css" type="text/css"/>
-
+<%@ include file="./inc/ad_top.jspf"%>
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 
 <Style>
+* {
+	padding: none;
+	margin: none;
+	font-family: 'Noto Sans KR', sans-serif;
+	box-sizing: none;
+	list-style-type: none;
+	text-decoration-line: none;
+}
 
 </Style>
 
+<section class="main">
 <!-- 상단 부분 -->
-<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#fafafa">
   <tr>
     <td height="20"></td>
   </tr>
@@ -38,7 +43,7 @@
                     <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
                       <tbody>
                         <tr>
-                          <td align="left"> <img src="/image/logo_western.png" width="32" height="auto" alt="logo" border="0" /></td>
+                          <td align="left"> <img src="/image/logo_western.png" width="60" height="auto" alt="logo" border="0" /></td>
                         </tr>
                         <tr class="hiddenMobile">
                           <td height="10"></td>
@@ -88,7 +93,7 @@
 </table>
 <!-- /상단 부분 -->
 <!-- 주문 세부 사항 -->
-<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#fafafa">
   <tbody>
     <tr>
       <td>
@@ -152,7 +157,7 @@
 </table>
 <!-- /주문 세부 사항 -->
 <!-- 결제비용 -->
-<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#fafafa">
   <tbody>
     <tr>
       <td>
@@ -202,7 +207,7 @@
 </table>
 <!-- /결제 비용 -->
 <!-- 결제 정보 -->
-<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#fafafa">
   <tbody>
     <tr>
       <td>
@@ -277,8 +282,7 @@
   </tbody>
 </table>
 <!-- /결제 정보 -->
-<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
-
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#fafafa">
   <tr>
     <td>
       <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff" style="border-radius: 0 0 10px 10px;">
@@ -298,7 +302,6 @@
         <tr class="spacer">
           <td height="10"></td>
         </tr>
-
       </table>
     </td>
   </tr>
@@ -307,3 +310,4 @@
   </tr>
 </table>
 <!-- 하단 부분 -->
+</section>

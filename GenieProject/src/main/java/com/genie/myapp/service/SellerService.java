@@ -1,4 +1,4 @@
-  package com.genie.myapp.service;
+package com.genie.myapp.service;
 
 import java.util.List;
 import java.util.Map;

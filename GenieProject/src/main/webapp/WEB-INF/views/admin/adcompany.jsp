@@ -326,7 +326,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <table class="table">
                     <thead>
                       <tr>
-                      	<th><input type="checkbox"></th>
                         <th>아이디</th>
                         <th>상점명</th>
                         <th>연락처</th>
@@ -340,7 +339,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <!-- 태그 반복 -->
                       <c:forEach var="vo" items="${adcompany}">
                       <tr>
-                      	<td><input type="checkbox"></td>
 					  	<td>${vo.genie_id}</td>
 						<td>${vo.company_name}</td>
 						<td>${vo.seller_tel}</td>

@@ -39,13 +39,50 @@ nav .sidenav-trigger i {
   background-color: white; 
   color: black; 
   border: 2px solid #7600bc;
-  padding: 10px;
+  padding: 7px;
   border-radius: 8px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  text-align: right;
 }
 
 #address_kakao:hover {
   background-color: #7600bc;
   color: white;
+}
+.card .card-content{
+  padding: 20px;
+}
+.animate.fadeLeft{
+  border-radius: 15px;
+}
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+  height: 2rem;
+  border-bottom: 1px solid #e3e3e3;
+}
+.select-wrapper {
+  width: 30%;
+  float: left;
+
+}
+#user_name{
+  width: 90%;
+}
+#user_phone_num2 {
+  width: 30%;
+  margin-left: 20px;
+  margin-left: 10px;
+}
+#user_phone_num3 {
+  width: 30%;
+  margin-left: 10px;
+}
+#user_zipcode {
+  width: 75%;
+}
+.z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-small, .btn-floating, .dropdown-content, .collapsible, .sidenav {
+  -webkit-box-shadow: none;
+  box-shadow:none;
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -201,6 +238,14 @@ nav .sidenav-trigger i {
               <span class="new badge pill pink accent-2 float-right mr-2">5</span>
             </a>
         </li>
+        <li class="bold ">
+          <a class="waves-effect waves-cyan "
+              href="/user/MyLikeList "
+          >
+          <i class="material-icons">favorite</i>
+          <span class="menu-title" data-i18n="Like">찜한 상품</span>
+          </a>
+        </li>
       <%-- <li class="bold ">
       <a class="waves-effect waves-cyan "
                 href="/user/MyInquiryList "
@@ -209,8 +254,6 @@ nav .sidenav-trigger i {
         <span class="menu-title" data-i18n="Contacts">나의 문의사항</span>
               </a>
           </li> --%>
-
-
 
     <li class="navigation-header">
       <a class="navigation-header-text">공지사항 </a>
@@ -223,12 +266,9 @@ nav .sidenav-trigger i {
         target=&quot;_blank&quot;>
         <i class="material-icons">help_outline</i>
         <span class="menu-title" data-i18n="Support">Support</span>
-              </a>
-          </li>
-              </ul>
-  <div class="navigation-background"></div>
-  <a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only"
-    href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
+      </a>
+    </li>
+  </ul>
 </aside>  <!-- END: SideNav-->
 
   <!-- BEGIN: Page Main-->
@@ -253,13 +293,12 @@ nav .sidenav-trigger i {
 
 <!-- 추가되는 부분 -->
     <div class="content-main">
-      <h4>새로운 배송지</h4>
+      <h5>새로운 배송지</h5>
       <div class="inquiry">
       <form method="post" action="/user/addDelivery">
         <input type="hidden" value="${vo.genie_id}" name="genie_id"/>
           <ul id="addrForm">
-            <li>이름</li>
-            <li><input type="text" name="user_name" id ="user_name"/></li>
+            <li>이름: <input type="text" name="user_name" id ="user_name"/></li>
 
             <ul id="phoneForm">
               <li>휴대폰 번호</li>
@@ -273,7 +312,7 @@ nav .sidenav-trigger i {
                 <option value="019">019</option>
               </select>
               <input type ="text" name = "user_phone_num2" id ="user_phone_num2" maxlength = "4"/>
-              <input type ="text" name = "user_phone_num3" id ="user_phone_num3" maxlength = "4"/>
+              -<input type ="text" name = "user_phone_num3" id ="user_phone_num3" maxlength = "4"/>
             </ul>
 
             <li>우편번호</li>
@@ -305,21 +344,15 @@ nav .sidenav-trigger i {
             <div class="card-content">
 
     <div class="my-delivery">
-      <h4>배송지 목록</h4>
+      <h5>배송지 목록</h5>
 
         <ul id="delivery_1">
         <c:forEach var="dvo" items="${dlist}">
-            <h5>배송지</h5>
-            <li>수령자 이름</li>
-            <input type="text" value="${dvo.receiver_name}" readonly/>
-            <li>전화번호</li>
-            <input type="text" value="${dvo.receiver_tel}" readonly/>
-            <li>우편번호</li>
-            <input type="text" value="${dvo.receiver_zipcode}" readonly/>
-            <li>주소</li>
-            <li><input type="text" value="${dvo.receiver_addr}" readonly/></li>
-            <li>상세주소</li>
-            <li><input type="text" value="${dvo.receiver_detailaddr}" readonly/></li><br>
+            <li> <input type="text" value="수령자 이름: ${dvo.receiver_name}" readonly/></li>
+            <li><input type="text" value="전화번호: ${dvo.receiver_tel}" readonly/></li>
+            <li><input type="text" value="우편번호: ${dvo.receiver_zipcode}" readonly/></li>
+            <li><input type="text" value="주소: ${dvo.receiver_addr}" readonly/></li>
+            <li><input type="text" value="상세주소: ${dvo.receiver_detailaddr}" readonly/></li><br>
             <div><input type="hidden" value='${dvo.address_num}' /></div>
             <div><input type="button" value='삭제' address_num="${dvo.address_num}" id="address_kakao"/></div>
           </c:forEach>        

@@ -40,6 +40,26 @@ public class ReplyProductServiceImpl implements ReplyProductService{
 		return DAO.likeInsert(vo);
 	}
 
+	@Override
+	public int likeStatus(LikeVO vo) {
+		return DAO.likeStatus(vo);
+	}
+
+	@Override
+	public int likeDelete(LikeVO vo) {
+		return DAO.likeDelete(vo);
+	}
+
+	@Override
+	public int likeHitMinus(LikeVO vo) {
+		return DAO.likeHitMinus(vo);
+	}
+
+	@Override
+	public int likeHitPlus(LikeVO vo) {
+		return DAO.likeHitPlus(vo);
+	}
+
 	
 
 
