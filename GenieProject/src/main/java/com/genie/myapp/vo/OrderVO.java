@@ -21,16 +21,17 @@ public class OrderVO {
 
     private int sold_counts;
     private String product_image1;
+    private String product_category;
     
     @Override
     public String toString() {
-        return "OrderVO [genie_id=" + genie_id + ", month_day=" + month_day + ", order_num=" + order_num
-                + ", order_price=" + order_price + ", order_qty=" + order_qty + ", order_writedate=" + order_writedate
-                + ", payment_method=" + payment_method + ", product_id=" + product_id + ", product_image1="
-                + product_image1 + ", product_name=" + product_name + ", recipient_address=" + recipient_address
-                + ", recipient_delivery_status=" + recipient_delivery_status + ", recipient_name=" + recipient_name
-                + ", recipient_phone=" + recipient_phone + ", recipient_request=" + recipient_request + ", sold_counts="
-                + sold_counts + ", total_sales=" + total_sales + "]";
+        return "OrderVO [order_num=" + order_num + ", genie_id=" + genie_id + ", product_id=" + product_id
+                + ", recipient_name=" + recipient_name + ", recipient_phone=" + recipient_phone + ", recipient_address="
+                + recipient_address + ", recipient_request=" + recipient_request + ", recipient_delivery_status="
+                + recipient_delivery_status + ", order_price=" + order_price + ", order_qty=" + order_qty
+                + ", order_writedate=" + order_writedate + ", payment_method=" + payment_method + ", product_name="
+                + product_name + ", month_day=" + month_day + ", total_sales=" + total_sales + ", sold_counts="
+                + sold_counts + ", product_image1=" + product_image1 + ", product_category=" + product_category + "]";
     }
 
     public int getOrder_num() {
@@ -168,7 +169,14 @@ public class OrderVO {
     public void setProduct_image1(String product_image1) {
         this.product_image1 = product_image1;
     }
-    
+
+    public String getProduct_category() {
+        return product_category;
+    }
+
+    public void setProduct_category(String product_category) {
+        this.product_category = product_category;
+    }
     
     
 }
