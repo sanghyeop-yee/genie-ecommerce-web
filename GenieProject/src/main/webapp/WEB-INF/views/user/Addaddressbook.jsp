@@ -167,4 +167,4 @@ nav .sidenav-trigger i {
 <!-- END THEME  JS-->
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="../js_css/KakaoAddress.js"></script>
+<script src="../js_css/js/KakaoAddress.js"></script>

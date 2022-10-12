@@ -8,15 +8,17 @@ public class AdministerVO {
     private String genie_pwd;
     private String genie_pwd2;
     private String administer_email;
+    private String ROLE;
     private String DATETIME;
 
-
+    
     @Override
     public String toString() {
-        return "AdministerVO [DATETIME=" + DATETIME + ", administer_email=" + administer_email + ", administer_name="
-                + administer_name + ", administer_phone=" + administer_phone + ", genie_id=" + genie_id + ", genie_pwd="
-                + genie_pwd + ", genie_pwd2=" + genie_pwd2 + "]";
+        return "AdministerVO [genie_id=" + genie_id + ", administer_name=" + administer_name + ", administer_phone="
+                + administer_phone + ", genie_pwd=" + genie_pwd + ", genie_pwd2=" + genie_pwd2 + ", administer_email="
+                + administer_email + ", ROLE=" + ROLE + ", DATETIME=" + DATETIME + "]";
     }
+    
     public String getGenie_id() {
         return genie_id;
     }
@@ -53,12 +55,21 @@ public class AdministerVO {
     public void setAdminister_email(String administer_email) {
         this.administer_email = administer_email;
     }
+    public String getROLE() {
+        return ROLE;
+    }
+    public void setROLE(String rOLE) {
+        ROLE = rOLE;
+    }
     public String getDATETIME() {
         return DATETIME;
     }
     public void setDATETIME(String dATETIME) {
         DATETIME = dATETIME;
     }
+
+
+    
 
     
 }

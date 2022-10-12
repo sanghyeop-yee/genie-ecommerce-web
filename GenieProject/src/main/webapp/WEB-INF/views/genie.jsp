@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./inc/top.jspf"%>
-<link rel="stylesheet" href="/js_css/genie_style.css" type="text/css"/>
-<script src="/js_css/genie_js.js"></script>
+<link rel="stylesheet" href="/js_css/css/genie_style.css" type="text/css"/>
+<script src="/js_css/js/genie_js.js"></script>
 
 <!-- <ul class="page_gradient">
 	<li><input type="button" onclick="next1()" style="background-color: rgb(100,200,200)"></li>

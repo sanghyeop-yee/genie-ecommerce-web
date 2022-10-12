@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jspf"%>
-<link rel="stylesheet" href="/js_css/product_style.css" type="text/css"/>
-<script src="/js_css/product_js.js"></script>
+<link rel="stylesheet" href="/js_css/css/product_style.css" type="text/css"/>
+
 <style>
 #product_order_list{
 	text-align:right;
@@ -49,7 +49,8 @@
 		<button type="button" onclick="location.href='/mbti/${mbti}/likelist'">지니 PICK</button>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
 		<button type="button" onclick="location.href='/mbti/${mbti}/recentlist'">최신순</button>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
 		<button type="button" onclick="location.href='/mbti/${mbti}/pricelist'">가격낮은순</button>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
-		<button type="button" onclick="location.href='/mbti/${mbti}/pricelistdesc'">가격높은순</button> </p>
+		<button type="button" onclick="location.href='/mbti/${mbti}/pricelistdesc'">가격높은순</button>
+		</p>
 	</div>
 	
 	<div class="grid-container">
@@ -96,3 +97,4 @@
 		element.innerText="융통적이고 즉흥적인 성향의 P를 위한 선물";
 	}
 </script>
+<script src="../js_css/css/product_js.js"></script>

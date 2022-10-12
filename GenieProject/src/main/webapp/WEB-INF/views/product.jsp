@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./inc/top.jspf"%>
-<link rel="stylesheet" href="/js_css/product_style.css" type="text/css"/>
-<script src="/js_css/product_js.js"></script>
+<link rel="stylesheet" href="/js_css/css/product_style.css" type="text/css"/>
 <style>
 #product_order_list{
 	text-align:right;
@@ -65,3 +64,4 @@
         </c:forEach>
     </div>
 </section>
+<script src="/js_css/js/product_js.js"></script>

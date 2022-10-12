@@ -31,6 +31,7 @@ import com.genie.myapp.service.SellerService;
 import com.genie.myapp.vo.SellerProductVO;
 import com.genie.myapp.vo.AccountVO;
 import com.genie.myapp.vo.OrderVO;
+import com.genie.myapp.vo.PagingVO;
 import com.genie.myapp.vo.SellerVO;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -50,13 +51,6 @@ public class SellerController {
 	TransactionDefinition definition;
 	ModelAndView mav = null;
 	
-	//업체 회원가입 폼 보기
-	@GetMapping("sellerForm")
-	public ModelAndView sellerForm() {
-		mav = new ModelAndView();
-		mav.setViewName("seller/sellerForm");
-		return mav;
-	}
 	// Seller(UI 참고용)
 	@GetMapping("sellerHome")
 	public ModelAndView sellerHome() {
@@ -74,7 +68,8 @@ public class SellerController {
 		int torder = service.todayOrder(seller_id); // 오늘 들어온 주문 
 		int devp = service.deliveryPending(seller_id); 
 		String bs = service.bestSeller(seller_id); // 이달의 상품
-		int tmr = service.thisMonthRevenue(seller_id); // 이번달 매출
+		int osum = service.orderSum(seller_id); //총매출(이번달)
+	
 		List<OrderVO> rlist = service.revenueByProduct(seller_id); // 아이템별 매출
 		String ss = service.sellerStatus(seller_id); // 셀러상태 
 
@@ -127,8 +122,10 @@ public class SellerController {
 			mav.addObject("bestSeller", bs); // 이달의 상품
 			
 			mav.addObject("revenueByProduct", rlist); // 아이템별 매출
-			mav.addObject("thisMonthRevenue", tmr);
+			
 			mav.addObject("json2", json2); // 카테고리별 판매건수
+
+			mav.addObject("orderSum", osum); // 총매출(이번달)
 
 			mav.setViewName("seller/sellerMain");
 			
@@ -167,6 +164,7 @@ public class SellerController {
 	
 		return mav;
 	}
+	
 
 	// 주문목록 배송상태 수정
 	@PostMapping("updateDeliveryStatus") // @RequestParam 을 이용해 Map에 전송된 매개변수 이름을 key, 값을 value 로 저장
@@ -218,7 +216,7 @@ public class SellerController {
 		String json = gson.toJson(jArray); // 사용가능한 json 데이터 형태로 변환
 		mav.addObject("json", json); // 일별매출
 		
-		mav.addObject("orderSum", osum); // 총매출
+		mav.addObject("orderSum", osum); // 총매출(이번달)
 		mav.addObject("orderCount", ocnt); // 총결제건수
 		mav.addObject("bestSeller", bs); // 이달의 상품
 		mav.setViewName("seller/sellerSales");
@@ -235,13 +233,15 @@ public class SellerController {
 	
 	//seller 상품관리 페이지
 	@GetMapping("sellerProduct")
-	public ModelAndView sellerProduct(SellerProductVO pvo, HttpServletRequest request) {
+	public ModelAndView sellerProduct(PagingVO pVO, HttpServletRequest request) {
 		
-		pvo.setGenie_id((String)request.getSession().getAttribute("logId"));
+		pVO.setGenie_id((String)request.getSession().getAttribute("logId"));
+		pVO.setTotalRecord(service.productTotalRecord(pVO));
+		pVO.setOnePageRecord(10);
 		
 		mav = new ModelAndView();
-		mav.addObject("plist", service.productList(pvo));
-		mav.addObject("pvo", pvo);
+		mav.addObject("plist", service.productList(pVO));
+		mav.addObject("pVO", pVO);
 		
 		mav.setViewName("seller/sellerProduct");
 		return mav;
@@ -272,13 +272,13 @@ public class SellerController {
 		TransactionStatus status= transactionManager.getTransaction(definition);
 		
 		try {//회원가입성공
-			int account = service.AccountWrite(avo);
-			int seller = service.sellerWrite(vo);
+			service.AccountWrite(avo);
+			service.sellerWrite(vo);
 			
 			
 			String msg = "<script>";
 			msg += "alert('회원가입을 성공하였습니다.');";
-			msg += "location.href='/user/login';";
+			msg += "location.href='/login';";
 			msg += "</script>";
 			entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
 
@@ -310,7 +310,7 @@ public class SellerController {
 		headers.add("Content-Type", "text/html; charset=utf-8");
 		
 		try {//상품등록 성공
-			int result = service.productWrite(vo);
+			service.productWrite(vo);
 			
 			String msg = "<script>";
 			msg += "alert('상품이 등록되었습니다.');";
@@ -354,7 +354,7 @@ public class SellerController {
 		String msg = "<script>";
 		
 		try {//수정성공 - 상품관리로 이동
-			int cnt = service.productEditOk(pvo);
+			service.productEditOk(pvo);
 			
 			msg += "alert('상품이 수정되었습니다. 상품관리 페이지로 이동합니다. ');";
 			msg += "location.href='/seller/sellerProduct';";

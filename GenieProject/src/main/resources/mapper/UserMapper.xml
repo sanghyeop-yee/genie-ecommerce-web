@@ -7,7 +7,7 @@
 	<!-- 로그인 -->
 	<select id = "loginOk" resultType = "UserVO">
 
-		select u.genie_id, u.user_name 
+		select u.genie_id, u.user_name, a.ROLE  
 		from user u 
 		join account a 
 		on a.genie_id=u.genie_id 
@@ -25,8 +25,8 @@
 
 	<insert id="AccountWrite">
 
-		insert into account(member_type, genie_id, genie_pwd) 
-		values(#{member_type},#{genie_id}, sha2(#{genie_pwd},256))
+		insert into account(ROLE, genie_id, genie_pwd) 
+		values(#{ROLE},#{genie_id}, sha2(#{genie_pwd},256))
 
 	</insert>
 

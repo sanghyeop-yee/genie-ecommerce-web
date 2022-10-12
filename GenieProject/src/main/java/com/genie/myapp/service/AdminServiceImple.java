@@ -128,4 +128,8 @@ public class AdminServiceImple implements AdminService {
 		return dao.sellerApproval(pVO);
 	}
 
+	@Override
+	public int mainTotalRecord(AdminVO VO) {
+		return dao.mainTotalRecord(VO);
+	}
 }

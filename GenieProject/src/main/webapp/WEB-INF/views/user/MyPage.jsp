@@ -34,75 +34,65 @@ nav .sidenav-trigger i {
   line-height: 64px;
 }
 
+.card .card-content{
+  padding: 20px;
+}
+
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.select-wrapper {
+  width: 30%;
+  float: left;
+
+}
+#user_name{
+  width: 90%;
+}
+#user_phone_num2 {
+  width: 30%;
+  margin-left: 20px;
+  margin-left: 10px;
+}
+#user_phone_num3 {
+  width: 30%;
+  margin-left: 10px;
+}
+#user_zipcode {
+  width: 75%;
+}
+
+
 #PwdEdit {
   background-color: white; 
   color: black; 
-  border: 2px solid #7600bc;
+  border: 2px solid #27b5c5;
   padding: 10px;
   border-radius: 8px;
 }
 
 #PwdEdit:hover {
-  background-color: #7600bc;
+  background-color: #27b5c5;
   color: white;
 }
 
 #formSubmit {
   background-color: white; 
   color: black; 
-  border: 2px solid #7600bc;
+  border: 2px solid #27b5c5;
   padding: 10px;
   border-radius: 8px;
 }
 
 #formSubmit:hover {
-  background-color: #7600bc;
+  background-color: #27b5c5;
   color: white;
 }
+.gradient-45deg-indigo-purple {
+  background: linear-gradient(45deg,#303f9f,#27b5c5)!important;
+}
 </style>
-
-<script>
- 
- $(function(){
-		$("#PwdEdit").click(function(){
-			window.open("/user/PwdEdit","PwdEdit","width=400,height=300");
-		});
-		
-		//유효성 검사
-       	$("#logFrm").submit(function(){
-
-			// 전화번호
-			if($("#user_phone_num1").val()=="" || $("#user_phone_num2").val()=="" || $("#user_phone_num3").val()==""){
-				alert("연락처를 입력하세요");
-				return false;
-			}
-			return true;
-			// 우편번호
-			if($("#user_zipcode").val()==""){
-				alert("우편번호를 선택하세요");
-				$("#user_zipcode").focus();
-				return false;
-			}
-			if($("#user_addr").val()==""){
-				alert("주소를 입력하세요");
-				$("#user_addr").focus();
-				return false;
-			}
-			if($("#user_detailaddr").val()==""){
-				alert("상세 주소를 입력하세요");
-				$("#user_detailaddr").focus();
-				return false;
-			}
-			// 이메일
-			if($("#user_email").val()==""){
-				alert("이메일을 입력하세요");
-				$("#user_email").focus();
-				return false;
-			}			
-			return true;
-		});
-  });
-</script>
 <body>
 
 <body
@@ -390,3 +380,4 @@ nav .sidenav-trigger i {
 <!-- END THEME  JS-->
 
 </body>
+<script src="../js_css/js/MyPage.js"></script>

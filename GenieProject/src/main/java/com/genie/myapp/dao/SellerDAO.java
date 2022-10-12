@@ -11,6 +11,7 @@ import com.genie.myapp.vo.SellerProductVO;
 import com.genie.myapp.vo.AccountVO;
 import com.genie.myapp.vo.InquiryVO;
 import com.genie.myapp.vo.OrderVO;
+import com.genie.myapp.vo.PagingVO;
 import com.genie.myapp.vo.SellerVO;
 
 
@@ -34,7 +35,7 @@ public interface SellerDAO {
 	//판매자 로그인
 	public SellerVO loginOk(SellerVO svo);
 	//상품관리 - 상품목록
-	public List<SellerProductVO> productList(SellerProductVO pvo);
+	public List<SellerProductVO> productList(PagingVO pVO);
 	//회원 선택: 로그인 한 회원
 	public SellerVO getSeller(String genie_id);	
 	//상품선택 : 수정, 상품내용보기
@@ -74,4 +75,7 @@ public interface SellerDAO {
 	public int thisMonthRevenue(String seller_id);
 	// 카테고리별 판매건수
 	public List<OrderVO> topCategory(String seller_id);
+	
+	//상품 총 레코드 수
+	public int productTotalRecord(PagingVO pVO);
 }

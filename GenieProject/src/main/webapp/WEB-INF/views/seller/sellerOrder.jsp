@@ -1,26 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
-  .content-wrapper{
-	overflow-y:scroll;
-	-ms-overflow-style: none;
-}
+ .content-wrapper{
+    overflow-y:scroll;
+    -ms-overflow-style: none;
+  }
 
   .content-wrapper::-webkit-scrollbar{
-  display:none;
-}
+    display:none;
+  }
 
   #orderbody{
 		padding-top: 10px;
 		padding-left: 100px;
 		padding-right: 100px;
 	}
+
 	.info-box-text{
 		font-size: 13px;
 	}
+
 	.info-box{
 		width: 300px;
 		height: 200px;
@@ -32,10 +36,24 @@
     border-radius: 15px;
 
 	}
+
   .table{
-    font-size: 70%;
+    font-size: 80%;
     text-align: center;
   }
+  
+  .table [type="button"]{
+    width: 42px;
+    font-size: 12px;
+    letter-spacing: -1px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    color: #0073e9;
+    text-align: center;
+    background: #fff;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
 
 </style>
 
@@ -105,9 +123,9 @@
             <div class="info-box" style="background-color: transparent; box-shadow: none;">
               <span class="info-box-icon elevation-1" id="icon" style="background-color:#6072bf; color:white;"><i class="fas fa-gift">
                 <div class="info-box-content">
-                  <span class="info-box-text">배송 대기 중</span>
+                  <span class="info-box-text">배송 준비 중</span>
                   <span class="info-box-number">
-                    <h2><fmt:formatNumber type="number" maxFractionDigits="3" value="${todayOrder}" />${deliveryPending} 건</h2>
+                    <h2>${deliveryPending} 건</h2>
                   </span>
                 </div>
               </i></span>
@@ -119,7 +137,7 @@
                 <div class="info-box-content">
                   <span class="info-box-text">오늘 들어온 주문</span>
                   <span class="info-box-number">
-                    <h2><fmt:formatNumber type="number" maxFractionDigits="3" value="${totalOrderCount}" /> ${todayOrder} 건</h2>
+                    <h2> ${todayOrder} 건</h2>
                   </span>
                 </div>
               </i></span> 
@@ -131,7 +149,7 @@
                 <div class="info-box-content">
                   <span class="info-box-text">배송 중</span>
                   <span class="info-box-number">
-                    <h2><fmt:formatNumber type="number" maxFractionDigits="3" value="${deliveredOrder}" /> ${deliveringOrder} 건</h2>
+                    <h2> ${deliveringOrder} 건</h2>
                   </span>
                 </div>
               </i></span>
@@ -143,11 +161,6 @@
               <div class="card card-primary card-outline">
                 <div class="card-body">
                   <h5 class="card-title"></h5> <!--주문목록-->
-                  <div id="searchbox" style="font-size: 13px;">
-                    <input type="text" name="searchWord" id="searchWord" style="width:300px"/>
-                    <input type="submit" value="Search"/>
-                  </div>
-                  <br>
                   <p class="card-text">
                     <table class="table">
                       <thead>
@@ -158,11 +171,7 @@
                           <th>수량</th>
                           <th>결제금액</th>
                           <th>주문자명</th>
-                          <th>수령자명</th>
-                          <th>주소</th>
-                          <th>전화번호</th>
-                          <th>요청사항</th>
-                          <th>주문상태</th>
+                          <th>배송상태</th>
                           <th></th>
                         </tr>
                       </thead>
@@ -174,12 +183,8 @@
                             <td>${vo.order_writedate}</td>
                             <td>${vo.product_name}</td>
                             <td>${vo.order_qty}</td>
-                            <td>${vo.order_price}</td>
+                            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.order_price}" /> 원</td>
                             <td>${vo.genie_id}</td>
-                            <td>${vo.recipient_name}</td>
-                            <td>${vo.recipient_address}</td>
-                            <td>${vo.recipient_phone}</td>
-                            <td>${vo.recipient_request}</td>
                             <td>
                                 <select name="s_delivery_status${i.index }" id="s_delivery_status${i.index }">
                                     <c:choose>

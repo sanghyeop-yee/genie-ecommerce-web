@@ -56,8 +56,8 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public List<SellerProductVO> productList(SellerProductVO pvo) {
-		return dao.productList(pvo);
+	public List<SellerProductVO> productList(PagingVO pVO) {
+		return dao.productList(pVO);
 	}
 	
 	@Override
@@ -143,6 +143,11 @@ public class SellerServiceImpl implements SellerService {
 	@Override
 	public List<OrderVO> topCategory(String seller_id) {
 		return dao.topCategory(seller_id);
+	}
+
+	@Override
+	public int productTotalRecord(PagingVO pVO) {
+		return dao.productTotalRecord(pVO);
 	}
 
 }

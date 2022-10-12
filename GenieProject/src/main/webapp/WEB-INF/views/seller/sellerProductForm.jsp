@@ -7,6 +7,7 @@
 	padding-top: 10px;
 	padding-left: 100px;
 	padding-right: 100px;
+	
 }
 .content-wrapper{
 	overflow-y:scroll;
@@ -36,8 +37,9 @@
 		padding:0;*/
 		list-style-type:none;
 	}
+	
 	.container>p{
-		font-size:27px;
+		
 		margin-top:20px;
 		margin-bottom:20px;
 		margin-left: 25px;

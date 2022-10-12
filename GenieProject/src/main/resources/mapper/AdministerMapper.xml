@@ -6,7 +6,7 @@
 
 	<select id = "loginOk" resultType = "AdministerVO">
 
-		select ad.genie_id, ad.administer_name 
+		select ad.genie_id, ad.administer_name, ac.ROLE 
 		from account ac 
 		join administer ad 
 		on ac.genie_id=ad.genie_id 

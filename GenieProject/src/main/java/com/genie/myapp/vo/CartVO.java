@@ -2,26 +2,27 @@ package com.genie.myapp.vo;
 
 import java.util.List;
 
-public class CartVO{
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+public class CartVO {
+	
+    private List<Integer> cartList;
     private int cart_num;
     private String genie_id;
     private int product_id;
+    private String product_name;
+	private List<String> product_name_List;
     private int cart_price;
+    private int product_price;
     private int cart_qty;
     private String cart_writedate;
     private String product_image1;
-    private String product_name;
     private int product_quantity;
-    private int product_price;
-	private List<Integer> cartList;
-
-	@Override
-	public String toString() {
-		return "CartVO [cart_num=" + cart_num + ", genie_id=" + genie_id + ", product_id=" + product_id
-				+ ", cart_price=" + cart_price + ", cart_qty=" + cart_qty + ", cart_writedate=" + cart_writedate
-				+ ", product_image1=" + product_image1 + ", product_name=" + product_name + ", product_quantity="
-				+ product_quantity + ", product_price=" + product_price + ", cartList=" + cartList + "]";
-	}
 
 	public int getCart_num() {
 		return cart_num;
@@ -90,9 +91,4 @@ public class CartVO{
 		this.cartList = cartList;
 	}
 
-	
-
-	
-	
-	
 }

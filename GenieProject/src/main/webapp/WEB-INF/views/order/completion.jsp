@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="./inc/ad_top.jspf"%>
+<%@ include file="../inc/ad_top.jspf"%>
+
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <!-- iamport.payment.js -->
@@ -75,7 +76,9 @@
                         </tr>
                         <tr>
                           <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-                            <small>주문번호</small> {imp_uid}<br />
+                          <c:forEach var="cvo" items="${clist}">
+                            <small>주문번호</small> ${cvo.order_num}<br/>
+                          </c:forEach>
                             <small>2022년 10월 5일</small>
                           </td>
                         </tr>
@@ -115,7 +118,7 @@
                         상품명
                       </th>
                       <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="left">
-                        <small>상품번호</small>
+                        <small>  </small>
                       </th>
                       <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="center">
                         수량
@@ -131,15 +134,19 @@
                       <td height="10" colspan="4"></td>
                     </tr>
                     <tr>
+                      <c:forEach var="ovo" items="${olist}">
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #3B40FE;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
-                        록시땅 샤워 젤 250ml (12종 중...
+                        ${ovo.product_name}
                       </td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small>GN00000001</small></td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">1</td>
-                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">##.###원</td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small></small></td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">${ovo.order_qty}</td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">${ovo.order_price}원</td>
+                      </c:forEach>
                     </tr>
                     <tr>
-                      <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
+                      <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4">
+                      
+                      </td>
                     </tr>
 
                   </tbody>
@@ -170,11 +177,12 @@
                 <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
                   <tbody>
                     <tr>
+                    <c:forEach var="ovo" items="${olist}">
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
                         총액
                       </td>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; white-space:nowrap;" width="80">
-                        ##.###원
+                        ${ovo.order_price}원
                       </td>
                     </tr>
                     <tr>
@@ -182,7 +190,7 @@
                         할인가격
                       </td>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
-                        #.###원
+                        원
                       </td>
                     </tr>
                     <tr>
@@ -190,8 +198,9 @@
                         <strong>최종가격</strong>
                       </td>
                       <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
-                        <strong>##.###원</strong>
+                        <strong>${ovo.order_price}원</strong>
                       </td>
+                    </c:forEach>
                     </tr>
                   </tbody>
                 </table>
@@ -226,6 +235,7 @@
                   <tbody>
                     <tr>
                       <td>
+                      <c:forEach var="ovo" items="${olist}">
                         <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
 
                           <tbody>
@@ -239,7 +249,9 @@
                             </tr>
                             <tr>
                               <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                서울시 강남구<br> 역삼로 327번길<br> 멀티캠퍼스<br> T: 02-555-0133
+                                ${ovo.recipient_address}<br>
+                                전화번호:
+                                ${ovo.recipient_phone}
                               </td>
                             </tr>
                           </tbody>
@@ -250,7 +262,7 @@
                           <tbody>
                             <tr>
                               <td style="font-size: 11px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 1; vertical-align: top; ">
-                                <strong>결제방법</strong>
+                                <strong>결제내역</strong>
                               </td>
                             </tr>
                             <tr>
@@ -258,11 +270,12 @@
                             </tr>
                             <tr>
                               <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
-                                카드<br> 카드종류: Visa <br> 소유자명 : 조유저 <br> 주문 상품 : 부드럽고 촉촉한 식감의 오설록 녹차 치즈케이크</a><br>
+                                결제방법 : ${ovo.payment_method}  <br> 받는 사람 : ${ovo.recipient_name}
                               </td>
                             </tr>
                           </tbody>
                         </table>
+                      </c:forEach>
                       </td>
                     </tr>
                   </tbody>

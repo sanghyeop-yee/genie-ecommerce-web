@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/8d73d915f1.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/js_css/top_style.css" type="text/css"/>
+<link rel="stylesheet" href="/js_css/css/top_style.css" type="text/css"/>
 <link rel="shortcut icon" href="/image/favicon_western.png" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,20 +36,20 @@
 			<%-- 장바구니 --%>
 			<li><a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
 			<c:if test ="${logStatus !='Y'}">
-				<li><a href = "/user/login"><i class="fa-solid fa-user"></i></a></li>
+				<li><a href = "/login"><i class="fa-solid fa-user"></i></a></li>
 			</c:if> 
 			
-			<c:if test ="${logStatus =='Y' && memberType == '1'}">
+			<c:if test ="${logStatus=='Y' && ROLE=='ROLE_USER'}">
 				<li><a href = "/user/MyOrderList"><i class="fa-solid fa-address-card"></i></a></li>
-				<li>${logName}님<a href ="/user/logout"> 로그아웃</a></li>
+				<li>${logName}님<a href ="/logout"> 로그아웃</a></li>
 			</c:if>
-			<c:if test ="${logStatus =='Y' && memberType == '2'}">
+			<c:if test ="${logStatus=='Y' && ROLE=='ROLE_SELLER'}">
 				<li><a href = "/seller/sellerMain"><i class="fa-solid fa-address-card"></i></a></li>
-				<li>${logName}님<a href ="/user/logout"> 로그아웃</a></li>
+				<li>${logName}님<a href ="/logout"> 로그아웃</a></li>
 			</c:if>
-			<c:if test ="${logStatus =='Y' && memberType == '3'}">
+			<c:if test ="${logStatus=='Y' && ROLE=='ROLE_ADMIN'}">
 				<li><a href = "/admin/adminMain"><i class="fa-solid fa-address-card"></i></a></li>
-				<li>${logName}님<a href ="/user/logout"> 로그아웃</a></li>
+				<li>${logName}님<a href ="/logout"> 로그아웃</a></li>
 			</c:if>
 		</ul>
 	</nav>

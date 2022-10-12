@@ -76,4 +76,7 @@ public interface AdminService {
 		
 	// 셀러 총 레코드 수
 	public int sellerTotalRecord(PagingVO pVO);
+
+	// Test: 유저 총 레코드 수
+	public int mainTotalRecord(AdminVO VO);
 }
