@@ -17,6 +17,7 @@ public class PagingVO {
 	private String searchKey;
 	private String searchWord; 
 	
+	public String genie_id;
 	
 	public int getStartPage() {
 		return startPage;
@@ -104,6 +105,12 @@ public class PagingVO {
 	}
 	public void setNotApproved(int notApproved) {
 		this.notApproved = notApproved;
+	}
+	public String getGenie_id() {
+		return genie_id;
+	}
+	public void setGenie_id(String genie_id) {
+		this.genie_id = genie_id;
 	}
 	
 	

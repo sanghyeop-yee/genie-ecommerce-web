@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jspf"%>
+<link rel="stylesheet" href="../js_css/product_style.css" type="text/css"/>
+<script src="../js_css/css/product_js.js"></script>
 <style>
 /*----------백그라운드-----------*/
 .container {

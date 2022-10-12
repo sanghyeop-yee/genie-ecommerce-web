@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
 
@@ -17,8 +18,30 @@
 	padding-left: 100px;
 	padding-right: 100px;
 }
+.card-body{
+	font-size: 80%;
+}
+
+.table{
+	font-size: 95%;
+    text-align: center;
+  }
+
 .table a{
 	color:black;
+}
+.table [type="button"]{
+	width: 42px;
+    padding: 5px 3px 5px;
+    font-size: 12px;
+    letter-spacing: -1px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    color: #0073e9;
+    text-align: center;
+    background: #fff;
+    cursor: pointer;
+    border: 1px solid #ccc;
 }
 .content-wrapper{
 	overflow-y:scroll;
@@ -26,6 +49,13 @@
 }
 .content-wrapper::-webkit-scrollbar{
   display:none;
+}
+#page{
+	width:30%; margin-left:auto; margin-right:auto; list-style-type:none; 
+}
+
+#page li{
+	float:left; padding:10px;
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -105,19 +135,46 @@
                       <tr>
 						    <td>${pvo.product_id }</td>
 							<td><a href="/product_detail?product_id=${pvo.product_id}">${pvo.product_name}</a></td>
-							<td>${pvo.product_price}</td>
+							<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${pvo.product_price}"/> 원</td>
 							<td>${pvo.product_quantity}</td>
 							<td>${pvo.product_category}</td>
 							<td>${pvo.product_tag}</td>
 							<td>${pvo.product_mbti}</td>
-							<td><a href="/seller/sellerProductEdit/${pvo.product_id }">edit</a></td>
-							<td><a href="javascript:productDel(${pvo.product_id });">del</a></td>
+							<td><a href="/seller/sellerProductEdit/${pvo.product_id }"><input type="button" value="수정"></a></td>
+							<td><a href="javascript:productDel(${pvo.product_id });"><input type="button" value="삭제"></a></td>
                       </tr>
                     </c:forEach>
                     <!-- 태그 반복 끝 --> 
                     </tbody>
                   </table>
-                </p>
+                  <div>
+                  	<ul id="page">
+						<c:if test="${pVO.nowPage<=1}">
+							<li>prev</li>
+						</c:if>
+						<c:if test="${pVO.nowPage>1}">
+							<li><a href="/seller/sellerProduct?nowPage=${pVO.nowPage-1}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">prev</a></li>
+						</c:if>
+						<c:forEach var="p" begin="${pVO.startPage}" end="${pVO.startPage+pVO.onePageCount-1}">
+							<c:if test="${p<=pVO.totalPage}">
+								<li
+									<c:if test="${p==pVO.nowPage}">
+										style="background-color:#ddd; color:#fff;"
+									</c:if>
+								>
+								<a href="/seller/sellerProduct?nowPage=${p}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${p}</a></li>
+							</c:if>
+						</c:forEach>
+								
+						<c:if test="${pVO.nowPage==pVO.totalPage}">
+							<li>next</li>
+						</c:if>
+						<c:if test="${pVO.nowPage<pVO.totalPage}">
+							<li><a href="/seller/sellerProduct?nowPage=${pVO.nowPage+1}<c:if test='${pVO.searchWord!=null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">next</a></li>
+						</c:if>
+					</ul>
+                  </div>
+               <!-- </p> --> 
               </div>
             </div><!-- /.card -->
           </div>

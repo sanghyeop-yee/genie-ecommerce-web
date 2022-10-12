@@ -147,6 +147,7 @@ nav .sidenav-trigger i {
         <c:forEach var="dvo" items="${dlist}">
             <h5>배송지</h5>
             <input type="hidden" value="${dvo.address_num}" readonly/>
+            <input type="hidden" id="addressStatus" value="Y" readonly/>
             <li>수령자 이름</li>
             <input type="text" id="receiver_name" value="${dvo.receiver_name}" readonly/>
             <li>전화번호</li>
@@ -215,6 +216,7 @@ nav .sidenav-trigger i {
     opener.document.getElementById("receiver_tel").value=document.getElementById("receiver_tel").value;
     opener.document.getElementById("receiver_zipcode").value=document.getElementById("receiver_zipcode").value;
     opener.document.getElementById("receiver_addr").value=document.getElementById("receiver_addr").value;
+    opener.document.getElementById("addressStatus").value=document.getElementById("addressStatus").value;
     window.close();
   })
 </script>

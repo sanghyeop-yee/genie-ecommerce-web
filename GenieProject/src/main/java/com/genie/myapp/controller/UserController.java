@@ -23,9 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.genie.myapp.service.AdministerService;
 import com.genie.myapp.service.SellerService;
 import com.genie.myapp.service.UserService;
-
 import com.genie.myapp.vo.AccountVO;
-import com.genie.myapp.vo.AdministerVO;
 import com.genie.myapp.vo.DeliveryVO;
 import com.genie.myapp.vo.OrderVO;
 import com.genie.myapp.vo.SellerVO;
@@ -54,81 +52,6 @@ public class UserController {
 	TransactionDefinition definition;
 
 
-	@GetMapping("login")
-	public ModelAndView adminLogin() {
-		mav = new ModelAndView();
-		mav.setViewName("user/login");
-		return mav;
-	}
-
-	@PostMapping("loginOK")
-	public ModelAndView loginOk(UserVO vo, SellerVO svo, AdministerVO avo, HttpSession session) {
-		
-		mav = new ModelAndView();
-
-		UserVO logVO = service.loginOk(vo);
-		SellerVO slogVO =service_s.loginOk(svo);
-		AdministerVO alogVO = service_a.loginOk(avo);
-	
-		if(logVO != null) {//로그인 성공
-
-			session.setAttribute("logId", logVO.getGenie_id());		
-			session.setAttribute("logName", logVO.getUser_name());
-			session.setAttribute("logStatus","Y");
-			session.setAttribute("memberType", "1");
-			mav.setViewName("redirect:/");
-			
-			return mav;
-
-		}else if(slogVO !=null){
-
-			session.setAttribute("logId", slogVO.getGenie_id());
-			session.setAttribute("logName", slogVO.getCompany_name());
-			session.setAttribute("logStatus","Y");
-			session.setAttribute("memberType", "2");
-			mav.setViewName("redirect:/seller/sellerMain");
-
-			return mav;
-
-		}else if(alogVO != null){
-
-			session.setAttribute("logId", alogVO.getGenie_id());
-			session.setAttribute("logName", alogVO.getAdminister_name());
-			session.setAttribute("logStatus","Y");
-			session.setAttribute("memberType", "3");
-			mav.setViewName("redirect:/admin/adminMain");
-
-			return mav;
-
-		}else{//로그인 실패
-
-			session.setAttribute("msg","아이디 또는 비밀번호 오류입니다.");
-			mav.setViewName("redirect:/user/login");
-
-			return mav;
-			
-		}
-	}
-
-	@GetMapping("logout")
-	public ModelAndView logout(HttpSession session) {
-		mav = new ModelAndView();
-		session.invalidate();
-		mav.setViewName("redirect:/");
-		
-		return mav;
-	}
-
-	//회원가입 폼으로 이동
-	@GetMapping("Registration")
-	public ModelAndView RegistragionForm() {
-
-		mav = new ModelAndView();
-		mav.setViewName("/user/Registration");
-
-		return mav;
-	}
-
 	 //아이디 중복검사
 	@GetMapping("idCheck")
 	public ModelAndView idCheck(String genie_id) {
@@ -140,7 +63,7 @@ public class UserController {
 
 		mav.addObject("idCnt",cnt);
 		mav.addObject("genie_id",genie_id);
-		mav.setViewName("user/idCheck");
+		mav.setViewName("/user/idCheck");
 
 		return mav;
 	}
@@ -158,15 +81,12 @@ public class UserController {
 		
 		try {//회원가입 성공
 			
-			int account = service.AccountWrite(avo);
-			int user = service.UserWrite(vo);
-
-			System.out.println(account);
-			System.out.println(user);
+			service.AccountWrite(avo);
+			service.UserWrite(vo);
 
 			String msg = "<script>";
 			msg += "alert('회원가입을 성공하였습니다.');";
-			msg += "location.href='/user/login';";
+			msg += "location.href='/login';";
 			msg += "</script>";
 			entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
 

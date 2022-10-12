@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- stylesheet -->
-    <link rel="stylesheet" href="../js_css/sellerstyle.css">
+    <link rel="stylesheet" href="../js_css/css/sellerstyle.css">
 </head>
 <body>
     <!-- start of nav bar -->
@@ -373,7 +373,7 @@
     <!-- 차트 (chart js)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="../js_css/sellerhome.js"></script>
+    <script src="../js_css/js/sellerhome.js"></script>
 
     
 </body>

@@ -1,17 +1,20 @@
 package com.genie.myapp.vo;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-@Getter
-@Setter
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+
 public class UserVO {
 
     private String genie_num;
     private String genie_id;
 	private String genie_pwd;
     private String genie_pwd2;
-    private String member_type;
+    private String ROLE;
     
   	private String user_num;
     private String user_name;
@@ -31,12 +34,26 @@ public class UserVO {
     private String sign_in_date;
     private String payment_method;
 
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
+
+		if (this.ROLE.equals("ADMIN")) {
+			auth.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		} else if(this.ROLE.equals("SELLER")){
+			auth.add(new SimpleGrantedAuthority("ROLE_SELLER"));
+		}else{
+            auth.add(new SimpleGrantedAuthority("ROLE_USER"));
+        }
+		
+		return auth;
+	}
+
 
 
     @Override
     public String toString() {
         return "UserVO [genie_id=" + genie_id + ", genie_num=" + genie_num + ", genie_pwd=" + genie_pwd
-                + ", genie_pwd2=" + genie_pwd2 + ", member_type=" + member_type + ", payment_method=" + payment_method
+                + ", genie_pwd2=" + genie_pwd2 + ", ROLE=" + ROLE + ", payment_method=" + payment_method
                 + ", sign_in_date=" + sign_in_date + ", user_addr=" + user_addr + ", user_detailaddr=" + user_detailaddr
                 + ", user_email=" + user_email + ", user_gender=" + user_gender + ", user_name=" + user_name
                 + ", user_num=" + user_num + ", user_phone_num1=" + user_phone_num1 + ", user_phone_num2="
@@ -94,14 +111,14 @@ public class UserVO {
 
 
 
-    public String getMember_type() {
-        return member_type;
+    public String getROLE() {
+        return ROLE;
     }
 
 
 
-    public void setMember_type(String member_type) {
-        this.member_type = member_type;
+    public void setROLE(String ROLE) {
+        this.ROLE = ROLE;
     }
 
 
@@ -241,6 +258,18 @@ public class UserVO {
     }
     public void setUser_phone_num3(String user_phone_num3) {
         this.user_phone_num3 = user_phone_num3;
+    }
+
+
+
+    public String getAddress_num() {
+        return address_num;
+    }
+
+
+
+    public void setAddress_num(String address_num) {
+        this.address_num = address_num;
     }
 }
 

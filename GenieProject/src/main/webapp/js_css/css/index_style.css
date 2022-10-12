@@ -21,6 +21,23 @@ h1  {
    width: 100%;
    height: auto;
 }
+.index-list{
+   position:relative;
+}
+.index-list .button {
+   position: absolute;
+   top: 83%;
+   left: 10.5%;
+   transform: translate(-50%, -50%);
+   -ms-transform: translate(-50%, -50%);
+   background-color: #0093FF;
+   color: white;
+   font-size: 16px;
+   padding: 10px 24px;
+   border: none;
+   cursor: pointer;
+   border-radius: 15px;
+ }
 /* --------------------카테고리 설정--------------------- */
 .category-list  {
    display: grid;
@@ -62,6 +79,24 @@ h1  {
    height: auto;
    border-radius: 20px;
 }
+
+.mbti-list{
+   position:relative;
+}
+.mbti-list .button {
+   position: absolute;
+   top: 87%;
+   right: 31.5%;
+   transform: translate(-50%, -50%);
+   -ms-transform: translate(-50%, -50%);
+   background-color: #FFA800;
+   color: white;
+   font-size: 16px;
+   padding: 10px 24px;
+   border: none;
+   cursor: pointer;
+   border-radius: 15px;
+ }
 /* ---------------------------------모두의 인기태그-------------------------- */
 .tag-button{
    width: 90%;
@@ -80,7 +115,7 @@ h1  {
 }
 */
 .best-tag button{
-   background-image: linear-gradient(to bottom right, #2DCEF8, #3B40FE);
+   /*background-image: linear-gradient(to bottom right, #2DCEF8, #3B40FE);*/
    width: 200px;
    height: 70px;
    border-radius: 50px;
@@ -88,15 +123,22 @@ h1  {
    margin-right: 20px;
    padding: 10px 25px;
    font-weight: 500;
+   font-weight: bold;
    font-size: 1.4rem;
    color: #fff;
    display: inline-block;
    border: none;
 }
+.best-tag button:hover{
+   -ms-transform: scale(1.1); /* IE 9 */
+   -webkit-transform: scale(1.1); /* Safari 3-8 */
+   transform: scale(1.1); 
+   transition-duration: 0.3s;
+}
 /* ------------------ 리스팅 추천 부분(recommand_listing) ------------------- */
 .recommand_listing {
    /*background-image: url("/image/listing_bg.png");*/
-   background-image: linear-gradient(to bottom right, #2DCEF8, #3B40FE);
+   /*background-image: linear-gradient(to bottom right, #2DCEF8, #3B40FE);*/
    width: 95%;
    height: 50px;
    border-radius: 15px;

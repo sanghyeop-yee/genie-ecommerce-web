@@ -276,14 +276,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <!-- Info boxes -->
         <div class="row">
-          <div class="col-12 col-sm-6 col-md-3">
+          <div class="col-12 col-sm-6 col-md-6">
             <div class="info-box">
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">셀러 입점요청</span>
                 <span class="info-box-number">
-                  3
+                  2
                   <small>업체</small>
                 </span>
               </div>
@@ -292,13 +292,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
-          <div class="col-12 col-sm-6 col-md-3">
+          <div class="col-12 col-sm-6 col-md-6">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">상품등록</span>
-                <span class="info-box-number">30건</span>
+                <span class="info-box-number">3건</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -309,26 +309,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- fix for small devices only -->
           <div class="clearfix hidden-md-up"></div>
 
-          <div class="col-12 col-sm-6 col-md-3">
+          <div class="col-12 col-sm-6 col-md-6">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">상품판매</span>
-                <span class="info-box-number">100건</span>
+                <span class="info-box-number">12건</span>
               </div>
               <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
-          <div class="col-12 col-sm-6 col-md-3">
+          <div class="col-12 col-sm-6 col-md-6">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">유저가입</span>
-                <span class="info-box-number">100건</span>
+                <span class="info-box-number">3건</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -338,8 +338,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <!-- /.row -->
 
-
-            <!-- solid sales graph -->
+          <!--
+            
             <div class="card bg-gradient-info">
               <div class="card-header border-0">
                 <h3 class="card-title">
@@ -359,7 +359,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <div class="card-body">
                 <canvas class="chart" id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
               </div>
-              <!-- /.card-body -->
+             
               <div class="card-footer bg-transparent">
                 <div class="row">
                   <div class="col-4 text-center">
@@ -368,28 +368,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     <div class="text-white">Mail-Orders</div>
                   </div>
-                  <!-- ./col -->
+                 
                   <div class="col-4 text-center">
                     <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
                            data-fgColor="#39CCCC">
 
                     <div class="text-white">Online</div>
                   </div>
-                  <!-- ./col -->
+                 
                   <div class="col-4 text-center">
                     <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
                            data-fgColor="#39CCCC">
 
                     <div class="text-white">In-Store</div>
                   </div>
-                  <!-- ./col -->
+                 
                 </div>
-                <!-- /.row -->
+               
               </div>
-              <!-- /.card-footer -->
+              
             </div>
-            <!-- /.card -->
-
+           
+          -->
+          
           <!-- /.col -->
         </div>
         <!-- /.row -->
@@ -443,6 +444,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- overlayScrollbars -->
 <script src="/js_css/dist/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
+<script src="/js_css/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
+<script src="/js_css/dist/js/pages/dashboard.js"></script>

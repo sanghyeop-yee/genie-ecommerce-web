@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./inc/top.jspf"%>
-<link rel="stylesheet" href="/js_css/product_detail_style.css" type="text/css"/>
-<script src="/js_css/product_detail_js.js"></script>
+<link rel="stylesheet" href="/js_css/css/product_detail_style.css" type="text/css"/>
+<script src="/js_css/js/product_detail_js.js"></script>
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <!-- iamport.payment.js -->

@@ -5,7 +5,7 @@ public class SellerVO {
 	private String genie_id;
 	private String genie_pwd;
 	private String genie_pwd2;
-	private int member_type;
+	private String ROLE;
 	private int withdrawal;
 	
 	private String seller_tel;
@@ -33,7 +33,7 @@ public class SellerVO {
 	public String toString() {
 		return "SellerVO [approval_date=" + approval_date + ", ceo_name=" + ceo_name + ", company_name=" + company_name
 				+ ", genie_id=" + genie_id + ", genie_pwd=" + genie_pwd + ", genie_pwd2=" + genie_pwd2
-				+ ", member_type=" + member_type + ", sel_addr=" + sel_addr + ", sel_detailaddr=" + sel_detailaddr
+				+ ", ROLE=" + ROLE + ", sel_addr=" + sel_addr + ", sel_detailaddr=" + sel_detailaddr
 				+ ", seller_address=" + seller_address + ", seller_email=" + seller_email + ", seller_reg_no="
 				+ seller_reg_no + ", seller_status=" + seller_status + ", seller_tel=" + seller_tel
 				+ ", seller_website=" + seller_website + ", tel1=" + tel1 + ", tel2=" + tel2 + ", tel3=" + tel3
@@ -58,11 +58,11 @@ public class SellerVO {
 	public void setGenie_pwd2(String genie_pwd2) {
 		this.genie_pwd2 = genie_pwd2;
 	}
-	public int getMember_type() {
-		return member_type;
+	public String getROLE() {
+		return ROLE;
 	}
-	public void setMember_type(int member_type) {
-		this.member_type = member_type;
+	public void setROLE(String ROLE) {
+		this.ROLE = ROLE;
 	}
 	public int getWithdrawal() {
 		return withdrawal;

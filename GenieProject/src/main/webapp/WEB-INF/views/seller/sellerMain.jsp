@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <style>
@@ -71,9 +71,10 @@
   box-shadow: 0 0.5rem 0.5rem rgba(71, 7, 234, 0.2);
 }
 
-table {
+.table {
   table-layout: fixed;
   width: 100%;
+  text-align: center;
 }
 
 
@@ -118,7 +119,7 @@ table {
                   <h5 class="m-0">주문</h5>
                 </div>
                 <div class="card-body">
-                  <p class="card-text">오늘 ${todayOrder} 건의 <br/>
+                  <p class="card-text">오늘 <b>${todayOrder} 건</b>의 <br/>
                   새로운 주문이 있어요.</p>
                   <a href="/seller/sellerOrder" class="card-link">주문관리</a>
                 </div>
@@ -130,7 +131,7 @@ table {
                   <h5 class="m-0">배송</h5>
                 </div>
                 <div class="card-body">
-                  <p>총 ${deliveryPending} 건의 주문이 <br/>
+                  <p>총 <b>${deliveryPending} 건</b>의 주문이 <br/>
                     배송을 기다리고 있어요.</p>
                   <a href="/seller/sellerOrder" class="card-link">배송처리</a>
                 </div>
@@ -143,7 +144,7 @@ table {
                 </div>
                 <div class="card-body">
                   <p class="card-text">가장 인기있는 상품은 <br/>
-                    ${bestSeller} 이에요.</p>
+                    <b>${bestSeller}</b> 이에요.</p>
                   <a href="#" class="card-link">상품관리</a>
                 </div>
               </div>
@@ -173,7 +174,8 @@ table {
                             <td><img src="${vo.product_image1}" class="thumb"></td>
                             <td>${vo.product_name}</td>
                             <td>${vo.sold_counts}</td>
-                            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.total_sales}" /> ${vo.total_sales}</td>
+                            <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.total_sales}"/> 원</td>
+
                           </tr>
                         </c:forEach>
                         
@@ -191,7 +193,7 @@ table {
                 </div>
                 <div class="card-body">
                   <p class="card-text">
-                    이번 달 총 매출은 ${thisMonthRevenue} 원 이에요.
+                    이번 달 총 매출은 <b><fmt:formatNumber type="number" maxFractionDigits="3" value="${orderSum}" /> 원</b> 이에요.
                   </p>
                   <!-- 차트 (chart js)-->
                   <canvas id="chart" style="width:200px; height:75px;"></canvas>

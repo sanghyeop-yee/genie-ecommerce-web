@@ -5,6 +5,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 
+	.content-wrapper{
+		overflow-y:scroll;
+		-ms-overflow-style: none;
+  	}
+
+  	.content-wrapper::-webkit-scrollbar{
+    	display:none;
+  	}
+
 	#salesbody{
 		padding-top: 10px;
 		padding-left: 100px;
@@ -28,8 +37,12 @@
 		padding-bottom: 50px;
 	}
 
+	#chartbox{
+		background-color: white;
+		border-radius: 6px;
+		box-shadow: 1px 1px 4px 1px lightgray;
+	}
 	
-
 
 </style>
 
@@ -66,7 +79,7 @@
 				<div class="info-box" style="background-color: transparent; box-shadow: none;">
 					<span class="info-box-icon elevation-1" id="icon" style="background: linear-gradient(#ff796f, #bd261b);color:white;"><i class="fas fa-credit-card">
 						<div class="info-box-content">
-							<span class="info-box-text">총 매출</span>
+							<span class="info-box-text">이번달 총 매출</span>
 							<span class="info-box-number">
 								<h2><fmt:formatNumber type="number" maxFractionDigits="3" value="${orderSum}" /> 원</h2>
 							</span>
@@ -111,7 +124,8 @@
 				<h3 style="text-align:center;">일별 매출</h3>
 				<canvas id="chart" style="width:200px; height:100px;"></canvas>
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>		          
-              </div>
+			</div>
+		</p>
             </div><!-- /.card -->
           </div>
         </div>

@@ -110,43 +110,19 @@
     <delete id = "delMultiCart">
 	  	delete from cart 
 	  	<where>
-	  		<foreach collection="cartList" index="index" item = "item" open="cart_num in (" separator ="," close=")">
+	  		<foreach collection="cartList" index="index" item ="item" open="cart_num in (" separator ="," close=")">
 	  			#{item}  			
-	  		</foreach>	
-            
+	  		</foreach>	 
 	  	</where>
 	</delete>
 
-<!-- 구매정보 이동 -->
+    <update id="updateCart">
+        
+        update cart  
+        set cart_qty=#{cart_qty} 
+        where cart_num=#{cart_num}
 
-    <insert id="myorder">
-
-    	insert into myorder 
-            (order_num, 
-            genie_id, 
-            product_id,
-            recipient_name, 
-            recipient_phone,
-            recipient_address, 
-            recipient_request,
-            recipient_delivery_status,
-            order_price,
-            order_qty,
-            payment_method) 
-
-        values
-            (#{imp_uid}, 
-            #{genie_id}, 
-            #{product_id}, 
-            #{receiver_name},
-            #{receiver_tel},
-            #{receiver_addr}, 
-            #{receipent_request}, 
-            #{cart_price},
-            #{cart_qty},
-            #{payment_method} )
-
-    </insert>
+    </update>
 
 <!-- 메인페이지 지니 추천 -->
 

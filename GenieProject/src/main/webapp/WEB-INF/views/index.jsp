@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./inc/top.jspf"%>
-<link rel="stylesheet" href="/js_css/index_style.css" type="text/css"/>
+<link rel="stylesheet" href="/js_css/css/index_style.css" type="text/css"/>
 
 <!--Genie 메인화면--->
 <section class="index">
    <div class="index-list">      
       <a href="/genie"><img src="/image/main_banner1.png"></a>
+      <button class="button"><a href="/genie">Genie 바로가기 ▶</a></button>
    </div>
 
    <div class="category" id="category">
@@ -45,21 +46,21 @@
          <button onclick="location.href='/product?product_tag=${tvo.product_tag}'">#${tvo.product_tag}</button>
       </c:forEach>
       -->
-         <button onclick="location.href='/product?product_tag=생일'">#생일</button>
-         <button onclick="location.href='/product?product_tag=20대'">#20대</button>
-         <button onclick="location.href='/product?product_tag=여성'">#여성</button>
-         <button onclick="location.href='/product?product_tag=부모님'">#부모님</button>
-         <button onclick="location.href='/product?product_tag=회사동료'">#회사동료</button>
-         <button onclick="location.href='/product?product_tag=결혼'">#결혼</button> 
-         <button onclick="location.href='/product?product_tag=백일'">#백일</button> 
-         <button onclick="location.href='/product?product_tag=연인'">#연인</button> 
-         <button onclick="location.href='/product?product_tag=가족/친척'">#가족/친척</button> 
-         <button onclick="location.href='/product?product_tag=스승/멘토'">#스승/멘토</button> 
-         <button onclick="location.href='/product?product_tag=30대'">#30대</button> 
-         <button onclick="location.href='/product?product_tag=친구'">#친구</button> 
-         <button onclick="location.href='/product?product_tag=출산'">#출산</button> 
-         <button onclick="location.href='/mbti/mbtiMain'">#mbti</button>
-         <button onclick="window.open('https://kr.vonvon.me/quiz/19484', 'window_name', 'width=430, height=700, location=no, status=no, scrollbars=yes');">#내 mbti는?</button>   
+         <button onclick="location.href='/product?product_tag=집들이'" style="background-color:#fc7592">#집들이</button>
+         <button onclick="location.href='/product?product_tag=20대'" style="background-color:#fbbb63">#20대</button>
+         <button onclick="location.href='/product?product_tag=여성'" style="background-color:#fd977c">#여성</button>
+         <button onclick="location.href='/product?product_tag=부모님'" style="background-color:#25dae6">#부모님</button>
+         <button onclick="location.href='/product?product_tag=회사동료'" style="background-color:#25dae6">#회사동료</button>
+         <button onclick="location.href='/product?product_tag=결혼'" style="background-color:#fc7592">#결혼</button> 
+         <button onclick="location.href='/product?product_tag=백일'" style="background-color:#fc7592">#백일</button> 
+         <button onclick="location.href='/product?product_tag=연인'" style="background-color:#25dae6">#연인</button> 
+         <button onclick="location.href='/product?product_tag=가족/친척'" style="background-color:#25dae6"> #가족/친척</button> 
+         <button onclick="location.href='/product?product_tag=스승/멘토'" style="background-color:#25dae6">#스승/멘토</button> 
+         <button onclick="location.href='/product?product_tag=30대'" style="background-color:#fbbb63">#30대</button> 
+         <button onclick="location.href='/product?product_tag=친구'" style="background-color:#25dae6">#친구</button> 
+         <button onclick="location.href='/product?product_tag=출산'" style="background-color:#fc7592">#출산</button> 
+         <button onclick="location.href='/mbti/mbtiMain'" style="background-color:#44baff">#mbti</button>
+         <button onclick="window.open('https://kr.vonvon.me/quiz/19484', 'window_name', 'width=430, height=700, location=no, status=no, scrollbars=yes');" style="background-color:#44baff">#내 mbti는?</button>   
       </div>
    </div>
 
@@ -67,6 +68,7 @@
       <h1>MBTI 추천 선물</h1>
       <div class="mbti-list">      
          <a href="/mbti/mbtiMain"><img src="/image/mbti_banner1.png"></a>
+         <button class="button"><a href="/mbti/mbtiMain">추천받기 ▶</a></button>
       </div>
    </div>
    
@@ -101,16 +103,16 @@
          </div>
       -->
 
-         <c:forEach var="pvo" items="${plist }">
+         <c:forEach var="pvo" items="${plist}">
             <div class="card-col">
-               <a class="product-title" href="/product_detail?product_id=${pvo.product_id}"></a>
+               <a class="product-title" href="/product_detail?product_id=${pvo.product_id}" >
                <div class="card_header">
                   <img id="img-caption"  src="${pvo.product_image1}" alt="Img_1">
                </div>
                <div class="card_bottom">
                   <h3>${pvo.genie_id}</h3>
                   <p>${pvo.product_name}</p>	
-                  <p><fmt:formatNumber value="${pvo.product_price}" pattern="#,###원"/></p>	
+                  <p><fmt:formatNumber value="${pvo.product_price}" pattern="#,###원"/></p></a>	
                </div>
             </div>
          </c:forEach>

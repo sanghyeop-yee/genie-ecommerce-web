@@ -41,6 +41,9 @@ public class AdminController {
 		@GetMapping("adminMain")
 		public ModelAndView adminMain() {
 			ModelAndView mav = new ModelAndView();
+			//Test 시작
+			//mav.setTotalRecord(service.mainTotalRecord(AdminVO VO));
+			//Test 끝
 			mav.setViewName("admin/adminMain");
 			return mav;
 		}

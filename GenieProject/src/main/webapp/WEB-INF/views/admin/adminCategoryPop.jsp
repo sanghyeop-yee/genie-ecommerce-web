@@ -5,6 +5,10 @@
 
 /* 기본구조 */
 
+*{
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
 h1 {
   text-align: center;
   font-size: 30px;
@@ -60,8 +64,8 @@ p{
   max-width: 450px;
   position: relative;
   padding: 20px;
-  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.15);
   text-align: center;
 }
 
