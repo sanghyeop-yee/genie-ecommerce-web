@@ -2,12 +2,10 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 
 <style>
-
 #formbody{
 	padding-top: 10px;
 	padding-left: 100px;
 	padding-right: 100px;
-	
 }
 .content-wrapper{
 	overflow-y:scroll;
@@ -18,134 +16,96 @@
 }
 
 /*---------------------------------*/
-.container{
-		padding:30px;
-		width:100%;
-		/*height:1000px;*/
-		background-color:white;
-		/*margin:0 auto;*/
-		font-size:23px;
-		box-sizing: border-box;
-		border-radius:15px;
-		/*-webkit-border-radius: 10px 10px 10px 10px;
-		-webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-    	box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);*/
-	    overflow:auto;
-	}
-	ul,li{
-		/*margin:0;
-		padding:0;*/
-		list-style-type:none;
-	}
-	
-	.container>p{
-		
-		margin-top:20px;
-		margin-bottom:20px;
-		margin-left: 25px;
-		padding:10px;
-		font-weight:bold;
-	}
-	.proFrm{
-		/*width: 400px;
-	    height: 1000px;*/
-	    margin: 30px auto;
-	    margin-top: 0;
-	    margin-left:20px;
-	    padding: 20px;
-	    padding-bottom: 30px;
-	}
-	.proFrm p{
-		padding:10px;
-		padding-left:0;
-		font-weight:bold;
-	}
-	input[type=text]{
-		width:60%;
-		height:50px;
-		background-color: #fff;
-    	border: none;
-    	color: #0d0d0d;
-		border-radius:15px;
-		font-size:20px;
-		padding:20px;
-		margin:5px;
-		border: 2px solid #808080;
-    	border-radius: 10px 10px 10px 10px;
-	}
-	textarea{
-		width:60%;
-		background-color: #fff;
-    	border: none;
-    	color: #0d0d0d;
-		border-radius:15px;
-		font-size:20px;
-		padding:20px;
-		margin:5px;
-		border: 2px solid #808080;
-    	border-radius: 10px 10px 10px 10px;
-	}
-	#nameDiv>p, #priceDiv>p, #infoDiv p, #countDiv>p{
-		/*float:left;*/
-		margin:10px;
-		margin-left:0;
-		display: inline-block;
-	}
-	#nameDiv input, #priceDiv input, #infoDiv textarea, #countDiv input{
-		width:65%;
-		padding:10px;
-		display:inline-block;
-		transition: ease .40s;
-		float:right;
-		margin:10px;
-		margin-right:15px;
-	}
-	#imageDiv{
-		overflow:auto;
-	}
-	#imageDiv input{
-		width:98%;
-		padding:10px;
-		display:inline-block;
-		transition: ease .40s;
-		float:right;
-		margin:10px;
-		margin-right:15px;
-	}
-	#infoDiv{
-		overflow:auto;
-	}
-	input[type=checkbox] {
-		zoom: 1.5;
-		margin-right:0.5em;
-	}
-	label{
-		display: inline-block;
-    	width: 190px;
-    	line-height: 50px;
-    	font-size:20px;
-	}
-	label span{
-		font-weight:normal;
-	}
-	.subTag{
-		font-size:20px;
-		margin:0
-	}
-	#cateDiv, #tagDiv, #mbtiDiv{
-		margin-bottom:6vh;
-	}
-	#formSubmit{
+#main {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+#formSubmit{
 		padding:10px 100px 10px 100px;
 		display:block;
 		margin:50px auto;
-		font-size: 23px;
+		font-size: 17px;
 		background: #3385ff;
 		color: #fff;
 		border:none;
 		border-radius: 10px;
 		transition: ease .40s;
 	}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: none;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+.col-65 {
+  float: left;
+  width: 65%;
+  margin-top: 6px;
+}
+
+.row{
+	margin-bottom: 10px;
+}
+
+input[type=checkbox]{
+	margin-right: 5px;
+}
+
+input[type=text]{
+	margin-bottom: 5px;
+}
+
+#mbticheck{
+	padding-top: 13px;
+}
+
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
@@ -226,135 +186,184 @@
 </script>
 <%@ include file="../inc/sellerNav.jsp"%>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">상품등록</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/seller/sellerMain">Home</a></li>
-              <li class="breadcrumb-item active">Main</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <div class="content" id="formbody">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                
-                <div class="container">
-					
-					<form method="post" action="/seller/productWrite" id="productFrm">
-						<ul class="proFrm">
-							<div id="nameDiv">
-								<p>상품명</p>
-								<input type="text" id="product_name" name="product_name" placeholder="상품명을 입력하세요"/>
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+				<h1 class="m-0">상품등록</h1>
+				</div><!-- /.col -->
+				<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					<li class="breadcrumb-item"><a href="/seller/sellerMain">Home</a></li>
+					<li class="breadcrumb-item active">Main</li>
+				</ol>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+			</div><!-- /.container-fluid -->
+		</div>
+		
+		<!-- Main content -->
+		<div id="main">
+			<div class="card card-primary card-outline">	
+				<div class="content" id="formbody">
+					<div class="container">
+						<form method="post" action="/seller/productWrite" id="productFrm">
+							<div class="row">
+								<div class="col-25">
+									<label for="product_name">상품명</label>
+								</div>
+								<div class="col-75">
+									<input type="text" id="product_name" name="product_name" placeholder="상품명을 입력하세요"/>
+								</div>
 							</div>
-							<div id="priceDiv">
-								<p>판매금액</p>
-								<input type="text" id="product_price" name="product_price" placeholder="판매금액을 입력하세요"/>
-							</div>
-							<div id="infoDiv">
-								<p>상품설명</p>
-								<textarea rows="4" id="product_info" name="product_info"></textarea>
-							</div>
-							<div id="countDiv">
-								<p>상품수량</p>
-								<input type="text" id="product_quantity" name="product_quantity" placeholder="상품수량을 입력하세요"/>
-							</div>
-							<div id="imageDiv">
-								<p>상품이미지</p>
-								<input type="text" name="product_image1" id="product_image1" placeholder="이미지링크를 입력하세요"/>
-								<input type="text" name="product_image2" id="product_image2" placeholder="이미지링크를 입력하세요"/>
-								<input type="text" name="product_image3" id="product_image3" placeholder="이미지링크를 입력하세요"/>
-							</div>
-							<div id="cateDiv">
-								<p>카테고리</p>
-								<label><span><input type="checkbox" name="categoryList" value="생일"/>생일</span></label>
-								<label><span><input type="checkbox" name="categoryList" value="기념일"/>기념일</span></label>
-								<label><span><input type="checkbox" name="categoryList" value="명절"/>명절</span></label>
-								<label><span><input type="checkbox" name="categoryList" value="집들이"/>집들이</span></label>
-								<label><span><input type="checkbox" name="categoryList" value="서프라이즈"/>서프라이즈</span></label>
-								<label><span><input type="checkbox" name="categoryList" value="응원"/>응원</span></label>
-								<label><span><input type="checkbox" name="categoryList" value="캠핑"/>캠핑</span></label>
-								<label><span><input type="checkbox" name="categoryList" value="반려동물"/>반려동물</span></label>
-								<label><span><input type="checkbox" name="categoryList" value="운동"/>운동</span></label>
-								<label><span><input type="checkbox" name="categoryList" value="키덜트"/>키덜트</span></label>
-								<label><span><input type="checkbox" name="categoryList" value="요리"/>요리</span></label>
-								<label><span><input type="checkbox" name="categoryList" value="홈파티"/>홈파티</span></label>
 								
+							<div class="row">
+								<div class="col-25">
+									<label for="product_price">판매금액</label>
+								</div>
+								<div class="col-75">
+									<input type="text" id="product_price" name="product_price" placeholder="판매금액을 입력하세요"/>
+								</div>
 							</div>
-							<div id="tagDiv">
-								<p>태그</p>
-								<p class="subTag">대상</p>
-								<label><span><input type="checkbox" name="tagList" value="부모님"/>부모님</span></label>
-								<label><span><input type="checkbox" name="tagList" value="배우자"/>배우자</span></label>
-								<label><span><input type="checkbox" name="tagList" value="연인"/>연인</span></label>
-								<label><span><input type="checkbox" name="tagList" value="가족/친척"/>가족/친척</span></label>
-								<label><span><input type="checkbox" name="tagList" value="친구/지인"/>친구/지인</span></label>
-								<label><span><input type="checkbox" name="tagList" value="회사동료"/>회사동료</span></label>
-								<label><span><input type="checkbox" name="tagList" value="스승/멘토"/>스승/멘토</span></label>
-								<p class="subTag">특정기념일</p>
-								<label><span><input type="checkbox" name="tagList" value="감사"/>감사</span></label>
-								<label><span><input type="checkbox" name="tagList" value="위로"/>위로</span></label>
-								<label><span><input type="checkbox" name="tagList" value="결혼"/>결혼</span></label>
-								<label><span><input type="checkbox" name="tagList" value="출산"/>출산</span></label>
-								<label><span><input type="checkbox" name="tagList" value="임신"/>임신</span></label>
-								<label><span><input type="checkbox" name="tagList" value="백일"/>백일</span></label>
-								<label><span><input type="checkbox" name="tagList" value="개업"/>개업</span></label>
-								<p class="subTag">나이</p>
-								<label><span><input type="checkbox" name="tagList" value="10대이하"/>10대이하</span></label>
-								<label><span><input type="checkbox" name="tagList" value="20대"/>20대</span></label>
-								<label><span><input type="checkbox" name="tagList" value="30대"/>30대</span></label>
-								<label><span><input type="checkbox" name="tagList" value="40대"/>40대</span></label>
-								<label><span><input type="checkbox" name="tagList" value="50대"/>50대</span></label>
-								<label><span><input type="checkbox" name="tagList" value="60대"/>60대이상</span></label>
-								<p class="subTag">성별</p>
-								<label><span><input type="checkbox" name="tagList" value="남성"/>남성</span></label>
-								<label><span><input type="checkbox" name="tagList" value="여성"/>여성</span></label>
+								
+							<div class="row">
+								<div class="col-25">
+									<label for="product_quantity">상품수량</label>
+								</div>
+								<div class="col-75">
+									<input type="text" id="product_quantity" name="product_quantity" placeholder="상품수량을 입력하세요"/>
+								</div>
 							</div>
-							<div id="mbtiDiv">
-								<p>MBTI</p>
-								<p class="subTag">E : 외향형 (사교적,활동적) / I : 내향형 (정적,신중함)</p>
-								<label><span><input type="checkbox" name="mbtiList" value="E"/>E</span></label>
-								<label><span><input type="checkbox" name="mbtiList" value="I"/>I</span></label>
-								<p class="subTag">S : 감각형 (실용적,현실적) / N : 직관형 (이상적,비약적)</p>
-								<label><span><input type="checkbox" name="mbtiList" value="S"/>S</span></label>
-								<label><span><input type="checkbox" name="mbtiList" value="N"/>N</span></label>
-								<p class="subTag">T : 사고형 (객관적,합리적) / F : 감정형 (상황적,공감성)</p>
-								<label><span><input type="checkbox" name="mbtiList" value="T"/>T</span></label>
-								<label><span><input type="checkbox" name="mbtiList" value="F"/>F</span></label>
-								<p class="subTag">J : 판단형 (계획적,체계적) / P : 인식형 (즉흥적,융통성)</p>
-								<label><span><input type="checkbox" name="mbtiList" value="J"/>J</span></label>
-								<label><span><input type="checkbox" name="mbtiList" value="P"/>P</span></label>
+								
+							<div class="row">
+								<div class="col-25">
+									<label for="product_image">상품이미지</label>
+								</div>
+								<div class="col-75" id="proimage">
+									<input type="text" name="product_image1" id="product_image1" placeholder="이미지링크를 입력하세요"/>
+									<input type="text" name="product_image2" id="product_image2" placeholder="이미지링크를 입력하세요"/>
+									<input type="text" name="product_image3" id="product_image3" placeholder="이미지링크를 입력하세요"/>
+								</div>
+							</div>	
+							<div class="row">
+								<div class="col-25">
+									<label for="product_info">상품설명</label>
+								</div>
+								<div class="col-75">
+									<textarea rows="4" id="product_info" name="product_info"></textarea>
+								</div>
 							</div>
-							<li><input type="submit" id="formSubmit" value="상품등록"/></li>
-						</ul>
-					</form>
+							<hr>
+							<div class="row">
+								<div class="col-25">
+									<label for="category">카테고리</label>
+								</div>
+								<div class="col-75">
+									<label><span><input type="checkbox" name="categoryList" value="생일"/>생일</span></label>
+									<label><span><input type="checkbox" name="categoryList" value="기념일"/>기념일</span></label>
+									<label><span><input type="checkbox" name="categoryList" value="명절"/>명절</span></label>
+									<label><span><input type="checkbox" name="categoryList" value="집들이"/>집들이</span></label>
+									<label><span><input type="checkbox" name="categoryList" value="서프라이즈"/>서프라이즈</span></label>
+									<label><span><input type="checkbox" name="categoryList" value="응원"/>응원</span></label>
+									<label><span><input type="checkbox" name="categoryList" value="캠핑"/>캠핑</span></label>
+									<label><span><input type="checkbox" name="categoryList" value="반려동물"/>반려동물</span></label>
+									<label><span><input type="checkbox" name="categoryList" value="운동"/>운동</span></label>
+									<label><span><input type="checkbox" name="categoryList" value="키덜트"/>키덜트</span></label>
+									<label><span><input type="checkbox" name="categoryList" value="요리"/>요리</span></label>
+									<label><span><input type="checkbox" name="categoryList" value="홈파티"/>홈파티</span></label>
+								</div>
+							</div>	
+							<hr>
+							<div class="row">
+								<div class="col-25">
+									<label for="product_tag">태그</label>
+								</div>
+								<div class="col-75">
+									<li><label for="subTag">대상</label></li>
+									<label><span><input type="checkbox" name="tagList" value="부모님"/>부모님</span></label>
+									<label><span><input type="checkbox" name="tagList" value="배우자"/>배우자</span></label>
+									<label><span><input type="checkbox" name="tagList" value="연인"/>연인</span></label>
+									<label><span><input type="checkbox" name="tagList" value="가족/친척"/>가족/친척</span></label>
+									<label><span><input type="checkbox" name="tagList" value="친구/지인"/>친구/지인</span></label>
+									<label><span><input type="checkbox" name="tagList" value="회사동료"/>회사동료</span></label>
+									<label><span><input type="checkbox" name="tagList" value="스승/멘토"/>스승/멘토</span></label>
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="col-25">
+									<label for="product_tag" style="opacity:0%">태그</label>
+								</div>
+								<div class="col-75">
+									<li><label for="subTag">특정기념일</label></li>
+									<label><span><input type="checkbox" name="tagList" value="감사"/>감사</span></label>
+									<label><span><input type="checkbox" name="tagList" value="위로"/>위로</span></label>
+									<label><span><input type="checkbox" name="tagList" value="결혼"/>결혼</span></label>
+									<label><span><input type="checkbox" name="tagList" value="출산"/>출산</span></label>
+									<label><span><input type="checkbox" name="tagList" value="임신"/>임신</span></label>
+									<label><span><input type="checkbox" name="tagList" value="백일"/>백일</span></label>
+									<label><span><input type="checkbox" name="tagList" value="개업"/>개업</span></label>
+								</div>
+							</div>
+			
+							<div class="row">
+								<div class="col-25">
+									<label for="product_tag" style="opacity:0%">태그</label>
+								</div>
+								<div class="col-75">
+									<li><label for="subTag">나이</label></li>
+									<label><span><input type="checkbox" name="tagList" value="10대이하"/>10대이하</span></label>
+									<label><span><input type="checkbox" name="tagList" value="20대"/>20대</span></label>
+									<label><span><input type="checkbox" name="tagList" value="30대"/>30대</span></label>
+									<label><span><input type="checkbox" name="tagList" value="40대"/>40대</span></label>
+									<label><span><input type="checkbox" name="tagList" value="50대"/>50대</span></label>
+									<label><span><input type="checkbox" name="tagList" value="60대"/>60대이상</span></label>
+								</div>
+							</div>
+					
+							<div class="row">
+								<div class="col-25">
+									<label for="product_tag" style="opacity:0%">태그</label>
+								</div>
+								<div class="col-75">
+									<li><label for="subTag">성별</label></li>
+									<label><span><input type="checkbox" name="tagList" value="남성"/>남성</span></label>
+									<label><span><input type="checkbox" name="tagList" value="여성"/>여성</span></label>
+								</div>
+							</div>
+							<hr>	
+							<div class="row">
+								<div class="col-25">
+									<label for="category">MBTI</label>
+								</div>
+								<div class="col-75" id="mbticheck">
+									<p class="subTag">E : 외향형 (사교적,활동적) / I : 내향형 (정적,신중함)</p>
+									<label><span><input type="checkbox" name="mbtiList" value="E"/>E</span></label>
+									<label><span><input type="checkbox" name="mbtiList" value="I"/>I</span></label>
+									<p class="subTag">S : 감각형 (실용적,현실적) / N : 직관형 (이상적,비약적)</p>
+									<label><span><input type="checkbox" name="mbtiList" value="S"/>S</span></label>
+									<label><span><input type="checkbox" name="mbtiList" value="N"/>N</span></label>
+									<p class="subTag">T : 사고형 (객관적,합리적) / F : 감정형 (상황적,공감성)</p>
+									<label><span><input type="checkbox" name="mbtiList" value="T"/>T</span></label>
+									<label><span><input type="checkbox" name="mbtiList" value="F"/>F</span></label>
+									<p class="subTag">J : 판단형 (계획적,체계적) / P : 인식형 (즉흥적,융통성)</p>
+									<label><span><input type="checkbox" name="mbtiList" value="J"/>J</span></label>
+									<label><span><input type="checkbox" name="mbtiList" value="P"/>P</span></label>
+								</div>
+							</div>
+							<div class="row">
+								<input type="submit" id="formSubmit" value="상품등록"/>
+							</div>
+						</form>
+					</div>
 				</div>
-                
-              </div>
-            </div><!-- /.card -->
-          </div>
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+			</div>
+		</div>		
+		<!-- /.content -->
+	</div>
 
   <%@ include file="../inc/sellerFooter.jsp"%>
 <!-- REQUIRED SCRIPTS -->

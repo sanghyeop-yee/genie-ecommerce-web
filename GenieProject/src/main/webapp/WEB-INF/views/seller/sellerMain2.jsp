@@ -61,24 +61,13 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="/js_css/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">${logName }</a>
+        <a href="#" class="d-block"><b>${logName }님</b> 반갑습니다.</a>
       </div>
     </div>
 
-    <!-- SidebarSearch Form -->
-    <div class="form-inline">
-      <div class="input-group" data-widget="sidebar-search">
-        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search" style="">
-        <div class="input-group-append">
-          <button class="btn btn-sidebar">
-            <i class="fas fa-search fa-fw"></i>
-          </button>
-      </div>
-    </div>
-
+   
     
     <!-- Sidebar Menu -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -149,7 +138,7 @@
             <div class="card">
               <div class="card-body">
                <!-- <img src="../image/sellerstatus.png" style="width:50%; height:50%;"> -->
-                <h5 style="font-size:30px;text-align:center; color:lightgray; padding:280px;" >업체승인 요청 중 입니다. <br> 나중에 다시 접속해 주세요.</h5>
+                <h5 style="font-size:30px;text-align:center; color:lightgray; padding:280px;" >승인 요청 중 입니다. <br> 잠시후 다시 접속해 주세요.</h5>
               </div>
             </div>
           </div>

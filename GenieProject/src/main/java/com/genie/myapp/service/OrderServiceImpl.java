@@ -14,15 +14,20 @@ public class OrderServiceImpl implements OrderService{
 
     @Autowired
     OrderDAO dao;
-    
+
     @Override
     public List<CartVO> readyToPay(CartVO cvo) {
         return dao.readyToPay(cvo);
     }
 
     @Override
-    public int afterPayment(OrderVO ovo) {
-        return dao.afterPayment(ovo);
+    public List<OrderVO> getFromCart(OrderVO ovo) {
+        return dao.getFromCart(ovo);
+    }
+
+    @Override
+    public int afterPayment(OrderVO lvo) {
+        return dao.afterPayment(lvo);
     }
 
     @Override
@@ -34,5 +39,10 @@ public class OrderServiceImpl implements OrderService{
     public List<OrderVO> getOrderList(String genie_id) {
         return dao.getOrderList(genie_id);
     }
+    
+
+
+
+
     
 }

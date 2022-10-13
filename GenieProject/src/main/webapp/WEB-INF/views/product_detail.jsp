@@ -184,11 +184,12 @@
 
 <section class="product_detail">
     <!--<h1>상세페이지</h1>-->
-    <form method="post" action="/addCart" id="Cart">
+    <form method="get" action="/addCart" id="Cart">
         <div class="box-wrapper1"> 
             <input type="hidden" value="${logId}" name="genie_id">
             <input type="hidden" value="${pvo.product_id}" name="product_id">
-
+            <input type="hidden" name="product_name" value="${pvo.product_name}">
+ 
             <div class="box1" style="background-image:url(${pvo.product_image1})"></div>
             <div class="box2" onclick="detail1('${pvo.product_image1}')" style="background-image:url(${pvo.product_image1})"></div>
             <div class="box3" onclick="detail1('${pvo.product_image2}')" style="background-image:url(${pvo.product_image2})"></div>
@@ -223,7 +224,7 @@
             <button class="box12" id="addCart">
                 장바구니
             </button>
-            <input class="box13" type="button" id="buynow" value="구매하기"/>
+            <input class="box13" type="button" id="buynow" value="구매하기" onclick='return submit2(this.form);'/>
         </div>
     </form>
 
@@ -395,3 +396,10 @@
         </div>
     </div>
 </section>
+<script>
+function submit2(form) { 
+    form.action='/order/BuyNow'; 
+    form.submit(); 
+    return true; 
+}
+</script>

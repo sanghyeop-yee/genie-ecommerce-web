@@ -9,7 +9,9 @@
 
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
-
+<script>
+ var cartList = [];
+</script>
 <div class="wrapper">
     <div class="cart">
 
@@ -37,35 +39,63 @@
             <div class="clientlogo"></div>
             <div class="info">
               <h2>구매자 정보</h2>
-              <div>
-                  
-                  <h3>${uvo.user_name}</h3>
-                  <li><input type="hidden" name="genie_id" value="${uvo.genie_id}"></li>
-                  <p>${uvo.user_email}<br/>
-                    ${uvo.user_tel}<br/></p>
+              <div> 
+                <h3>${uvo.user_name}</h3>
+                <li><input type="hidden" name="genie_id" value="${uvo.genie_id}"></li>
+                <p>${uvo.user_email}<br/>
+                  ${uvo.user_tel}<br/></p>
               </div>
-  
-            <div id="project">
-             
-              <c:set var="sum_of_each" value="0"/>
-                <c:forEach items="${plist}" var="pvo">
-              <c:set var="sum_of_each" value="${total+pvo.product_price*pvo.cart_qty}"/>
-                <li><input type="hidden" id="cart_num" name="cart_num" value="${pvo.cart_num}"></li><br/> 
-                <li><input type="hidden" id="product_id" name="product" value="${pvo.product_id}"></li><br/>
-                <li><input type="hidden" id="product_name" name="product_name" value="${pvo.product_name}">${pvo.product_name}</li> 
-                <li><input type="hidden" id="cart_qty" name="cart_qty" value="${pvo.cart_qty}">${pvo.cart_qty}개</li> 
-                <li><input type="hidden" id="sum" name="sum" value="${sum_of_each}">${sum_of_each}원</li><br/>
-              </c:forEach></p>
-            </div>  
 
-            <c:set var="total" value="0"/>
-              <c:forEach var="pvo" items="${plist}">
-                <c:set var="total" value="${total+pvo.product_price*pvo.cart_qty}"/>
-              </c:forEach><br/>
-              <fmt:formatNumber value="${total}" pattern="#,###원"/>
-              <li><input type="hidden" id="total" value="${total}"></li>
-            </div><!--End Invoice Mid-->
+
+            <%-- 장바구니 구매 --%>
+            <c:if test="${bn.cart_qty!=''}">
+              <div id="project">  
+                <c:set var="sum_of_each" value="0"/>
+
+                <c:forEach items="${plist}" var="pvo">
+                  <c:set var="sum_of_each" value="${total+pvo.product_price*pvo.cart_qty}"/>
+
+                  <script>
+                      cartList.push(${pvo.cart_num});
+                  </script>
+
+                    <li><input type="hidden" id="cart_num${pvo.cart_num}" name="cartList" value="${pvo.cart_num}"></li><br/>
+                    <li><input type="hidden" id="product_id${pvo.cart_num}" name="product" value="${pvo.product_id}"></li><br/>
+                    <li><input type="hidden" id="product_name${pvo.cart_num}" name="product_name" value="${pvo.product_name}${bn.product_name}"/> ${pvo.product_name}${bn.product_name}</li> 
+                    <li><input type="hidden" id="cart_qty${pvo.cart_num}" name="cart_qty" value="${pvo.cart_qty}"/>${bn.cart_qty}개</li> 
+                    <li><input type="hidden" id="sum${pvo.cart_num}" name="sum" value="${sum_of_each}">${sum_of_each}원</li><br/>
+                </c:forEach></p>
+              </div>
+
+              <c:set var="total" value="0"/>
+                <c:forEach var="pvo" items="${plist}">
+                  <c:set var="total" value="${total+pvo.product_price*pvo.cart_qty}"/>
+                </c:forEach><br/>
+                  <fmt:formatNumber value="${total}" pattern="#,###원"/>
+                  <li><input type="hidden" id="total" value="${total}"></li>
+                  
+              </c:if>
             
+
+
+            <%-- 바로 구매 --%>
+          <c:if test="${total!=''}">
+               
+              <%-- <li><input type="hidden" id="cart_num${pvo.cart_num}" name="cartList" value="${pvo.cart_num}"></li><br/>  --%>
+              <li><input type="hidden" id="product_id${pvo.cart_num}" name="product" value="${bn.product_id}"></li><br/>
+              <li><input type="hidden" id="product_name${pvo.cart_num}" name="product_name" value="${bn.product_name}"/>${bn.product_name}</li> 
+              <li><input type="hidden" id="cart_qty${pvo.cart_num}" name="cart_qty" value="${bn.cart_qty}"/>${bn.cart_qty}개 바로구매</li> 
+            </div>
+       
+            </div>
+          </c:if>
+
+                  <fmt:formatNumber value="${bn.cart_qty*bn.cart_price}" pattern="#,###원"/>
+                <li><input type="text" id="total" value="${bn.cart_qty*bn.cart_price}"></li>
+            
+            <!--End Invoice Mid-->
+            
+
             <div id="invoice-bot">
             
                 <div id="table">
@@ -131,13 +161,15 @@
         alert("요청사항을 입력하세요");
         return false;
       }
-
+     
       IMP.request_pay({
           pg: 'html5_inicis',                  
           pay_method: 'card',         
           merchant_uid: 'merchant_' + new Date().getTime(), 
-          name:'<c:forEach var="pvo" items="${plist}">${pvo.product_name} </c:forEach>',     
+          name:'<c:forEach var="pvo" items="${plist}">[${pvo.product_name}] </c:forEach> ${bn.product_name}',     
+          
           amount: '${total}',//가격          
+          
           buyer_email: '${uvo.user_email}',
           buyer_name: $("#receiver_name").val(),
           buyer_tel: $("#receiver_tel").val(),      
@@ -151,19 +183,23 @@
                   var orderData = {
                       order_num: rsp.imp_uid,
                       merchant_uid: rsp.merchant_uid,
+
                       genie_id:$("input[name=genie_id]").val(),
-                      cart_num: $("input[name=cart_num]").val(),
-                      product_id: $("input[name=product_id]").val(),
-                      product_name: $("input[name=product_name]").val(),
+                      cartList: cartList,
                       order_qty: $("input[name=cart_qty]").val(),
                       order_price: $("input[name=sum]").val(),
+
                       recipient_name: $("#receiver_name").val(),
                       recipient_phone: $("#receiver_tel").val(),      
                       recipient_address: $("#receiver_addr").val(),
                       recipient_request: $("#recipient_request").val(),
+
                       payment_method: rsp.pay_method,
                                        
                   };//data
+
+                  //alert(JSON.stringify(orderData));
+                  
                   $.ajax({
                     url: "/order/orderCompletion", // 예: https://www.myservice.com/payments/complete
                     data: orderData,

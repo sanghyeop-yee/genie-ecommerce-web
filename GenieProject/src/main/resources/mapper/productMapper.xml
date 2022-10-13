@@ -112,8 +112,10 @@
 	  	<where>
 	  		<foreach collection="cartList" index="index" item ="item" open="cart_num in (" separator ="," close=")">
 	  			#{item}  			
-	  		</foreach>	 
+	  		</foreach>
+           	  <!-- and genie_id=#{genie_id} -->
 	  	</where>
+           
 	</delete>
 
     <update id="updateCart">
