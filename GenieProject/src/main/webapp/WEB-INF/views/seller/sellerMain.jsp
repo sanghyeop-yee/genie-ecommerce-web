@@ -77,6 +77,14 @@
   text-align: center;
 }
 
+.order_delivery1 .card, .order_delivery2 .card, .month_bestseller .card{
+  min-height: 200px;
+}
+
+.total_sales .card, .category_sales .card{
+  min-height: 410px;
+}
+
 
 </style>
 
@@ -182,7 +190,7 @@
                       </tbody>
                     </table>
                   </p>
-                  <a href="#" class="card-link">더보기</a>
+                  <a href="#" class="card-link"></a>
                 </div>
               </div>
             </div>
@@ -195,6 +203,7 @@
                   <p class="card-text">
                     이번 달 총 매출은 <b><fmt:formatNumber type="number" maxFractionDigits="3" value="${orderSum}" /> 원</b> 이에요.
                   </p>
+                  <br>
                   <!-- 차트 (chart js)-->
                   <canvas id="chart" style="width:200px; height:75px;"></canvas>
                   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

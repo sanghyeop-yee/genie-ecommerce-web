@@ -23,7 +23,7 @@
 }
 
 .table{
-	font-size: 95%;
+	font-size: 13px;
     text-align: center;
   }
 
@@ -102,7 +102,7 @@
                 
                 <div>
                 	<form method="get" action="/seller/sellerProduct" id="searchFrm">
-                		<select name="searchKey">
+                		<select name="searchKey" style="height:25.2px;">
                 			<option value="product_name">상품명</option>
                 			<option value="product_category">카테고리</option>
                 			<option value="product_tag">태그</option>

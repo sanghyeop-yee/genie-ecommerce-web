@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.genie.myapp.dao.OrderDAO">
+
 <!-- 구매정보 이동 -->
 
 <!-- 장바구니 정보 가져오기 -->
@@ -19,50 +20,71 @@
 	  	</foreach>	 
 
     </select>
+
+    <select id="getFromCart" resultType="OrderVO">
+
+        select * 
+        from cart c 
+        join product p 
+        on c.product_id=p.product_id 
+        where c.cart_num in
+
+	  	<foreach collection="cartList" index="index" item ="item" open="(" separator="," close=")">
+	  		${item}
+	  	</foreach>	
     
-<!-- 주문정보 저장 -->
+    </select>
+    
+    <!-- 주문정보 저장 -->
     <insert id="afterPayment">
 
     	insert into myorder 
             (order_num, 
             genie_id, 
             product_id,
+
             recipient_name, 
             recipient_phone,
             recipient_address, 
             recipient_request,
+
             order_price,
             order_qty) 
 
-        values
-            (#{order_num}, 
+        values  
+        
+
+            (#{order_num},
             #{genie_id}, 
             #{product_id}, 
+
             #{recipient_name},
             #{recipient_phone},
             #{recipient_address}, 
             #{recipient_request}, 
+
             #{order_price},
             #{order_qty})
         
-
+        
     </insert>
+
 <!-- 장바구니 삭제 -->
-    <delete id="afterOrderCart1">
+    <delete id="afterOrderCart">
         delete from cart 
             <where>
                 <foreach collection="cartList" index="index" item ="item" open="cart_num in (" separator ="," close=")">
                     #{item}  			
                 </foreach>	 
             </where>
-        and genie_id=#{genie_id}
     </delete>
-
+<!-- 
     <delete id="afterOrderCart">
         delete from cart where cart_num=#{cart_num}
-    </delete>
+    </delete> -->
 
     <!-- 주문 완료 페이지 -->
+
     <select id="getOrderList" resultType="OrderVO">
     
 		select 
