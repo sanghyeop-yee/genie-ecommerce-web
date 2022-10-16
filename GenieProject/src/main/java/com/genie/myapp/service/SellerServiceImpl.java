@@ -3,8 +3,8 @@ package com.genie.myapp.service;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.SellerDAO;
@@ -20,8 +20,11 @@ import com.genie.myapp.vo.SellerVO;
 @Service
 public class SellerServiceImpl implements SellerService {
 	
-	@Inject
+	@Autowired
 	SellerDAO dao;
+
+	@Autowired
+    PasswordEncoder passwordEncoder;
   
 // 주문목록
   @Override
@@ -36,8 +39,9 @@ public class SellerServiceImpl implements SellerService {
 
 	@Override
 	public int sellerWrite(SellerVO vo) {
-		return dao.sellerWrite(vo);
-
+		String enPw=passwordEncoder.encode(vo.getGenie_pwd());
+        vo.setGenie_pwd(enPw);
+        return dao.sellerWrite(vo);
 	}
 
 	@Override

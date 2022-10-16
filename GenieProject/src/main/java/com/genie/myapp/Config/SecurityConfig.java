@@ -1,8 +1,9 @@
-package com.genie.myapp;
+package com.genie.myapp.Config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,6 +16,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private LoginFail loginFail;
 
+	@Autowired
+	private RoleDetailService RoleDetailService;
+
 	@Bean
 	public BCryptPasswordEncoder encodePwd() {
 		return new BCryptPasswordEncoder();
@@ -22,7 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable();
+		http.csrf().disable()
+		.cors().disable();
 		
 		http.authorizeRequests()
 			.antMatchers("/**").permitAll()
@@ -41,4 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		;
 		
 	}
+
+	@Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(RoleDetailService).passwordEncoder(encodePwd());
+    }
 }
+

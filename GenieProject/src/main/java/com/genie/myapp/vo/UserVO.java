@@ -1,13 +1,5 @@
 package com.genie.myapp.vo;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
-
 public class UserVO {
 
     private String genie_num;
@@ -33,20 +25,6 @@ public class UserVO {
 	
     private String sign_in_date;
     private String payment_method;
-
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
-
-		if (this.ROLE.equals("ADMIN")) {
-			auth.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-		} else if(this.ROLE.equals("SELLER")){
-			auth.add(new SimpleGrantedAuthority("ROLE_SELLER"));
-		}else{
-            auth.add(new SimpleGrantedAuthority("ROLE_USER"));
-        }
-		
-		return auth;
-	}
 
 
 

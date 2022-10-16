@@ -92,16 +92,22 @@
 		from myorder m
 		join product d
 		on m.product_id=d.product_id 
-		where m.genie_id=#{param1} 
+		where m.genie_id=#{param1} order by order_writedate desc
 
 	</select>
 
 	<!-- 찜한 상품 리스트-->
 	<select id="getLikeList" resultType="ProductVO">
+
 		select * 
 		from product_like l 
 		join product d 
 		on l.product_id=d.product_id 
-		where l.genie_id=#{param1}
+		where l.genie_id=#{param1} order by product_like desc
+		
+	</select>
+
+	<select id="findByGenie_id">
+		select * from account where genie_id=#{genie_id}
 	</select>
 </mapper>

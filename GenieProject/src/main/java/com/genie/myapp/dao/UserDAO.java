@@ -1,6 +1,7 @@
 package com.genie.myapp.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -45,4 +46,6 @@ public interface UserDAO {
 	
 	//찜한 상품 리스트
 	public List<ProductVO> getLikeList(String genie_id);
+
+	public Optional<AccountVO> findByGenie_id(String Genie_id);
 }

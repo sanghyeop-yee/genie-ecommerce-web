@@ -5,15 +5,15 @@
 <section class="registration">
 	<div class="wrapper">
 		<h1>일반회원 회원가입</h1>
-		<input type="text" value="${logStatus=='Y' && role=='ROLE_USER'}"/>
-		<input type="text" value="${role}"/>
+		<%-- <input type="text" value="${logStatus=='Y' && role=='ROLE_USER'}"/> --%>
+		<%-- <input type="text" value="${role}"/> --%>
 		<form method="post" action="/user/UserWrite" id="logFrm">
 			<input type="hidden" value="USER" name="ROLE"/>
 			<ul class="idForm">
 				<li>아이디</li>
 				<li>
-					<input type="text" id="genie_id" name="genie_id" placeholder="아이디를 입력하세요">
-					<input type="button" id="idCheck" value="아이디 중복검사" >
+					<input type="text" id="genie_id" name="genie_id" placeholder="아이디를 입력하세요"/>
+					<input type="button" id="idCheck" value="아이디 중복검사"/>
 				</li>
 				<input type ="hidden" id = "idCheckState" value = "N"/>
 			</ul>

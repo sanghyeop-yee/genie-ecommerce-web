@@ -133,10 +133,10 @@
 			</div>
 
 			<div class="contact-content">
-			   <li><a href="#">Home</a></li>
-            <li><a href="#mbti">MBTI</a></li>
-            <li><a href="#category">카테고리</a></li>
-            <li><a href="#tag">인기태그</a></li>
+			   <li><a href="/#">Home</a></li>
+            <li><a href="/#mbti">MBTI</a></li>
+            <li><a href="/#category">카테고리</a></li>
+            <li><a href="/#tag">인기태그</a></li>
 			</div>
 
 			<div class="contact-content">
