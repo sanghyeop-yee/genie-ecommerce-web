@@ -22,13 +22,13 @@
 		<a href="/"><img src="/image/logo_western.png" style="width:8vw; height:auto; display:block;"></a>
 		<ul>
 			<%-- 카테고리 --%>
-			<li><a href="#category">카테고리</a></li>
+			<li><a href="/#category">카테고리</a></li>
 			<%-- 인기태그 --%>
-			<li><a href="#tag">인기태그</a></li>
+			<li><a href="/#tag">인기태그</a></li>
 			<%-- MBTI --%>
-			<li><a href="#mbti">MBTI</a></li>
+			<li><a href="/#mbti">MBTI</a></li>
 			<%-- 제품리스트 --%>
-			<li><a href="#product_list">추천선물</a></li>
+			<li><a href="/#product_list">추천선물</a></li>
 		</ul>
 		<ul>
 			<%-- 전체상품 --%>

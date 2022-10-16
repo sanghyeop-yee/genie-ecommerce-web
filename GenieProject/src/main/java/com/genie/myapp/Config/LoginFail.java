@@ -1,4 +1,4 @@
-package com.genie.myapp;
+package com.genie.myapp.Config;
 
 import java.io.IOException;
 

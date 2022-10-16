@@ -1,10 +1,9 @@
 package com.genie.myapp.service;
 
-
 import java.util.List;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.genie.myapp.dao.UserDAO;
@@ -17,8 +16,12 @@ import com.genie.myapp.vo.UserVO;
 @Service
 public class UserServiceImpl implements UserService{
 
-    @Inject
+    @Autowired
     UserDAO dao;
+    
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
 
     @Override
     public int idCheck(String genie_id) {
@@ -83,8 +86,6 @@ public class UserServiceImpl implements UserService{
     public List<ProductVO> getLikeList(String genie_id) {
         return dao.getLikeList(genie_id);
     }
-
-    
 
        
 }

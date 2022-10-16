@@ -2,10 +2,6 @@ package com.genie.myapp.vo;
 
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
 public class OrderVO {
 
     private String order_num;

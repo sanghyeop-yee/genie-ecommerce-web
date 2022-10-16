@@ -274,10 +274,10 @@ nav .sidenav-trigger i {
                           <tr>
                              <th>주문번호</th>
                              <th>상품명</th>
-                             <th></th>
-                             <th></th>
                              <th>수량</th>
                              <th>가격</th>
+                             <th>주문 상태</th>
+                             <th>주문 날짜</th>
                           </tr>
                        </thead>
                     <c:forEach var="orderlist" items="${list}">
@@ -285,10 +285,10 @@ nav .sidenav-trigger i {
                           <tr>
                              <td>${orderlist.order_num}</td>
                              <td>${orderlist.product_name}</td>
-                             <td></td>
-                             <td></td>
                              <td>${orderlist.order_qty}</td>
                              <td><fmt:formatNumber value="${orderlist.order_price}" pattern="#,###원" /></td>
+                             <td>${orderlist.recipient_delivery_status}</td>
+                             <td>${orderlist.order_writedate}</td>
                           </tr>
                        </tbody>
                     </c:forEach>
