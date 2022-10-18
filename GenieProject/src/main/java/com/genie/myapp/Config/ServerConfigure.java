@@ -42,8 +42,8 @@ public class ServerConfigure implements WebMvcConfigurer {
 		.order(3);
 	
 		registry.addInterceptor(LogoutInterceptor)//로그인이 되어있다면
-		.addPathPatterns("/login")
-		.order(4);//안되게
+		.addPathPatterns("/login","/sellerForm","/loginOK")//못 들어가게
+		.order(4);
 
 	}
 }

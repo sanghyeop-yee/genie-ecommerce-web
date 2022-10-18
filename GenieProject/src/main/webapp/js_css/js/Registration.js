@@ -1,6 +1,6 @@
 $(function(){
 	$("#idCheck").click(function(){
-		window.open("/user/idCheck?genie_id="+$("#genie_id").val(),"idCheck","width=400,height=300");
+		window.open("/idCheck?genie_id="+$("#genie_id").val(),"idCheck","width=400,height=300");
 	});
 
 	$("#genie_id").change(function(){

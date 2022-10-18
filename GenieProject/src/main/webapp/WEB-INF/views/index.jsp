@@ -103,16 +103,16 @@
          </div>
       -->
 
-         <c:forEach var="pvo" items="${plist}">
+         <c:forEach var="pvo" items="${comlist}">
             <div class="card-col">
                <a class="product-title" href="/product_detail?product_id=${pvo.product_id}" >
                <div class="card_header">
                   <img id="img-caption"  src="${pvo.product_image1}" alt="Img_1">
                </div>
                <div class="card_bottom">
-                  <h3>${pvo.genie_id}</h3>
+                  <h5 style="color:gray; font-size: 16px;">${pvo.company_name}</h5>
                   <p>${pvo.product_name}</p>	
-                  <p><fmt:formatNumber value="${pvo.product_price}" pattern="#,###원"/></p></a>	
+                  <p  style="margin-top: 8px;"><b><fmt:formatNumber value="${pvo.product_price}" pattern="#,###원"/></b></p></a>	
                </div>
             </div>
          </c:forEach>

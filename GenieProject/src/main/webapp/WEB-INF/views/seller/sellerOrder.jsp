@@ -17,9 +17,10 @@
 
   #orderbody{
 		padding-top: 10px;
-		padding-left: 50px;
-		padding-right: 50px;
+		padding-left: 100px;
+		padding-right: 100px;
 	}
+
 	.info-box-text{
 		font-size: 13px;
 	}
@@ -31,14 +32,49 @@
 	#icon {
 		width: 100%;
 		height: 100%;
-    border-radius: 15px;
+    border-radius: 25px;
     text-shadow: 1px 1px 1px gray;
 
 	}
+
   .table{
-    font-size: 80%;
+    font-size: 82%;
     text-align: center;
   }
+
+  #orderListBtn{
+    background-color: #4846f5;
+    opacity: 80%;
+    color: white;
+    border-color: transparent;
+    border-radius: 5px 5px 0px 0px;
+  }
+
+  .table [type="button"]{
+	  width: 42px;
+   
+    font-size: 12px;
+    letter-spacing: -1px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    color: #0073e9;
+    text-align: center;
+    background: #fff;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.deliveryinfo{
+  border-color: gray;
+  color: #0073e9;
+  border-radius: 3px;
+}
+
+#subtitle{
+	padding-left:80px;
+}
+
+
 
 </style>
 
@@ -75,6 +111,59 @@
 		});	
 	}
 </script>
+<script>
+
+  $(function(){
+  
+
+    $('.deliveredpro').click(function(){
+      console.log("aaaa")
+      $('.table tbody').empty();
+        var deliveryStatus  ="";
+       
+        //서버에 접속하여 배송완료....
+        $.ajax({
+            type: "post",
+            //async: false, // 동기요청 필요 -> 한 작업이 끝나야 그 다음 작업 가능
+            url: "/seller/sellerOrder1", // 어디로 보낼까?
+            success: function(data){ // 요청이 성공하면 실행되는 콜백함수
+              console.log(data);
+              $.each(data, function(i, value){
+                deliveryStatus += '<tr>'
+                  +'<td>' + value.order_num + '</td>'
+                  +'<td>' + value.order_writedate + '</td>'
+                  +'<td>' + value.product_name + '</td>'
+                  +'<td>' + value.order_qty + '</td>'
+                  +'<td>'+value.order_price+'</td>'
+                  +'<td>' + value.genie_id +'</td>'
+                  +'<td>' 
+                      +'<select class="deliveryinfo" name="s_delivery_status" id="s_delivery_status'+i+'">'
+                      + '<option value="delivered" selected>배송완료</option>'                                              
+                      + '<option value="returned">반품</option>'
+                      + '</select>'
+                  +'</td>'
+                  +'</tr>'
+               });
+              $('.table').append(deliveryStatus);
+              console.log(deliveryStatus)
+              $('.deliveredpro').hide();
+              $('.deliveredpro').after('<button class="deliveryList" id="orderListBtn" style="font-size: 13px;" ><i class="fa fa-arrow-left" aria-hidden="true"></i> 뒤로가기</button>');
+              $('.deliveryList').click(function(){
+                 location.reload();
+              });
+            },
+            error: function(data, textStatus){ // 요청이 실패했을때 실행되는 콜백함수
+              alert("에러가 발생했습니다.");
+            }
+           
+          });	
+
+
+        // success 
+     
+    });//click
+  });//function
+</script>
 
 <%@ include file="../inc/sellerNav.jsp"%>
 
@@ -84,15 +173,13 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">주문관리</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/seller/sellerMain">Home</a></li>
-              <li class="breadcrumb-item active">Order</li>
-            </ol>
-          </div><!-- /.col -->
+         
+          <div class="col-sm-6" id="subtitle">
+            <ol class="breadcrumb float-sm-left" >
+              <li class="breadcrumb-item"><a href="/seller/sellerMain"style="color:gray;">Main</a></li>
+              <li class="breadcrumb-item active" style="color: #047bff;">주문관리</li>
+              </ol>
+            </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -106,11 +193,11 @@
         <div class="row">
           <div class="col-12 col-sm-6 col-md-4">
             <div class="info-box" style="background-color: transparent; box-shadow: none;">
-              <span class="info-box-icon elevation-1" id="icon" style="background-color:#6072bf; color:white;"><i class="fas fa-gift">
+              <span class="info-box-icon elevation-1" id="icon" style="background: linear-gradient(#a7b1dc,#798ff2); color:white;"><i class="fas fa-gift">
                 <div class="info-box-content">
                   <span class="info-box-text">배송 준비 중</span>
                   <span class="info-box-number">
-                    <h2>${deliveryPending} 건</h2>
+                    <h2><b>${deliveryPending} 건</b></h2>
                   </span>
                 </div>
               </i></span>
@@ -118,11 +205,11 @@
           </div>
           <div class="col-12 col-sm-6 col-md-4">
             <div class="info-box mb-3" style="background-color: transparent; box-shadow: none;">
-              <span class="info-box-icon elevation-1" id="icon" style="background-color:#7060bf; color:white;"><i class="fas fa-shopping-cart">
+              <span class="info-box-icon elevation-1" id="icon" style="background:linear-gradient(#b6b0d6, #7c65ee); color:white;"><i class="fas fa-shopping-cart">
                 <div class="info-box-content">
                   <span class="info-box-text">오늘 들어온 주문</span>
                   <span class="info-box-number">
-                    <h2> ${todayOrder} 건</h2>
+                    <h2><b>${todayOrder} 건</b></h2>
                   </span>
                 </div>
               </i></span> 
@@ -130,11 +217,11 @@
           </div>
           <div class="col-12 col-sm-6 col-md-4">
             <div class="info-box mb-3" style="background-color: transparent; box-shadow: none;">
-              <span class="info-box-icon elevation-1" id="icon" style="background-color:#60b5bf; color:white;"><i class="fas fa-check"> 
+              <span class="info-box-icon elevation-1" id="icon" style="background:linear-gradient(#9ec7cc,#0eabbc); color:white;"><i class="fas fa-check"> 
                 <div class="info-box-content">
                   <span class="info-box-text">배송 중</span>
                   <span class="info-box-number">
-                    <h2> ${deliveringOrder} 건</h2>
+                    <h2><b>${deliveringOrder} 건</b></h2>
                   </span>
                 </div>
               </i></span>
@@ -145,6 +232,8 @@
             <div class="col-lg-12">
               <div class="card card-primary card-outline">
                 <div class="card-body">
+                  <button class="deliveredpro" id="orderListBtn" style="font-size: 13px;">배송완료목록 바로가기 <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                  <br>
                   <h5 class="card-title"></h5> <!--주문목록-->
                   <p class="card-text">
                     <table class="table">
@@ -170,45 +259,13 @@
                             <td>${vo.order_qty}</td>
                             <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.order_price}" /> 원</td>
                             <td>${vo.genie_id}</td>
-                            <td>
-                                <select name="s_delivery_status${i.index }" id="s_delivery_status${i.index }">
-                                    <c:choose>
-                                        <c:when test="${vo.recipient_delivery_status=='delivery_prepared' }">
-                                            <option value="delivery_prepared" selected>배송준비중</option>
-                                            <option value="delivering">배송중</option>
-                                            <option value="delivered">배송완료</option>
-                                            <option value="cancelled">주문취소</option>
-                                            <option value="returned">반품</option>
-                                        </c:when>
-                                        <c:when test="${vo.recipient_delivery_status=='delivering' }">
-                                            <option value="delivery_prepared">배송준비중</option>
-                                            <option value="delivering" selected>배송중</option>
-                                            <option value="delivered">배송완료</option>
-                                            <option value="cancelled">주문취소</option>
-                                            <option value="returned">반품</option>
-                                        </c:when>
-                                        <c:when test="${vo.recipient_delivery_status=='delivered' }">
-                                            <option value="delivery_prepared">배송준비중</option>
-                                            <option value="delivering">배송중</option>
-                                            <option value="delivered" selected>배송완료</option>
-                                            <option value="cancelled">주문취소</option>
-                                            <option value="returned">반품</option>
-                                        </c:when>
-                                        <c:when test="${vo.recipient_delivery_status=='cancelled' }">
-                                            <option value="delivery_prepared">배송준비중</option>
-                                            <option value="delivering">배송중</option>
-                                            <option value="delivered">배송완료</option>
-                                            <option value="cancelled" selected>주문취소</option>
-                                            <option value="returned">반품</option>
-                                        </c:when>
-                                        <c:when test="${vo.recipient_delivery_status=='returned' }">
-                                            <option value="delivery_prepared">배송준비중</option>
-                                            <option value="delivering">배송중</option>
-                                            <option value="delivered">배송완료</option>
-                                            <option value="cancelled">주문취소</option>
-                                            <option value="returned" selected>반품</option>
-                                        </c:when>
-                                    </c:choose>
+                            <td >
+                                <select class="deliveryinfo" name="s_delivery_status${i.index }" id="s_delivery_status${i.index }">
+                                  <option value="delivery_prepared" <c:if test="${vo.recipient_delivery_status=='delivery_prepared' }">selected</c:if>>배송준비중</option>
+                                  <option value="delivering" <c:if test="${vo.recipient_delivery_status=='delivering' }">selected</c:if>>배송중</option>
+                                  <option value="delivered" <c:if test="${vo.recipient_delivery_status=='delivered' }">selected</c:if>> 배송완료</option>
+                                  <option value="cancelled" <c:if test="${vo.recipient_delivery_status=='cancelled' }">selected</c:if>>주문취소</option>
+                                  <option value="returned" <c:if test="${vo.recipient_delivery_status=='returned' }">selected</c:if>>반품</option>
                                 </select>
                             </td>
                             <td width=10%>

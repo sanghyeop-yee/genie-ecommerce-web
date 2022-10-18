@@ -79,4 +79,7 @@ public interface AdminService {
 
 	// Test: 유저 총 레코드 수
 	public int mainTotalRecord(AdminVO VO);
+	
+	// //제품 관리
+    // public Object getadminProduct(String product_id);
 }

@@ -64,17 +64,20 @@
 /* ---------선택상품삭제----------- */
 #delete {
   margin-left: 4.3vw;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
 }
 /* --------------------------총상품가격---------------------- */
-#total{
-    display: flex;
-    justify-content: right;
-    width: 63%;
-    font-size: 1.5rem;
-    padding: 1ch;
-    margin: 0 27vw;
-    border-radius: 8px;
-    color: #0077ed;
+#total {
+  display: flex;
+  justify-content: right;
+  width: 63%;
+  font-size: 1.5rem;
+  padding: 1ch;
+  margin: 0 27vw;
+  border-radius: 8px;
+  color: #0077ed;
 }
 /* --------------------------------구매하기버튼---------------------- */
 .submit-wrapper {

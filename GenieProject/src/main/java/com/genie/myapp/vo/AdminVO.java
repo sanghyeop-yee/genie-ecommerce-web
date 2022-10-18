@@ -5,6 +5,7 @@ public class AdminVO {
 	private String product_category;
 	private String product_tag_id;
 	private String product_tag;
+	
 
 	@Override
 	public String toString() {

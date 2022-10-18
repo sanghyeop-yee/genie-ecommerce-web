@@ -261,7 +261,7 @@ nav .sidenav-trigger i {
           <div class="section">
            <!-- Current balance & total transactions cards-->
            <div class="row vertical-modern-dashboard">
-              <div class="col s12 m8 l8">
+              <div class="col s12 m12 l12">
                  <!-- Current Balance -->
                  <div class="card animate fadeLeft">
                     <div class="card-content">

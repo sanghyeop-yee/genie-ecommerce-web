@@ -60,15 +60,15 @@ table {
 }
 td {
   padding: 5px 0 5px 15px;
-  border-radius: 0 0 15px 15px;
+  border-radius: 15px;
+  border: 2px solid #eee;
 }
 .tabletitle {
   padding: 5px;
   background: #eee;
 }
 .service {
-  border: 1px solid #eee;
-  border-radius: 0 0 15px 15px;
+  border: 2px solid #eee;
 }
 .itemtext-top {
   background: #2dcef8;
@@ -79,7 +79,7 @@ td {
   margin-bottom: 15px;
 }
 .itemtext-inner {
-  border: 1px solid #eee;
+  border: 2px solid #eee;
   border-radius: 8px;
   width: 700px;
   padding: 10px;
@@ -87,8 +87,7 @@ td {
 }
 .item {
   width: 50%;
-  background: #0071e3;
-  border-radius: 15px 15px 0 0;
+  background: #fff;
 }
 .itemtext {
   font-size: 0.9em;
@@ -131,11 +130,16 @@ td {
 
 .payment-table td,
 th {
-  border: 1px solid #dddddd;
+  border: 2px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
 
 .payment-table tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+.total-price {
+  text-align: right;
+  color: #0800ff;
 }

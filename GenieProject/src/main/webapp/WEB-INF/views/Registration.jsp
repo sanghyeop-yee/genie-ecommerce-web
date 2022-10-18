@@ -7,7 +7,7 @@
 		<h1>일반회원 회원가입</h1>
 		<%-- <input type="text" value="${logStatus=='Y' && role=='ROLE_USER'}"/> --%>
 		<%-- <input type="text" value="${role}"/> --%>
-		<form method="post" action="/user/UserWrite" id="logFrm">
+		<form method="post" action="/UserWrite" id="logFrm">
 			<input type="hidden" value="USER" name="ROLE"/>
 			<ul class="idForm">
 				<li>아이디</li>

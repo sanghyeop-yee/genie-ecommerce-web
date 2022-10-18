@@ -44,6 +44,7 @@ public class ProductController {
 		mav.addObject("tlist", adminService.adminTag(vo));
 		mav.addObject("plist", productService.listProduct(PVO));
 		mav.addObject("pvo", PVO);
+		mav.addObject("comlist", productService.companyName(PVO));
 		// pVO.setTotalRecord(productService.mainAllSelect(PVO));
 		mav.setViewName("/index");
 

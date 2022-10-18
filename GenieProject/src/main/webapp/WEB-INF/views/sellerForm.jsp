@@ -133,7 +133,7 @@
 		
 		//아이디 중복검사
 		$("#idCheck").click(function(){
-			window.open("/seller/sellerIdCheck?genie_id="+$("#genie_id").val(),"sellerIdCheck","width=400, height=200");
+			window.open("/idCheck?genie_id="+$("#genie_id").val(),"sellerIdCheck","width=400, height=200");
 		});
 		$("#genie_id").change(function(){
 			$("#idCheckState").val("N");
@@ -209,8 +209,8 @@
 <section class="home">
 	<div class="container">
 		<h1>기업회원 회원가입</h1>
-		<form method="post" action="/seller/sellerWrite" id="sellerFrm">
-			<input type="hidden" value="SELLER" name="member_type"/>
+		<form method="post" action="/sellerWrite" id="sellerFrm">
+			<input type="hidden" value="SELLER" name="ROLE"/>
 			<input type="hidden" value="N" name="seller_status"/>
 			<ul class="selForm">
 				<div id="idForm">

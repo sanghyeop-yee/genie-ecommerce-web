@@ -13,9 +13,9 @@ h1 {
   text-align: center;
   font-size: 30px;
   font-weight: 600;
-  margin-left: 30px;
-  color: #2DCEF8; 
+  color: rgb(50, 50, 50); 
   margin-bottom: 50px;
+  text-align: left;
 }
 
 h2 {
@@ -82,7 +82,7 @@ input[type=button], input[type=submit] {
   display: inline-block;
   font-size: 16px;
   margin: 20px;
-  width: 85%;
+  width: 40%;
   border: 2px solid #f6f6f6;
   border-radius: 10px 10px 10px 10px;
 }
@@ -97,17 +97,13 @@ input[type=text] {
   display: inline-block;
   font-size: 16px;
   margin: 10px;
-  width: 85%;
+  width: 88%;
   border: 2px solid #f6f6f6;
   border-radius: 10px 10px 10px 10px;
 }
 
-input[type=text]:placeholder {
-  color: #cccccc;
-}
-
-.userReg {
-  background-color: #F7D25A;
+#fourth{
+  background-color: #221a91;
   border: none;
   color: #fff;
   padding: 15px 32px;
@@ -116,10 +112,13 @@ input[type=text]:placeholder {
   display: inline-block;
   font-size: 16px;
   margin: 5px;
-  margin-top:50px;
-  width: 85%;
+  width: 90%;
   border: 2px solid #f6f6f6;
   border-radius: 10px 10px 10px 10px;
+}
+
+#delete{
+  background-color: #ff0000;
 }
 
 .comReg{
@@ -168,8 +167,8 @@ function admemberDel(){
    	<p>결제방식</p>
    		<input type="text" id="payment_method" class="second" name="payment_method" value=${vo.payment_method}>	
       <input type="submit" class="fourth" value="수정">
-      <a href="javascript:admemberDel()"><input type="button" class="fourth" value="삭제"></a>
-      <a href="/admin/admember"><input type="button" class="fourth" value="뒤로가기"></a>
+      <a href="javascript:admemberDel()"><input type="button" id="delete" value="삭제"></a>
+      <a href="/admin/admember"><input type="button" id="fourth" value="뒤로가기"></a>
     </form>
   </div>
 </div>

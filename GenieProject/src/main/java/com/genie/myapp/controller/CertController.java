@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,9 @@ public class CertController {
 
 	@Autowired
 	CertService CertService;
+
+	@Autowired
+    PasswordEncoder passwordEncoder;
 
 	ModelAndView mav;
     
@@ -211,13 +215,16 @@ public class CertController {
 	// 비밀번호 변경
 	@PostMapping("modify_pwd")
 	public ResponseEntity<String> modifyPassword(UserVO vo, HttpSession session) {
+
+		String enPw=passwordEncoder.encode(vo.getGenie_pwd());
+		vo.setGenie_pwd(enPw);
+
 		int cnt = CertService.PwdEditOk(vo);
 		System.out.print(cnt);
-		session.setMaxInactiveInterval(0);
-		session.setAttribute("authStatus", null);
 
 		return new ResponseEntity<String>("비밀번호를 변경했습니다",HttpStatus.OK);
 	}
 
 
+	
 }

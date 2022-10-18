@@ -14,6 +14,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -50,7 +51,7 @@ public class OrderController {
     // --------------------------------------------상품
 	// 결제페이지-----------------------------------------------------
 	// 바로 주문
-	@GetMapping("BuyNow")
+	@PostMapping("BuyNow")
 	public ModelAndView BuyNow(HttpSession session, CartVO cvo) {
 		
 		String genie_id=(String)session.getAttribute("logId");
@@ -64,7 +65,7 @@ public class OrderController {
 		return mav;
 	}
 	// 장바구니에서 주문
-	@GetMapping("payment")
+	@PostMapping("payment")
 	public ModelAndView payment(HttpSession session, CartVO cvo) {
 
 		String genie_id = (String) session.getAttribute("logId");
@@ -99,19 +100,23 @@ public class OrderController {
 			try{
 				//제품 정보 가져오기
 				List<OrderVO> cList = orderService.getFromCart(ovo);
+				//System.out.println("ovo 제품정보 : "+ovo.toString());
 				System.out.println("제품정보 : "+cList.size()); /// gfdgfgdg
 				for(OrderVO vo : cList){
 					vo.setOrder_num(ovo.getOrder_num());
 					vo.setGenie_id(genie_id);
+
 					vo.setRecipient_name(ovo.getRecipient_name());
 					vo.setRecipient_phone(ovo.getRecipient_phone());
 					vo.setRecipient_address(ovo.getRecipient_address());
 					vo.setRecipient_request(ovo.getRecipient_request());
-					vo.setOrder_price(ovo.getOrder_price());
-					vo.setOrder_qty(ovo.getOrder_qty());
+
+					vo.setOrder_price(vo.getCart_price());
+					vo.setOrder_qty(vo.getCart_qty());
 					vo.setPayment_method(ovo.getPayment_method());
 
 					System.out.println(vo.toString());
+
 					orderService.afterPayment(vo);
 
 				}

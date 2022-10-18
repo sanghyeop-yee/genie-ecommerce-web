@@ -7,11 +7,11 @@
 	<!-- 로그인 -->
 	<select id = "loginOk" resultType = "UserVO">
 
-		select u.genie_id, u.user_name, a.ROLE  
+		select a.genie_id, a.genie_pwd, u.user_name, a.ROLE  
 		from user u 
 		join account a 
 		on a.genie_id=u.genie_id 
-		where a.genie_id=#{genie_id} and genie_pwd=sha2(#{genie_pwd},256) and a.withdrawal=1;
+		where a.genie_id=#{genie_id} and a.withdrawal=1;
 
 	</select>
 
@@ -26,7 +26,7 @@
 	<insert id="AccountWrite">
 
 		insert into account(ROLE, genie_id, genie_pwd) 
-		values(#{ROLE},#{genie_id}, sha2(#{genie_pwd},256))
+		values(#{ROLE},#{genie_id}, #{genie_pwd})
 
 	</insert>
 
@@ -72,8 +72,8 @@
 	<update id ="PwdEditOk">
 
 		update account 
-		set genie_pwd=sha2(#{genie_pwd2},256)
-		where genie_id=#{genie_id} and genie_pwd=sha2(#{genie_pwd},256)
+		set genie_pwd=#{genie_pwd2}
+		where genie_id=#{genie_id}
 
 	</update>
 	

@@ -160,7 +160,7 @@ public class AdminController {
 			return mav;
 		}	
 		
-		// 선택된 유저의 정보 수정 폼
+		// 선택된 카테고리 정보 수정 폼
 		@GetMapping("adminCategoryPop")
 		public ModelAndView adcategoryPop(@RequestParam("category_id") String category_id) {
 			ModelAndView mav = new ModelAndView();
@@ -169,7 +169,7 @@ public class AdminController {
 			return mav;
 		}
 		
-		// 유저 DB 업데이트
+		// 카테고리 DB 업데이트
 		@PostMapping("adminCategoryPopEdit")
 		public ResponseEntity<String> adcategoryPopEdit(AdminVO vo){
 			HttpHeaders headers = new HttpHeaders();
@@ -191,7 +191,7 @@ public class AdminController {
 			return new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 		}
 		
-		// 유저 정보 삭제
+		// 카테고리 정보 삭제
 		@GetMapping("adminCategoryDel")
 		public ModelAndView adcategoryDel(String category_id) {
 			int cnt = service.admemberDel(category_id);
@@ -205,7 +205,15 @@ public class AdminController {
 		}
 		///////////////카테고리////////////////////
 		
-		
+		//============== 제품관리 ===============//
+
+		// @GetMapping("adminProductPop")
+		// public ModelAndView adminProductPop(@RequestParam("product_id") String product_id) {
+		// 	ModelAndView mav = new ModelAndView();
+		// 	mav.addObject("vo", service.getadminProduct(product_id));
+		// 	mav.setViewName("admin/adminCategoryPop");
+		// 	return mav;
+		// }
 		
 		// =======================================
 		
