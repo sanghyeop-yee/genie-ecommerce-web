@@ -153,7 +153,7 @@
                 <div class="card-body">
                   <p class="card-text">가장 인기있는 상품은 <br/>
                     <b>${bestSeller}</b> 이에요.</p>
-                  <a href="#" class="card-link">상품관리</a>
+                  <a href="/seller/sellerProduct" class="card-link">상품관리</a>
                 </div>
               </div>
             </div>

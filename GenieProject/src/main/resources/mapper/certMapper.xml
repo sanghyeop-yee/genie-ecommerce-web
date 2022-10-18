@@ -32,7 +32,7 @@
 	<update id ="PwdEditOk">
 
 		update account  
-		set genie_pwd=sha2(#{genie_pwd},256) 
+		set genie_pwd=#{genie_pwd}  
 		where genie_id=#{genie_id}
 
 	</update>

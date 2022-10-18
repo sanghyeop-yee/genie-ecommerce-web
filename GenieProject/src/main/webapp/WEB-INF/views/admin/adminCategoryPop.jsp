@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+ @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 /* 기본구조 */
 
@@ -13,9 +13,9 @@ h1 {
   text-align: center;
   font-size: 30px;
   font-weight: 600;
-  margin-left: 30px;
-  color: #2DCEF8; 
+  color: rgb(50, 50, 50); 
   margin-bottom: 50px;
+  text-align: left;
 }
 
 h2 {
@@ -82,7 +82,7 @@ input[type=button], input[type=submit] {
   display: inline-block;
   font-size: 16px;
   margin: 20px;
-  width: 85%;
+  width: 40%;
   border: 2px solid #f6f6f6;
   border-radius: 10px 10px 10px 10px;
 }
@@ -97,17 +97,13 @@ input[type=text] {
   display: inline-block;
   font-size: 16px;
   margin: 10px;
-  width: 85%;
+  width: 88%;
   border: 2px solid #f6f6f6;
   border-radius: 10px 10px 10px 10px;
 }
 
-input[type=text]:placeholder {
-  color: #cccccc;
-}
-
-.userReg {
-  background-color: #F7D25A;
+#fourth{
+  background-color: #221a91;
   border: none;
   color: #fff;
   padding: 15px 32px;
@@ -116,10 +112,13 @@ input[type=text]:placeholder {
   display: inline-block;
   font-size: 16px;
   margin: 5px;
-  margin-top:50px;
-  width: 85%;
+  width: 90%;
   border: 2px solid #f6f6f6;
   border-radius: 10px 10px 10px 10px;
+}
+
+#delete{
+  background-color: #ff0000;
 }
 
 .comReg{
@@ -136,7 +135,7 @@ input[type=text]:placeholder {
   border: 2px solid #f6f6f6;
   border-radius: 10px 10px 10px 10px;
 }
-</style>
+  </style>
 
 <script>
 function adcategoryDel(){
@@ -149,7 +148,7 @@ function adcategoryDel(){
 <div class="wrapper">
   <div id="formContent">
     <!-- 타이틀 -->
-    <h1>태그정보관리</h1>
+    <h1>카테고리 관리</h1>
 
     <!-- 로그인폼-->
     <form method="post" action="/admin/adminCategoryPopEdit" id="adcategoryPopFrm">
@@ -158,8 +157,8 @@ function adcategoryDel(){
    	<p>카테고리</p>
    		<input type="text" id="category_id" class="second" name="product_category" value=${vo.product_category}>  	
       <input type="submit" class="fourth" value="수정">
-      <a href="javascript:adminTagDel()"><input type="button" class="fourth" value="삭제"></a>
-      <a href="javascript:window.history.back()"><input type="button" class="fourth" value="뒤로가기"></a>
+      <a href="javascript:adminTagDel()"><input type="button" id="delete" value="삭제"></a>
+      <a href="javascript:window.history.back()"><input type="button" id="fourth" value="뒤로가기"></a>
     </form>
   </div>
 </div>

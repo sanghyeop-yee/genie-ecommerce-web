@@ -17,7 +17,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,10 +28,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.genie.myapp.service.SellerService;
 
 import com.genie.myapp.vo.SellerProductVO;
-import com.genie.myapp.vo.AccountVO;
 import com.genie.myapp.vo.OrderVO;
 import com.genie.myapp.vo.PagingVO;
-import com.genie.myapp.vo.SellerVO;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -154,6 +151,8 @@ public class SellerController {
 		mav = new ModelAndView();
 		mav.addObject("list", service.sellerOrder(vo, seller_id));
 
+		//mav.addObject("dList", service.deliveredOrder(vo, seller_id));
+
 		mav.addObject("deliveryPending", devp); // 배송대기 중
 		mav.addObject("todayOrder", torder); // 오늘 들어온 주문
 		mav.addObject("deliveringOrder", deo); // 배송 중 
@@ -163,6 +162,18 @@ public class SellerController {
 		mav.setViewName("seller/sellerOrder");
 	
 		return mav;
+	}
+
+	//Seller 배송완료
+	
+	@PostMapping("sellerOrder1")
+	public List<OrderVO> sellerOrder1(HttpServletRequest request) {
+		String seller_id = ((String)request.getSession().getAttribute("logId")); //세션 셀러 아이디
+		
+
+		return service.deliveredOrder(seller_id);
+
+	
 	}
 	
 
@@ -245,58 +256,6 @@ public class SellerController {
 		
 		mav.setViewName("seller/sellerProduct");
 		return mav;
-	}
-	
-	//아이디 중복검사
-	@GetMapping("sellerIdCheck")
-	public ModelAndView sellerIdCheck(String genie_id) {
-		
-		//DB조회 : 아이디 중복 확인
-		int cnt = service.idCheck(genie_id);
-		
-		mav = new ModelAndView();
-		mav.addObject("idCnt",cnt);
-		mav.addObject("genie_id",genie_id);
-		mav.setViewName("seller/sellerIdCheck");
-		return mav;
-	}
-	
-	//seller 회원가입하기
-	@PostMapping("sellerWrite")
-	public ResponseEntity<String> sellerWrite(SellerVO vo, AccountVO avo){
-		
-		ResponseEntity<String> entity = null;
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
-		headers.add("Content-Type", "text/html; charset=utf-8");
-		TransactionStatus status= transactionManager.getTransaction(definition);
-		
-		try {//회원가입성공
-			service.AccountWrite(avo);
-			service.sellerWrite(vo);
-			
-			
-			String msg = "<script>";
-			msg += "alert('회원가입을 성공하였습니다.');";
-			msg += "location.href='/login';";
-			msg += "</script>";
-			entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
-
-			transactionManager.commit(status);
-			
-		}catch(Exception e) {//회원가입실패
-			
-			String msg = "<script>";
-			msg += "alert('회원가입에 실패하였습니다.');";
-			msg += "history.back();";
-			msg += "</script>";
-			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);
-			
-			transactionManager.rollback(status);
-			e.printStackTrace();
-			
-		}
-		return entity;
 	}
 	
 	//seller 상품등록

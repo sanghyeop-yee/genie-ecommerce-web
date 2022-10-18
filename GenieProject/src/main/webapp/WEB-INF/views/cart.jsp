@@ -16,7 +16,7 @@
         </div>
  
         <div class="line"></div>
-        <form type="post" action="/order/payment" id="multiChk">
+        <form method="post" action="/order/payment" id="multiChk">
             <c:forEach var="cvo" items="${clist}">
                 <div class="cart-list">
                     <input type="checkbox" id="cartList" name="cartList" value="${cvo.cart_num}" onclick="javascript:cart.checkItem();"/>

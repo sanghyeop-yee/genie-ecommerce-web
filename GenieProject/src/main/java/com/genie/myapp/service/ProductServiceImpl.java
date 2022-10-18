@@ -84,6 +84,11 @@ public class ProductServiceImpl implements ProductService{
 		return dao.updateCart(cvo);
 	}
 
+	@Override
+	public List<ProductVO> companyName(ProductVO pVO) {
+		return dao.companyName(pVO);
+	}
+
 }
 
 

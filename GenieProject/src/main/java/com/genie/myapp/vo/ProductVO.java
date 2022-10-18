@@ -19,17 +19,19 @@ public class ProductVO {
 	private String product_image3;
 	private String product_mbti;
 
+	private String company_name;
+
 
 
 	@Override
 	public String toString() {
-		return "ProductVO [genie_id=" + genie_id + ", product_category=" + product_category + ", product_hit="
-				+ product_hit + ", product_id=" + product_id + ", product_image1=" + product_image1
-				+ ", product_image2=" + product_image2 + ", product_image3=" + product_image3 + ", product_info="
-				+ product_info + ", product_like=" + product_like + ", product_mbti=" + product_mbti + ", product_name="
-				+ product_name + ", product_price=" + product_price + ", product_quantity=" + product_quantity
-				+ ", product_stock=" + product_stock + ", product_tag=" + product_tag + ", product_writedate="
-				+ product_writedate + "]";
+		return "ProductVO [product_id=" + product_id + ", genie_id=" + genie_id + ", product_category="
+				+ product_category + ", product_tag=" + product_tag + ", product_name=" + product_name
+				+ ", product_price=" + product_price + ", product_info=" + product_info + ", product_stock="
+				+ product_stock + ", product_quantity=" + product_quantity + ", product_hit=" + product_hit
+				+ ", product_like=" + product_like + ", product_writedate=" + product_writedate + ", product_image1="
+				+ product_image1 + ", product_image2=" + product_image2 + ", product_image3=" + product_image3
+				+ ", product_mbti=" + product_mbti + ", company_name=" + company_name + "]";
 	}
 
 	public int getProduct_id() {
@@ -127,6 +129,14 @@ public class ProductVO {
 	}
 	public void setProduct_mbti(String product_mbti) {
 		this.product_mbti = product_mbti;
+	}
+
+	public String getCompany_name() {
+		return company_name;
+	}
+
+	public void setCompany_name(String company_name) {
+		this.company_name = company_name;
 	}
 
 	

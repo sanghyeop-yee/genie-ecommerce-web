@@ -22,6 +22,7 @@ public class OrderVO {
     private int cart_qty;
 	private List<Integer> cart_qty_List;
     private int order_price;
+    private int cart_price;
 	private List<Integer> order_price_List;
     private int order_qty;
 
@@ -35,9 +36,7 @@ public class OrderVO {
     private String product_image1;
     private String product_category;
 
-
-    
-
+   
     @Override
     public String toString() {
         return "OrderVO [order_num=" + order_num + ", genie_id=" + genie_id + ", recipient_name=" + recipient_name
@@ -46,10 +45,11 @@ public class OrderVO {
                 + recipient_delivery_status + ", cart_num=" + cart_num + ", cartList=" + cartList + ", product_id="
                 + product_id + ", product_id_List=" + product_id_List + ", product_name=" + product_name
                 + ", product_name_List=" + product_name_List + ", cart_qty=" + cart_qty + ", cart_qty_List="
-                + cart_qty_List + ", order_price=" + order_price + ", order_price_List=" + order_price_List
-                + ", order_qty=" + order_qty + ", order_writedate=" + order_writedate + ", payment_method="
-                + payment_method + ", month_day=" + month_day + ", total_sales=" + total_sales + ", sold_counts="
-                + sold_counts + ", product_image1=" + product_image1 + ", product_category=" + product_category + "]";
+                + cart_qty_List + ", order_price=" + order_price + ", cart_price=" + cart_price + ", order_price_List="
+                + order_price_List + ", order_qty=" + order_qty + ", order_writedate=" + order_writedate
+                + ", payment_method=" + payment_method + ", month_day=" + month_day + ", total_sales=" + total_sales
+                + ", sold_counts=" + sold_counts + ", product_image1=" + product_image1 + ", product_category="
+                + product_category + "]";
     }
     
     public String getOrder_num() {
@@ -201,6 +201,14 @@ public class OrderVO {
     }
     public void setProduct_category(String product_category) {
         this.product_category = product_category;
+    }
+
+    public int getCart_price() {
+        return cart_price;
+    }
+
+    public void setCart_price(int cart_price) {
+        this.cart_price = cart_price;
     }
 	
 	

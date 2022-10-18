@@ -1,6 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
-	<main>
+
+<style>
+ 
+    * {
+       font-family: 'Noto Sans KR', sans-serif;
+    }
+   .find_info {
+       width: 350px;
+       max-width: 90%;
+       margin: 0 auto;
+       margin-top: 50px;
+   }
+    
+   .find_id_page .find_info input, .find_password_page .find_info input {
+       border-radius: 15px;
+       width: 75%;
+       min-width: 150px;
+       height: 30px;
+       
+   }
+   input {
+       background-color: #f5f5f7;
+       border: 1px solid #c6c6c6;
+       box-shadow: 0 0 15px #fbfbfb;
+       padding: 10px;
+       border-radius: 8px;
+       margin-bottom: 15px;
+   }
+   
+   button{
+       width: 100px;
+       background-color: #56baed;
+       box-shadow: 0 0 15px #fbfbfb;
+       border: none;
+       padding: 10px;
+       border-radius: 8px;
+       color: #fff;
+   }
+   
+   /*추가 되는 부분*/
+   
+   </style>
+
+    <main>
 		<div class="find_info">	
 			<div class="find">
 				<div id="find_by_email">
@@ -11,12 +54,13 @@
 						<input type="email" class="email" placeholder="이메일을 입력해주세요" maxlength="50">
 						<button type="button" id="send_email">인증번호받기</button>
 						<input type="text" class="auth_num" name="authNum" maxlength="6" readonly placeholder="인증번호6자리입력">
-						<span class="timer"></span>
+						<button id="next" disabled >다음</button>
+                        <span class="timer"></span>
 					</div>
 				</div>			
 			</div>
-				
-			<button id="next" disabled >다음</button>
+			
+			
 		</div>
 	</main>
     

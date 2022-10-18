@@ -187,4 +187,10 @@
     	select genie_id from product_like where genie_id='${param2}' and product_id=#{param1}
     </select>
 
+    <select id="companyName" resultType="ProductVO">
+        select p.product_id, s.genie_id, s.company_name, p.product_price, p.product_image1, p.product_name
+        from product p join seller s
+        on p.genie_id = s.genie_id;
+    </select>
+
 </mapper>

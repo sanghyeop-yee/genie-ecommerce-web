@@ -34,6 +34,15 @@ button{
 	border-radius: 8px;
 	color: #fff;
 }
+
+/*추가 되는 부분*/
+.alert {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+	padding: 10px;
+	border-radius: 15px;
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
@@ -51,12 +60,17 @@ button{
 				data: { user_email : user_email }
 			}).done(function() {
 			const html =`<div class="send_email">
-							<div>
-								<span>입력하신 이메일로 아이디를 전송했습니다</span><br>
-								<div>가입한 적이 없는 이메일 주소나<br> 올바르지 않은 이메일 주소를 입력하신 경우에는<br> 메일을 받을 수 없습니다.</div>	
-							</div>
+							<div class="alert">
+								<h1>메일보내기 성공!</h1>
+								<span>입력하신 이메일로 아이디를 전송했습니다.</span><br><br>
+								<div>올바르지 않은 이메일 주소를 입력하신 경우에는 메일을 받을 수 없습니다.</div>	
+							</div>		
 						</div>`;
  
+
+
+
+						
 					$(".home").html(html);
  
 			});

@@ -144,5 +144,7 @@ window.onload = function () {
       alert("1개 이상의 상품을 선택해주세요");
       return false;
     }
+    console.log("fdsfsfsfds");
+    return true;
   });
 };

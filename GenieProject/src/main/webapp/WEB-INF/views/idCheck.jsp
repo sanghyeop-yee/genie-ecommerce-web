@@ -26,7 +26,7 @@
 		<b>${genie_id}는 사용 불가능한 아이디 입니다.</b>
 	</c:if>
 	<hr/>
-	<form method = "get" action="/user/idCheck">
+	<form method = "get" action="/idCheck">
 		아이디 : <input type = "text" name = "genie_id" id = "genie_id"/>
 		<input type = "submit" value ="아이디 중복 검사하기"/>
 	</form>

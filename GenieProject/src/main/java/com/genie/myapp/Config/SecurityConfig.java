@@ -19,10 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private RoleDetailService RoleDetailService;
 
-	@Bean
-	public BCryptPasswordEncoder encodePwd() {
-		return new BCryptPasswordEncoder();
-	}
     
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -30,26 +26,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.cors().disable();
 		
 		http.authorizeRequests()
-			.antMatchers("/**").permitAll()
-			.antMatchers("/admin/**").hasRole("ADMIN")
-			.antMatchers("/seller/**").hasAnyRole("ADMIN", "SELLER")
-			.antMatchers("/user/**", "/cert/**").hasRole("USER")
-			.anyRequest().permitAll()
+		.antMatchers("/**").permitAll()
+		.antMatchers("/admin/**").hasRole("ADMIN")
+		.antMatchers("/seller/**").hasAnyRole("ADMIN", "SELLER")
+		.antMatchers("/user/**", "/cert/**").hasRole("USER")
+		.anyRequest().permitAll()
 		.and()
-			.formLogin()
-			.loginPage("/login") // 인증 필요한 페이지 접근시 이동페이지
-			.loginProcessingUrl("/login")
-			.failureHandler(loginFail)
+		.formLogin()
+		.loginPage("/login") // 인증 필요한 페이지 접근시 이동페이지
+		.loginProcessingUrl("/login")
+		.failureHandler(loginFail)
 		.and()
-			.logout()
-			.logoutSuccessUrl("/")
+		.logout()
+		.logoutSuccessUrl("/")
 		;
 		
 	}
-
+	
+	@Bean
+	public BCryptPasswordEncoder encodePwd() {
+		return new BCryptPasswordEncoder();
+	}
+	
 	@Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(RoleDetailService).passwordEncoder(encodePwd());
+		auth.userDetailsService(RoleDetailService).passwordEncoder(encodePwd());
     }
 }
 

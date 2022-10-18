@@ -11,9 +11,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.genie.myapp.service.AdministerService;
 import com.genie.myapp.service.SellerService;
 import com.genie.myapp.service.UserService;
-import com.genie.myapp.vo.AccountVO;
 import com.genie.myapp.vo.DeliveryVO;
 import com.genie.myapp.vo.OrderVO;
 import com.genie.myapp.vo.SellerVO;
@@ -35,10 +34,10 @@ import com.genie.myapp.vo.UserVO;
 public class UserController {
 
 	@Inject
-	UserService service;
+	UserService userService;
 
 	@Inject
-	SellerService service_s;
+	SellerService sellerService;
 
 	@Inject
 	AdministerService service_a;
@@ -51,63 +50,8 @@ public class UserController {
 	@Autowired
 	TransactionDefinition definition;
 
-
-	 //아이디 중복검사
-	@GetMapping("idCheck")
-	public ModelAndView idCheck(String genie_id) {
-
-		//DB조회  : 아이디가 존재하는지 확인
-		int cnt = service.idCheck(genie_id);
-
-		mav = new ModelAndView();
-
-		mav.addObject("idCnt",cnt);
-		mav.addObject("genie_id",genie_id);
-		mav.setViewName("/user/idCheck");
-
-		return mav;
-	}
-
-	//회원 가입하기
-	@PostMapping("UserWrite") 
-	public ResponseEntity<String> UserWrite(UserVO vo, AccountVO avo) {
-
-		ResponseEntity<String> entity = null;
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
-		headers.add("Content-Type","text/html; charset=utf-8");
-		TransactionStatus status= transactionManager.getTransaction(definition);
-		
-		System.out.println("avo : " + avo.toString());
-		
-		try {//회원가입 성공
-			
-			service.AccountWrite(avo);
-			service.UserWrite(vo);
-
-			String msg = "<script>";
-			msg += "alert('회원가입을 성공하였습니다.');";
-			msg += "location.href='/login';";
-			msg += "</script>";
-			entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
-
-			transactionManager.commit(status);
-
-		}catch(Exception e) {//회원등록 실패
-
-			String msg = "<script>";
-			msg += "alert('회원가입이 실패하였습니다.');";
-			msg += "history.back()";
-			msg += "</script>";
-			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);
-			
-			transactionManager.rollback(status);
-			e.printStackTrace();
-			
-		}
-
-		return entity;
-	}
+	@Autowired
+    PasswordEncoder passwordEncoder;
 
 //////////////////////////////////////////////////////////
 
@@ -116,10 +60,10 @@ public class UserController {
 	public ModelAndView MyPage(HttpSession session) {
 
 		String genie_id = (String)session.getAttribute("logId"); 
-		UserVO vo = service.getUser(genie_id);
+		UserVO vo = userService.getUser(genie_id);
 
 		String seller_id = (String)session.getAttribute("logId"); 
-		SellerVO svo = service_s.getSeller(seller_id);
+		SellerVO svo = sellerService.getSeller(seller_id);
 
 		mav = new ModelAndView();
 
@@ -140,7 +84,7 @@ public class UserController {
 		headers.add("Content-Type","text/html; charset=UTF-8");
 		
 		String msg = "<script>";
-		int cnt = service.UserEditOk(vo);
+		int cnt = userService.UserEditOk(vo);
 			
 		if(cnt>0) {//수정됨
 			msg+="alert('회원정보가 수정되었습니다.');";
@@ -159,8 +103,8 @@ public class UserController {
 	public ModelAndView MyOrderList(HttpSession session) {
 
 		String genie_id = (String)session.getAttribute("logId");
-		UserVO vo = service.getUser(genie_id);
-		List<OrderVO> orderList =service.getOrder(genie_id);
+		UserVO vo = userService.getUser(genie_id);
+		List<OrderVO> orderList =userService.getOrder(genie_id);
 		
 		mav = new ModelAndView();
 		mav.addObject("list",orderList);
@@ -175,8 +119,8 @@ public class UserController {
 	public ModelAndView MyDeliveryLIst(HttpSession session) {
 		
 		String genie_id = (String)session.getAttribute("logId");
-		UserVO vo = service.getUser(genie_id);
-		List<DeliveryVO> dlist = service.getDeliveryList(genie_id);	
+		UserVO vo = userService.getUser(genie_id);
+		List<DeliveryVO> dlist = userService.getDeliveryList(genie_id);	
 
 		mav = new ModelAndView();
 		mav.addObject("vo", vo);
@@ -196,7 +140,7 @@ public class UserController {
 		headers.add("Content-Type","text/html; charset=UTF-8");
 	
 		String msg = "<script>";
-		int cnt = service.addDelivery(vo);
+		int cnt = userService.addDelivery(vo);
 
 		if(cnt>0) {//수정됨
 			msg+="alert('배송지가 등록되었습니다.');";
@@ -220,7 +164,7 @@ public class UserController {
 		headers.add("Content-Type","text/html; charset=UTF-8");
 	
 		String msg = "<script>";
-		int cnt = service.addDelivery(vo);
+		int cnt = userService.addDelivery(vo);
 
 		if(cnt>0) {//수정됨
 			msg+="alert('배송지가 등록되었습니다.');";
@@ -237,14 +181,14 @@ public class UserController {
 	@GetMapping("delDelivery")
 	public int delDelivery(int address_num, HttpSession session){
 		String genie_id = (String)session.getAttribute("logId");
-		return service.delDelivery(address_num, genie_id);
+		return userService.delDelivery(address_num, genie_id);
 	}
 
 	@GetMapping("addressbook")
 	public ModelAndView addressbook(HttpSession session){
 
 		String genie_id=(String)session.getAttribute("logId");
-		List<DeliveryVO> dlist=service.getDeliveryList(genie_id);
+		List<DeliveryVO> dlist=userService.getDeliveryList(genie_id);
 
 		mav=new ModelAndView();
 		mav.addObject("dlist", dlist);
@@ -259,8 +203,8 @@ public class UserController {
 	public ModelAndView Addaddressbook(HttpSession session){
 
 		String genie_id=(String)session.getAttribute("logId");
-		UserVO vo=service.getUser(genie_id);
-		List<DeliveryVO> dlist=service.getDeliveryList(genie_id);
+		UserVO vo=userService.getUser(genie_id);
+		List<DeliveryVO> dlist=userService.getDeliveryList(genie_id);
 
 		mav=new ModelAndView();
 		mav.addObject("vo", vo);
@@ -275,7 +219,7 @@ public class UserController {
 	public ModelAndView MyInquiryList(HttpSession session) {
 		
 		String genie_id = (String)session.getAttribute("logId");
-		UserVO vo = service.getUser(genie_id);
+		UserVO vo = userService.getUser(genie_id);
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("vo",vo);
@@ -288,10 +232,10 @@ public class UserController {
 	@GetMapping("MyLikeList")
 	public ModelAndView MyLikeList(HttpSession session){
 		String genie_id = (String)session.getAttribute("logId");
-		UserVO vo = service.getUser(genie_id);
+		UserVO vo = userService.getUser(genie_id);
 
 		mav = new ModelAndView();
-		mav.addObject("list",service.getLikeList(genie_id));
+		mav.addObject("list",userService.getLikeList(genie_id));
 		mav.addObject("vo",vo);
 		mav.setViewName("/user/MyLikeList");
 	
@@ -305,7 +249,7 @@ public class UserController {
 	public ModelAndView PwdChange(HttpSession session) {
 		
 		String genie_id = (String)session.getAttribute("logId"); 
-		UserVO vo = service.getUser(genie_id);
+		UserVO vo = userService.getUser(genie_id);
 		
 		mav = new ModelAndView();
 		mav.addObject("vo",vo);
@@ -321,18 +265,35 @@ public class UserController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html",Charset.forName("UTF-8")));
 		headers.add("Content-Type","text/html; charset=UTF-8");
-		
+
+		UserVO logVO = userService.loginOk(vo);
+		System.out.println(logVO);
+
+		boolean pwdMatch = passwordEncoder.matches(vo.getGenie_pwd(), logVO.getGenie_pwd());
+		System.out.println(pwdMatch);
+
 		String msg = "<script>";
-		int cnt = service.PwdEditOk(vo);
-		
-		if(cnt>0) {//수정함
-			msg+="alert('비밀번호가 수정되었습니다.');";
-		}else {//수정못함
-			msg+="alert('비밀번호 수정이 실패하였습니다.');";	
+		if(pwdMatch){
+			String enPw=passwordEncoder.encode(vo.getGenie_pwd2());
+			vo.setGenie_pwd2(enPw);
+			int cnt = userService.PwdEditOk(vo);
+
+				
+			if(cnt>0) {//수정함
+				msg+="alert('비밀번호가 수정되었습니다.');";
+			}else {//수정못함
+				msg+="alert('비밀번호 수정이 실패하였습니다.');";	
+			}
+			msg+="window.close();</script>";
+			entity = new ResponseEntity<String>(msg,headers, HttpStatus.OK);
+				
+		}else{
+
+			msg+="alert('비밀번호 수정이 실패하였습니다.');";
+			msg+="window.close();</script>";
+			entity = new ResponseEntity<String>(msg,headers, HttpStatus.OK);
+
 		}
-		msg+="window.close();</script>";
-		
-		entity = new ResponseEntity<String>(msg,headers, HttpStatus.OK);
 
 		return entity;
 	}

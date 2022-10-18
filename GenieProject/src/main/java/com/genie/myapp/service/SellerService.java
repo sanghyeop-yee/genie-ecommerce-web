@@ -22,6 +22,7 @@ public interface SellerService {
 	public int AccountWrite(AccountVO avo);
 	//seller 상품등록
 	public int productWrite(SellerProductVO vo);
+
 	// 주문목록 
 	public List<OrderVO> sellerOrder(OrderVO vo, String seller_id);
 	// 주문목록 배송상태 수정 
@@ -66,9 +67,14 @@ public interface SellerService {
 
 	// 이번달 매출
     public int thisMonthRevenue(String seller_id);
+
 	// 카테고리별 판매건수
 	public List<OrderVO> topCategory(String seller_id);
 	
 	//상품 총 레코드 수
 	public int productTotalRecord(PagingVO pVO);
+	
+	// 배송완료된 주문목록
+	public List<OrderVO> deliveredOrder(String seller_id);
+	
 }

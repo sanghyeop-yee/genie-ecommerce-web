@@ -16,13 +16,25 @@
 		order by m.order_writedate desc
 	</select>
 	
+<!-- 배송완료 주문목록 -->
+	<select id="deliveredOrder" resultType="OrderVO">
+		select m.order_num, m.genie_id, p.product_name, m.recipient_delivery_status, m.order_price, m.order_qty, m.order_writedate
+		from myorder m join
+			(select product_id, genie_id as seller_id, product_name 
+			from product
+			where genie_id = #{param2}) p
+		on m.product_id = p.product_id
+		where recipient_delivery_status = 'delivered'
+		order by m.order_writedate desc
+	</select>
+
 	<select id="idCheck" resultType="int">
 		select count(genie_id) cnt from account where genie_id=#{genie_id}
 	</select>
 	
 	<insert id="AccountWrite">
-		insert into account(member_type, genie_id, genie_pwd) 
-		values(#{member_type},#{genie_id}, sha2(#{genie_pwd},256))
+		insert into account(ROLE, genie_id, genie_pwd) 
+		values(#{ROLE},#{genie_id}, #{genie_pwd})
 	</insert>
 	
 	<insert id="sellerWrite">
@@ -38,11 +50,11 @@
 	
 	<select id="loginOk" resultType = "SellerVO">
 
-		select s.genie_id, s.company_name, a.ROLE
+		select a.genie_id, a.genie_pwd, s.company_name, a.ROLE
 		from account a 
 		join seller s 
 		on a.genie_id=s.genie_id 
-		where a.genie_id=#{genie_id} and a.genie_pwd=sha2(#{genie_pwd},256) and a.withdrawal=1;
+		where a.genie_id=#{genie_id} and a.withdrawal=1;
 
 	</select>
 	
@@ -123,6 +135,7 @@
 			where genie_id = #{param1}) p
 		on m.product_id = p.product_id
 		group by month_day
+		order by month_day
 
 		<!-- select date_format(order_writedate, '%m-%d') as month_day, sum(order_price) as total_sales
 		from myorder

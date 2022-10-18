@@ -78,4 +78,7 @@ public interface SellerDAO {
 	
 	//상품 총 레코드 수
 	public int productTotalRecord(PagingVO pVO);
+	
+	// 배송완료된 주문목록
+	public List<OrderVO> deliveredOrder(String seller_id);
 }

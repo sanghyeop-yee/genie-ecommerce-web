@@ -55,7 +55,12 @@
 }
 
 #page li{
-	float:left; padding:10px;
+	float:left; 
+	padding:10px;
+}
+
+#subtitle{
+	padding-left:80px;
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -75,13 +80,11 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">상품관리</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/seller/sellerMain">Home</a></li>
-              <li class="breadcrumb-item active">Main</li>
+         
+          <div class="col-sm-6" id="subtitle" >
+            <ol class="breadcrumb float-sm-left" >
+              <li class="breadcrumb-item"><a href="/seller/sellerMain"style="color:gray;">Main</a></li>
+              <li class="breadcrumb-item active" style="color: #047bff;">상품관리</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

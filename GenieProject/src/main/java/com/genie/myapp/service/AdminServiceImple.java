@@ -9,6 +9,7 @@ import com.genie.myapp.dao.AdminDAO;
 import com.genie.myapp.vo.AdminVO;
 import com.genie.myapp.vo.CartVO;
 import com.genie.myapp.vo.PagingVO;
+import com.genie.myapp.vo.ProductVO;
 import com.genie.myapp.vo.SellerVO;
 import com.genie.myapp.vo.UserVO;
 
@@ -132,4 +133,22 @@ public class AdminServiceImple implements AdminService {
 	public int mainTotalRecord(AdminVO VO) {
 		return dao.mainTotalRecord(VO);
 	}
+
+	//=============제품관리=============//
+
+	// @Override
+	// public AdminVO getadminProduct(String product_id) {
+	// 	return dao.getadminProduct(product_id);
+	// }
+
+	//@Override
+	//public int adminProductPopEdit(ProductVO vo) {
+	//	return dao.adminProductPopEdit(vo);
+	//}
+
+	//@Override
+	//public int adminProductDel(String product_id) {
+	//	return dao.adminProductDel(product_id);
+	//}
+	//=============제품관리 끝 =============//
 }

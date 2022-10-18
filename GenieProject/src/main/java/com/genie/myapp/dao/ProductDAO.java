@@ -54,5 +54,8 @@ public interface ProductDAO {
 
     // 상세페이지 logid 좋아요 확인
     public LikeVO likeCheck(int product_id, String genie_id);
+    
+    // index 페이지 상품+회사명 리스트
+    public List<ProductVO> companyName(ProductVO pVO);
 
 }

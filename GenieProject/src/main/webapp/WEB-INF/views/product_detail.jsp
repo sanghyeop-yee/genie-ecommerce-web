@@ -184,7 +184,7 @@
 
 <section class="product_detail">
     <!--<h1>상세페이지</h1>-->
-    <form method="get" action="/addCart" id="Cart">
+    <form method="post" action="/addCart" id="Cart">
         <div class="box-wrapper1"> 
             <input type="hidden" value="${logId}" name="genie_id">
             <input type="hidden" value="${pvo.product_id}" name="product_id">
